@@ -1045,7 +1045,7 @@ static u8 ReformatItemDescription(u16 item, u8 *dest)
     u8 count = 0;
     u8 numLines = 1;
     u8 maxChars = 32;
-    u8 *desc = (u8 *)gItems[item].description;
+    u8 *desc = (u8 *)gItemsInfo[item].description;
 
     while (*desc != EOS)
     {
@@ -1143,7 +1143,7 @@ void HideHeaderBox(void)
 #define ITEM_TAG 0x2722 //same as money label
 static void ShowItemIconSprite(u16 item, bool8 firstTime, bool8 flash)
 {
-    s16 x, y;
+    s16 x = 0, y = 0;
     u8 iconSpriteId;   
     u8 spriteId2 = MAX_SPRITES;
 
