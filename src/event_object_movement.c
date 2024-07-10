@@ -1928,7 +1928,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
             LZ77UnCompWram((u32*)spritePalette.data, gDecompressionBuffer);
             spritePalette.data = (void*)gDecompressionBuffer;
         }
-        paletteNum = LoadSpritePalette(&spritePalette);
+        paletteNum = LoadSpritePaletteDayNight(&spritePalette);
     }
     else
 #endif //OW_POKEMON_OBJECT_EVENTS == TRUE && OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
@@ -2892,7 +2892,7 @@ static u8 LoadSpritePaletteIfTagExists(const struct SpritePalette *spritePalette
     u8 paletteNum = IndexOfSpritePaletteTag(spritePalette->tag);
     if (paletteNum != 0xFF) // don't load twice; return
         return paletteNum;
-    paletteNum = LoadSpritePalette(spritePalette);
+    paletteNum = LoadSpritePaletteDayNight(spritePalette);
     return paletteNum;
 }
 
