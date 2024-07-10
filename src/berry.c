@@ -2152,6 +2152,9 @@ void ObjectEventInteractionGetBerryCountString(void)
     }
     else
         gSpecialVar_Result = FALSE;
+    
+    gSpecialVar_0x8006 = BerryTypeToItemId(berry);
+    GetBerryCountStringByBerryType(berry, gStringVar1, count);
 }
 
 void Bag_ChooseBerry(void)
