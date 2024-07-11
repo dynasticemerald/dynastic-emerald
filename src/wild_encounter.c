@@ -13,6 +13,7 @@
 #include "roamer.h"
 #include "tv.h"
 #include "link.h"
+#include "rtc.h"
 #include "script.h"
 #include "battle_debug.h"
 #include "battle_pike.h"
@@ -372,6 +373,25 @@ static u16 GetCurrentMapWildMonHeaderId(void)
         const struct WildPokemonHeader *wildHeader = &gWildMonHeaders[i];
         if (wildHeader->mapGroup == MAP_GROUP(UNDEFINED))
             break;
+
+        if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+            gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
+        {
+            RtcCalcLocalTime();
+            if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(ALTERING_CAVE) &&
+               gSaveBlock1Ptr->location.mapNum != MAP_NUM(ALTERING_CAVE)){
+                if (gLocalTime.hours >= 9 && gLocalTime.hours <= 17 
+                && gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup 
+                && gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
+                {
+                    i += 0; // Day
+                }
+                else
+                {
+                    i += 1; // Night
+                }
+            }
+        }
 
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)

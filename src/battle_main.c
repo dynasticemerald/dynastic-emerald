@@ -5684,13 +5684,13 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
     return FALSE;
 }
 
-void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
+u8 SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
 {
     u32 moveType, attackerAbility;
     u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
 
     if (move == MOVE_STRUGGLE)
-        return;
+        return TYPE_NORMAL;
 
     gBattleStruct->dynamicMoveType = 0;
     gBattleStruct->ateBoost[battlerAtk] = 0;
@@ -5826,6 +5826,8 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
         gSpecialStatuses[battlerAtk].gemParam = GetBattlerHoldEffectParam(battlerAtk);
         gSpecialStatuses[battlerAtk].gemBoost = TRUE;
     }
+    
+    return gMovesInfo[move].type;
 }
 
 // special to set a field's totem boost(s)

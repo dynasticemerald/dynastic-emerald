@@ -41,9 +41,15 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/rgb.h"
+#include "constants/abilities.h"
 #include "level_caps.h"
 #include "menu.h"
 #include "pokemon_summary_screen.h"
+
+#define COLOR_SUPER_EFFECTIVE 24
+#define COLOR_NOT_VERY_EFFECTIVE 25
+#define COLOR_IMMUNE 26
+#define COLOR_EFFECTIVE 10
 
 static void PlayerBufferExecCompleted(u32 battler);
 static void PlayerHandleLoadMonSprite(u32 battler);
@@ -1710,47 +1716,289 @@ static void MoveSelectionDisplayPpNumber(u32 battler)
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP_REMAINING);
 }
 
+static const u8 gText_MoveInterfaceSuperEffective[] = _(" {UP_ARROW}");
+static const u8 gText_MoveInterfaceNotVeryEffective[] = _(" {DOWN_ARROW}");
+static const u8 gText_MoveInterfaceImmune[] = _(" X");
+static const u8 gText_MoveInterfaceSTAB[] = _(" +");
+
+u8 TypeEffectiveness(u8 targetId, u32 battler)
+{
+    u16 illusionSpecies;
+
+    u16 move = gBattleMons[battler].moves[gMoveSelectionCursor[battler]];
+    u32 battlerAtk = battler;
+    u32 moveType = SetTypeBeforeUsingMove(move, battlerAtk);
+    u32 atkAbility = GetBattlerAbility(battlerAtk);
+    u32 defAbility = GetBattlerAbility(targetId);
+    u32 contactMove = IsMoveMakingContact(move, battlerAtk);
+    u32 attackingMove = !(gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS); // or gMovesInfo[move].power > 0;
+    u32 moldBreaker = IsMoldBreakerTypeAbility(atkAbility);
+    u32 modifier = CalcTypeEffectivenessMultiplier(move, moveType, battler, targetId, defAbility, TRUE);
+
+    if (defAbility == ABILITY_ILLUSION && (illusionSpecies = GetIllusionMonSpecies(targetId)))
+        TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, targetId, modifier, illusionSpecies);
+
+    // Moves against specific Abilities and Weather
+    switch (moveType)
+    {
+        case TYPE_FIRE:
+        {
+            // Target Ability
+            if (((defAbility == ABILITY_FLASH_FIRE) || (defAbility == ABILITY_WELL_BAKED_BODY))
+                && !(moldBreaker))
+                return COLOR_IMMUNE;
+
+            if (((defAbility == ABILITY_HEATPROOF) || (defAbility == ABILITY_THICK_FAT) || (defAbility == ABILITY_WATER_BUBBLE))
+                && (!(moldBreaker) && attackingMove))
+                return COLOR_NOT_VERY_EFFECTIVE;
+
+            if (((defAbility == ABILITY_DRY_SKIN) || ((defAbility == ABILITY_FLUFFY) && !contactMove))
+                && ((!moldBreaker) && attackingMove))
+                return COLOR_SUPER_EFFECTIVE;
+
+            // Weather (primal)
+            if ((gBattleWeather & B_WEATHER_RAIN_PRIMAL) && WEATHER_HAS_EFFECT)
+                return COLOR_IMMUNE;
+        }
+        break;
+        case TYPE_ICE:
+        {
+
+            if ((defAbility == ABILITY_THICK_FAT)
+                && (!(moldBreaker) && attackingMove))
+                return COLOR_NOT_VERY_EFFECTIVE;
+
+        }
+        break;
+        case TYPE_WATER:
+        {
+            // Target Ability
+            if (((defAbility == ABILITY_WATER_ABSORB) || (defAbility == ABILITY_STORM_DRAIN) || (defAbility == ABILITY_STEAM_ENGINE))
+                && (!moldBreaker))
+                return COLOR_IMMUNE;
+
+            // Weather (primal)
+            if ((gBattleWeather & B_WEATHER_SUN_PRIMAL) && WEATHER_HAS_EFFECT)
+                return COLOR_IMMUNE;
+        }
+        break;
+        case TYPE_GRASS:
+        {
+            // Target Ability
+            if (((defAbility == ABILITY_SAP_SIPPER))
+                && (!moldBreaker))
+                return COLOR_IMMUNE;
+        }
+        break;
+        case TYPE_ELECTRIC:
+        {
+            // Target Ability
+            if (((defAbility == ABILITY_VOLT_ABSORB) || (defAbility == ABILITY_LIGHTNING_ROD) || (defAbility == ABILITY_MOTOR_DRIVE))
+                && (!moldBreaker))
+                return COLOR_IMMUNE;
+
+        }
+        break;
+        case TYPE_GROUND:
+        {
+            // Target Ability
+            if (((defAbility == ABILITY_LEVITATE) || (defAbility == ABILITY_EARTH_EATER))
+                && (!moldBreaker))
+                return COLOR_IMMUNE;
+
+            // Attacker Ability
+            //if(atkAbility == ABILITY_GROUND_SHOCK)
+                //return COLOR_EFFECTIVE; Already Done in CalcTypeEffectivenessMultiplier
+        }
+        break;
+        case TYPE_GHOST:
+        {
+            // Target Ability
+            if ((defAbility == ABILITY_PURIFYING_SALT)
+                && (!moldBreaker))
+                return COLOR_NOT_VERY_EFFECTIVE;
+
+            // Attacker Ability
+            /*if(atkAbility == ABILITY_SCRAPPY || atkAbility == ABILITY_MINDS_EYE)
+                return COLOR_EFFECTIVE;*/ //Already done in CalcTypeEffectivenessMultiplier
+        }
+        break;
+    }
+
+    // Move Effects
+    switch (gMovesInfo[move].effect)
+    {
+        case EFFECT_SLEEP:
+        case EFFECT_DARK_VOID:
+        {    
+            if (!CanBeSlept(targetId, defAbility))
+                return COLOR_IMMUNE;
+        }
+        break;
+        case EFFECT_TOXIC:
+        case EFFECT_POISON:
+        {
+            if (!CanBePoisoned(battlerAtk, targetId, defAbility))
+                return COLOR_IMMUNE;
+        }
+        break;
+        case EFFECT_WILL_O_WISP:
+        {   
+            if (!CanBeBurned(targetId, defAbility))
+                return COLOR_IMMUNE;
+        }
+        break;
+        case EFFECT_PARALYZE:
+        {
+            if (!CanBeParalyzed(targetId, defAbility))
+                return COLOR_IMMUNE;
+        }
+        break;
+        case EFFECT_CONFUSE:
+        {
+            if (!CanBeConfused(targetId))
+                    return COLOR_IMMUNE;
+        }
+        break;
+        case EFFECT_LEECH_SEED:
+        {
+            if (IS_BATTLER_OF_TYPE(targetId, TYPE_GRASS))
+                return COLOR_IMMUNE;
+        }
+        break;
+    }
+
+    // Ability cases
+    switch (defAbility)
+    {
+        case ABILITY_SOUNDPROOF:
+        {
+            if ((gMovesInfo[move].soundMove) && (!moldBreaker))
+                return COLOR_IMMUNE;
+        }
+        break;
+        case ABILITY_BULLETPROOF:
+        {
+            if ((gMovesInfo[move].ballisticMove) && (!moldBreaker))
+                return COLOR_IMMUNE;
+        }
+        break;
+        case ABILITY_OVERCOAT:
+        {
+            if ((gMovesInfo[move].powderMove) && (!moldBreaker))
+                return COLOR_IMMUNE;
+        }
+        break;
+        case ABILITY_WIND_RIDER:
+        case ABILITY_WIND_POWER:
+        {
+            if ((gMovesInfo[move].windMove) && (!moldBreaker))
+                return COLOR_IMMUNE;
+        }
+        break;
+    }
+
+    // I don't know how to keep these inside the switch case lol
+    if ((gBattleMons[targetId].ability == ABILITY_QUEENLY_MAJESTY) ||
+        ((gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_QUEENLY_MAJESTY) && (IsBattlerAlive(BATTLE_PARTNER(targetId)))))
+    {
+        if (GetMovePriority(battlerAtk, move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
+            return COLOR_IMMUNE;
+    }
+
+    if ((gBattleMons[targetId].ability == ABILITY_DAZZLING) ||
+        ((gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING) && (IsBattlerAlive(BATTLE_PARTNER(targetId)))))
+    {
+        if (GetMovePriority(battlerAtk, move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
+            return COLOR_IMMUNE;
+    }
+
+    if ((gBattleMons[targetId].ability == ABILITY_ARMOR_TAIL) ||
+        ((gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_ARMOR_TAIL) && (IsBattlerAlive(BATTLE_PARTNER(targetId)))))
+    {
+        if (GetMovePriority(battlerAtk, move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
+            return COLOR_IMMUNE;
+    }
+
+    // Type specific cases
+    if (IS_BATTLER_OF_TYPE(targetId, TYPE_GRASS))
+    {
+        if (gMovesInfo[move].powderMove == TRUE)
+            return COLOR_IMMUNE;
+    }
+
+    if (IS_BATTLER_OF_TYPE(targetId, TYPE_GROUND))
+    {
+        if (move == MOVE_THUNDER_WAVE)
+            return COLOR_IMMUNE;
+    }
+    
+    if (attackingMove)
+    {
+        if(modifier == UQ_4_12(0.0))
+        {
+	        return COLOR_IMMUNE;
+        }
+        else if (modifier <= UQ_4_12(0.5))
+        {
+            return COLOR_NOT_VERY_EFFECTIVE;
+        }
+        else if (modifier >= UQ_4_12(2.0))
+        {
+            return COLOR_SUPER_EFFECTIVE;
+        }
+        else
+            return COLOR_EFFECTIVE;
+    }
+    else
+        return COLOR_EFFECTIVE;
+}
+
+//todo: account for ivy cudgel (see 1.7.X expansion update)
 static void MoveSelectionDisplayMoveType(u32 battler)
 {
-    u8 *txtPtr, *end;
-    u8 type;
-    u32 speciesId;
+    u8 *txtPtr;
+    u8 typeColor = IsDoubleBattle() ? B_WIN_MOVE_TYPE : TypeEffectiveness(GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler))), battler);
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
+    u16 move = moveInfo->moves[gMoveSelectionCursor[battler]];
+    u8 moveType = SetTypeBeforeUsingMove(move, battler);
+    u8 movePower = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].power;
+    u8 battlerType1 = gBattleMons[battler].type1;
+    u8 battlerType2 = gBattleMons[battler].type2;
 
-    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
+    txtPtr = StringCopy(gDisplayedStringBattle, gTypesInfo[moveType].name);
 
-    type = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
+    if (typeColor != COLOR_EFFECTIVE) {
+        *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
+        *(txtPtr)++ = EXT_CTRL_CODE_FONT;
+        *(txtPtr)++ = FONT_NORMAL;
 
-    if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_BLAST)
-    {
-        if (IsGimmickSelected(battler, GIMMICK_TERA) || GetActiveGimmick(battler) == GIMMICK_TERA)
-            type = GetBattlerTeraType(battler);
-    }
-    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
-    {
-        speciesId = gBattleMons[battler].species;
-
-        if (speciesId == SPECIES_OGERPON_WELLSPRING_MASK || speciesId == SPECIES_OGERPON_WELLSPRING_MASK_TERA
-            || speciesId == SPECIES_OGERPON_HEARTHFLAME_MASK || speciesId == SPECIES_OGERPON_HEARTHFLAME_MASK_TERA
-            || speciesId == SPECIES_OGERPON_CORNERSTONE_MASK || speciesId == SPECIES_OGERPON_CORNERSTONE_MASK_TERA)
-            type = gBattleMons[battler].type2;
-    }
-    // Max Guard is a Normal-type move
-    else if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category == DAMAGE_CATEGORY_STATUS
-             && (GetActiveGimmick(battler) == GIMMICK_DYNAMAX || IsGimmickSelected(battler, GIMMICK_DYNAMAX)))
-    {
-        type = TYPE_NORMAL;
-    }
-    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_STARSTORM)
-    {
-        if (gBattleMons[battler].species == SPECIES_TERAPAGOS_STELLAR
-        || (IsGimmickSelected(battler, GIMMICK_TERA) && gBattleMons[battler].species == SPECIES_TERAPAGOS_TERASTAL))
-            type = TYPE_STELLAR;
+        switch (typeColor) {
+            case COLOR_IMMUNE:
+                StringCopy(txtPtr, gText_MoveInterfaceImmune);
+                break;
+            case COLOR_NOT_VERY_EFFECTIVE:
+                StringCopy(txtPtr, gText_MoveInterfaceNotVeryEffective);
+                break;
+            case COLOR_SUPER_EFFECTIVE:
+                StringCopy(txtPtr, gText_MoveInterfaceSuperEffective);
+                break;
+        }
     }
 
-    end = StringCopy(txtPtr, gTypesInfo[type].name);
-    PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
+    BattlePutTextOnWindow(gDisplayedStringBattle, typeColor);
+    //MoveSelectionDisplaySplitIcon(battler);
+
+    if (gMovesInfo[battler].type == TYPE_ROCK && gBattleMons[battler].ability == ABILITY_ROCKY_PAYLOAD)
+    {
+        StringCopy(gDisplayedStringBattle, gText_MoveInterfaceSTAB);
+        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_STAB_SYMBOL);
+    }
+    else if (movePower > 0 && (moveType == battlerType1 || moveType == battlerType2))
+    {
+        StringCopy(gDisplayedStringBattle, gText_MoveInterfaceSTAB);
+        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_STAB_SYMBOL);
+    }
 }
 
 static void MoveSelectionDisplayMoveDescription(u32 battler)
