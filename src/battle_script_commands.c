@@ -593,7 +593,7 @@ static void Cmd_settelekinesis(void);
 static void Cmd_swapstatstages(void);
 static void Cmd_averagestats(void);
 static void Cmd_jumpifoppositegenders(void);
-static void Cmd_unused(void);
+static void Cmd_trysetsteelspikes(void);
 static void Cmd_tryworryseed(void);
 static void Cmd_callnative(void);
 
@@ -852,7 +852,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_swapstatstages,                          //0xFA
     Cmd_averagestats,                            //0xFB
     Cmd_jumpifoppositegenders,                   //0xFC
-    Cmd_unused,                                  //0xFD
+    Cmd_trysetsteelspikes,                     //0xFD
     Cmd_tryworryseed,                            //0xFE
     Cmd_callnative,                              //0xFF
 };
@@ -1055,7 +1055,7 @@ static const struct PickupItem sPickupTable[] =
     { ITEM_MAX_REPEL,       {   _,   3,   3,   4,   4,   9,   8,   8,  30,   _, } },
     { ITEM_MOON_STONE,      {   _,   3,   3,   4,   4,   4,   4,   5,   9,  10, } },
     { ITEM_SUN_STONE,       {   _,   3,   3,   4,   4,   4,   4,   5,   9,  10, } },
-    { ITEM_RARE_CANDY,      {   _,   1,   1,   1,   1,   4,   4,   5,   4,   5, } },
+    { ITEM_REPEAT_BALL,     {   _,   1,   1,   1,   1,   4,   4,   5,   4,   5, } },
     { ITEM_NUGGET,          {   _,   _,   3,   4,   4,   4,   4,   5,   4,   5, } },
     { ITEM_MAX_POTION,      {   _,   _,   3,   4,   4,   4,   8,   8,   9,  30, } },
     { ITEM_MAX_ETHER,       {   _,   _,   1,   1,   4,   4,   4,   _,   _,   _, } },
@@ -1532,10 +1532,22 @@ static bool32 AccuracyCalcHelper(u16 move)
 
     if (WEATHER_HAS_EFFECT)
     {
-        if ((gMovesInfo[move].effect == EFFECT_THUNDER || gMovesInfo[move].effect == EFFECT_RAIN_ALWAYS_HIT)
+        if ((gMovesInfo[move].effect == EFFECT_THUNDER || gMovesInfo[move].effect == EFFECT_RAIN_ALWAYS_HIT) //Rain Acc Check
             && IsBattlerWeatherAffected(gBattlerTarget, B_WEATHER_RAIN))
         {
-            // thunder/hurricane/genie moves ignore acc checks in rain unless target is holding utility umbrella
+            // thunder/hurricane/wildstorm ignore acc checks in rain unless target is holding utility umbrella
+            JumpIfMoveFailed(7, move);
+            return TRUE;
+        }
+        else if ((gBattleWeather & (B_WEATHER_SANDSTORM)) && gMovesInfo[move].effect == EFFECT_SAND_ALWAYS_HIT) //Sand Acc Check
+        {
+            // sandsear ignore acc checks in sand unless target is holding utility umbrella
+            JumpIfMoveFailed(7, move);
+            return TRUE;
+        }
+        else if ((gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && gMovesInfo[move].effect == EFFECT_SNOW_ALWAYS_HIT) //Snow Acc Check
+        {
+            // nleakwind ignore acc checks in snow unless target is holding utility umbrella
             JumpIfMoveFailed(7, move);
             return TRUE;
         }
@@ -1545,6 +1557,13 @@ static bool32 AccuracyCalcHelper(u16 move)
             JumpIfMoveFailed(7, move);
             return TRUE;
         }
+    }
+
+    if ((gBattleTerrain & (STATUS_FIELD_MISTY_TERRAIN)) && gMovesInfo[move].effect == EFFECT_MISTY_ALWAYS_HIT) //Misty Terrain Acc Check
+    {
+        // springtide ignore acc checks in misty terrain
+        JumpIfMoveFailed(7, move);
+        return TRUE;
     }
 
     if (B_MINIMIZE_DMG_ACC >= GEN_6
@@ -2788,6 +2807,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
         gBattlescriptCurrInstr++;
         return;
     case MOVE_EFFECT_STEALTH_ROCK:
+    case MOVE_EFFECT_STEEL_SPIKES:
     case MOVE_EFFECT_SPIKES:
     case MOVE_EFFECT_PAYDAY:
     case MOVE_EFFECT_STEAL_ITEM:
@@ -3676,6 +3696,14 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gBattlescriptCurrInstr = BattleScript_StealthRockActivates;
                 }
                 break;
+            case MOVE_EFFECT_STEEL_SPIKES:
+                if (gSideTimers[GetBattlerSide(gEffectBattler)].spikesAmount < 3)
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SHARPSTEELFLOATS;
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_SteelSpikesActivates;
+                }
+            break;
             case MOVE_EFFECT_SPIKES:
                 if (gSideTimers[GetBattlerSide(gEffectBattler)].spikesAmount < 3)
                 {
@@ -7180,6 +7208,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
     }
     else if (!(gDisableStructs[battler].spikesDone)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SPIKES)
+        && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STEELSPIKES)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD
         && IsBattlerAffectedByHazards(battler, FALSE)
         && IsBattlerGrounded(battler))
@@ -13709,6 +13738,13 @@ static void Cmd_rapidspinfree(void)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_SpikesFree;
     }
+    else if (gSideStatuses[atkSide] & SIDE_STATUS_STEELSPIKES)
+    {
+        gSideStatuses[atkSide] &= ~SIDE_STATUS_STEELSPIKES;
+        gSideTimers[atkSide].spikesAmount = 0;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_SpikesFree;
+    }
     else if (gSideStatuses[atkSide] & SIDE_STATUS_TOXIC_SPIKES)
     {
         gSideStatuses[atkSide] &= ~SIDE_STATUS_TOXIC_SPIKES;
@@ -15725,8 +15761,22 @@ static void Cmd_jumpifoppositegenders(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_unused(void)
+static void Cmd_trysetsteelspikes(void)
 {
+    CMD_ARGS(const u8 *failInstr);
+
+    u8 targetSide = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
+
+    if (gSideTimers[targetSide].steelSpikesAmount == 2)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+    else
+    {
+        gSideStatuses[targetSide] |= SIDE_STATUS_STEELSPIKES;
+        gSideTimers[targetSide].steelSpikesAmount++;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
 }
 
 static void Cmd_tryworryseed(void)

@@ -254,6 +254,8 @@ const u32 gBattleAnimSpritePal_SpacialRendSlices[] = INCBIN_U32("graphics/battle
 const u32 gBattleAnimSpriteGfx_NewSpikes[] = INCBIN_U32("graphics/battle_anims/sprites/spikes_new.4bpp.lz");
 const u32 gBattleAnimSpritePal_NewSpikes[] = INCBIN_U32("graphics/battle_anims/sprites/spikes_new.gbapal.lz");
 
+const u32 gBattleAnimSpritePal_SteelSpikes[] = INCBIN_U32("graphics/battle_anims/sprites/spikes_new.gbapal.lz");
+
 const u32 gBattleAnimSpriteGfx_SpiritShackleArrow[] = INCBIN_U32("graphics/battle_anims/sprites/spirit_shackle_arrow.4bpp.lz");
 const u32 gBattleAnimSpritePal_SpiritShackleArrow[] = INCBIN_U32("graphics/battle_anims/sprites/spirit_shackle_arrow.gbapal.lz");
 

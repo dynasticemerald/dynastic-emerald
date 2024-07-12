@@ -1608,6 +1608,13 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
               || PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, aiData->partnerMove)) //Only one mon needs to set up Stealth Rocks
                 ADJUST_SCORE(-10);
             break;
+        case EFFECT_STEEL_SPIKES:
+            if (gSideTimers[GetBattlerSide(battlerDef)].steelSpikesAmount >= 2)
+                ADJUST_SCORE(-10);
+            else if (PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, aiData->partnerMove)
+              && gSideTimers[GetBattlerSide(battlerDef)].steelSpikesAmount == 1)
+                ADJUST_SCORE(-10); // only one mon needs to set up the last layer of Spikes
+            break;
         case EFFECT_TOXIC_SPIKES:
             if (gSideTimers[GetBattlerSide(battlerDef)].toxicSpikesAmount >= 2)
                 ADJUST_SCORE(-10);
@@ -2119,6 +2126,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_NATURE_POWER:
             return AI_CheckBadMove(battlerAtk, battlerDef, GetNaturePowerMove(battlerAtk), score);
         case EFFECT_TAUNT:
+        case EFFECT_DOUBLE_TEAM:
             if (gDisableStructs[battlerDef].tauntTimer > 0
               || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, aiData->partnerMove))
                 ADJUST_SCORE(-10);
@@ -3963,6 +3971,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF, &score);
         break;
     case EFFECT_TAUNT:
+    case EFFECT_DOUBLE_TEAM:
         if (IS_MOVE_STATUS(predictedMove))
             ADJUST_SCORE(GOOD_EFFECT);
         else if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_STATUS))
@@ -4701,6 +4710,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                     }
                     break;
                 case MOVE_EFFECT_STEALTH_ROCK:
+                case MOVE_EFFECT_STEEL_SPIKES:
                 case MOVE_EFFECT_SPIKES:
                     if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData));
                     {

@@ -1309,8 +1309,8 @@ u32 TrySetCantSelectMoveBattleScript(u32 battler)
         else
         {
             gSelectionBattleScripts[battler] = BattleScript_SelectingNotAllowedMoveTaunt;
-            limitations++;
         }
+            limitations++;
     }
 
     if (DYNAMAX_BYPASS_CHECK && GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE && gDisableStructs[battler].throatChopTimer != 0 && gMovesInfo[move].soundMove)
@@ -2333,6 +2333,7 @@ enum
     ENDTURN_CHARGE,
     ENDTURN_LASER_FOCUS,
     ENDTURN_TAUNT,
+    ENDTURN_DOUBLE_TEAM,
     ENDTURN_YAWN,
     ENDTURN_ITEMS2,
     ENDTURN_ORBS,
@@ -2745,6 +2746,15 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_TAUNT:  // taunt
+            if (gDisableStructs[battler].tauntTimer && --gDisableStructs[battler].tauntTimer == 0)
+            {
+                BattleScriptExecute(BattleScript_BufferEndTurn);
+                PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_TAUNT);
+                effect++;
+            }
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_DOUBLE_TEAM:  // taunt
             if (gDisableStructs[battler].tauntTimer && --gDisableStructs[battler].tauntTimer == 0)
             {
                 BattleScriptExecute(BattleScript_BufferEndTurn);
@@ -9426,7 +9436,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_DEFEATIST:
-        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 2))
+        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
         break;
     case ABILITY_FLASH_FIRE:
@@ -10191,6 +10201,14 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
     }
     else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST
         && (abilityAtk == ABILITY_SCRAPPY || abilityAtk == ABILITY_MINDS_EYE)
+        && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, abilityAtk);
+    }
+    else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND
+        && (abilityAtk == ABILITY_GROUNDSHOCK)
         && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);

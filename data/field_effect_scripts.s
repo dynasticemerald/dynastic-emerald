@@ -157,13 +157,6 @@ gFieldEffectScript_JumpLongGrass::
 	field_eff_loadfadedpaldaynight_callnative gSpritePalette_GeneralFieldEffect1, FldEff_JumpLongGrass
 	field_eff_end
 
-gFieldEffectScript_UnusedGrass::
-	field_eff_loadfadedpaldaynight_callnative gSpritePalette_GeneralFieldEffect1, FldEff_UnusedGrass
-	field_eff_end
-
-gFieldEffectScript_UnusedGrass2::
-	field_eff_loadfadedpaldaynight_callnative gSpritePalette_GeneralFieldEffect1, FldEff_UnusedGrass2
-
 gFieldEffectScript_ShakingGrass::
 	field_eff_loadfadedpaldaynight_callnative gSpritePalette_GeneralFieldEffect1, FldEff_ShakingGrass
 	field_eff_end

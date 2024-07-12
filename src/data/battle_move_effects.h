@@ -1326,6 +1326,13 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
+    [EFFECT_STEEL_SPIKES] =
+    {
+        .battleScript = BattleScript_EffectSteelSpikes,
+        .battleTvScore = 0, // TODO: Assign points
+        .encourageEncore = TRUE,
+    },
+
     [EFFECT_TELEKINESIS] =
     {
         .battleScript = BattleScript_EffectTelekinesis,
@@ -2185,6 +2192,24 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
+    [EFFECT_SAND_ALWAYS_HIT] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_SNOW_ALWAYS_HIT] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_MISTY_ALWAYS_HIT] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
     [EFFECT_SHED_TAIL] =
     {
         .battleScript = BattleScript_EffectShedTail,
@@ -2244,10 +2269,17 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
+    [EFFECT_DOUBLE_TEAM] =
+    {
+        .battleScript = BattleScript_EffectDoubleTeam,
+        .battleTvScore = 4,
+    },
+
     [EFFECT_GUARDIAN_OF_ALOLA] =
     {
         .battleScript = BattleScript_DamageToQuarterTargetHP,
         .battleTvScore = 0, // TODO: Assign points
     },
+
 
 };

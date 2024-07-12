@@ -1411,6 +1411,7 @@ bool32 IsSemiInvulnerable(u32 battlerDef, u32 move)
 bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
 {
     u32 weather;
+    u32 terrain;
     if (IsSemiInvulnerable(battlerDef, move))
         return FALSE;
 
@@ -1435,6 +1436,14 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
     if ((weather & B_WEATHER_RAIN) && gMovesInfo[move].effect == EFFECT_THUNDER)
         return TRUE;
     if ((weather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && gMovesInfo[move].effect == EFFECT_BLIZZARD)
+        return TRUE;
+    if ((weather & B_WEATHER_RAIN) && gMovesInfo[move].effect == EFFECT_RAIN_ALWAYS_HIT)
+        return TRUE;
+    if ((weather & B_WEATHER_SANDSTORM) && gMovesInfo[move].effect == EFFECT_SAND_ALWAYS_HIT)
+        return TRUE;
+    if ((weather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && gMovesInfo[move].effect == EFFECT_SNOW_ALWAYS_HIT)
+        return TRUE;
+    if ((gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN) && gMovesInfo[move].effect == EFFECT_MISTY_ALWAYS_HIT)
         return TRUE;
     if (B_MINIMIZE_DMG_ACC >= GEN_6 && (gStatuses3[battlerDef] & STATUS3_MINIMIZED) && gMovesInfo[move].minimizeDoubleDamage)
         return TRUE;
@@ -2511,6 +2520,16 @@ static bool32 PartyBattlerShouldAvoidHazards(u32 currBattler, u32 switchBattler)
         if (spikesDmg == 0)
             spikesDmg = 1;
         hazardDamage += spikesDmg;
+    }
+
+    if (flags & SIDE_STATUS_STEELSPIKES && ((type1 != TYPE_FLYING && type2 != TYPE_FLYING
+        && ability != ABILITY_LEVITATE && holdEffect != HOLD_EFFECT_AIR_BALLOON)
+        || holdEffect == HOLD_EFFECT_IRON_BALL || gFieldStatuses & STATUS_FIELD_GRAVITY))
+    {
+        s32 spikesDmg = maxHp / ((5 - gSideTimers[GetBattlerSide(currBattler)].steelSpikesAmount) * 2);
+        if (spikesDmg == 0)
+            spikesDmg = 1;
+        hazardDamage += spikesDmg && GetStealthHazardDamageByTypesAndHP(gMovesInfo[MOVE_STEALTH_ROCK].type, type1, type2, maxHp);
     }
 
     if (hazardDamage >= GetMonData(mon, MON_DATA_HP))

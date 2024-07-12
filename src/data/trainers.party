@@ -4721,31 +4721,47 @@ Gender: Female
 Music: Female
 Items: Potion / Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
 
-Geodude
-Level: 12
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
+Tyrunt @ Berry Juice  
+Ability: Sturdy  
+Level: 14  
+Tera Type: Rock  
+Jolly Nature  
+- Dragon Tail  
+- Rock Tomb  
+- Fire Fang  
+- Stealth Rock  
 
-Geodude
-Level: 12
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
+Kabuto @ Rindo Berry  
+Ability: Weak Armor  
+Level: 14  
+Tera Type: Rock  
+Adamant Nature  
+- Bulldoze  
+- Rock Blast  
+- Aerial Ace  
+- Aqua Jet  
 
-Nosepass @ Oran Berry
-Level: 15
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Block
-- Harden
-- Tackle
-- Rock Tomb
+Archen @ Berry Juice  
+Ability: Defeatist  
+Level: 13  
+Tera Type: Rock  
+Jolly Nature  
+- Bulldoze  
+- Rock Tomb  
+- Pluck  
+- Roost  
+
+Rhyhorn @ Focus Sash  
+Ability: Reckless  
+Level: 15  
+Tera Type: Ground  
+Adamant Nature  
+- Bulldoze  
+- Rock Tomb  
+- Fire Fang  
+- Curse  
 
 === TRAINER_BRAWLY_1 ===
 Name: BRAWLY

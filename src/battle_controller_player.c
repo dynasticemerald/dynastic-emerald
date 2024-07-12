@@ -46,11 +46,6 @@
 #include "menu.h"
 #include "pokemon_summary_screen.h"
 
-#define COLOR_SUPER_EFFECTIVE 24
-#define COLOR_NOT_VERY_EFFECTIVE 25
-#define COLOR_IMMUNE 26
-#define COLOR_EFFECTIVE 10
-
 static void PlayerBufferExecCompleted(u32 battler);
 static void PlayerHandleLoadMonSprite(u32 battler);
 static void PlayerHandleSwitchInAnim(u32 battler);
@@ -1716,13 +1711,15 @@ static void MoveSelectionDisplayPpNumber(u32 battler)
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP_REMAINING);
 }
 
-static const u8 gText_MoveInterfaceSuperEffective[] = _(" {UP_ARROW}");
-static const u8 gText_MoveInterfaceNotVeryEffective[] = _(" {DOWN_ARROW}");
-static const u8 gText_MoveInterfaceImmune[] = _(" X");
-static const u8 gText_MoveInterfaceSTAB[] = _(" +");
+//These constants are based of Window Ids in battle.h
+#define COLOR_SUPER_EFFECTIVE 24 //B_WIN_TYPE_SUPER_EFF 24
+#define COLOR_NOT_VERY_EFFECTIVE 25 //B_WIN_TYPE_NOT_VERY_EFF 25
+#define COLOR_IMMUNE 26 //B_WIN_TYPE_NO_EFF 26
+#define COLOR_EFFECTIVE 10 //B_WIN_MOVE_TYPE 10
 
 u8 TypeEffectiveness(u8 targetId, u32 battler)
 {
+
     u16 illusionSpecies;
 
     u16 move = gBattleMons[battler].moves[gMoveSelectionCursor[battler]];
@@ -1807,7 +1804,7 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
                 return COLOR_IMMUNE;
 
             // Attacker Ability
-            //if(atkAbility == ABILITY_GROUND_SHOCK)
+            //if(atkAbility == ABILITY_GROUNDSHOCK)
                 //return COLOR_EFFECTIVE; Already Done in CalcTypeEffectivenessMultiplier
         }
         break;

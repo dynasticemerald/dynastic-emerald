@@ -246,12 +246,14 @@
 #define SIDE_STATUS_RAINBOW                 (1 << 24)
 #define SIDE_STATUS_SEA_OF_FIRE             (1 << 25)
 #define SIDE_STATUS_SWAMP                   (1 << 26)
+#define SIDE_STATUS_STEELSPIKES             (1 << 27)
 
 #define SIDE_STATUS_HAZARDS_ANY    (SIDE_STATUS_SPIKES | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STEELSURGE)
 #define SIDE_STATUS_SCREEN_ANY     (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL)
 #define SIDE_STATUS_PLEDGE_ANY     (SIDE_STATUS_RAINBOW | SIDE_STATUS_SEA_OF_FIRE | SIDE_STATUS_SWAMP)
 
 // Field affecting statuses.
+#define STATUS_FIELD_NONE                            0
 #define STATUS_FIELD_MAGIC_ROOM                     (1 << 0)
 #define STATUS_FIELD_TRICK_ROOM                     (1 << 1)
 #define STATUS_FIELD_WONDER_ROOM                    (1 << 2)
@@ -402,8 +404,9 @@
 #define MOVE_EFFECT_SECRET_POWER        77
 #define MOVE_EFFECT_PSYCHIC_NOISE       78
 #define MOVE_EFFECT_TERA_BLAST          79
+#define MOVE_EFFECT_STEEL_SPIKES        80 //New
 
-#define NUM_MOVE_EFFECTS                80
+#define NUM_MOVE_EFFECTS                81
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
 #define MOVE_EFFECT_CERTAIN             0x4000
@@ -477,11 +480,11 @@
 #define B_WIN_VS_OUTCOME_DRAW    21
 #define B_WIN_VS_OUTCOME_LEFT    22
 #define B_WIN_VS_OUTCOME_RIGHT   23
-#define B_WIN_MOVE_DESCRIPTION   24
-#define B_WIN_TYPE_SUPER_EFF     25
-#define B_WIN_TYPE_NOT_VERY_EFF  26
-#define B_WIN_TYPE_NO_EFF        27
-#define B_WIN_STAB_SYMBOL        28
+#define B_WIN_TYPE_SUPER_EFF     24
+#define B_WIN_TYPE_NOT_VERY_EFF  25
+#define B_WIN_TYPE_NO_EFF        26
+#define B_WIN_STAB_SYMBOL        27
+#define B_WIN_MOVE_DESCRIPTION   28
 
 // The following are duplicate id values for windows that Battle Arena uses differently.
 #define ARENA_WIN_PLAYER_NAME      15

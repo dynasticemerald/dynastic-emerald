@@ -466,6 +466,12 @@ BattleScript_StealthRockActivates::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_SteelSpikesActivates::
+	trysetsteelspikes BattleScript_MoveEnd
+	printfromtable gDmgHazardsStringIds
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_SpikesActivates::
 	trysetspikes BattleScript_MoveEnd
 	printfromtable gDmgHazardsStringIds
@@ -2556,6 +2562,17 @@ BattleScript_EffectStealthRock::
 	attackanimation
 	waitanimation
 	printstring STRINGID_POINTEDSTONESFLOAT
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectSteelSpikes::
+	attackcanceler
+	trysetsteelspikes BattleScript_FailedFromAtkString
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
+	printstring STRINGID_SHARPSTEELFLOATS
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
@@ -5048,6 +5065,19 @@ BattleScript_EffectTaunt::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectDoubleTeam::
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifability BS_TARGET_SIDE, ABILITY_AROMA_VEIL, BattleScript_AromaVeilProtects
+	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
+	settaunt BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	printstring STRINGID_PKMNFELLFORTAUNT
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectHelpingHand::
 	attackcanceler
 	attackstring
@@ -7268,6 +7298,7 @@ BattleScript_MonWokeUpInUproar::
 	end2
 
 BattleScript_PoisonTurnDmg::
+	jumpifability BS_ATTACKER, ABILITY_TOXIC_BOOST, BattleScript_DoTurnDmgEnd
 	printstring STRINGID_PKMNHURTBYPOISON
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_DoStatusTurnDmg::

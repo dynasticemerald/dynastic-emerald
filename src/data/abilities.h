@@ -2603,4 +2603,15 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .cantBeSwapped = TRUE,
         .cantBeTraced = TRUE,
     },
+
+    [ABILITY_GROUNDSHOCK] =
+    {
+    #if B_EXPANDED_ABILITY_NAMES == TRUE
+        .name = _("Ground Shock"),
+    #else
+        .name = _("GroundShock"),
+    #endif
+        .description = COMPOUND_STRING("Electricity hits Ground."),
+        .aiRating = 10,
+    },
 };

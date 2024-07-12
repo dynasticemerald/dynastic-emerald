@@ -16944,6 +16944,23 @@ Move_SPICY_EXTRACT::
 	waitforvisualfinish
 	end
 
+Move_STEEL_SPIKES:: @New
+	loadspritegfx ANIM_TAG_STEEL_SPIKES @;Was ANIM_TAG_SPIKES
+	monbg ANIM_DEF_PARTNER
+	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gSteelSpikesSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 24, 30 @;Was gSpikesSpriteTemplate
+	delay 10
+	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gSteelSpikesSpriteTemplate, ANIM_TARGET, 2, 20, 0, -24, 24, 30 @;Was gSpikesSpriteTemplate
+	delay 10
+	waitplaysewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET, 28
+	createsprite gSteelSpikesSpriteTemplate, ANIM_TARGET, 2, 20, 0, 24, 24, 30 @;Was gSpikesSpriteTemplate
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	end
+
 Move_TERA_BLAST::
 Move_AXE_KICK::
 Move_ORDER_UP::
@@ -19348,7 +19365,6 @@ Move_TELEPORT::
 
 DoubleTeamAnimRet:
 	setalpha 12, 8
-	monbg ANIM_ATK_PARTNER
 	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
 	delay 32
 	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
@@ -19367,14 +19383,29 @@ DoubleTeamAnimRet:
 	delay 8
 	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
 	waitforvisualfinish
-	clearmonbg ANIM_ATK_PARTNER
 	blendoff
 	delay 1
 	return
 
 Move_DOUBLE_TEAM::
+	loadspritegfx ANIM_TAG_FINGER_2
+	loadspritegfx ANIM_TAG_THOUGHT_BUBBLE
+	loadspritegfx ANIM_TAG_ANGER
 	createvisualtask AnimTask_DoubleTeam, 2
 	call DoubleTeamAnimRet
+	createsprite gThoughtBubbleSpriteTemplate, ANIM_ATTACKER, 11, 0, 45
+	playsewithpan SE_M_METRONOME, SOUND_PAN_ATTACKER
+	delay 6
+	createsprite gTauntFingerSpriteTemplate, ANIM_ATTACKER, 12, 0
+	delay 4
+	loopsewithpan SE_M_TAIL_WHIP, SOUND_PAN_ATTACKER, 16, 2
+	createsprite gAngerMarkSpriteTemplate, ANIM_TARGET, 2, 1, -20, -28
+	playsewithpan SE_M_SWAGGER2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	delay 12
+	createsprite gAngerMarkSpriteTemplate, ANIM_TARGET, 2, 1, 20, -28
+	playsewithpan SE_M_SWAGGER2, SOUND_PAN_TARGET
+	waitforvisualfinish
 	end
 
 Move_MINIMIZE::

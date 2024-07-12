@@ -1188,7 +1188,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     {gBattleAnimSpriteGfx_WaterOrb, 0x0200, ANIM_TAG_WATER_ORB},
     {gBattleAnimSpriteGfx_PoisonBubble, 0x0180, ANIM_TAG_POISON_BUBBLE},
     {gBattleAnimSpriteGfx_ToxicBubble, 0x0400, ANIM_TAG_TOXIC_BUBBLE},
-#if B_NEW_SPIKES_PARTICLE
+#if B_NEW_SPIKES_PARTICLE 
     {gBattleAnimSpriteGfx_NewSpikes, 0x0080, ANIM_TAG_SPIKES},
 #else
     {gBattleAnimSpriteGfx_Spikes, 0x0080, ANIM_TAG_SPIKES},
@@ -1457,6 +1457,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     {gBattleAnimSpriteGfx_TeraCrystal, 0x800, ANIM_TAG_TERA_CRYSTAL},
     {gBattleAnimSpriteGfx_TeraShatter, 0x0180, ANIM_TAG_TERA_SHATTER},
     {gBattleAnimSpriteGfx_DreepyMissile, 0x200, ANIM_TAG_DREEPY_SHINY},
+    {gBattleAnimSpriteGfx_Spikes, 0x0080, ANIM_TAG_STEEL_SPIKES},
 };
 
 const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
@@ -1915,6 +1916,7 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     {gBattleAnimSpritePal_TeraCrystal, ANIM_TAG_TERA_CRYSTAL},
     {gBattleAnimSpritePal_TeraShatter, ANIM_TAG_TERA_SHATTER},
     {gBattleAnimSpritePal_DreepyMissileShiny, ANIM_TAG_DREEPY_SHINY},
+    {gBattleAnimSpritePal_SteelSpikes, ANIM_TAG_STEEL_SPIKES},
 };
 
 const struct BattleAnimBackground gBattleAnimBackgroundTable[] =

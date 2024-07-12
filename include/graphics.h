@@ -2840,6 +2840,7 @@ extern const u32 gBattleAnimSpriteGfx_ShellRight[];
 extern const u32 gBattleAnimSpritePal_SpacialRendSlices[];
 extern const u32 gBattleAnimSpriteGfx_NewSpikes[];
 extern const u32 gBattleAnimSpritePal_NewSpikes[];
+extern const u32 gBattleAnimSpritePal_SteelSpikes[];
 extern const u32 gBattleAnimSpriteGfx_SpiritShackleArrow[];
 extern const u32 gBattleAnimSpritePal_SpiritShackleArrow[];
 extern const u32 gBattleAnimSpriteGfx_SteamEruption[];

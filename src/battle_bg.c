@@ -372,15 +372,6 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
         .paletteNum = 0,
         .baseBlock = 0x00b0,
     },
-    [B_WIN_MOVE_DESCRIPTION] = {
-        .bg = 0,
-        .tilemapLeft = 1,
-        .tilemapTop = 47,
-        .width = 18,
-        .height = 6,
-        .paletteNum = 5,
-        .baseBlock = 0x0350,
-    },
     [B_WIN_TYPE_SUPER_EFF] = { 
         .bg = 0,
         .tilemapLeft = 21,
@@ -410,12 +401,21 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] =
     },
     [B_WIN_STAB_SYMBOL] = {
         .bg = 0,
-        .tilemapLeft = 26,
+        .tilemapLeft = 28,
         .tilemapTop = 57,
-        .width = 3,
+        .width = 1,
         .height = 2,
         .paletteNum = 5,
         .baseBlock = 0x02b4,
+    },
+    [B_WIN_MOVE_DESCRIPTION] = {
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 47,
+        .width = 18,
+        .height = 6,
+        .paletteNum = 5,
+        .baseBlock = 0x0350,
     },
     DUMMY_WIN_TEMPLATE
 };
