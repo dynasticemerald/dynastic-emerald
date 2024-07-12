@@ -52,7 +52,8 @@
     F(SKILL_SWAP) \
     F(SNATCH) \
     F(OVERHEAT) \
-    F(FLIP_TURN)
+    F(FLIP_TURN) \
+    F(GRASSY_GLIDE)
 
 #define FOREACH_HM(F) \
     F(CUT) \

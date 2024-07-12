@@ -13489,7 +13489,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_MR_MIME] =
     {
-        .baseHP        = 40,
+        .baseHP        = 40 + 40,
         .baseAttack    = 45,
         .baseDefense   = 65,
         .baseSpeed     = 90,

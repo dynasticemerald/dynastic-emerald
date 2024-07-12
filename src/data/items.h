@@ -11155,7 +11155,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_TM_FLIP_TURN] =
     {
-        .name = _("TM 51"),
+        .name = _("TM51"),
         .price = 1750,
         .description = COMPOUND_STRING(
             "Attacks and rushes\n"
@@ -11168,16 +11168,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_FLIP_TURN,
     },
 
-    [ITEM_TM52] =
+    [ITEM_TM_GRASSY_GLIDE] =
     {
         .name = _("TM52"),
-        .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .price = 2500,
+        .description = COMPOUND_STRING(
+            "Gliding on ground\n"
+            "Goes first on\n"
+            "Grassy Terrain."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_GRASSY_GLIDE,
     },
 
     [ITEM_TM53] =

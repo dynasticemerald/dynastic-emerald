@@ -3574,7 +3574,7 @@ static const struct LevelUpMove sMrMimeLevelUpLearnset[] = {
     LEVEL_UP_MOVE(32, MOVE_MIMIC),
     LEVEL_UP_MOVE(36, MOVE_LIGHT_SCREEN),
     LEVEL_UP_MOVE(36, MOVE_REFLECT),
-    LEVEL_UP_MOVE(36, MOVE_SAFEGUARD),
+    LEVEL_UP_MOVE(36, MOVE_DRAINING_KISS),
     LEVEL_UP_MOVE(40, MOVE_SUCKER_PUNCH),
     LEVEL_UP_MOVE(44, MOVE_DAZZLING_GLEAM),
     LEVEL_UP_MOVE(48, MOVE_PSYCHIC),
@@ -12967,7 +12967,7 @@ static const struct LevelUpMove sDarmanitanGalarianLevelUpLearnset[] = {
 
 #if P_FAMILY_MARACTUS
 static const struct LevelUpMove sMaractusLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_SPIKY_SHIELD),
+    LEVEL_UP_MOVE( 0, MOVE_SPIKY_SHIELD),
     LEVEL_UP_MOVE( 1, MOVE_PECK),
     LEVEL_UP_MOVE( 1, MOVE_ABSORB),
     LEVEL_UP_MOVE( 1, MOVE_AFTER_YOU),
@@ -12980,7 +12980,7 @@ static const struct LevelUpMove sMaractusLevelUpLearnset[] = {
     LEVEL_UP_MOVE(24, MOVE_GIGA_DRAIN),
     LEVEL_UP_MOVE(28, MOVE_SWEET_SCENT),
     LEVEL_UP_MOVE(32, MOVE_SYNTHESIS),
-    LEVEL_UP_MOVE(36, MOVE_PETAL_BLIZZARD),
+    LEVEL_UP_MOVE(36, MOVE_GRASSY_GLIDE),
     LEVEL_UP_MOVE(40, MOVE_COTTON_SPORE),
     LEVEL_UP_MOVE(44, MOVE_SUNNY_DAY),
     LEVEL_UP_MOVE(48, MOVE_SOLAR_BEAM),
@@ -13291,6 +13291,7 @@ static const struct LevelUpMove sTrubbishLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sGarbodorLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_MORTAL_SPIN),
     LEVEL_UP_MOVE( 1, MOVE_POUND),
     LEVEL_UP_MOVE( 1, MOVE_TAKE_DOWN),
     LEVEL_UP_MOVE( 1, MOVE_METAL_CLAW),
