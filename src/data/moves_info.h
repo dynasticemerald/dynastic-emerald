@@ -7347,8 +7347,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Secret Power"),
         .description = COMPOUND_STRING(
-            "An attack with effects\n"
-            "that vary by location."),
+            "The effectiveness varies\n"
+            "with the user."),
         .effect = EFFECT_HIDDEN_POWER,
         .power = 60,
         .type = TYPE_NORMAL,

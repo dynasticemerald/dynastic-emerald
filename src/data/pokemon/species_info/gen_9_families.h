@@ -2761,12 +2761,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_SCOVILLAIN] =
     {
-        .baseHP        = 65,
-        .baseAttack    = 108,
-        .baseDefense   = 65,
-        .baseSpeed     = 75,
-        .baseSpAttack  = 108,
-        .baseSpDefense = 65,
+        .baseHP        = 65 + 10,
+        .baseAttack    = 108 - 20,
+        .baseDefense   = 65 + 10,
+        .baseSpeed     = 75 + 20,
+        .baseSpAttack  = 108 + 2,
+        .baseSpDefense = 65 + 10,
         .types = MON_TYPES(TYPE_GRASS, TYPE_FIRE),
         .catchRate = 75,
         .expYield = 170,
@@ -2776,7 +2776,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_INSOMNIA, ABILITY_MOODY },
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_INSOMNIA, ABILITY_SOLAR_POWER },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Scovillain"),
         .cryId = CRY_SCOVILLAIN,

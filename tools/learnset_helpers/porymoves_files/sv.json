@@ -74788,7 +74788,8 @@
       "MOVE_DISABLE",
       "MOVE_DOUBLE_TEAM",
       "MOVE_DRAGON_TAIL",
-      "MOVE_SUCKER_PUNCH"
+      "MOVE_SUCKER_PUNCH",
+      "MOVE_SHADOW_CLAW"
     ],
     "TutorMoves": []
   },

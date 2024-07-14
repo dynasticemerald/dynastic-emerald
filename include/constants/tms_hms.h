@@ -2,26 +2,26 @@
 #define GUARD_CONSTANTS_TMS_HMS_H
 
 #define FOREACH_TM(F) \
-    F(FOCUS_PUNCH) \
+    F(FALSE_SWIPE) \
     F(DRAGON_CLAW) \
     F(WATER_PULSE) \
     F(CALM_MIND) \
     F(ROAR) \
     F(TOXIC) \
-    F(HAIL) \
+    F(ICE_FANG) \
     F(BULK_UP) \
     F(BULLET_SEED) \
     F(HIDDEN_POWER) \
-    F(SUNNY_DAY) \
+    F(FIRE_FANG) \
     F(TAUNT) \
     F(ICE_BEAM) \
     F(BLIZZARD) \
-    F(HYPER_BEAM) \
+    F(FLAME_CHARGE) \
     F(LIGHT_SCREEN) \
     F(PROTECT) \
-    F(RAIN_DANCE) \
+    F(THUNDER_FANG) \
     F(GIGA_DRAIN) \
-    F(SAFEGUARD) \
+    F(TRAILBLAZE) \
     F(FRUSTRATION) \
     F(SOLAR_BEAM) \
     F(IRON_TAIL) \
@@ -38,7 +38,7 @@
     F(SHOCK_WAVE) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
-    F(SANDSTORM) \
+    F(PSYCHIC_FANGS) \
     F(FIRE_BLAST) \
     F(ROCK_TOMB) \
     F(AERIAL_ACE) \
@@ -53,7 +53,12 @@
     F(SNATCH) \
     F(OVERHEAT) \
     F(FLIP_TURN) \
-    F(GRASSY_GLIDE)
+    F(GRASSY_GLIDE) \
+    F(VOLT_SWITCH) \
+    F(U_TURN) \
+    F(ICE_PUNCH) \
+    F(THUNDER_PUNCH) \
+    F(FIRE_PUNCH) 
 
 #define FOREACH_HM(F) \
     F(CUT) \

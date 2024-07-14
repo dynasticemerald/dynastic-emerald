@@ -10447,8 +10447,8 @@ static const struct LevelUpMove sShieldonLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sBastiodonLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_BLOCK),
-    LEVEL_UP_MOVE( 1, MOVE_BLOCK),
+    LEVEL_UP_MOVE( 0, MOVE_SHORE_UP),
+    LEVEL_UP_MOVE( 1, MOVE_SHORE_UP),
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_PROTECT),
     LEVEL_UP_MOVE( 1, MOVE_TAUNT),
@@ -19751,7 +19751,7 @@ static const struct LevelUpMove sDuraludonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_FOCUS_ENERGY),
     LEVEL_UP_MOVE(48, MOVE_DRAGON_CLAW),
     LEVEL_UP_MOVE(54, MOVE_FLASH_CANNON),
-    LEVEL_UP_MOVE(60, MOVE_METAL_BURST),
+    LEVEL_UP_MOVE(60, MOVE_STEEL_SPIKES),
     LEVEL_UP_MOVE(66, MOVE_HYPER_BEAM),
     LEVEL_UP_END
 };
@@ -19770,7 +19770,7 @@ static const struct LevelUpMove sArchaludonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_FOCUS_ENERGY),
     LEVEL_UP_MOVE(48, MOVE_DRAGON_CLAW),
     LEVEL_UP_MOVE(54, MOVE_FLASH_CANNON),
-    LEVEL_UP_MOVE(60, MOVE_METAL_BURST),
+    LEVEL_UP_MOVE(60, MOVE_STEEL_SPIKES),
     LEVEL_UP_MOVE(66, MOVE_HYPER_BEAM),
     LEVEL_UP_END
 };

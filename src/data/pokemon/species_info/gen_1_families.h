@@ -16939,11 +16939,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     [SPECIES_MOLTRES] =
     {
         .baseHP        = 90,
-        .baseAttack    = 100,
+        .baseAttack    = 100 - 20,
         .baseDefense   = 90,
-        .baseSpeed     = 90,
+        .baseSpeed     = 90 + 10,
         .baseSpAttack  = 125,
-        .baseSpDefense = 85,
+        .baseSpDefense = 85 + 10,
         .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
         .catchRate = 3,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -17007,9 +17007,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #if P_GALARIAN_FORMS
     [SPECIES_MOLTRES_GALARIAN] =
     {
-        .baseHP        = 90,
-        .baseAttack    = 85,
-        .baseDefense   = 90,
+        .baseHP        = 90 + 10,
+        .baseAttack    = 85 - 20,
+        .baseDefense   = 90 + 10,
         .baseSpeed     = 90,
         .baseSpAttack  = 100,
         .baseSpDefense = 125,

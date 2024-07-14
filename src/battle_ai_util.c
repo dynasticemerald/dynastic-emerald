@@ -2522,15 +2522,8 @@ static bool32 PartyBattlerShouldAvoidHazards(u32 currBattler, u32 switchBattler)
         hazardDamage += spikesDmg;
     }
 
-    if (flags & SIDE_STATUS_STEELSPIKES && ((type1 != TYPE_FLYING && type2 != TYPE_FLYING
-        && ability != ABILITY_LEVITATE && holdEffect != HOLD_EFFECT_AIR_BALLOON)
-        || holdEffect == HOLD_EFFECT_IRON_BALL || gFieldStatuses & STATUS_FIELD_GRAVITY))
-    {
-        s32 spikesDmg = maxHp / ((5 - gSideTimers[GetBattlerSide(currBattler)].steelSpikesAmount) * 2);
-        if (spikesDmg == 0)
-            spikesDmg = 1;
-        hazardDamage += spikesDmg && GetStealthHazardDamageByTypesAndHP(gMovesInfo[MOVE_STEALTH_ROCK].type, type1, type2, maxHp);
-    }
+    if (flags & SIDE_STATUS_STEELSPIKES)
+    hazardDamage += GetStealthHazardDamageByTypesAndHP(gMovesInfo[MOVE_STEEL_SPIKES].type, type1, type2, maxHp);
 
     if (hazardDamage >= GetMonData(mon, MON_DATA_HP))
         return TRUE;

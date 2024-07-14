@@ -1222,8 +1222,8 @@
 //TM Flags
 #define FLAG_RECEIVED_TM_FLIP_TURN                                  0x493
 #define FLAG_RECEIVED_TM_GRASSY_GLIDE                               0x494
-#define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
-#define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
+#define FLAG_RECEIVED_TM_VOLT_SWITCH                                0x495
+#define FLAG_RECEIVED_TM_U_TURN                                      0x496
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
 #define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
 #define FLAG_UNUSED_0x499                                           0x499 // Unused Flag

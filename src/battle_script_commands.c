@@ -852,7 +852,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_swapstatstages,                          //0xFA
     Cmd_averagestats,                            //0xFB
     Cmd_jumpifoppositegenders,                   //0xFC
-    Cmd_trysetsteelspikes,                     //0xFD
+    Cmd_trysetsteelspikes,                       //0xFD
     Cmd_tryworryseed,                            //0xFE
     Cmd_callnative,                              //0xFF
 };
@@ -3697,7 +3697,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 }
                 break;
             case MOVE_EFFECT_STEEL_SPIKES:
-                if (gSideTimers[GetBattlerSide(gEffectBattler)].spikesAmount < 3)
+                if (!(gSideStatuses[GetBattlerSide(gEffectBattler)] & SIDE_STATUS_STEELSPIKES))
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SHARPSTEELFLOATS;
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -15765,16 +15765,15 @@ static void Cmd_trysetsteelspikes(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    u8 targetSide = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
-
-    if (gSideTimers[targetSide].steelSpikesAmount == 2)
+    u8 targetSide = GetBattlerSide(gBattlerTarget);
+    if (gSideStatuses[targetSide] & SIDE_STATUS_STEELSPIKES)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
         gSideStatuses[targetSide] |= SIDE_STATUS_STEELSPIKES;
-        gSideTimers[targetSide].steelSpikesAmount++;
+        gSideTimers[targetSide].steelSpikesAmount = 1;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
