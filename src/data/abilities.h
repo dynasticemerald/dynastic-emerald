@@ -2614,4 +2614,25 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Electricity hits Ground."),
         .aiRating = 10,
     },
+
+    [ABILITY_MYSTIC_POWER] =
+    {
+        .name = _("Mystic Power"),
+        .description = COMPOUND_STRING("Raises Sp. Atk."),
+        .aiRating = 10,
+    },
+
+    [ABILITY_FLAMING_SOUL] =
+    {
+        .name = _("Flaming Soul"),
+        .description = COMPOUND_STRING("Fire moves go first."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_GHOSTAL_SOUL] =
+    {
+        .name = _("Ghostal Soul"),
+        .description = COMPOUND_STRING("Ghost moves go first."),
+        .aiRating = 6,
+    },
 };

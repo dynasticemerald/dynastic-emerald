@@ -1505,6 +1505,15 @@ static bool32 AccuracyCalcHelper(u16 move)
             RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
         return TRUE;
     }
+
+	if (GetBattlerAbility(gBattlerAttacker) == ABILITY_FATAL_PRECISION 
+     && CalcTypeEffectivenessMultiplier(move, gMovesInfo[move].type, gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerTarget) ,TRUE) >= UQ_4_12(2.0))
+    {
+        if (!JumpIfMoveFailed(7, move))
+            RecordAbilityBattle(gBattlerTarget, ABILITY_FATAL_PRECISION);
+        return TRUE;
+    }
+
     // If the target is under the effects of Telekinesis, and the move isn't a OH-KO move, move hits.
     else if (gStatuses3[gBattlerTarget] & STATUS3_TELEKINESIS
              && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE)
@@ -1636,6 +1645,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     case ABILITY_HUSTLE:
         if (IS_MOVE_PHYSICAL(move))
             calc = (calc * 80) / 100; // 1.2 hustle loss
+        break;
+    case ABILITY_ILLUMINATE:
+        calc = (calc * 120) / 100; // 1.2 Illuminate Boost
         break;
     }
 

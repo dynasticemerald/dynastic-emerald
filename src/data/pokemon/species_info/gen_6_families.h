@@ -922,10 +922,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     [SPECIES_TALONFLAME] =
     {
         .baseHP        = 78,
-        .baseAttack    = 81,
+        .baseAttack    = 81 + 10,
         .baseDefense   = 71,
         .baseSpeed     = 126,
-        .baseSpAttack  = 74,
+        .baseSpAttack  = 74 + 7,
         .baseSpDefense = 69,
         .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
         .catchRate = 45,

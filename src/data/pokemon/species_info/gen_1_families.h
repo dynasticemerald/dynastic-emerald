@@ -259,7 +259,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_VENUSAUR_GIGANTAMAX] =
+    [SPECIES_VENUSAUR_MEGA_D] =
     {
         .baseHP        = 80,
         .baseAttack    = 70,
@@ -637,7 +637,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_CHARIZARD_GIGANTAMAX] =
+    [SPECIES_CHARIZARD_MEGA_D] =
     {
         .baseHP        = 78,
         .baseAttack    = 84,
@@ -940,7 +940,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_BLASTOISE_GIGANTAMAX] =
+    [SPECIES_BLASTOISE_MEGA_D] =
     {
         .baseHP        = 79,
         .baseAttack    = 83,
@@ -3625,20 +3625,19 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseHP        = 75,
         .baseAttack    = 100 + 10,
         .baseDefense   = 110,
-        .baseSpeed     = 65,
+        .baseSpeed     = 65 + 5,
         .baseSpAttack  = 45,
-        .baseSpDefense = 55,
-        .types = MON_TYPES(TYPE_GROUND),
+        .baseSpDefense = 55 + 15,
+        .types = MON_TYPES(TYPE_GROUND, TYPE_FIGHTING),
         .catchRate = 90,
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 158 : 163,
+        .expYield = 158,
         .evYield_Defense = 2,
-        .itemRare = ITEM_GRIP_CLAW,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_SAND_FORCE, ABILITY_NONE, ABILITY_SAND_RUSH },
+        .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_NONE, ABILITY_SAND_RUSH },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Sandslash"),
         .cryId = CRY_SANDSLASH,
@@ -5690,7 +5689,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_DUGTRIO] =
     {
-        .baseHP        = 35,
+        .baseHP        = 35 + 50,
         .baseAttack    = DUGTRIO_ATTACK + 20,
         .baseDefense   = 50,
         .baseSpeed     = 120,
@@ -5754,12 +5753,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #if P_ALOLAN_FORMS
     [SPECIES_DIGLETT_ALOLAN] =
     {
-        .baseHP        = 10,
-        .baseAttack    = 55,
-        .baseDefense   = 30,
+        .baseHP        = 10 + 40,
+        .baseAttack    = 55 - 30,
+        .baseDefense   = 30 + 15,
         .baseSpeed     = 90,
-        .baseSpAttack  = 35,
-        .baseSpDefense = 45,
+        .baseSpAttack  = 35 - 20,
+        .baseSpDefense = 45 + 10,
         .types = MON_TYPES(TYPE_GROUND, TYPE_STEEL),
         .catchRate = 255,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 53 : 81,
@@ -5770,7 +5769,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TANGLING_HAIR, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE },
+        .abilities = { ABILITY_FILTER, ABILITY_FILTER, ABILITY_SLOW_START },
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Diglett"),
         .cryId = CRY_DIGLETT,
@@ -5819,12 +5818,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_DUGTRIO_ALOLAN] =
     {
-        .baseHP        = 35,
-        .baseAttack    = DUGTRIO_ATTACK + 20,
-        .baseDefense   = 60,
-        .baseSpeed     = 110 + 10,
-        .baseSpAttack  = 50 - 20,
-        .baseSpDefense = 70,
+        .baseHP        = 35 + 50,
+        .baseAttack    = DUGTRIO_ATTACK - 35,
+        .baseDefense   = 60 + 50,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 50 - 35,
+        .baseSpDefense = 70 + 40,
         .types = MON_TYPES(TYPE_GROUND, TYPE_STEEL),
         .catchRate = 50,
         .expYield = DUGTRIO_EXP_YIELD,
@@ -5835,7 +5834,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TANGLING_HAIR, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE },
+        .abilities = { ABILITY_FILTER, ABILITY_FILTER, ABILITY_HUGE_POWER },
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
         .speciesName = _("Dugtrio"),
@@ -14196,7 +14195,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     [SPECIES_ELECTIVIRE] =
     {
         .baseHP        = 75,
-        .baseAttack    = 123,
+        .baseAttack    = 123 - 10,
         .baseDefense   = 67,
         .baseSpeed     = 95 + 5,
         .baseSpAttack  = 95 - 5,

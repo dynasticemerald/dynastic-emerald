@@ -50,7 +50,7 @@
     F(THIEF) \
     F(STEEL_WING) \
     F(SKILL_SWAP) \
-    F(SNATCH) \
+    F(TEMPER_FLARE) \
     F(OVERHEAT) \
     F(FLIP_TURN) \
     F(GRASSY_GLIDE) \
@@ -58,7 +58,7 @@
     F(U_TURN) \
     F(ICE_PUNCH) \
     F(THUNDER_PUNCH) \
-    F(FIRE_PUNCH) 
+    F(FIRE_PUNCH)
 
 #define FOREACH_HM(F) \
     F(CUT) \

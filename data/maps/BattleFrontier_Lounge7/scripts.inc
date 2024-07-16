@@ -159,9 +159,8 @@ BattleFrontier_Lounge7_EventScript_ChooseRightTutorMove::
 	case 5, BattleFrontier_Lounge7_EventScript_Endure
 	case 6, BattleFrontier_Lounge7_EventScript_PsychUp
 	case 7, BattleFrontier_Lounge7_EventScript_IcePunch
-	case 8, BattleFrontier_Lounge7_EventScript_ThunderPunch
-	case 9, BattleFrontier_Lounge7_EventScript_FirePunch
-	case 10, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	case 8, BattleFrontier_Lounge7_EventScript_FirePunch
+	case 9, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	case MULTI_B_PRESSED, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	end
 
@@ -183,9 +182,8 @@ BattleFrontier_Lounge7_EventScript_ChooseNewRightTutorMove::
 	case 5, BattleFrontier_Lounge7_EventScript_Endure
 	case 6, BattleFrontier_Lounge7_EventScript_PsychUp
 	case 7, BattleFrontier_Lounge7_EventScript_IcePunch
-	case 8, BattleFrontier_Lounge7_EventScript_ThunderPunch
 	case 9, BattleFrontier_Lounge7_EventScript_FirePunch
-	case 10, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
+	case 0, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	case MULTI_B_PRESSED, BattleFrontier_Lounge7_EventScript_ExitTutorMoveSelect
 	end
 
@@ -234,12 +232,6 @@ BattleFrontier_Lounge7_EventScript_PsychUp::
 BattleFrontier_Lounge7_EventScript_IcePunch::
 	setvar VAR_0x8008, 48
 	setvar VAR_0x8005, MOVE_ICE_PUNCH
-	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
-	end
-
-BattleFrontier_Lounge7_EventScript_ThunderPunch::
-	setvar VAR_0x8008, 48
-	setvar VAR_0x8005, MOVE_THUNDER_PUNCH
 	goto BattleFrontier_Lounge7_EventScript_ConfirmMoveSelection
 	end
 

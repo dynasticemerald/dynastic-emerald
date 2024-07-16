@@ -11132,19 +11132,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_SKILL_SWAP,
     },
 
-    [ITEM_TM_SNATCH] =
+    [ITEM_TM_TEMPER_FLARE] =
     {
         .name = _("TM49"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Steals the effects\n"
-            "of the move the foe\n"
-            "is trying to use."),
+            "A desperation attack.\n"
+            "Power doubles if\n"
+            "last move failed."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SNATCH,
+        .secondaryId = MOVE_TEMPER_FLARE,
     },
 
     [ITEM_TM_OVERHEAT] =
@@ -14090,5 +14090,24 @@ const struct Item gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
+    },
+
+    [ITEM_FRIENDSHIP_BOX] =
+    {
+        .name = _("Friendship Box"),
+        .pluralName = _("Friend Boxs"),
+        .price = 0,
+        .holdEffectParam = 10,
+        .description = COMPOUND_STRING(
+            "Makes a Pokémon\n"
+            "friendly towards\n"
+            "the Player"),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_ReduceEV,
+        .effect = gItemEffect_PomegBerry,
+        .flingPower = 10,
+        .iconPic = gItemIcon_Parcel,
+        .iconPalette = gItemIconPalette_Parcel,
     },
 };

@@ -5030,12 +5030,14 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u16 item = gSpecialVar_ItemId;
+    u16 *itemPtr = &gSpecialVar_ItemId; //New
     u8 effectType = GetItemEffectType(item);
     u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
     u16 ev = ItemEffectToMonEv(mon, effectType);
     bool8 cannotUseEffect = ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0);
     u16 newFriendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
     u16 newEv = ItemEffectToMonEv(mon, effectType);
+    u8 holdEffectParam = ItemId_GetHoldEffectParam(*itemPtr); //New
 
     if (cannotUseEffect || (friendship == newFriendship && ev == newEv))
     {
@@ -5049,7 +5051,9 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
     {
         gPartyMenuUseExitCallback = TRUE;
         PlaySE(SE_USE_ITEM);
+        if(holdEffectParam == 0){//New
         RemoveBagItem(item, 1);
+        }//to here
         GetMonNickname(mon, gStringVar1);
         ItemEffectToStatString(effectType, gStringVar2);
         if (friendship != newFriendship)
@@ -5058,6 +5062,9 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
                 StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2Fell);
             else
                 StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2CantFall);
+        }
+        else if ((friendship != newFriendship) && holdEffectParam == 10){
+            StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlierToPlayer);
         }
         else
         {

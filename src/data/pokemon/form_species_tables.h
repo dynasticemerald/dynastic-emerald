@@ -5,7 +5,7 @@ static const u16 sVenusaurFormSpeciesIdTable[] = {
     SPECIES_VENUSAUR_MEGA,
 #endif
 #if P_GIGANTAMAX_FORMS
-    SPECIES_VENUSAUR_GIGANTAMAX,
+    SPECIES_VENUSAUR_MEGA_D,
 #endif
     FORM_SPECIES_END,
 };
@@ -19,7 +19,7 @@ static const u16 sCharizardFormSpeciesIdTable[] = {
     SPECIES_CHARIZARD_MEGA_Y,
 #endif
 #if P_GIGANTAMAX_FORMS
-    SPECIES_CHARIZARD_GIGANTAMAX,
+    SPECIES_CHARIZARD_MEGA_D,
 #endif
     FORM_SPECIES_END,
 };
@@ -32,7 +32,7 @@ static const u16 sBlastoiseFormSpeciesIdTable[] = {
     SPECIES_BLASTOISE_MEGA,
 #endif
 #if P_GIGANTAMAX_FORMS
-    SPECIES_BLASTOISE_GIGANTAMAX,
+    SPECIES_BLASTOISE_MEGA_D,
 #endif
     FORM_SPECIES_END,
 };

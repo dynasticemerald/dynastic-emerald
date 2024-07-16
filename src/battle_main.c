@@ -4778,9 +4778,15 @@ s8 GetMovePriority(u32 battler, u16 move)
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
         return gMovesInfo[MOVE_MAX_GUARD].priority;
 
-    if (ability == ABILITY_GALE_WINGS
+    if ((ability == ABILITY_GALE_WINGS
         && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))
         && gMovesInfo[move].type == TYPE_FLYING)
+        || (ability == ABILITY_FLAMING_SOUL
+        && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler)) //New
+        && gMovesInfo[move].type == TYPE_FIRE)
+        || (ability == ABILITY_GHOSTAL_SOUL
+        && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))
+        && gMovesInfo[move].type == TYPE_GHOST)) //To Here
     {
         priority++;
     }
@@ -5814,6 +5820,10 @@ u8 SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     else if (gMovesInfo[move].soundMove && attackerAbility == ABILITY_LIQUID_VOICE)
     {
         gBattleStruct->dynamicMoveType = TYPE_WATER | F_DYNAMIC_TYPE_SET;
+    }
+    else if (gMovesInfo[move].soundMove && attackerAbility == ABILITY_SAND_SONG)
+    {
+        gBattleStruct->dynamicMoveType = TYPE_GROUND | F_DYNAMIC_TYPE_SET;
     }
     else if (gMovesInfo[move].effect == EFFECT_AURA_WHEEL && gBattleMons[battlerAtk].species == SPECIES_MORPEKO_HANGRY)
     {

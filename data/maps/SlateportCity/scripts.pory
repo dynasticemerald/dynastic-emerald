@@ -500,25 +500,6 @@ SlateportCity_EventScript_AquaGrunt11::
 	release
 	end
 
-SlateportCity_EventScript_DollClerk::
-	lock
-	faceplayer
-	message gText_HowMayIServeYou
-	waitmessage
-	pokemartdecoration SlateportCity_PokemartDecor_Dolls
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
-
-	.align 2
-SlateportCity_PokemartDecor_Dolls:
-	.2byte DECOR_AZURILL_DOLL
-	.2byte DECOR_MARILL_DOLL
-	.2byte DECOR_SKITTY_DOLL
-	.2byte DECOR_NONE
-	release
-	end
-
 SlateportCity_EventScript_ComeBackWithSecretPower::
 	msgbox gText_ComeBackWithSecretPower, MSGBOX_DEFAULT
 	release
@@ -1386,6 +1367,46 @@ SlateportCity_Text_TakingBattleTentChallenge:
 	.string "Give it your best effort!$"
 `
 
+script SlateportCity_PowerItems_Merchant{
+	lock
+	faceplayer
+	message (gText_HowMayIServeYou)
+	waitmessage
+	if(defeated(TRAINER_WATTSON_1)){
+	pokemart (SlateportCity_PowerItems_Merchant_BuySell) 
+	return
+	}
+	else{
+	pokemart (SlateportCity_PowerItems_Merchant_BuySell_Expanded) 
+	return
+	}
+	msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT)
+	release
+	end
+}
+
+mart SlateportCity_PowerItems_Merchant_BuySell{
+	ITEM_ABILITY_CAPSULE
+	ITEM_MACHO_BRACE
+	ITEM_POWER_ANKLET
+	ITEM_POWER_BAND
+	ITEM_POWER_BELT
+	ITEM_POWER_LENS
+	ITEM_POWER_WEIGHT
+}
+
+mart SlateportCity_PowerItems_Merchant_BuySell_Expanded{
+	ITEM_ABILITY_CAPSULE
+	ITEM_ABILITY_PATCH
+	ITEM_MACHO_BRACE
+	ITEM_POWER_ANKLET
+	ITEM_POWER_BAND
+	ITEM_POWER_BELT
+	ITEM_POWER_LENS
+	ITEM_POWER_WEIGHT
+	ITEM_AMULET_COIN
+}
+
 script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor{
 	lock
 	faceplayer
@@ -1395,8 +1416,9 @@ script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor{
 		   "These moves are called Hidden Power\n"
 		   "and Secret Power.\p"
 		   "While Hidden Power is a Special Move\n"
-		   "Secret Power is a Physical Move.\p"
-		   "... .... ...\n"
+		   "Secret Power is a Physical Move.\p", MSGBOX_DEFAULT) //Text
+	
+	msgbox("... .... ...\n"
 		   "Oh me?\l"
 		   "I am the tutor who tutors these moves\l"
 		   "to Pokémon trainers have!\p"
@@ -1408,12 +1430,14 @@ script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor{
 			   "want to teach one of these moves or\n"
 			   "both, whatever you want!", MSGBOX_DEFAULT) //Text
 
-		dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE "Hidden Power", "Secret Power")
+		dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE, "Hidden Power", "Secret Power")
 		switch (var(VAR_RESULT)){
 			case 0:
 			   goto(SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower)
 			case 1:
 			   goto(SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower)
+			default:
+			   goto(SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor)
 		}
 	}
 	elif(var(VAR_RESULT) == NO){
@@ -1433,18 +1457,8 @@ script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower{
 	setvar (VAR_0x8005, MOVE_HIDDEN_POWER)
 	call (MoveTutor_EventScript_OpenPartyMenu)
 	if(var(VAR_RESULT) == 0) { return }
-	goto (HiddenTutor_EventScript_HiddenPowerTaught)
+	goto (HiddenTutor_EventScript_HiddenSecretPowerTaught)
 }
-
-script HiddenTutor_EventScript_HiddenPowerTaught{
-    lock
-	faceplayer
-	msgbox("Thank you for this amazing experience\n"
-		   "Hope to see you again soon!", MSGBOX_DEFAULT) //Text
-    release
-	end
-}
-
 
 script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower{
 	lock
@@ -1452,23 +1466,14 @@ script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower{
 	setvar (VAR_0x8005, MOVE_SECRET_POWER)
 	call (MoveTutor_EventScript_OpenPartyMenu)
 	if(var(VAR_RESULT) == 0) { return }
-	goto (HiddenTutor_EventScript_SecretPowerTaught)
+	goto (HiddenTutor_EventScript_HiddenSecretPowerTaught)
 }
 
-script HiddenTutor_EventScript_SecretPowerTaught{
+script HiddenTutor_EventScript_HiddenSecretPowerTaught{
     lock
 	faceplayer
 	msgbox("Thank you for this amazing experience\n"
 		   "Hope to see you again soon!", MSGBOX_DEFAULT) //Text
     release
 	end
-}
-
-
-script MoveTutor_EventScript_OpenPartyMenu{
-	special (ChooseMonForMoveTutor)
-	waitstate
-	lock
-	faceplayer
-	return
 }
