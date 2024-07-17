@@ -979,6 +979,68 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sTalonflameLevelUpLearnset,
         .teachableLearnset = sTalonflameTeachableLearnset,
     },
+#if P_MEGA_EVOLUTIONS
+    [SPECIES_TALONFLAME_MEGA] = //Bst 82+
+    {
+        .baseHP        = 78,
+        .baseAttack    = 116, // + 26
+        .baseDefense   = 81,  // + 11
+        .baseSpeed     = 140, // + 14
+        .baseSpAttack  = 101, // + 20
+        .baseSpDefense = 80,  // + 11
+        .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
+        .catchRate = 45,
+        .expYield = 175,
+        .evYield_Speed = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
+        .abilities = { ABILITY_GALE_WINGS, ABILITY_GALE_WINGS, ABILITY_GALE_WINGS },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Talonflame"),
+        .cryId = CRY_TALONFLAME,
+        .natDexNum = NATIONAL_DEX_TALONFLAME,
+        .categoryName = _("Scorching"),
+        .height = 12,
+        .weight = 245,
+        .description = COMPOUND_STRING(
+            "In the fever of an exciting battle, it\n"
+            "showers embers from the gaps between its\n"
+            "feathers and takes to the air. It finishes\n"
+            "its prey off with a colossal kick."),
+        .pokemonScale = 282,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Talonflame,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 1,
+        .frontAnimFrames = sAnims_Talonflame,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .enemyMonElevation = 7,
+        .backPic = gMonBackPic_Talonflame,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 5,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_Talonflame,
+        .shinyPalette = gMonShinyPalette_Talonflame,
+        .iconSprite = gMonIcon_Talonflame,
+        .iconPalIndex = 2,
+        FOOTPRINT(Talonflame)
+        OVERWORLD(
+            sPicTable_Talonflame,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Talonflame,
+            gShinyOverworldPalette_Talonflame
+        )
+        .levelUpLearnset = sTalonflameLevelUpLearnset,
+        .teachableLearnset = sTalonflameTeachableLearnset,
+    },
+#endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_FLETCHLING
 
 #if P_FAMILY_SCATTERBUG
