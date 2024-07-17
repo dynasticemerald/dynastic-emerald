@@ -1629,6 +1629,14 @@
 #define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX   1522
 #define SPECIES_MIMIKYU_TOTEM_BUSTED                    1523
 
+#define CUSTOM_FROMS_START SPECIES_MIMIKYU_TOTEM_BUSTED
+
+// New Megas
+#define SPECIES_FLYGON_MEGA                             CUSTOM_FROMS_START + 1
+#define SPECIES_TEMP_MEGA_2                             CUSTOM_FROMS_START + 2
+#define SPECIES_TEMP_MEGA_3                             CUSTOM_FROMS_START + 3
+#define SPECIES_TEMP_MEGA_4                             CUSTOM_FROMS_START + 4
+
 #define SPECIES_EGG (SPECIES_MIMIKYU_TOTEM_BUSTED + 1)
 
 #define NUM_SPECIES SPECIES_EGG

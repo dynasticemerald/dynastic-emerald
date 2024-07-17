@@ -6250,7 +6250,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseAttack    = 100,
         .baseDefense   = 80,
         .baseSpeed     = 100,
-        .baseSpAttack  = 80,
+        .baseSpAttack  = 80 + 20,
         .baseSpDefense = 80,
         .types = MON_TYPES(TYPE_GROUND, TYPE_DRAGON),
         .catchRate = 45,
@@ -6267,12 +6267,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
-    #if P_UPDATED_EGG_GROUPS >= GEN_8
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG, EGG_GROUP_DRAGON),
-    #else
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-    #endif
-        .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
+        .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_TINTED_LENS },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Flygon"),
         .cryId = CRY_FLYGON,
@@ -6315,6 +6311,69 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sFlygonLevelUpLearnset,
         .teachableLearnset = sFlygonTeachableLearnset,
     },
+#if P_MEGA_EVOLUTIONS
+    [SPECIES_FLYGON_MEGA] = //100 bst +
+    {
+        .baseHP        = 80,
+        .baseAttack    = 130, //+ 30
+        .baseDefense   = 100, //+ 20
+        .baseSpeed     = 110, //+ 10
+        .baseSpAttack  = 130, //+ 30
+        .baseSpDefense = 100, //+ 20
+        .types = MON_TYPES(TYPE_BUG, TYPE_DRAGON),
+        .catchRate = 45,
+        .expYield = 260,
+        .evYield_Attack = 1,
+        .evYield_Speed = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG, EGG_GROUP_DRAGON),
+        .abilities = { ABILITY_TINTED_LENS, ABILITY_TINTED_LENS, ABILITY_TINTED_LENS },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Flygon"),
+        .cryId = CRY_FLYGON,
+        .natDexNum = NATIONAL_DEX_FLYGON,
+        .categoryName = _("Mystic"),
+        .height = 20,
+        .weight = 820,
+        .description = COMPOUND_STRING(
+            "The flapping of its wings sounds like\n"
+            "singing. To prevent detection by enemies,\n"
+            "it hides itself by flapping up a cloud of\n"
+            "desert sand."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 268,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_Flygon,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 1,
+        .frontAnimFrames = sAnims_Flygon,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .enemyMonElevation = 7,
+        .backPic = gMonBackPic_Flygon,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 3,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
+        .palette = gMonPalette_Flygon,
+        .shinyPalette = gMonShinyPalette_Flygon,
+        .iconSprite = gMonIcon_Flygon,
+        .iconPalIndex = 1,
+        FOOTPRINT(Flygon)
+        OVERWORLD(
+            sPicTable_Flygon, //sPicTable_FlygonMega
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Flygon, //gOverworldPalette_FlygonMega
+            gShinyOverworldPalette_Flygon //gShinyOverworldPalette_FlygonMega
+        )
+        .levelUpLearnset = sFlygonLevelUpLearnset,
+        .teachableLearnset = sFlygonTeachableLearnset,
+    },
+#endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TRAPINCH
 
 #if P_FAMILY_CACNEA
