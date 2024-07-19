@@ -163,6 +163,32 @@
  *  - Destroys itself when done.
  */
 
+// Strings for Dynastic
+static const u8 gText_MinimalGrindingMode[] = _("Minimal Grinding");
+
+static const u8 gText_Birch_MinimalGrindingModeSet[] = _("Minimal Grinding is Set.");
+
+static const u8 gText_Birch_WichMode[] = _("Kaixer: Hi there, thank you for trying\n"
+                                           "Dynastic Emerald. so lets get right to\p"
+                                           "bussiness shall we? first an explanation.\n"
+                                           "what is Minimal Grinding?\p"
+                                           "Minimal Grinding Removes EVs From the\n"
+                                           "game. and makes every Pokémon have perfect\p"
+                                           "IVs. very nice for people who don't have the\n"
+                                           "time, too keep grinding out new Pokémon.\p"
+                                           "would you like to Enable\n"
+                                           "Minimal Grinding Mode?");
+// Ends Here
+
+// Defines for Dynastic
+static void Task_NewGameBirchSpeech_ModeAsk(u8);
+static void Task_NewGameBirchSpeech_WaitToShowModesMenu(u8);
+static void NewGameBirchSpeech_ShowModeMenu(void);
+static void Task_NewGameBirchSpeech_ChooseMode(u8);
+static s8 NewGameBirchSpeech_ProcessModesMenuInput(void);
+static void Task_NewGameBirchSpeech_ModesSet(u8);
+// Ends Here
+
 #define OPTION_MENU_FLAG (1 << 15)
 
 // Static type declarations
@@ -401,6 +427,15 @@ static const struct WindowTemplate sNewGameBirchSpeechTextWindows[] =
         .paletteNum = 15,
         .baseBlock = 0x85
     },
+    {
+        .bg = 0,
+        .tilemapLeft = 2,
+        .tilemapTop = 15,
+        .width = 27,
+        .height = 2,
+        .paletteNum = 15,
+        .baseBlock = 1
+    },
     DUMMY_WIN_TEMPLATE
 };
 
@@ -456,6 +491,11 @@ static const union AffineAnimCmd *const sSpriteAffineAnimTable_PlayerShrink[] =
 static const struct MenuAction sMenuActions_Gender[] = {
     {gText_BirchBoy, {NULL}},
     {gText_BirchGirl, {NULL}}
+};
+
+static const struct MenuAction sMenuActions_Modes[] = {
+    {gText_Yes, {NULL}},
+    {gText_No, {NULL}}
 };
 
 static const u8 *const sMalePresetNames[] = {
@@ -1528,6 +1568,55 @@ static void Task_NewGameBirchSpeech_ChooseGender(u8 taskId)
     }
 }
 
+static void Task_NewGameBirchSpeech_ModeAsk(u8 taskId)
+{
+    NewGameBirchSpeech_ClearWindow(0);
+    StringExpandPlaceholders(gStringVar4, gText_Birch_WichMode);
+    AddTextPrinterForMessage(TRUE);
+    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowModesMenu;
+}
+
+static void Task_NewGameBirchSpeech_WaitToShowModesMenu(u8 taskId) 
+{
+    if (!RunTextPrintersAndIsPrinter0Active())
+    {
+        NewGameBirchSpeech_ShowModeMenu();
+        gTasks[taskId].func = Task_NewGameBirchSpeech_ChooseMode;
+    }
+}
+ 
+static void Task_NewGameBirchSpeech_ChooseMode(u8 taskId) 
+{
+    int Modes = NewGameBirchSpeech_ProcessModesMenuInput();
+
+    switch (Modes)
+    {
+        case YES_MINIMAL_MODE:
+            PlaySE(SE_SELECT);
+            gSaveBlock3Ptr->minimalGrindingModeOff = FALSE;
+            gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
+            NewGameBirchSpeech_ClearGenderWindow(1, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_ModesSet;
+            break;
+        case NO_MINIMAL_MODE:
+            PlaySE(SE_SELECT);
+            gSaveBlock3Ptr->minimalGrindingModeOff = TRUE;
+            gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
+            NewGameBirchSpeech_ClearGenderWindow(1, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_ShrinkPlayer;
+            break;
+    }
+}
+
+static void Task_NewGameBirchSpeech_ModesSet(u8 taskId)
+{
+    NewGameBirchSpeech_ClearWindow(0);
+    StringExpandPlaceholders(gStringVar4, gText_Birch_MinimalGrindingModeSet);
+    AddTextPrinterForMessage(TRUE);
+    gTasks[taskId].func = Task_NewGameBirchSpeech_ShrinkPlayer;
+}
+
+
 static void Task_NewGameBirchSpeech_SlideOutOldGenderSprite(u8 taskId)
 {
     u8 spriteId = gTasks[taskId].tPlayerSpriteId;
@@ -1725,7 +1814,8 @@ static void Task_NewGameBirchSpeech_AreYouReady(u8 taskId)
         NewGameBirchSpeech_StartFadePlatformOut(taskId, 1);
         StringExpandPlaceholders(gStringVar4, gText_Birch_AreYouReady);
         AddTextPrinterForMessage(TRUE);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_ShrinkPlayer;
+        //gTasks[taskId].func = Task_NewGameBirchSpeech_ShrinkPlayer;
+        gTasks[taskId].func = Task_NewGameBirchSpeech_ModeAsk;
     }
 }
 
@@ -2096,6 +2186,21 @@ static void NewGameBirchSpeech_ShowGenderMenu(void)
     InitMenuInUpperLeftCornerNormal(1, ARRAY_COUNT(sMenuActions_Gender), 0);
     PutWindowTilemap(1);
     CopyWindowToVram(1, COPYWIN_FULL);
+}
+
+static void NewGameBirchSpeech_ShowModeMenu(void)
+{
+    DrawMainMenuWindowBorder(&sNewGameBirchSpeechTextWindows[1], 0xF3);
+    FillWindowPixelBuffer(1, PIXEL_FILL(1));
+    PrintMenuTable(1, ARRAY_COUNT(sMenuActions_Modes), sMenuActions_Modes);
+    InitMenuInUpperLeftCornerNormal(1, ARRAY_COUNT(sMenuActions_Modes), 0);
+    PutWindowTilemap(1);
+    CopyWindowToVram(1, COPYWIN_FULL);
+}
+
+static s8 NewGameBirchSpeech_ProcessModesMenuInput(void)
+{
+    return Menu_ProcessInputNoWrap();
 }
 
 static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void)

@@ -9622,6 +9622,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Treecko
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Pound
 
 === TRAINER_MAY_ROUTE_110_MUDKIP ===
 Name: MAY
@@ -9677,6 +9678,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Torchic
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Scratch
 
 === TRAINER_MAY_ROUTE_110_TREECKO ===
 Name: MAY
@@ -9732,6 +9734,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Mudkip
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Tackle
 
 === TRAINER_MAY_ROUTE_110_TORCHIC ===
 Name: MAY
@@ -16817,3 +16820,40 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_RIVAL_RED_PWOODS ===
+Name: Red
+Class: Rival
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+
+Squirtle (M) @ Oran Berry  
+Ability: Torrent  
+Level: 10  
+Tera Type: Water  
+Hardy Nature  
+- Aqua Jet  
+- Curse  
+- Rock Tomb  
+- Tail Whip  
+
+Bulbasaur (M) @ Oran Berry  
+Ability: Overgrow  
+Level: 10  
+Tera Type: Grass  
+IVs: 0 Atk  
+- Sludge  
+- Mega Drain  
+- Leech Seed  
+- Growl  
+
+Charmander @ Oran Berry  
+Ability: Blaze  
+Level: 10  
+Tera Type: Fire  
+- Aerial Ace  
+- Growl  
+- Incinerate  
+- Brick Break

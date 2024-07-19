@@ -1214,6 +1214,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         u32 iv;
         value = Random();
 
+
         iv = value & MAX_IV_MASK;
         SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
         iv = (value & (MAX_IV_MASK << 5)) >> 5;
@@ -1229,6 +1230,16 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
         iv = (value & (MAX_IV_MASK << 10)) >> 10;
         SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+
+        if(!gSaveBlock3Ptr->minimalGrindingModeOff){ //Minimal Grinding Mode
+        iv = MAX_PER_STAT_IVS;
+        SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
+        SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+        }
 
         if (gSpeciesInfo[species].allPerfectIVs)
         {
@@ -1792,6 +1803,16 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 newMaxHP;
 
     u8 nature = GetMonData(mon, MON_DATA_HIDDEN_NATURE, NULL);
+
+    if(!gSaveBlock3Ptr->minimalGrindingModeOff){
+        //Evs are Disabled
+        hpEV 		= 0;
+		attackEV 	= 0;
+		defenseEV 	= 0;
+		spAttackEV 	= 0;
+		spDefenseEV = 0;
+		speedEV 	= 0;
+    }
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
 

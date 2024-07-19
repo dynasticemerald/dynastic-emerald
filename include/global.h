@@ -173,6 +173,7 @@ struct SaveBlock3
     u8 dexNavSearchLevels[ROUND_BITS_TO_BYTES(NUM_SPECIES)];
 #endif
     u8 dexNavChain;
+    u8 minimalGrindingModeOff;
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

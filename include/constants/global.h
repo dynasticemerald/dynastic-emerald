@@ -172,6 +172,9 @@
 #define CONNECTION_DIVE     5
 #define CONNECTION_EMERGE   6
 
+#define YES_MINIMAL_MODE 0
+#define NO_MINIMAL_MODE  1
+
 #if TESTING
 #include "config/test.h"
 #endif

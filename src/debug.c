@@ -3970,7 +3970,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
         iv_val = IVs[i];
         if (iv_val != 32 && iv_val != 0xFF)
             SetMonData(&mon, MON_DATA_HP_IV + i, &iv_val);
-    }
+    }   
 
     //EVs
     for (i = 0; i < NUM_STATS; i++)
