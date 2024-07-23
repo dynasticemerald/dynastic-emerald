@@ -112,7 +112,7 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
 
     if (gSideTimers[defSide].followmeTimer == 0
         || !IsBattlerAlive(gSideTimers[defSide].followmeTarget)
-        || gMovesInfo[move].effect == EFFECT_SNIPE_SHOT
+        || gMovesInfo[move].effect == EFFECT_BOOST_CRIT
         || gMovesInfo[move].effect == EFFECT_SKY_DROP
         || ability == ABILITY_PROPELLER_TAIL || ability == ABILITY_STALWART)
         return FALSE;
@@ -235,7 +235,7 @@ void HandleAction_UseMove(void)
                 && ((GetBattlerAbility(battler) == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
                  || (GetBattlerAbility(battler) == ABILITY_STORM_DRAIN && moveType == TYPE_WATER))
                 && GetBattlerTurnOrderNum(battler) < var
-                && gMovesInfo[gCurrentMove].effect != EFFECT_SNIPE_SHOT
+                && gMovesInfo[gCurrentMove].effect != EFFECT_BOOST_CRIT
                 && gMovesInfo[gCurrentMove].effect != EFFECT_PLEDGE
                 && (GetBattlerAbility(gBattlerAttacker) != ABILITY_PROPELLER_TAIL
                  || GetBattlerAbility(gBattlerAttacker) != ABILITY_STALWART))
@@ -9886,6 +9886,7 @@ static inline uq4_12_t GetAttackerAbilitiesModifier(u32 battlerAtk, uq4_12_t typ
             return UQ_4_12(1.25);
         break;
     case ABILITY_SNIPER:
+    case ABILITY_ARCHER:
         if (isCrit)
             return UQ_4_12(1.5);
         break;
@@ -10220,8 +10221,16 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, abilityAtk);
     }
-    else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND
+    else if ((moveType == TYPE_ELECTRIC) && (defType == TYPE_GROUND)
         && (abilityAtk == ABILITY_GROUNDSHOCK)
+        && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, abilityAtk);
+    }
+    else if ((moveType == TYPE_POISON) && (defType == TYPE_STEEL)
+        && (abilityAtk == ABILITY_CORROSION)
         && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);

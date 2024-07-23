@@ -125,18 +125,18 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         )
         .levelUpLearnset = sDartrixLevelUpLearnset,
         .teachableLearnset = sDartrixTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_DECIDUEYE},
-                                {EVO_NONE, 0, SPECIES_DECIDUEYE_HISUIAN}),
+        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 34, SPECIES_DECIDUEYE},
+                                {EVO_LEVEL_DAY, 34, SPECIES_DECIDUEYE_HISUIAN}),
     },
 
     [SPECIES_DECIDUEYE] =
     {
         .baseHP        = 78,
-        .baseAttack    = 107,
+        .baseAttack    = 107 + 3,
         .baseDefense   = 75,
-        .baseSpeed     = 70,
-        .baseSpAttack  = 100,
-        .baseSpDefense = 100,
+        .baseSpeed     = 70 + 30,
+        .baseSpAttack  = 100 - 5,
+        .baseSpDefense = 100 - 15,
         .types = MON_TYPES(TYPE_GRASS, TYPE_GHOST),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 265 : 239,
@@ -146,7 +146,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH },
+        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_ARCHER },
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Decidueye"),
         .cryId = CRY_DECIDUEYE,

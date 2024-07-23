@@ -3977,7 +3977,7 @@ BattleScript_EffectLevelDamage::
 	attackstring
 	ppreduce
 	typecalc
-	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
+	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_NO_EFFECT
 	dmgtolevel
 	adjustdamage
 	goto BattleScript_HitFromAtkAnimation

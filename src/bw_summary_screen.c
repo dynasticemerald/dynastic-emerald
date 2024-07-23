@@ -29,7 +29,6 @@
 #include "palette.h"
 #include "pokeball.h"
 #include "pokemon.h"
-#include "pokemon_debug.h"
 #include "pokemon_storage_system.h"
 #include "pokemon_summary_screen.h"
 #include "region_map.h"
@@ -1071,6 +1070,10 @@ static const struct OamData sOamData_MoveTypes =
     .affineParam = 0,
 };
 
+static const union AnimCmd sSpriteAnim_TypeNone[] = {
+    ANIMCMD_FRAME(TYPE_NONE * 8, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
 static const union AnimCmd sSpriteAnim_TypeNormal[] = {
     ANIMCMD_FRAME(TYPE_NORMAL * 8, 0, FALSE, FALSE),
     ANIMCMD_END
@@ -1147,6 +1150,10 @@ static const union AnimCmd sSpriteAnim_TypeFairy[] = {
     ANIMCMD_FRAME(TYPE_FAIRY * 8, 0, FALSE, FALSE),
     ANIMCMD_END
 };
+static const union AnimCmd sSpriteAnim_TypeStellar[] = {
+    ANIMCMD_FRAME(TYPE_STELLAR * 8, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
 static const union AnimCmd sSpriteAnim_CategoryCool[] = {
     ANIMCMD_FRAME((CONTEST_CATEGORY_COOL + NUMBER_OF_MON_TYPES) * 8, 0, FALSE, FALSE),
     ANIMCMD_END
@@ -1169,30 +1176,32 @@ static const union AnimCmd sSpriteAnim_CategoryTough[] = {
 };
 
 static const union AnimCmd *const sSpriteAnimTable_MoveTypes[NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT] = {
-    sSpriteAnim_TypeNormal,
-    sSpriteAnim_TypeFighting,
-    sSpriteAnim_TypeFlying,
-    sSpriteAnim_TypePoison,
-    sSpriteAnim_TypeGround,
-    sSpriteAnim_TypeRock,
-    sSpriteAnim_TypeBug,
-    sSpriteAnim_TypeGhost,
-    sSpriteAnim_TypeSteel,
-    sSpriteAnim_TypeMystery,
-    sSpriteAnim_TypeFire,
-    sSpriteAnim_TypeWater,
-    sSpriteAnim_TypeGrass,
-    sSpriteAnim_TypeElectric,
-    sSpriteAnim_TypePsychic,
-    sSpriteAnim_TypeIce,
-    sSpriteAnim_TypeDragon,
-    sSpriteAnim_TypeDark,
-    sSpriteAnim_TypeFairy,
-    sSpriteAnim_CategoryCool,
-    sSpriteAnim_CategoryBeauty,
-    sSpriteAnim_CategoryCute,
-    sSpriteAnim_CategorySmart,
-    sSpriteAnim_CategoryTough,
+    [TYPE_NONE] = sSpriteAnim_TypeNone,
+    [TYPE_NORMAL] = sSpriteAnim_TypeNormal,
+    [TYPE_FIGHTING] = sSpriteAnim_TypeFighting,
+    [TYPE_FLYING] = sSpriteAnim_TypeFlying,
+    [TYPE_POISON] = sSpriteAnim_TypePoison,
+    [TYPE_GROUND] = sSpriteAnim_TypeGround,
+    [TYPE_ROCK] = sSpriteAnim_TypeRock,
+    [TYPE_BUG] = sSpriteAnim_TypeBug,
+    [TYPE_GHOST] = sSpriteAnim_TypeGhost,
+    [TYPE_STEEL] = sSpriteAnim_TypeSteel,
+    [TYPE_MYSTERY] = sSpriteAnim_TypeMystery,
+    [TYPE_FIRE] = sSpriteAnim_TypeFire,
+    [TYPE_WATER] = sSpriteAnim_TypeWater,
+    [TYPE_GRASS] = sSpriteAnim_TypeGrass,
+    [TYPE_ELECTRIC] = sSpriteAnim_TypeElectric,
+    [TYPE_PSYCHIC] = sSpriteAnim_TypePsychic,
+    [TYPE_ICE] = sSpriteAnim_TypeIce,
+    [TYPE_DRAGON] = sSpriteAnim_TypeDragon,
+    [TYPE_DARK] = sSpriteAnim_TypeDark,
+    [TYPE_FAIRY] = sSpriteAnim_TypeFairy,
+    [TYPE_STELLAR] = sSpriteAnim_TypeStellar,
+    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_COOL] = sSpriteAnim_CategoryCool,
+    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_BEAUTY] = sSpriteAnim_CategoryBeauty,
+    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_CUTE] = sSpriteAnim_CategoryCute,
+    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_SMART] = sSpriteAnim_CategorySmart,
+    [NUMBER_OF_MON_TYPES + CONTEST_CATEGORY_TOUGH] = sSpriteAnim_CategoryTough,
 };
 
 static const struct CompressedSpriteSheet sSpriteSheet_MoveTypes =
@@ -3815,7 +3824,7 @@ static void PrintMonTrainerMemo(void)
 static void BufferNatureString(void)
 {
     struct PokemonSummaryScreenData *sumStruct = sMonSummaryScreen;
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNatureNamePointers[sumStruct->summary.nature]);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.nature].name);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gText_EmptyString5);
 }
 
@@ -4034,20 +4043,23 @@ static void BufferStat(u8 *dst, s8 natureMod, u32 stat, u32 strId, u32 align)
     static const u8 sTextDownArrow[] = _(" {DOWN_ARROW}");
     u8 *txtPtr;
 
-    if (natureMod == 0 || !BW_SUMMARY_NATURE_COLORS)
+   if (natureMod == 0 || !BW_SUMMARY_NATURE_COLORS || gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
         txtPtr = StringCopy(dst, sTextNatureNeutral);
-    else if (natureMod > 0)
+    else if (natureMod == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp)
         txtPtr = StringCopy(dst, sTextNatureUp);
-    else
+    else if (natureMod == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
         txtPtr = StringCopy(dst, sTextNatureDown);
+    else
+        txtPtr = StringCopy(dst, sTextNatureNeutral);
+
 
     ConvertIntToDecimalStringN(txtPtr, stat, STR_CONV_MODE_RIGHT_ALIGN, align);
 
     if (BW_SUMMARY_NATURE_ARROWS)
     {
-        if (natureMod > 0)
+        if (natureMod < 0 || gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
             StringAppend(txtPtr, sTextUpArrow);
-        else if (natureMod < 0)
+        else if (natureMod > 0 || gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp)
             StringAppend(txtPtr, sTextDownArrow);
     }
 
@@ -4060,7 +4072,6 @@ static void BufferAndPrintStats_HandleState(u8 mode)
     u16 hp, hp2, atk, def, spA, spD, spe;
     u8 *currentHPString = Alloc(20);
     u8 *maxHPString = Alloc(20);
-    const s8 *natureMod = gNatureStatTable[sMonSummaryScreen->summary.mintNature];
 
     switch (mode)
     {
@@ -4106,11 +4117,11 @@ static void BufferAndPrintStats_HandleState(u8 mode)
         PrintHPStats(mode);
 
         DynamicPlaceholderTextUtil_Reset();
-        BufferStat(gStringVar1, natureMod[STAT_ATK - 1], atk, 0, 3);
-        BufferStat(gStringVar2, natureMod[STAT_DEF - 1], def, 1, 3);
-        BufferStat(gStringVar3, natureMod[STAT_SPATK - 1], spA, 2, 3);
-        BufferStat(gStringVar4, natureMod[STAT_SPDEF - 1], spD, 3, 3);
-        BufferStat(sStringVar5, natureMod[STAT_SPEED - 1], spe, 4, 3);
+        BufferStat(gStringVar1, STAT_ATK - 1, atk, 0, 3);
+        BufferStat(gStringVar2, STAT_DEF - 1, def, 1, 3);
+        BufferStat(gStringVar3, STAT_SPATK - 1, spA, 2, 3);
+        BufferStat(gStringVar4, STAT_SPDEF - 1, spD, 3, 3);
+        BufferStat(sStringVar5, STAT_SPEED - 1, spe, 4, 3);
         PrintNonHPStats();
     }
     else
@@ -4161,13 +4172,18 @@ static void PrintHPStats(u8 mode)
 
 static void BufferNonHPStats(void)
 {
-    const s8 *natureMod = gNatureStatTable[sMonSummaryScreen->summary.mintNature];
+    u16 atk, def, spA, spD, spe;
+        atk = sMonSummaryScreen->summary.atk;
+        def = sMonSummaryScreen->summary.def;
+        spA = sMonSummaryScreen->summary.spatk;
+        spD = sMonSummaryScreen->summary.spdef;
+        spe = sMonSummaryScreen->summary.speed;
     DynamicPlaceholderTextUtil_Reset();
-    BufferStat(gStringVar1, natureMod[STAT_ATK - 1], sMonSummaryScreen->summary.atk, 0, 3);
-    BufferStat(gStringVar2, natureMod[STAT_DEF - 1], sMonSummaryScreen->summary.def, 1, 3);
-    BufferStat(gStringVar3, natureMod[STAT_SPATK - 1], sMonSummaryScreen->summary.spatk, 2, 3);
-    BufferStat(gStringVar4, natureMod[STAT_SPDEF - 1], sMonSummaryScreen->summary.spdef, 3, 3);
-    BufferStat(sStringVar5, natureMod[STAT_SPEED - 1], sMonSummaryScreen->summary.speed, 4, 3);
+    BufferStat(gStringVar1, STAT_ATK - 1, atk, 0, 3);
+    BufferStat(gStringVar2, STAT_DEF - 1, def, 1, 3);
+    BufferStat(gStringVar3, STAT_SPATK - 1, spA, 2, 3);
+    BufferStat(gStringVar4, STAT_SPDEF - 1, spD, 3, 3);
+    BufferStat(sStringVar5, STAT_SPEED - 1, spe, 4, 3);
 }
 
 static void PrintNonHPStats(void)
@@ -4727,12 +4743,17 @@ static void SetMonTypeIcons(void)
 
 static void SetMoveTypeIcons(void)
 {
-    u8 i;
+    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+    u8 i, movetype;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
+
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE)
-            SetTypeSpritePosAndPal(gMovesInfo[summary->moves[i]].type, 8, 16 + (i * 28), i + SPRITE_ARR_ID_TYPE);
+        {
+            movetype = GetMonMoveType(summary->moves[i], mon, 0);
+            SetTypeSpritePosAndPal(movetype, 8, 16 + (i * 28), i + SPRITE_ARR_ID_TYPE);
+        }
         else
             SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);
     }
@@ -4753,6 +4774,26 @@ static void SetContestMoveTypeIcons(void)
 
 static void SetNewMoveTypeIcon(void)
 {
+    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+    u8 movetype;
+
+    if (sMonSummaryScreen->newMove == MOVE_NONE)
+    {
+        SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 6, TRUE);
+    }
+    else
+    {
+        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){
+            movetype = GetMonMoveType(sMonSummaryScreen->newMove, mon, 0);
+            SetTypeSpritePosAndPal(movetype, 8, 128, SPRITE_ARR_ID_TYPE + 4);
+        }
+        else
+            SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 8, 128, SPRITE_ARR_ID_TYPE + 4);
+    }
+}
+
+/*static void SetNewMoveTypeIcon(void)
+{
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 4, TRUE);
@@ -4764,7 +4805,7 @@ static void SetNewMoveTypeIcon(void)
         else
             SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 8, 128, SPRITE_ARR_ID_TYPE + 4);
     }
-}
+}*/
 
 static void SwapMovesTypeSprites(u8 moveIndex1, u8 moveIndex2)
 {

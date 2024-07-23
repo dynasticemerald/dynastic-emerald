@@ -482,10 +482,10 @@ script PetalburgWoods_EventScript_RivalRedBegin{
 	if(var(VAR_RIVAL_RED_STATE) == 0){
 	lock
 	playbgm(MUS_RG_ENCOUNTER_RIVAL, FALSE)
-	applymovement(LOCALID_RIVAL_RED, MoveDownRivalRedPetalburg) //Move Red to player.
-	applymovement(LOCALID_REDS_CHARMANDER, MoveDownRivalRedPetalburg) //Move Reds Charmander to player.
-	waitmovement(LOCALID_RIVAL_RED)
-	waitmovement(LOCALID_REDS_CHARMANDER)
+	applymovement(LOCALID_RIVAL_RED, MoveDownRivalRedPetalburg) //Move Red to player. //14
+	applymovement(LOCALID_REDS_CHARMANDER, MoveDownRivalRedPetalburg) //Move Reds Charmander to player. //15
+	waitmovement(LOCALID_RIVAL_RED) //14
+	waitmovement(LOCALID_REDS_CHARMANDER) //15
 
 	msgbox(RivalRedPetalburg, MSGBOX_DEFAULT)
 	
@@ -494,10 +494,10 @@ script PetalburgWoods_EventScript_RivalRedBegin{
 	msgbox(RivalRedPetalburg2, MSGBOX_DEFAULT)
 
 	playbgm(MUS_RG_RIVAL_EXIT, FALSE)
-	applymovement(LOCALID_RIVAL_RED, MoveAwayRivalRedPetalburg) //Move Red away player.
-	applymovement(LOCALID_REDS_CHARMANDER, MoveAwayRivalRedPetalburg) //Move Reds Charmander away player.
-	waitmovement(LOCALID_RIVAL_RED)
-	waitmovement(LOCALID_REDS_CHARMANDER)
+	applymovement(LOCALID_RIVAL_RED, MoveAwayRivalRedPetalburg) //Move Red away player. //14
+	applymovement(LOCALID_REDS_CHARMANDER, MoveAwayRivalRedPetalburg) //Move Reds Charmander away player. //15
+	waitmovement(LOCALID_RIVAL_RED) //14
+	waitmovement(LOCALID_REDS_CHARMANDER) //15
 
 	removeobject(15) //LOCALID_REDS_CHARMANDER
 	removeobject(LOCALID_RIVAL_RED)
@@ -506,6 +506,7 @@ script PetalburgWoods_EventScript_RivalRedBegin{
 	fadeoutbgm(2)
 
 	setflag(FLAG_HIDE_RIVAL_RED_PETALBURG_WOODS) //Hides Red after the player has Defeated Red and left the Area.
+	setflag(FLAG_RED_1_BEATEN) //Ups level cap.
 
 	addvar(VAR_RIVAL_RED_STATE, 1) //Makes the Script not activate again when Walking over the trigger again.
 	release
@@ -513,7 +514,7 @@ script PetalburgWoods_EventScript_RivalRedBegin{
 	}
 	//elif(var(VAR_RIVAL_RED_STATE) == 1){
 	else{ //Don't think this is needed, Needs Testing.
-		removeobject(LOCALID_RIVAL_RED)
+		removeobject(LOCALID_RIVAL_RED) //14
 		release
 		end
 	}

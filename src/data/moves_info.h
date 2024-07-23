@@ -15542,7 +15542,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "After being hit, foes can\n"
             "no longer escape."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_BOOST_CRIT,
         .power = 80,
         .type = TYPE_GHOST,
         .accuracy = 100,
@@ -17137,7 +17137,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "The user ignores effects\n"
             "that draw in moves."),
-        .effect = EFFECT_SNIPE_SHOT,
+        .effect = EFFECT_BOOST_CRIT,
         .power = 80,
         .type = TYPE_WATER,
         .accuracy = 100,

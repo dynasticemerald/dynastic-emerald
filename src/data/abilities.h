@@ -1642,7 +1642,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_CORROSION] =
     {
         .name = _("Corrosion"),
-        .description = COMPOUND_STRING("Poisons any type."),
+        .description = COMPOUND_STRING("Poison hits Steel."),
         .aiRating = 5,
     },
 
@@ -2634,5 +2634,12 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Ghostal Soul"),
         .description = COMPOUND_STRING("Ghost moves go first."),
         .aiRating = 6,
+    },
+
+    [ABILITY_ARCHER] =
+    {
+        .name = _("Archer"),
+        .description = COMPOUND_STRING("Boosts critical hits."),
+        .aiRating = 3,
     },
 };

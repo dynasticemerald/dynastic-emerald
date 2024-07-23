@@ -959,9 +959,9 @@ PetalburgWoods_EventScript_RivalRedBegin::
 # 482 "data/maps/PetalburgWoods/scripts.pory"
 	compare VAR_RIVAL_RED_STATE, 0
 	goto_if_eq PetalburgWoods_EventScript_RivalRedBegin_1
-# 516 "data/maps/PetalburgWoods/scripts.pory"
-	removeobject LOCALID_RIVAL_RED
 # 517 "data/maps/PetalburgWoods/scripts.pory"
+	removeobject LOCALID_RIVAL_RED
+# 518 "data/maps/PetalburgWoods/scripts.pory"
 	release
 	end
 
@@ -1002,55 +1002,57 @@ PetalburgWoods_EventScript_RivalRedBegin_1:
 	fadeoutbgm 2
 # 508 "data/maps/PetalburgWoods/scripts.pory"
 	setflag FLAG_HIDE_RIVAL_RED_PETALBURG_WOODS
-# 510 "data/maps/PetalburgWoods/scripts.pory"
-	addvar VAR_RIVAL_RED_STATE, 1
+# 509 "data/maps/PetalburgWoods/scripts.pory"
+	setflag FLAG_RED_1_BEATEN
 # 511 "data/maps/PetalburgWoods/scripts.pory"
+	addvar VAR_RIVAL_RED_STATE, 1
+# 512 "data/maps/PetalburgWoods/scripts.pory"
 	release
 	end
 
 
-# 523 "data/maps/PetalburgWoods/scripts.pory"
-MoveAwayRivalRedPetalburg:
 # 524 "data/maps/PetalburgWoods/scripts.pory"
+MoveAwayRivalRedPetalburg:
+# 525 "data/maps/PetalburgWoods/scripts.pory"
 	face_up
-# 525 "data/maps/PetalburgWoods/scripts.pory"
-	walk_up
-# 525 "data/maps/PetalburgWoods/scripts.pory"
-	walk_up
-# 525 "data/maps/PetalburgWoods/scripts.pory"
-	walk_up
-# 525 "data/maps/PetalburgWoods/scripts.pory"
-	walk_up
-# 525 "data/maps/PetalburgWoods/scripts.pory"
+# 526 "data/maps/PetalburgWoods/scripts.pory"
 	walk_up
 # 526 "data/maps/PetalburgWoods/scripts.pory"
+	walk_up
+# 526 "data/maps/PetalburgWoods/scripts.pory"
+	walk_up
+# 526 "data/maps/PetalburgWoods/scripts.pory"
+	walk_up
+# 526 "data/maps/PetalburgWoods/scripts.pory"
+	walk_up
+# 527 "data/maps/PetalburgWoods/scripts.pory"
 	walk_left
-# 526 "data/maps/PetalburgWoods/scripts.pory"
+# 527 "data/maps/PetalburgWoods/scripts.pory"
 	walk_left
 	step_end
 
-# 530 "data/maps/PetalburgWoods/scripts.pory"
-MoveDownRivalRedPetalburg:
 # 531 "data/maps/PetalburgWoods/scripts.pory"
+MoveDownRivalRedPetalburg:
+# 532 "data/maps/PetalburgWoods/scripts.pory"
 	face_down
-# 532 "data/maps/PetalburgWoods/scripts.pory"
+# 533 "data/maps/PetalburgWoods/scripts.pory"
 	walk_down
-# 532 "data/maps/PetalburgWoods/scripts.pory"
+# 533 "data/maps/PetalburgWoods/scripts.pory"
 	walk_down
-# 532 "data/maps/PetalburgWoods/scripts.pory"
+# 533 "data/maps/PetalburgWoods/scripts.pory"
 	walk_down
 	step_end
 
 RivalRedPetalburg::
-# 535 "data/maps/PetalburgWoods/scripts.pory"
+# 536 "data/maps/PetalburgWoods/scripts.pory"
 	.string "Hi. Text isn't Finalised Yet.\n"
 	.string "This is just a Dummy Text.$"
 
 RivalRedPetalburg2::
-# 540 "data/maps/PetalburgWoods/scripts.pory"
+# 541 "data/maps/PetalburgWoods/scripts.pory"
 	.string "Bye. Text isn't Finalised Yet.\n"
 	.string "This is just a Dummy Text.$"
 
 LoseTextRivalRedWoods::
-# 546 "data/maps/PetalburgWoods/scripts.pory"
+# 547 "data/maps/PetalburgWoods/scripts.pory"
 	.string "I lost$"

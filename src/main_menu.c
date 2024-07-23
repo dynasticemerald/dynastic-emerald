@@ -164,20 +164,26 @@
  */
 
 // Strings for Dynastic
-static const u8 gText_MinimalGrindingMode[] = _("Minimal Grinding");
+static const u8 gText_MinimalGrindingMode[] = _("Minimal Grinding"); //Unused for now
+static const u8 gText_HardMode[] = _("Hard"); //Unused for now
+static const u8 gText_NormalMode[] = _("Normal"); //Unused for now
 
 static const u8 gText_Birch_MinimalGrindingModeSet[] = _("Minimal Grinding is Set.");
 
-static const u8 gText_Birch_WichMode[] = _("Kaixer: Hi there, thank you for trying\n"
-                                           "Dynastic Emerald. so lets get right to\p"
-                                           "bussiness shall we? first an explanation.\n"
-                                           "what is Minimal Grinding?\p"
-                                           "Minimal Grinding Removes EVs From the\n"
-                                           "game. and makes every Pokémon have perfect\p"
-                                           "IVs. very nice for people who don't have the\n"
-                                           "time, too keep grinding out new Pokémon.\p"
-                                           "would you like to Enable\n"
-                                           "Minimal Grinding Mode?");
+static const u8 gText_Birch_WelcomeToPDE[] = _("Kaixer: Hi there {PLAYER}, thank you for\n"
+                                               "trying Dynastic Emerald!\p"
+                                               "what is Dynastic Emerald? well Dynastic\n"
+                                               "Emerald is a difficulty hack, like\p"
+                                               "Radical Red and Inclement Emerald.\n"
+                                               "but with my own twist, locations are\p"
+                                               "Completely Revamped, new locations added.\n"
+                                               "The feature list is too large to mention.\p"
+                                               "if you have a question about the game,\n"
+                                               "join the discord, the link is on the\p"
+                                               "pokecommunity page.\n"
+                                               "The documentation on this game, are in\p"
+                                               "discord aswell.\n"
+                                               "Would you like to enable Minimal Grinding?");
 // Ends Here
 
 // Defines for Dynastic
@@ -1571,7 +1577,7 @@ static void Task_NewGameBirchSpeech_ChooseGender(u8 taskId)
 static void Task_NewGameBirchSpeech_ModeAsk(u8 taskId)
 {
     NewGameBirchSpeech_ClearWindow(0);
-    StringExpandPlaceholders(gStringVar4, gText_Birch_WichMode);
+    StringExpandPlaceholders(gStringVar4, gText_Birch_WelcomeToPDE);
     AddTextPrinterForMessage(TRUE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowModesMenu;
 }

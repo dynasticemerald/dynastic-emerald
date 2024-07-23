@@ -4233,13 +4233,16 @@ static void SetMonTypeIcons(void)
 
 static void SetMoveTypeIcons(void)
 {
-    u8 i;
+    u8 i, movetype;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
+    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            SetTypeSpritePosAndPal(gMovesInfo[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
+            movetype = GetMonMoveType(summary->moves[i], mon, 0);
+            SetTypeSpritePosAndPal(movetype, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
         }
         else
             SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);
