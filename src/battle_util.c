@@ -11457,8 +11457,8 @@ bool32 AreBattlersOfSameGender(u32 battler1, u32 battler2)
 
 bool32 AreBattlersOfSameType(u32 battler1, u32 battler2)
 {
-    u8 type1 = GetBattlerType(battler1);
-    u8 type2 = GetBattlerType(battler2);
+    u8 type1 = GetBattlerType(battler1, 0, FALSE);
+    u8 type2 = GetBattlerType(battler2, 1, FALSE);
 
     return (type1 != TYPE_MYSTERY && type2 != TYPE_MYSTERY && type2 == type2);
 }
