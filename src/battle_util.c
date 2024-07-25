@@ -9102,10 +9102,8 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
     case ABILITY_RIVALRY:
-        if (AreBattlersOfSameGender(battlerAtk, battlerDef))
-            modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
-        else if (AreBattlersOfOppositeGender(battlerAtk, battlerDef))
-            modifier = uq4_12_multiply(modifier, UQ_4_12(0.75));
+        if (AreBattlersOfSameType(battlerAtk, battlerDef))
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
     case ABILITY_ANALYTIC:
         if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
@@ -11456,6 +11454,15 @@ bool32 AreBattlersOfSameGender(u32 battler1, u32 battler2)
 
     return (gender1 != MON_GENDERLESS && gender2 != MON_GENDERLESS && gender1 == gender2);
 }
+
+bool32 AreBattlersOfSameType(u32 battler1, u32 battler2)
+{
+    u8 type1 = GetBattlerType(battler1);
+    u8 type2 = GetBattlerType(battler2);
+
+    return (type1 != TYPE_MYSTERY && type2 != TYPE_MYSTERY && type2 == type2);
+}
+
 
 u32 CalcSecondaryEffectChance(u32 battler, u32 battlerAbility, const struct AdditionalEffect *additionalEffect)
 {
