@@ -991,7 +991,7 @@ static const u16 sDeoxysFormSpeciesIdTable[] = {
 
 #if P_FAMILY_TRAPINCH
 static const u16 sFlygonFormSpeciesIdTable[] = {
-    SPECIES_LATIAS,
+    SPECIES_FLYGON,
 #if P_MEGA_EVOLUTIONS
     SPECIES_FLYGON_MEGA,
 #endif

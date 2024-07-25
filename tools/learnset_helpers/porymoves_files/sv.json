@@ -1040,6 +1040,7 @@
       "MOVE_HAZE",
       "MOVE_SMACK_DOWN",
       "MOVE_GYRO_BALL",
+      "MOVE_STEALTH_ROCK",
       "MOVE_FOCUS_PUNCH",
       "MOVE_WEATHER_BALL",
       "MOVE_FLIP_TURN",

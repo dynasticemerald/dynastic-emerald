@@ -10567,19 +10567,17 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_FIRE_FANG,
     },
 
-    [ITEM_TM_TAUNT] =
+    [ITEM_TM_STEALTH_ROCK] =
     {
         .name = _("TM12"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Enrages the foe so\n"
-            "it can only use\n"
-            "attack moves."),
+            "Stealth Rock"),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_TAUNT,
+        .secondaryId = MOVE_STEALTH_ROCK,
     },
 
     [ITEM_TM_ICE_BEAM] =

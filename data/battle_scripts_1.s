@@ -6027,6 +6027,7 @@ BattleScript_OverworldStatusStarts_TryActivations:
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_SET_TRICK_ROOM, BattleScript_TryRoomServiceLoop
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_SET_TAILWIND_PLAYER, BattleScript_TryTailwindAbilitiesLoop
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_SET_TAILWIND_OPPONENT, BattleScript_TryTailwindAbilitiesLoop
+	@@jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_SET_RAIN_OPPONENT, BattleScript_TryRainAbilitiesLoop
 	return
 
 BattleScript_OverworldWeatherStarts::

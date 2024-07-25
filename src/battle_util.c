@@ -4162,6 +4162,17 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     effect = 1;
                 }
                 break;
+            case STARTING_STATUS_RAIN_OPPONENT:
+                if (!(gBattleWeather & WEATHER_RAIN))
+                {
+                    gBattlerAttacker = B_POSITION_OPPONENT_LEFT;
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_RAIN_OPPONENT;
+                    gBattleWeather & WEATHER_RAIN;
+                    gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
+                    gWishFutureKnock.weatherDuration = 0; // infinite
+                    effect = 1;
+                }
+                break;
             }
 
             if (effect == 1)

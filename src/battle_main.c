@@ -578,6 +578,16 @@ static void CB2_InitBattleInternal(void)
         TryFormChange(i, B_SIDE_OPPONENT, FORM_CHANGE_BEGIN_BATTLE);
     }
 
+    for (i = 0; i < 3; i++){
+        
+        if (FlagGet(FLAG_TOXIC_BATTLE_BEGIN))
+        {
+            u32 value = STATUS1_TOXIC_POISON;
+            SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &value);
+        }
+
+    }
+
     gBattleCommunication[MULTIUSE_STATE] = 0;
 }
 
@@ -4780,18 +4790,27 @@ s8 GetMovePriority(u32 battler, u16 move)
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
         return gMovesInfo[MOVE_MAX_GUARD].priority;
 
-    if ((ability == ABILITY_GALE_WINGS
+    if (ability == ABILITY_GALE_WINGS
         && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))
         && gMovesInfo[move].type == TYPE_FLYING)
-        || (ability == ABILITY_FLAMING_SOUL
-        && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler)) //New
-        && gMovesInfo[move].type == TYPE_FIRE)
-        || (ability == ABILITY_GHOSTAL_SOUL
+    {
+        priority++;
+    }
+    else if (ability == ABILITY_FLAMING_SOUL
         && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))
-        && gMovesInfo[move].type == TYPE_GHOST
-        || (species == SPECIES_TALONFLAME_MEGA
-        && ability == ABILITY_GALE_WINGS)
-        && gMovesInfo[move].type == TYPE_FLYING)) //To Here
+        && gMovesInfo[move].type == TYPE_FIRE)
+    {
+        priority++;
+    }
+    else if (ability == ABILITY_GHOSTAL_SOUL
+        && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))
+        && gMovesInfo[move].type == TYPE_GHOST)
+    {
+        priority++;
+    }
+    else if (ability == ABILITY_GALE_WINGS
+        && (species == SPECIES_TALONFLAME_MEGA)
+        && gMovesInfo[move].type == TYPE_FLYING)
     {
         priority++;
     }

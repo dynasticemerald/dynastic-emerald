@@ -8167,6 +8167,24 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gShinyOverworldPalette_Flygon[] = INCBIN_U32("graphics/pokemon/flygon/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+
+#if P_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/mega/front.4bpp.lz");
+    const u32 gMonPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/mega/normal.gbapal.lz");
+    const u32 gMonBackPic_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/mega/back.4bpp.lz");
+    const u32 gMonShinyPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/mega/shiny.gbapal.lz");
+    const u8 gMonIcon_FlygonMega[] = INCBIN_U8("graphics/pokemon/flygon/mega/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_FlygonMega[] = INCBIN_U8("graphics/pokemon/flygon/footprint.1bpp");
+#endif //P_FOOTPRINTS
+#if OW_POKEMON_OBJECT_EVENTS
+    //const u32 gObjectEventPic_Flygon[] = INCBIN_COMP("graphics/pokemon/flygon/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    //const u32 gOverworldPalette_Flygon[] = INCBIN_U32("graphics/pokemon/flygon/overworld_normal.gbapal.lz");
+    //const u32 gShinyOverworldPalette_Flygon[] = INCBIN_U32("graphics/pokemon/flygon/overworld_shiny.gbapal.lz");
+#endif //P_MEGA_EVOLUTIONS
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_TRAPINCH
 
 #if P_FAMILY_CACNEA

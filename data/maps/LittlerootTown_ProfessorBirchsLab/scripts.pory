@@ -1031,15 +1031,15 @@ text PlayerHoldOn{
 }
 
 text DexnavGet{
-	"unfortunately this a prototype\l"
-	"wich means its not finished yet.\l"
-	"It's called the Dexnav, Me and Prof.\l"
-	"Birch have been working on this device\l"
-	"for months now and we're exicited for\l"
-	"you to try it out!\l"
-	"The Dexnav alows you to search for\l"
-	"Pokémon that you have already\l"
-	"registed or Seen, in you're Pokédex.\p"
+	"unfortunately this a prototype\p"
+	"wich means its not finished yet.\n"
+	"It's called the Dexnav, Me and Prof.\p"
+	"Birch have been working on this device\n"
+	"for months now and we're exicited for\p"
+	"you to try it out!\n"
+	"The Dexnav alows you to search for\p"
+	"Pokémon that you have already\n"
+	"registed or Seen, in you're Pokédex."
 }
 
 movement LookDown{

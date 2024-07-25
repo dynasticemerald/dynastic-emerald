@@ -13,7 +13,7 @@
     F(BULLET_SEED) \
     F(HIDDEN_POWER) \
     F(FIRE_FANG) \
-    F(TAUNT) \
+    F(STEALTH_ROCK) \
     F(ICE_BEAM) \
     F(BLIZZARD) \
     F(FLAME_CHARGE) \
