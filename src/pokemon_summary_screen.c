@@ -3689,7 +3689,7 @@ static void BufferStat(u8 *dst, u8 statIndex, u32 stat, u32 strId, u32 n)
 
 static void BufferIvOrEvStats(u8 mode)
 {
-    u16 hp, hp2, atk, def, spA, spD, spe;
+    u16 hp, hp2, atk, def, spA, spD, spe; //Why hp2 isn't compiled(?)
     u8 *currHPString = Alloc(20);
 
     switch (mode)

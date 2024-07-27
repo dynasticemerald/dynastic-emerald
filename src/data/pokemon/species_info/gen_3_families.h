@@ -2723,12 +2723,12 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     [SPECIES_MASQUERAIN] =
     {
         .baseHP        = 70,
-        .baseAttack    = 60,
+        .baseAttack    = 60 - 20,
         .baseDefense   = 62,
-        .baseSpeed     = P_UPDATED_STATS >= GEN_7 ? 80 : 60,
-        .baseSpAttack  = P_UPDATED_STATS >= GEN_7 ? 100 : 80,
+        .baseSpeed     = 80 + 20,
+        .baseSpAttack  = 100,
         .baseSpDefense = 82,
-        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .types = MON_TYPES(TYPE_BUG, TYPE_WATER),
         .catchRate = 75,
     #if P_UPDATED_EXP_YIELDS >= GEN_7
         .expYield = 159,
@@ -2864,8 +2864,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseHP        = 60,
         .baseAttack    = 130,
         .baseDefense   = 80,
-        .baseSpeed     = 70,
-        .baseSpAttack  = 60,
+        .baseSpeed     = 70 + 15,
+        .baseSpAttack  = 60 - 15,
         .baseSpDefense = 60,
         .types = MON_TYPES(TYPE_GRASS, TYPE_FIGHTING),
         .catchRate = 90,
@@ -6334,7 +6334,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG, EGG_GROUP_DRAGON),
-        .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_TINTED_LENS },
+        .abilities = { ABILITY_INNER_FOCUS, ABILITY_LEVITATE, ABILITY_TINTED_LENS },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Flygon"),
         .cryId = CRY_FLYGON,
@@ -6380,14 +6380,14 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .formChangeTable = sFlygonFormChangeTable,
     },
 #if P_MEGA_EVOLUTIONS
-    [SPECIES_FLYGON_MEGA] = //100 bst +
+    [SPECIES_FLYGON_MEGA] = //85 bst +
     {
         .baseHP        = 80,
-        .baseAttack    = 130, //+ 30
-        .baseDefense   = 100, //+ 20
-        .baseSpeed     = 110, //+ 10
-        .baseSpAttack  = 130, //+ 30
-        .baseSpDefense = 100, //+ 20
+        .baseAttack    = 140, //+ 30
+        .baseDefense   = 90, //+ 10
+        .baseSpeed     = 120, //+ 20
+        .baseSpAttack  = 125, //+ 25
+        .baseSpDefense = 90, //+ 10
         .types = MON_TYPES(TYPE_BUG, TYPE_DRAGON),
         .catchRate = 45,
         .expYield = 260,
@@ -6398,7 +6398,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG, EGG_GROUP_DRAGON),
-        .abilities = { ABILITY_TINTED_LENS, ABILITY_TINTED_LENS, ABILITY_TINTED_LENS },
+        .abilities = { ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_TINTED_LENS },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Flygon"),
         .cryId = CRY_FLYGON,
@@ -6431,12 +6431,12 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .iconPalIndex = 1,
         FOOTPRINT(Flygon)
         OVERWORLD(
-            sPicTable_Flygon, //sPicTable_FlygonMega
+            sPicTable_FlygonMega,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_NONE,
-            gOverworldPalette_Flygon, //gOverworldPalette_FlygonMega
-            gShinyOverworldPalette_Flygon //gShinyOverworldPalette_FlygonMega
+            gOverworldPalette_FlygonMega,
+            gShinyOverworldPalette_FlygonMega
         )
         .levelUpLearnset = sFlygonLevelUpLearnset,
         .teachableLearnset = sFlygonTeachableLearnset,
@@ -6778,7 +6778,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_ERRATIC,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_IMMUNITY, ABILITY_NONE, ABILITY_TOXIC_BOOST },
+        .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_NONE, ABILITY_TOXIC_BOOST },
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
         .speciesName = _("Zangoose"),

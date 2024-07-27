@@ -2279,6 +2279,11 @@ static const struct SpriteFrameImage sPicTable_Vibrava[] = {
 static const struct SpriteFrameImage sPicTable_Flygon[] = {
     overworld_ascending_frames(gObjectEventPic_Flygon, 4, 4),
 };
+#if P_MEGA_EVOLUTIONS
+static const struct SpriteFrameImage sPicTable_FlygonMega[] = {
+    overworld_ascending_frames(gObjectEventPic_FlygonMega, 4, 4),
+};
+#endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TRAPINCH
 
 #if P_FAMILY_CACNEA

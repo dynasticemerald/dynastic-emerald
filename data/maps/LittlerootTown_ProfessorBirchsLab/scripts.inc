@@ -2098,14 +2098,14 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_GoLeft::
 	applymovement OBJ_EVENT_ID_PLAYER, GoLeftDexnavEncounterScript
 # 1068 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav
-	return
+	end
 
 
-# 1071 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-GoLeftDexnavEncounterScript:
 # 1072 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	face_left
+GoLeftDexnavEncounterScript:
 # 1073 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_left
+# 1074 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	walk_left
 	step_end
 
@@ -2121,7 +2121,7 @@ PlayerHoldOn::
 
 DexnavGet::
 # 1033 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "unfortunately this a prototype\p"
+	.string "Unfortunately this a prototype\p"
 	.string "wich means its not finished yet.\n"
 	.string "It's called the Dexnav, Me and Prof.\p"
 	.string "Birch have been working on this device\n"

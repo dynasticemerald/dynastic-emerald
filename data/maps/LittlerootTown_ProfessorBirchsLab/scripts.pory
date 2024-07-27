@@ -1007,13 +1007,13 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav{
 	lock
 	applymovement(LOCALID_AIDE, LookDown)
 	waitmovement(1)
-	msgbox(PlayerHoldOn, MSGBOX_DEFAULT)
+	msgbox(PlayerHoldOn, MSGBOX_DEFAULT) //Oh {PLAYER}, hold on
 	waitmessage
 	applymovement(OBJ_EVENT_ID_PLAYER, LookUp)
 	waitmovement(OBJ_EVENT_ID_PLAYER)
 	applymovement(LOCALID_AIDE, MoveToPlayer)
 	waitmovement(1)
-	msgbox(DexnavGet, MSGBOX_DEFAULT)
+	msgbox(DexnavGet, MSGBOX_DEFAULT) //Unfortunately this a prototype
 	waitmessage
 	setflag(FLAG_SYS_DEXNAV_GET)
 	msgbox("{PLAYER} Obtained the Dexnav", MSGBOX_DEFAULT)
@@ -1031,7 +1031,7 @@ text PlayerHoldOn{
 }
 
 text DexnavGet{
-	"unfortunately this a prototype\p"
+	"Unfortunately this a prototype\p"
 	"wich means its not finished yet.\n"
 	"It's called the Dexnav, Me and Prof.\p"
 	"Birch have been working on this device\n"
@@ -1066,6 +1066,7 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_GoLeft{
 	lock
 	applymovement(OBJ_EVENT_ID_PLAYER, GoLeftDexnavEncounterScript)
 	goto (LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav)
+	end
 }
 
 movement GoLeftDexnavEncounterScript{
