@@ -7193,6 +7193,7 @@ static void UpdateSentMonFlags(u32 battler)
 static bool32 DoSwitchInEffectsForBattler(u32 battler)
 {
     u32 i;
+    u32 trauntMove = gBattleMons[battler].moves[*(gBattleStruct->chosenMovePositions + battler)];
     // Neutralizing Gas announces itself before hazards
     if (gBattleMons[battler].ability == ABILITY_NEUTRALIZING_GAS && gSpecialStatuses[battler].announceNeutralizingGas == 0)
     {
@@ -7320,7 +7321,8 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         // The truant counter is not updated in the case where a mon switches in after a lost judgment in the battle arena.
         if (battlerAbility == ABILITY_TRUANT
             && gCurrentActionFuncId != B_ACTION_USE_MOVE
-            && !gDisableStructs[battler].truantSwitchInHack)
+            && !gDisableStructs[battler].truantSwitchInHack
+            && !gMovesInfo[trauntMove].healingMove)
             gDisableStructs[battler].truantCounter = 1;
 
         gDisableStructs[battler].truantSwitchInHack = 0;
