@@ -14111,6 +14111,22 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_Parcel,
     },
 
+    [ITEM_TIME_CHANGER] =
+    {
+        .name = _("Time Changer"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A machine that\n"
+            "changes time when\n"
+            "used, Manually."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_TimeChanger,
+        .iconPic = gItemIcon_PokemonBoxLink,
+        .iconPalette = gItemIconPalette_PokemonBoxLink,
+    },
+
     // Custom Mega Stones
     [ITEM_FLYGONITE] =
     {

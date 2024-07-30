@@ -998,17 +998,15 @@
 #define ITEM_TWICE_SPICED_RADISH 826
 #define ITEM_POKESHI_DOLL 827
 
-#define ITEM_FRIENDSHIP_BOX 828
+#define ITEM_FRIENDSHIP_BOX (ITEM_POKESHI_DOLL + 1)
+#define ITEM_TIME_CHANGER (ITEM_POKESHI_DOLL + 2)
 
 //Custom Mega Stones
 //#define ITEM_BLASTOISINITE_D 829
-#define ITEM_FLYGONITE 829
-#define ITEM_TALONITE 830
+#define ITEM_FLYGONITE (ITEM_POKESHI_DOLL + 3)
+#define ITEM_TALONITE (ITEM_POKESHI_DOLL + 4)
 
-// HOPO BERRY
-// LEGEND PLATE
-
-#define ITEMS_COUNT 831
+#define ITEMS_COUNT (ITEM_TALONITE + 1)
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

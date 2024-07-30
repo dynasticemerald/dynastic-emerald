@@ -2812,63 +2812,63 @@ SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor::
 	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_0, MSGBOX_DEFAULT
 # 1421 "data/maps/SlateportCity/scripts.pory"
 	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_1, MSGBOX_YESNO
-# 1428 "data/maps/SlateportCity/scripts.pory"
+# 1429 "data/maps/SlateportCity/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_2
-# 1443 "data/maps/SlateportCity/scripts.pory"
+# 1444 "data/maps/SlateportCity/scripts.pory"
 	compare VAR_RESULT, NO
 	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_3
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1:
-# 1450 "data/maps/SlateportCity/scripts.pory"
+# 1451 "data/maps/SlateportCity/scripts.pory"
 	release
 	end
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_2:
-# 1429 "data/maps/SlateportCity/scripts.pory"
+# 1430 "data/maps/SlateportCity/scripts.pory"
 	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_2, MSGBOX_DEFAULT
-# 1433 "data/maps/SlateportCity/scripts.pory"
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_3, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_4
 # 1434 "data/maps/SlateportCity/scripts.pory"
-	switch VAR_RESULT
+	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_3, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_4
 # 1435 "data/maps/SlateportCity/scripts.pory"
+	switch VAR_RESULT
+# 1436 "data/maps/SlateportCity/scripts.pory"
 	case 0, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_7
-# 1437 "data/maps/SlateportCity/scripts.pory"
+# 1438 "data/maps/SlateportCity/scripts.pory"
 	case 1, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_8
-# 1440 "data/maps/SlateportCity/scripts.pory"
+# 1441 "data/maps/SlateportCity/scripts.pory"
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_3:
-# 1444 "data/maps/SlateportCity/scripts.pory"
+# 1445 "data/maps/SlateportCity/scripts.pory"
 	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_5, MSGBOX_DEFAULT
-# 1446 "data/maps/SlateportCity/scripts.pory"
+# 1447 "data/maps/SlateportCity/scripts.pory"
 	release
 	end
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_7:
-# 1436 "data/maps/SlateportCity/scripts.pory"
+# 1437 "data/maps/SlateportCity/scripts.pory"
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_8:
-# 1438 "data/maps/SlateportCity/scripts.pory"
+# 1439 "data/maps/SlateportCity/scripts.pory"
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
 
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower::
-# 1455 "data/maps/SlateportCity/scripts.pory"
-	lock
 # 1456 "data/maps/SlateportCity/scripts.pory"
-	faceplayer
+	lock
 # 1457 "data/maps/SlateportCity/scripts.pory"
-	setvar VAR_0x8005, MOVE_HIDDEN_POWER
+	faceplayer
 # 1458 "data/maps/SlateportCity/scripts.pory"
-	call MoveTutor_EventScript_OpenPartyMenu
+	setvar VAR_0x8005, MOVE_HIDDEN_POWER
 # 1459 "data/maps/SlateportCity/scripts.pory"
+	call MoveTutor_EventScript_OpenPartyMenu
+# 1460 "data/maps/SlateportCity/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower_2
-# 1460 "data/maps/SlateportCity/scripts.pory"
+# 1461 "data/maps/SlateportCity/scripts.pory"
 	goto HiddenTutor_EventScript_HiddenSecretPowerTaught
 	return
 
@@ -2877,18 +2877,18 @@ SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower_2:
 
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower::
-# 1464 "data/maps/SlateportCity/scripts.pory"
-	lock
 # 1465 "data/maps/SlateportCity/scripts.pory"
-	faceplayer
+	lock
 # 1466 "data/maps/SlateportCity/scripts.pory"
-	setvar VAR_0x8005, MOVE_SECRET_POWER
+	faceplayer
 # 1467 "data/maps/SlateportCity/scripts.pory"
-	call MoveTutor_EventScript_OpenPartyMenu
+	setvar VAR_0x8005, MOVE_SECRET_POWER
 # 1468 "data/maps/SlateportCity/scripts.pory"
+	call MoveTutor_EventScript_OpenPartyMenu
+# 1469 "data/maps/SlateportCity/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower_2
-# 1469 "data/maps/SlateportCity/scripts.pory"
+# 1470 "data/maps/SlateportCity/scripts.pory"
 	goto HiddenTutor_EventScript_HiddenSecretPowerTaught
 	return
 
@@ -2897,13 +2897,13 @@ SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower_2:
 
 
 HiddenTutor_EventScript_HiddenSecretPowerTaught::
-# 1473 "data/maps/SlateportCity/scripts.pory"
-	lock
 # 1474 "data/maps/SlateportCity/scripts.pory"
-	faceplayer
+	lock
 # 1475 "data/maps/SlateportCity/scripts.pory"
+	faceplayer
+# 1476 "data/maps/SlateportCity/scripts.pory"
 	msgbox HiddenTutor_EventScript_HiddenSecretPowerTaught_Text_0, MSGBOX_DEFAULT
-# 1477 "data/maps/SlateportCity/scripts.pory"
+# 1478 "data/maps/SlateportCity/scripts.pory"
 	release
 	end
 
@@ -2919,7 +2919,8 @@ SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_0:
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_1:
 # 1421 "data/maps/SlateportCity/scripts.pory"
-	.string "... .... ...\n"
+	.string "... ....\n"
+	.string "... ....\p"
 	.string "Oh me?\l"
 	.string "I am the tutor who tutors these moves\l"
 	.string "to Pokémon trainers have!\p"
@@ -2927,25 +2928,25 @@ SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_1:
 	.string "moves to you're Pokémon?$"
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_2:
-# 1429 "data/maps/SlateportCity/scripts.pory"
+# 1430 "data/maps/SlateportCity/scripts.pory"
 	.string "Well then Trainer wich Pokémon do you\n"
 	.string "want to teach one of these moves or\n"
 	.string "both, whatever you want!$"
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_3:
-# 1433 "data/maps/SlateportCity/scripts.pory"
+# 1434 "data/maps/SlateportCity/scripts.pory"
 	.string "Hidden Power$"
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_4:
-# 1433 "data/maps/SlateportCity/scripts.pory"
+# 1434 "data/maps/SlateportCity/scripts.pory"
 	.string "Secret Power$"
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_5:
-# 1444 "data/maps/SlateportCity/scripts.pory"
+# 1445 "data/maps/SlateportCity/scripts.pory"
 	.string "That's fine take you're time, you can\n"
 	.string "Come back anytime!$"
 
 HiddenTutor_EventScript_HiddenSecretPowerTaught_Text_0:
-# 1475 "data/maps/SlateportCity/scripts.pory"
+# 1476 "data/maps/SlateportCity/scripts.pory"
 	.string "Thank you for this amazing experience\n"
 	.string "Hope to see you again soon!$"

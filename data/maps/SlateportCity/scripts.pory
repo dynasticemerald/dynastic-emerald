@@ -1418,7 +1418,8 @@ script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor{
 		   "While Hidden Power is a Special Move\n"
 		   "Secret Power is a Physical Move.\p", MSGBOX_DEFAULT) //Text
 	
-	msgbox("... .... ...\n"
+	msgbox("... ....\n"
+		   "... ....\p"
 		   "Oh me?\l"
 		   "I am the tutor who tutors these moves\l"
 		   "to Pokémon trainers have!\p"

@@ -4735,7 +4735,7 @@ Trapinch @ Eviolite
 Ability: Arena Trap  
 Level: 13  
 Brave Nature
-IVs: 31 Hp / 30 Atk / 31 Def / 30 Speed / 30 SpA / 31 SpD
+IVs: 31 HP / 30 Atk / 31 Def / 30 Spe / 30 SpA / 31 SpD
 - Bug Bite  
 - Bite  
 - Bulldoze  
@@ -4772,7 +4772,7 @@ Onix @ Berry Juice
 Ability: Sturdy  
 Level: 15    
 Jolly Nature  
-IVs: 31 Hp / 30 Atk / 31 Def / 30 Speed / 30 SpA / 31 SpD
+IVs: 31 HP / 30 Atk / 31 Def / 30 Spe / 30 SpA / 31 SpD
 - Dragon Tail  
 - Rock Tomb  
 - Bulldoze  

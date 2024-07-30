@@ -1417,7 +1417,6 @@ bool32 IsSemiInvulnerable(u32 battlerDef, u32 move)
 bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
 {
     u32 weather;
-    u32 terrain;
     if (IsSemiInvulnerable(battlerDef, move))
         return FALSE;
 
