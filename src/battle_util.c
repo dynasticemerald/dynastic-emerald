@@ -4956,6 +4956,16 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 break;
             case ABILITY_TRUANT:
                 gDisableStructs[gBattlerAttacker].truantCounter ^= 1;
+                
+                if (!BATTLER_MAX_HP(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+                    {
+                        gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
+                        if (gBattleMoveDamage == 0)
+                            gBattleMoveDamage = 1;
+                        gBattleMoveDamage *= -1;
+                        BattleScriptExecute(BattleScript_TruantHealingActivates);
+                        effect++;
+                    }
                 break;
             case ABILITY_BAD_DREAMS:
                 BattleScriptPushCursorAndCallback(BattleScript_BadDreamsActivates);
@@ -9348,6 +9358,13 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
     case HOLD_EFFECT_PUNCHING_GLOVE:
         if (gMovesInfo[move].punchingMove)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.1));
+        break;
+    case HOLD_EFFECT_LEADERS_CREST:
+        if (((GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_PAWNIARD
+        || GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_BISHARP
+        || GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_KINGAMBIT)
+        && (moveType == TYPE_DARK || moveType == TYPE_STEEL)))
+            modifier = uq4_12_multiply(modifier, holdEffectModifier);
         break;
     }
 

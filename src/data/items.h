@@ -13160,10 +13160,12 @@ const struct Item gItemsInfo[] =
     {
         .name = HANDLE_EXPANDED_ITEM_NAME("Leader'sCrest", "Leader's Crest"),
         .price = 3000,
+        .holdEffect = HOLD_EFFECT_LEADERS_CREST, // Boosts the Pawniard's Line dark and steel type moves by 1.3x.
+        .holdEffectParam = 30,
         .description = COMPOUND_STRING(
-            "A shard of an old\n"
-            "blade of some sort.\n"
-            "Held by Bisharp."),
+            "Boosts the Pawnia-\n"
+            "rd's Line STAB\n"
+            "moves. 1.3x Boost."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,

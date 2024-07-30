@@ -12,14 +12,16 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_STENCH] =
     {
         .name = _("Stench"),
-        .description = COMPOUND_STRING("May cause a foe to flinch."),
+        .description = COMPOUND_STRING("10% chance to cause a foe to flinch.\n"
+                                       "Helps repel wild Pokémon."),
         .aiRating = 1,
     },
 
     [ABILITY_DRIZZLE] =
     {
         .name = _("Drizzle"),
-        .description = COMPOUND_STRING("Summons rain in battle."),
+        .description = COMPOUND_STRING("Summons rain in battle.\n"
+                                       "Lasts for 5 Turns."),
         .aiRating = 9,
     },
 
@@ -116,7 +118,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("CompoundEyes"),
     #endif
-        .description = COMPOUND_STRING("Raises accuracy by 20%."),
+        .description = COMPOUND_STRING("Raises accuracy by 30%."),
         .aiRating = 7,
     },
 
@@ -146,7 +148,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLASH_FIRE] =
     {
         .name = _("Flash Fire"),
-        .description = COMPOUND_STRING("Powers up if hit by fire."),
+        .description = COMPOUND_STRING("Powers up Fire moves 50% if hit by fire."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -300,7 +302,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_HUGE_POWER] =
     {
         .name = _("Huge Power"),
-        .description = COMPOUND_STRING("Raises Attack."),
+        .description = COMPOUND_STRING("Doubles the Pokémons Attack stat."),
         .aiRating = 10,
     },
 
@@ -314,7 +316,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_INNER_FOCUS] =
     {
         .name = _("Inner Focus"),
-        .description = COMPOUND_STRING("Prevents flinching."),
+        .description = COMPOUND_STRING("Prevents flinching.\nImmune to Intimidate"),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -360,7 +362,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SAND_STREAM] =
     {
         .name = _("Sand Stream"),
-        .description = COMPOUND_STRING("Summons a sandstorm."),
+        .description = COMPOUND_STRING("Summons a sandstorm.\nLasts 5 turns."),
         .aiRating = 9,
     },
 
@@ -426,7 +428,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TRUANT] =
     {
         .name = _("Truant"),
-        .description = COMPOUND_STRING("Moves only every two turns."),
+        .description = COMPOUND_STRING("Moves only every two turns.\n"
+                                       "Heals 1/8 health every turn."),
         .aiRating = -2,
         .cantBeOverwritten = TRUE,
     },
@@ -486,14 +489,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GUTS] =
     {
         .name = _("Guts"),
-        .description = COMPOUND_STRING("Ups Attack if suffering."),
+        .description = COMPOUND_STRING("Boosts Attack by 1.5x.\nOnly if Paralyze, Burned, Sleeping or Poisoned."),
         .aiRating = 6,
     },
 
     [ABILITY_MARVEL_SCALE] =
     {
         .name = _("Marvel Scale"),
-        .description = COMPOUND_STRING("Ups Defense if suffering."),
+        .description = COMPOUND_STRING("Boosts Defense by 1.5x if Burned."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -543,7 +546,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_DROUGHT] =
     {
         .name = _("Drought"),
-        .description = COMPOUND_STRING("Summons sunlight in battle."),
+        .description = COMPOUND_STRING("Summons sunlight in battle.\nLasts 5 turns"),
         .aiRating = 9,
     },
 
@@ -573,7 +576,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PURE_POWER] =
     {
         .name = _("Pure Power"),
-        .description = COMPOUND_STRING("Raises Attack."),
+        .description = COMPOUND_STRING("Doubles the Pokémons Attack stat."),
         .aiRating = 10,
     },
 
@@ -611,8 +614,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_RIVALRY] =
     {
         .name = _("Rivalry"),
-        .description = COMPOUND_STRING("If the Opponent is the same type\n"
-                                       "as the player, 30% to those moves."),
+        .description = COMPOUND_STRING("If the Opponent is the same type\nas the player, 30% to those moves."),
         .aiRating = 1,
     },
 
@@ -626,7 +628,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SNOW_CLOAK] =
     {
         .name = _("Snow Cloak"),
-        .description = COMPOUND_STRING("Ups evasion in Hail or Snow."),
+        .description = COMPOUND_STRING("Ups evasion in Snow."),
         .aiRating = 3,
         .breakable = TRUE,
     },
@@ -1351,7 +1353,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_GALE_WINGS] =
     {
         .name = _("Gale Wings"),
-        .description = COMPOUND_STRING("Flying moves go first."),
+        .description = COMPOUND_STRING("Flying-Type moves get +1 Priority\n"
+                                       "at Full Health."),
         .aiRating = 6,
     },
 
@@ -1362,14 +1365,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("MegaLauncher"),
     #endif
-        .description = COMPOUND_STRING("Boosts pulse moves."),
+        .description = COMPOUND_STRING("Boosts pulse moves by 30%."),
         .aiRating = 7,
     },
 
     [ABILITY_GRASS_PELT] =
     {
         .name = _("Grass Pelt"),
-        .description = COMPOUND_STRING("Ups Defense in grass."),
+        .description = COMPOUND_STRING("Ups Defense by 20% in Grassy Terrain."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -2621,40 +2624,47 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("GroundShock"),
     #endif
-        .description = COMPOUND_STRING("Electric-Type moves are able to\n"
-                                       "hit Ground-Type Pokémon."),
+        .description = COMPOUND_STRING("Electric-Type moves are able to\nhit Ground-Type Pokémon."),
         .aiRating = 10,
     },
 
     [ABILITY_MYSTIC_POWER] =
     {
         .name = _("Mystic Power"),
-        .description = COMPOUND_STRING("Doubles the Pokémons Special\n"
-                                       "Attack stat."),
+        .description = COMPOUND_STRING("Doubles the Pokémons Special\nAttack stat."),
         .aiRating = 10,
     },
 
     [ABILITY_FLAMING_SOUL] =
     {
         .name = _("Flaming Soul"),
-        .description = COMPOUND_STRING("Fire-Type moves get +1 Priority\n"
-                                       "at Full Health."),
+        .description = COMPOUND_STRING("Fire-Type moves get +1 Priority\nat Full Health."),
         .aiRating = 6,
     },
 
     [ABILITY_GHOSTAL_SOUL] =
     {
         .name = _("Ghostal Soul"),
-        .description = COMPOUND_STRING("Ghost-Type moves get +1 Priority\n"
-                                       "at Full Health."),
+        .description = COMPOUND_STRING("Ghost-Type moves get +1 Priority\nat Full Health."),
         .aiRating = 6,
     },
 
     [ABILITY_ARCHER] =
     {
         .name = _("Archer"),
-        .description = COMPOUND_STRING("When this Pokémon Critical Hits its\n"
-                                       "Crits are boosted by 2x not 1.5x."),
+        .description = COMPOUND_STRING("When this Pokémon Critical Hits its\nCrits are boosted by 2x not 1.5x."),
         .aiRating = 3,
     },
+
+    [ABILITY_HYPER_AGGRESIVE] =
+    {
+    #if B_EXPANDED_ABILITY_NAMES == TRUE
+        .name = _("Hyper Aggressive"),
+    #else
+        .name = _("HyperAggr"),
+    #endif
+        .description = COMPOUND_STRING("Moves hit twice.\nSecond hit does 25% damage."),
+        .aiRating = 10,
+    },
+
 };

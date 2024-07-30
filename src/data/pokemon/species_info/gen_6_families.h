@@ -980,14 +980,14 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .teachableLearnset = sTalonflameTeachableLearnset,
     },
 #if P_MEGA_EVOLUTIONS
-    [SPECIES_TALONFLAME_MEGA] = //Bst 82+
+    [SPECIES_TALONFLAME_MEGA] = //Bst 100+
     {
         .baseHP        = 78,
-        .baseAttack    = 116, // + 26
-        .baseDefense   = 81,  // + 11
-        .baseSpeed     = 140, // + 14
+        .baseAttack    = 117, // + 26
+        .baseDefense   = 86,  // + 15
+        .baseSpeed     = 150, // + 24
         .baseSpAttack  = 101, // + 20
-        .baseSpDefense = 80,  // + 11
+        .baseSpDefense = 84,  // + 15
         .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
         .catchRate = 45,
         .expYield = 175,
@@ -997,7 +997,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_GALE_WINGS, ABILITY_GALE_WINGS, ABILITY_GALE_WINGS },
+        .abilities = { ABILITY_HYPER_AGGRESIVE, ABILITY_HYPER_AGGRESIVE, ABILITY_HYPER_AGGRESIVE },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Talonflame"),
         .cryId = CRY_TALONFLAME,

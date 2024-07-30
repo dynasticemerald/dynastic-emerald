@@ -4719,49 +4719,64 @@ Class: Leader
 Pic: Leader Roxanne
 Gender: Female
 Music: Female
-Items: Potion / Potion
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
 
 Tyrunt @ Berry Juice  
 Ability: Sturdy  
 Level: 14  
-Tera Type: Rock  
 Jolly Nature  
 - Dragon Tail  
-- Rock Tomb  
-- Fire Fang  
 - Stealth Rock  
-
-Kabuto @ Rindo Berry  
-Ability: Weak Armor  
-Level: 14  
-Tera Type: Rock  
-Adamant Nature  
 - Bulldoze  
-- Rock Blast  
-- Aerial Ace  
-- Aqua Jet  
+- Fire Fang  
+
+Trapinch @ Eviolite  
+Ability: Arena Trap  
+Level: 13  
+Brave Nature
+IVs: 31 Hp / 30 Atk / 31 Def / 30 Speed / 30 SpA / 31 SpD
+- Bug Bite  
+- Bite  
+- Bulldoze  
+- Hidden Power 
 
 Archen @ Berry Juice  
 Ability: Defeatist  
 Level: 13  
-Tera Type: Rock  
 Jolly Nature  
-- Bulldoze  
-- Rock Tomb  
-- Pluck  
 - Roost  
-
-Rhyhorn @ Focus Sash  
-Ability: Reckless  
-Level: 15  
-Tera Type: Ground  
-Adamant Nature  
+- Pluck  
 - Bulldoze  
 - Rock Tomb  
-- Fire Fang  
-- Curse  
+
+Bonsly @ Berry Juice  
+Ability: Rattled  
+Level: 15   
+Careful Nature  
+- Sandstorm  
+- Trailblaze  
+- Bulldoze  
+- Rock Tomb  
+
+Kabuto @ Rindo Berry  
+Ability: Weak Armor  
+Level: 14  
+Adamant Nature  
+- Aerial Ace  
+- Rapid Spin  
+- Aqua Jet  
+- Rock Tomb  
+
+Onix @ Berry Juice  
+Ability: Sturdy  
+Level: 15    
+Jolly Nature  
+IVs: 31 Hp / 30 Atk / 31 Def / 30 Speed / 30 SpA / 31 SpD
+- Dragon Tail  
+- Rock Tomb  
+- Bulldoze  
+- Secret Power
 
 === TRAINER_BRAWLY_1 ===
 Name: BRAWLY
@@ -4769,9 +4784,8 @@ Class: Leader
 Pic: Leader Brawly
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
 
 Machop
 Level: 16

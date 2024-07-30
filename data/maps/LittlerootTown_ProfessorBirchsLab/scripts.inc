@@ -2031,96 +2031,98 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav::
 # 1018 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	setflag FLAG_SYS_DEXNAV_GET
 # 1019 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	msgbox LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_Text_0, MSGBOX_DEFAULT
+	setvar VAR_DEXNAV_ENCOUNTER_SCRIPT, 1
 # 1020 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	waitmessage
+	msgbox LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_Text_0, MSGBOX_DEFAULT
 # 1021 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	applymovement LOCALID_AIDE, MoveBackToSpot
+	waitmessage
 # 1022 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	waitmovement 1
+	applymovement LOCALID_AIDE, MoveBackToSpot
 # 1023 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitmovement 1
+# 1024 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	release
 	end
 
 
-# 1045 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-LookDown:
 # 1046 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+LookDown:
+# 1047 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	face_down
 	step_end
 
-# 1049 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-LookUp:
 # 1050 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+LookUp:
+# 1051 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	face_up
 	step_end
 
-# 1053 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-MoveToPlayer:
 # 1054 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+MoveToPlayer:
+# 1055 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	face_left
-# 1055 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	walk_left
-# 1055 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	walk_left
-# 1055 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+# 1056 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	walk_left
 # 1056 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 1056 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 1057 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	walk_down
-# 1056 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+# 1057 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	walk_down
-# 1056 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+# 1057 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	walk_down
 	step_end
 
-# 1059 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+# 1060 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 MoveBackToSpot:
-# 1060 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	walk_up
-# 1060 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	walk_up
-# 1060 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+# 1061 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	walk_up
 # 1061 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	walk_right
+	walk_up
 # 1061 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	walk_right
-# 1061 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 1062 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	walk_right
 # 1062 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 1062 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 1063 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	face_down
 	step_end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_GoLeft::
-# 1066 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	lock
 # 1067 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, GoLeftDexnavEncounterScript
+	lock
 # 1068 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, GoLeftDexnavEncounterScript
+# 1069 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	goto LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav
 	end
 
 
-# 1072 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-GoLeftDexnavEncounterScript:
 # 1073 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	face_left
+GoLeftDexnavEncounterScript:
 # 1074 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_left
+# 1075 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	walk_left
 	step_end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_Text_0:
-# 1019 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+# 1020 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	.string "{PLAYER} Obtained the Dexnav$"
 
 PlayerHoldOn::
-# 1027 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+# 1028 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	.string "Oh {PLAYER}, hold on for a second!\n"
 	.string "we have a new device we would like\l"
 	.string "you to try out.$"
 
 DexnavGet::
-# 1033 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+# 1034 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	.string "Unfortunately this a prototype\p"
 	.string "wich means its not finished yet.\n"
 	.string "It's called the Dexnav, Me and Prof.\p"

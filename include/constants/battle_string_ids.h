@@ -715,8 +715,9 @@
 #define STRINGID_PKMNMADESHELLGLEAM                   713
 #define STRINGID_PKMNFELLFORDOUBLETEAM                714
 #define STRINGID_PKMNCANTUSEDOUBLETEAMED              715
+#define STRINGID_PKMNSABILITYRESTOREDHPALITTLE		  716
 
-#define BATTLESTRINGS_COUNT                           716
+#define BATTLESTRINGS_COUNT                           717
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

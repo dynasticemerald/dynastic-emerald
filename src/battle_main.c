@@ -4808,12 +4808,6 @@ s8 GetMovePriority(u32 battler, u16 move)
     {
         priority++;
     }
-    else if (ability == ABILITY_GALE_WINGS
-        && (species == SPECIES_TALONFLAME_MEGA)
-        && gMovesInfo[move].type == TYPE_FLYING)
-    {
-        priority++;
-    }
     else if (ability == ABILITY_PRANKSTER && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battler].pranksterElevated = 1;
