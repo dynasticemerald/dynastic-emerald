@@ -30,6 +30,10 @@
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
 
+// Text defines for Codes
+static const u8 gCodesNamingScreenName[] = _("Enter Code:");
+// Ends here
+
 enum {
     INPUT_NONE,
     INPUT_DPAD_UP,
@@ -1727,6 +1731,7 @@ static void (*const sDrawTextEntryBoxFuncs[])(void) =
     [NAMING_SCREEN_CAUGHT_MON] = DrawMonTextEntryBox,
     [NAMING_SCREEN_NICKNAME]   = DrawMonTextEntryBox,
     [NAMING_SCREEN_WALDA]      = DrawNormalTextEntryBox,
+    [NAMING_SCREEN_CODES]      = DrawNormalTextEntryBox,
 };
 
 static void DrawTextEntryBox(void)
@@ -2129,6 +2134,17 @@ static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
     .title = gText_TellHimTheWords,
 };
 
+static const struct NamingScreenTemplate sCodesScreenTemplate =
+{
+    .copyExistingString = FALSE,
+    .maxChars = CODES_NAME_LENGTH,
+    .iconFunction = 1,
+    .addGenderIcon = FALSE,
+    .initialPage = KBPAGE_LETTERS_UPPER,
+    .unused = 35,
+    .title = gCodesNamingScreenName,
+};
+
 static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
 {
     [NAMING_SCREEN_PLAYER]     = &sPlayerNamingScreenTemplate,
@@ -2136,6 +2152,7 @@ static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
     [NAMING_SCREEN_CAUGHT_MON] = &sMonNamingScreenTemplate,
     [NAMING_SCREEN_NICKNAME]   = &sMonNamingScreenTemplate,
     [NAMING_SCREEN_WALDA]      = &sWaldaWordsScreenTemplate,
+    [NAMING_SCREEN_CODES]      = &sCodesScreenTemplate,
 };
 
 static const struct OamData sOam_8x8 =

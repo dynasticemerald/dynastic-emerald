@@ -2008,6 +2008,10 @@ static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
 {
     if (species == SPECIES_NONE || species > NUM_SPECIES)
         CreateNoDataIcon(x, y);   //'X' in slot
+    else if (FlagGet(FlagGet(DEXALL_CODE)) && species > NUM_SPECIES) //Example Code
+        CreateMonIcon(species, 0, x, y, 0, 0xFFFFFFFF);
+    else if (!FlagGet(DEXALL_CODE) && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+        CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
     else
         CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
 }
@@ -2074,12 +2078,11 @@ static u16 DexNavGetSpecies(void)
         return SPECIES_NONE;
     }
     
-    /*if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-        return SPECIES_NONE;*/
-    
-    if (species >= NUM_SPECIES)
+    if (FlagGet(DEXALL_CODE) && species >= NUM_SPECIES) //Example Code
         return SPECIES_NONE;
-    
+    else if (!FlagGet(DEXALL_CODE) && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+        return SPECIES_NONE;
+        
     return species;
 }
 

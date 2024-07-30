@@ -73,6 +73,8 @@
 #define HQ_RANDOM                    TRUE    // If TRUE, replaces the default RNG with an implementation of SFC32 RNG. May break code that relies on RNG.
 #define COMPETITIVE_PARTY_SYNTAX     TRUE    // If TRUE, parties are defined in "competitive syntax".
 
+// codes are in (include/config/codes.h)
+
 // Measurement system constants to be used for UNITS
 #define UNITS_IMPERIAL               0       // Inches, feet, pounds
 #define UNITS_METRIC                 1       // meters, kilograms

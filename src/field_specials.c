@@ -68,6 +68,7 @@
 #include "constants/metatile_labels.h"
 #include "palette.h"
 #include "battle_util.h"
+#include "naming_screen.h"
 
 #define TAG_ITEM_ICON 5500
 
@@ -4266,3 +4267,25 @@ void PreparePartyForSkyBattle(void)
     VarSet(B_VAR_SKY_BATTLE,participatingPokemonSlot);
     CompactPartySlots();
 }
+
+void EnterCodes(void)
+{
+    DoNamingScreen(NAMING_SCREEN_CODES, gStringVar2, 0, 0, 0, CB2_ReturnToFieldContinueScript);
+}
+
+void GetCodesFeedback(void)
+{
+    //The codes
+    static const u8 sText_CodeDexnav[]    = _("DexAll"); //Example Code.
+
+    //Code 1
+    if (!StringCompare(gStringVar2, sText_CodeDexnav)){
+        FlagSet(DEXALL_CODE);
+        gSpecialVar_Result = 1;
+    }
+
+    // Invalid cheat code
+    else
+        gSpecialVar_Result = 0;
+}
+

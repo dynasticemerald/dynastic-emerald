@@ -1,4 +1,4 @@
-
+raw`
 .set LOCALID_RIVAL, 1
 
 LittlerootTown_BrendansHouse_2F_MapScripts::
@@ -299,32 +299,23 @@ PlayersHouse_2F_Text_ItsAGameCube:
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
 	.string "serve as the Controller.$"
+`
 
-PlayersHouse_2F_EventScript_GameCube::
+script PlayersHouse_2F_EventScript_GameCube{
 	lockall
-	special EnterCodes
+	special(EnterCodes)
 	waitstate
-	special GetCodesFeedback
-	compare VAR_RESULT, 0
-	goto_if_eq PlayersHouse_2F_EventScript_GameCube_2
-	compare VAR_RESULT, 1
-	goto_if_eq PlayersHouse_2F_EventScript_GameCube_5
-	release
-	end
-
-PlayersHouse_2F_EventScript_GameCube_2:
-	msgbox PlayersHouse_2F_EventScript_GameCube_Text_0
-	release
-	end
-
-PlayersHouse_2F_EventScript_GameCube_5:
-	msgbox PlayersHouse_2F_EventScript_GameCube_Text_1
-	release
-	end
-
-
-PlayersHouse_2F_EventScript_GameCube_Text_0:
-	.string "the code is invaled.$"
-
-PlayersHouse_2F_EventScript_GameCube_Text_1:
-	.string "DexAll code is set.$"
+	special(GetCodesFeedback)
+	if(var(VAR_RESULT) == 0){
+		msgbox("the code is invaled.")
+		release
+		end
+	}
+	if(var(VAR_RESULT) == 1){
+		msgbox("DexAll code is set.")
+		release
+		end
+	}
+	release //Not needed Idt
+	end //Not needed Idt
+}
