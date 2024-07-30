@@ -4292,3 +4292,27 @@ void PreparePartyForSkyBattle(void)
     VarSet(B_VAR_SKY_BATTLE,participatingPokemonSlot);
     CompactPartySlots();
 }
+
+#if UTILITY_CODES == TRUE
+void EnterCodes(void)
+{
+    DoNamingScreen(NAMING_SCREEN_CODES, gStringVar2, 0, 0, 0, CB2_ReturnToFieldContinueScript);
+}
+
+void GetCodesFeedback(void)
+{
+    //The codes
+    //Follow this to add more codes
+    static const u8 sText_CodePokédexFiller[]    = _("FillDex"); //Example Code.
+
+    //Code 1
+    if (!StringCompare(gStringVar2, sText_CodeDexnav)){
+        FlagSet(UNUSED_CODE_0x0);
+        gSpecialVar_Result = 1;
+    }
+
+    // Invalid cheat code
+    else
+        gSpecialVar_Result = 0;
+}
+#endif //UTILITY_CODES

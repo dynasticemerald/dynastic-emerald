@@ -2,6 +2,7 @@
 #define GUARD_CONSTANTS_FLAGS_H
 
 #include "constants/opponents.h"
+#include "config/codes.h"
 
 // Temporary Flags
 // These temporary flags are are cleared every time a map is loaded. They are used
@@ -1561,11 +1562,30 @@
 #define FLAG_UNUSED_0x91D                           (SYSTEM_FLAGS + 0xBD) // Unused Flag
 #define FLAG_UNUSED_0x91E                           (SYSTEM_FLAGS + 0xBE) // Unused Flag
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
+#if UTILITY_CODES == TRUE
+#define SYSTEM_FLAGS_END                            (FLAG_UNUSED_0x91F)
+
+// Add more codes if needed by following the structure here.
+#define CODE_FLAGS_START                            (SYSTEM_FLAGS_END + 1)
+#define UNUSED_CODE_0x0                             (CODE_FLAGS_START + 0x0)
+#define UNUSED_CODE_0x1                             (CODE_FLAGS_START + 0x1)
+#define UNUSED_CODE_0x2                             (CODE_FLAGS_START + 0x2)
+#define UNUSED_CODE_0x3                             (CODE_FLAGS_START + 0x3)
+#define UNUSED_CODE_0x4                             (CODE_FLAGS_START + 0x4)
+#define UNUSED_CODE_0x5                             (CODE_FLAGS_START + 0x5)
+#define UNUSED_CODE_0x6                             (CODE_FLAGS_START + 0x6)
+#define CODE_FLAG_END                               (DEXALL_CODE + 1)     
+#endif  //UTILITY_CODES
+
 
 // Daily Flags
 // These flags are cleared once per day
 // The start and end are byte-aligned because the flags are cleared in byte increments
+#if UTILITY_CODES == TRUE
+#define DAILY_FLAGS_START                           (CODE_FLAG_END + (8 - CODE_FLAG_END % 8))
+#else
 #define DAILY_FLAGS_START                           (FLAG_UNUSED_0x91F + (8 - FLAG_UNUSED_0x91F % 8))
+#endif  //UTILITY_CODES
 #define FLAG_UNUSED_0x920                           (DAILY_FLAGS_START + 0x0)  // Unused Flag
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x1)
 #define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x2)

@@ -30,6 +30,10 @@
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
 
+#if UTILITY_CODES == TRUE
+static const u8 gCodesNamingScreenName[] = _("Enter Code:");
+#endif //UTILITY_CODES
+
 enum {
     INPUT_NONE,
     INPUT_DPAD_UP,
@@ -1395,7 +1399,7 @@ static void NamingScreen_NoIcon(void)
 
 static void NamingScreen_CreatePlayerIcon(void)
 {
-    u8 rivalGfxId;
+    u16 rivalGfxId;
     u8 spriteId;
 
     rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, sNamingScreen->monSpecies);
@@ -1710,10 +1714,11 @@ static void DrawNormalTextEntryBox(void)
 
 static void DrawMonTextEntryBox(void)
 {
-    u8 buffer[32];
+    u8 buffer[64];
 
-    StringCopy(buffer, GetSpeciesName(sNamingScreen->monSpecies));
-    StringAppendN(buffer, sNamingScreen->template->title, 15);
+    u8 *end = StringCopy(buffer, GetSpeciesName(sNamingScreen->monSpecies));
+    WrapFontIdToFit(buffer, end, FONT_NORMAL, 128 - 64);
+    StringAppendN(end, sNamingScreen->template->title, 15);
     FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], PIXEL_FILL(1));
     AddTextPrinterParameterized(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], FONT_NORMAL, buffer, 8, 1, 0, 0);
     PutWindowTilemap(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX]);
@@ -1726,6 +1731,9 @@ static void (*const sDrawTextEntryBoxFuncs[])(void) =
     [NAMING_SCREEN_CAUGHT_MON] = DrawMonTextEntryBox,
     [NAMING_SCREEN_NICKNAME]   = DrawMonTextEntryBox,
     [NAMING_SCREEN_WALDA]      = DrawNormalTextEntryBox,
+#if UTILITY_CODES == TRUE
+    [NAMING_SCREEN_CODES]      = DrawNormalTextEntryBox,
+#endif //UTILITY_CODES
 };
 
 static void DrawTextEntryBox(void)
@@ -2128,6 +2136,19 @@ static const struct NamingScreenTemplate sWaldaWordsScreenTemplate =
     .title = gText_TellHimTheWords,
 };
 
+#if UTILITY_CODES == TRUE
+static const struct NamingScreenTemplate sCodesScreenTemplate =
+{
+    .copyExistingString = FALSE,
+    .maxChars = CODES_NAME_LENGTH,
+    .iconFunction = 2,
+    .addGenderIcon = FALSE,
+    .initialPage = KBPAGE_LETTERS_UPPER,
+    .unused = 35,
+    .title = gCodesNamingScreenName,
+};
+#endif //UTILITY_CODES
+
 static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
 {
     [NAMING_SCREEN_PLAYER]     = &sPlayerNamingScreenTemplate,
@@ -2135,6 +2156,9 @@ static const struct NamingScreenTemplate *const sNamingScreenTemplates[] =
     [NAMING_SCREEN_CAUGHT_MON] = &sMonNamingScreenTemplate,
     [NAMING_SCREEN_NICKNAME]   = &sMonNamingScreenTemplate,
     [NAMING_SCREEN_WALDA]      = &sWaldaWordsScreenTemplate,
+#if UTILITY_CODES == TRUE
+    [NAMING_SCREEN_CODES]      = &sCodesScreenTemplate,
+#endif //UTILITY_CODES
 };
 
 static const struct OamData sOam_8x8 =
