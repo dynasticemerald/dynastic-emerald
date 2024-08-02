@@ -43,7 +43,7 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-//Battle Flags
+// Battle Flags for Dynastic
 #define FLAG_TOXIC_BATTLE_BEGIN    0x20
 #define FLAG_UNUSED_0x021    0x21 // Unused Flag
 #define FLAG_UNUSED_0x022    0x22 // Unused Flag
@@ -72,11 +72,12 @@
 #define FLAG_UNUSED_0x039    0x39 // Unused Flag
 #define FLAG_UNUSED_0x03A    0x3A // Unused Flag
 #define FLAG_UNUSED_0x03B    0x3B // Unused Flag
-//New Follower Flags for dynastic
+// New Follower Flags for Dynastic
 #define FLAG_FOLLOWER_DISABLE 0x3C // Disables/Enables the followers.
 #define FLAG_UNUSED_0x03D    0x3D // Unused Flag
 #define FLAG_UNUSED_0x03E    0x3E // Unused Flag
-#define FLAG_UNUSED_0x03F    0x3F // Unused Flag
+// Legendary Scripts for Dynastic
+#define FLAG_HIDE_ARTICUNO   0x3F
 #define FLAG_UNUSED_0x040    0x40 // Unused Flag
 #define FLAG_UNUSED_0x041    0x41 // Unused Flag
 #define FLAG_UNUSED_0x042    0x42 // Unused Flag

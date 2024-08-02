@@ -19,7 +19,7 @@
 #line 6
             TRAINER_ENCOUNTER_MUSIC_MALE,
 #line 7
-        .doubleBattle = FALSE,
+        .doubleBattle = TRUE,
         .partySize = 0,
         .party = (const struct TrainerMon[])
         {

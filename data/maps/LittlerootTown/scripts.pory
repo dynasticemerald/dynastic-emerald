@@ -1,4 +1,4 @@
-
+raw`
 .set LOCALID_TWIN, 1
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
@@ -1012,24 +1012,46 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "but I never expected this.\p"
 	.string "I have something to show you.\n"
 	.string "Let's go to my Lab.$"
+`
 
-Seafloor_Cavern_Articuno_Encounter::
+script Seafloor_Cavern_Articuno_Encounter{
 	lock
-	playbgm MUS_RG_VS_LEGEND, FALSE
-	playmoncry SPECIES_ARTICUNO, CRY_MODE_ENCOUNTER
-	msgbox Seafloor_Cavern_Articuno_Encounter_Text_0
-	delay 40
+
+	playbgm(MUS_RG_VS_LEGEND, FALSE)
+	//applymovement(9) //Isnt needed since its not a script.
+
+	playmoncry(SPECIES_ARTICUNO, CRY_MODE_ENCOUNTER)
+	msgbox(format("Articuno: Gyaoo!"))
+	delay(40)
 	waitmoncry
-	setwildbattle SPECIES_ARTICUNO, 50
-	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	special BattleSetup_StartLegendaryBattle
+	setwildbattle(SPECIES_ARTICUNO, 50) //No Item, for now.
+	setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	special(BattleSetup_StartLegendaryBattle)
 	waitstate
-	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	removeobject 9
-	setflag FLAG_HIDE_ARTICUNO
+	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	specialvar(VAR_RESULT, GetBattleOutcome)
+	if(var(VAR_RESULT) == B_OUTCOME_WON){
+		goto(Seafloor_Cavern_Articuno_DefeatedArticuno)
+	}
+	elif(var(VAR_RESULT) == B_OUTCOME_RAN){
+		goto(Seafloor_Cavern_Articuno_RanFromArticuno)
+	}
+	setflag(FLAG_HIDE_ARTICUNO)
 	release
 	end
+}
+
+script Seafloor_Cavern_Articuno_RanFromArticuno{
+	setvar (VAR_0x8004, SPECIES_ARTICUNO)
+	goto (Common_EventScript_LegendaryFlewAway)
+	end
+}
+
+script Seafloor_Cavern_Articuno_DefeatedArticuno{
+	setflag(FLAG_HIDE_ARTICUNO)
+	removeobject(x) //Articuno
+	goto(Common_EventScript_RemoveStaticPokemon)
+	end
+}
 
 
-Seafloor_Cavern_Articuno_Encounter_Text_0:
-	.string "Articuno: Gyaoo!$"
