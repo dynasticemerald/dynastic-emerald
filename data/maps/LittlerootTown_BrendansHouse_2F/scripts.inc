@@ -88,6 +88,9 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanNorth::
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
 	closemessage
+    call RivalsHouse_1F_EventScript_RegionChoice
+    msgbox RivalsHouse_1F_Text_OhIForgot, MSGBOX_DEFAULT
+    closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanNorth
 	applymovement LOCALID_RIVAL, LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCNorth
 	waitmovement 0
@@ -100,6 +103,9 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanSouth::
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
 	closemessage
+    call RivalsHouse_1F_EventScript_RegionChoice
+    msgbox RivalsHouse_1F_Text_OhIForgot, MSGBOX_DEFAULT
+    closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanSouth
 	applymovement LOCALID_RIVAL, LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCSouth
 	waitmovement 0
@@ -112,6 +118,9 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanWest::
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
 	closemessage
+    call RivalsHouse_1F_EventScript_RegionChoice
+    msgbox RivalsHouse_1F_Text_OhIForgot, MSGBOX_DEFAULT
+    closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanWest
 	applymovement LOCALID_RIVAL, LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCWest
 	waitmovement 0
@@ -124,6 +133,9 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanEast::
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
 	closemessage
+    call RivalsHouse_1F_EventScript_RegionChoice
+    msgbox RivalsHouse_1F_Text_OhIForgot, MSGBOX_DEFAULT
+    closemessage
 	applymovement LOCALID_RIVAL, LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCEast
 	waitmovement 0
 	return
@@ -308,7 +320,9 @@ PlayersHouse_2F_EventScript_GameCube::
 	compare VAR_RESULT, 0
 	goto_if_eq PlayersHouse_2F_EventScript_GameCube_2
 	compare VAR_RESULT, 1
-	goto_if_eq PlayersHouse_2F_EventScript_GameCube_5
+	goto_if_eq PlayersHouse_2F_EventScript_GameCube_3
+	compare VAR_RESULT, 2
+	goto_if_eq PlayersHouse_2F_EventScript_GameCube_4
 	release
 	end
 
@@ -317,8 +331,13 @@ PlayersHouse_2F_EventScript_GameCube_2:
 	release
 	end
 
-PlayersHouse_2F_EventScript_GameCube_5:
+PlayersHouse_2F_EventScript_GameCube_3:
 	msgbox PlayersHouse_2F_EventScript_GameCube_Text_1
+	release
+	end
+
+PlayersHouse_2F_EventScript_GameCube_4:
+	msgbox PlayersHouse_2F_EventScript_GameCube_Text_2
 	release
 	end
 
@@ -328,3 +347,6 @@ PlayersHouse_2F_EventScript_GameCube_Text_0:
 
 PlayersHouse_2F_EventScript_GameCube_Text_1:
 	.string "DexAll code is set.$"
+
+PlayersHouse_2F_EventScript_GameCube_Text_2:
+	.string "EZCatch code is set.$"

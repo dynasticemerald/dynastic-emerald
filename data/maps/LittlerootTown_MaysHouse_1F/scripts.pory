@@ -404,28 +404,20 @@ RivalsHouse_1F_Text_DoYouHavePokemon:
 `
 
 text RivalsHouse_1F_Text_WhichRegion {
-    format("You know, I heard that Dad just received some rare Pokémon…\p
-            Which region were they from again?")
+    format("You know, I heard that Dad just received some rare Pokémon… Which region were they from again?")
 }
 
 text RivalsHouse_1F_Text_OhIForgot {
-    format("Oh, no! I forgot!\p"
-	       "I was supposed to go help Dad catch\n"
-	       "some wild Pokémon!\p"
-	       "{PLAYER}, I'll catch you later!")
+    format("Oh, no! I forgot! I was supposed to go help Dad catchsome wild Pokémon! {PLAYER}, I'll catch you later!")
 }
 
 script RivalsHouse_1F_EventScript_RegionChoice {
-    //msgbox(RivalsHouse_1F_Text_WhichRegion, MSGBOX_DEFAULT)
+    msgbox(RivalsHouse_1F_Text_WhichRegion, MSGBOX_DEFAULT)
 
-    //dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
-    //              "Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Paldea")
-    //if (var(VAR_RESULT) == REGION_HOENN) {
-    //    msgbox(format("Ah yes that's right - they're from our very own Hoenn region!"), MSGBOX_DEFAULT)
-    //} else {
-    //    bufferregionname(STR_VAR_1, VAR_RESULT)
-    //    msgbox(format("Ah yes that's right - they're from the {STR_VAR_1} region!"), MSGBOX_DEFAULT)
-    //}
-    //copyvar(VAR_REGION_CHOICE, VAR_RESULT)
-    //return
+    dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
+                  "Kanto","Johto","Hoenn","Sinnoh","Unova","Kalos","Alola","Galar","Paldea")
+    bufferregionname(STR_VAR_1, VAR_RESULT)
+    msgbox(format("Ah yes that's right - they're from the {STR_VAR_1} region!"), MSGBOX_DEFAULT)
+    copyvar(VAR_REGION_CHOICE, VAR_RESULT)
+    return
 }

@@ -1231,7 +1231,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         iv = (value & (MAX_IV_MASK << 10)) >> 10;
         SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
 
-        if(!gSaveBlock3Ptr->minimalGrindingModeOff){ //Minimal Grinding Mode
+        if(FlagGet(FLAG_MINIMAL_GRINDING_MODE)){ //Minimal Grinding Mode
         iv = MAX_PER_STAT_IVS;
         SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
         SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
@@ -1804,7 +1804,7 @@ void CalculateMonStats(struct Pokemon *mon)
 
     u8 nature = GetMonData(mon, MON_DATA_HIDDEN_NATURE, NULL);
 
-    if(!gSaveBlock3Ptr->minimalGrindingModeOff){
+    if(FlagGet(FLAG_MINIMAL_GRINDING_MODE)){
         //Evs are Disabled
         hpEV 		= 0;
 		attackEV 	= 0;

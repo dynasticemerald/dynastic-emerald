@@ -16836,15 +16836,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_FAMILY_SNORLAX
 
 #if P_FAMILY_ARTICUNO
-    //Now Learns Bleakwind Storm and Wave.
+    //Now Learns Bleakwind Storm and Heat Wave.
     [SPECIES_ARTICUNO] =
     {
-        .baseHP        = 90,
-        .baseAttack    = 85,
+        .baseHP        = 90 + 10,
+        .baseAttack    = 85 - 25,
         .baseDefense   = 100,
-        .baseSpeed     = 85 + 10,
+        .baseSpeed     = 85 + 15,
         .baseSpAttack  = 95 + 30,
-        .baseSpDefense = 120 - 10,
+        .baseSpDefense = 125 - 15,
         .types = MON_TYPES(TYPE_ICE, TYPE_FLYING),
         .catchRate = 25,
         .expYield = 290,

@@ -88,4 +88,5 @@ enum {
 
 void UpdateGymLeaderRematch(void);
 
+
 #endif //GUARD_TRAINER_REMATCH_H

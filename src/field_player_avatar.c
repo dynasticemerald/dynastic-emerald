@@ -1742,9 +1742,9 @@ static bool8 (*const sFishingStateFuncs[])(struct Task *) =
     Fishing_CheckMoreDots,    // FISHING_CHECK_MORE_DOTS,
     Fishing_MonOnHook,        // FISHING_ON_HOOK,
     Fishing_StartEncounter,   // FISHING_START_ENCOUNTER,
-    Fishing_NotEvenNibble,    // FISHING_NO_BITE,
-    Fishing_GotAway,          // FISHING_GOT_AWAY,
-    Fishing_NoMon,            // FISHING_SHOW_RESULT,
+    //Fishing_NotEvenNibble,    // FISHING_NO_BITE,
+    //Fishing_GotAway,          // FISHING_GOT_AWAY,
+    //Fishing_NoMon,            // FISHING_SHOW_RESULT,
     Fishing_PutRodAway,       // FISHING_PUT_ROD_AWAY,
     Fishing_EndNoMon,         // FISHING_END_NO_MON,
 };
@@ -1759,8 +1759,7 @@ void StartFishing(u8 rod)
 
 static void Task_Fishing(u8 taskId)
 {
-    while (sFishingStateFuncs[gTasks[taskId].tStep](&gTasks[taskId]))
-        ;
+    while (sFishingStateFuncs[gTasks[taskId].tStep](&gTasks[taskId]));
 }
 
 static bool8 Fishing_Init(struct Task *task)
@@ -1923,9 +1922,9 @@ static u8 Fishing_ChangeMinigame(struct Task *task)
 static bool8 Fishing_WaitForA(struct Task *task)
 {
     const s16 reelTimeouts[3] = {
-        [OLD_ROD]   = 36,
-        [GOOD_ROD]  = 33,
-        [SUPER_ROD] = 30
+        [OLD_ROD]   = 999,
+        [GOOD_ROD]  = 999,
+        [SUPER_ROD] = 999
     };
 
     AlignFishingAnimationFrames();

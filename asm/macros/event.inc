@@ -1902,6 +1902,19 @@
 	.byte 0xe6
 	.endm
 
+	@ Advances the fake RTC to the time of day provided
+	.macro settimeofday timeOfDay:req
+	.byte 0xe7
+	.2byte \timeOfDay
+	.endm
+
+	@ Writes the name of the given region to the specified buffer.
+	.macro bufferregionname stringVarId:req, region:req
+	.byte 0xe8
+	stringvar \stringVarId
+	.2byte \region
+	.endm
+
 
 @ Supplementary
 

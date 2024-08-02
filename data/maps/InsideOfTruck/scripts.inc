@@ -1,5 +1,7 @@
+
 InsideOfTruck_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, InsideOfTruck_OnLoad
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, InsideOfTruck_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, InsideOfTruck_OnResume
 	.byte 0
 
@@ -8,6 +10,10 @@ InsideOfTruck_OnLoad:
 	setmetatile 4, 2, METATILE_InsideOfTruck_ExitLight_Mid, FALSE
 	setmetatile 4, 3, METATILE_InsideOfTruck_ExitLight_Bottom, FALSE
 	end
+
+InsideOfTruck_OnFrame:
+	map_script_2 VAR_MODES_CHECK, 0, ModesCheck
+	.2byte 0
 
 InsideOfTruck_OnResume:
 	setstepcallback STEP_CB_TRUCK
@@ -56,3 +62,103 @@ InsideOfTruck_Text_BoxPrintedWithMonLogo:
 	.string "It's a POKéMON brand moving and\n"
 	.string "delivery service.$"
 
+ModesCheck::
+	lock
+	fadescreen FADE_TO_BLACK
+	msgbox ModesCheck_Text_0, MSGBOX_DEFAULT
+	msgbox ModesCheck_Text_1, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq ModesCheck_1
+	goto ModesCheck_Continue
+	return
+
+ModesCheck_1:
+	setvar VAR_MODES_CHECK, 1
+	message ModesCheck_Text_2
+	waitmessage
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+
+ModesCheck_Continue::
+	goto_if_set FLAG_MINIMAL_GRINDING_MODE, ModesCheck_Continue_2
+	closemessage
+	message ModesCheck_Continue_Text_0
+	waitmessage
+	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_3, ModesCheck_Continue_Text_2
+ModesCheck_Continue_1:
+	switch VAR_RESULT
+	case 0, ModesCheck_Continue_7
+	case 1, ModesCheck_Continue_8
+ModesCheck_Continue_5:
+	end
+
+ModesCheck_Continue_2:
+	closemessage
+	message ModesCheck_Continue_Text_0
+	waitmessage
+	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_1, ModesCheck_Continue_Text_2
+	goto ModesCheck_Continue_1
+
+ModesCheck_Continue_7:
+	setvar VAR_MODES_CHECK, 1
+	msgbox ModesCheck_Text_MinimalGrinding, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq ModesCheck_Continue_9
+	clearflag FLAG_MINIMAL_GRINDING_MODE
+	goto ModesCheck_Continue
+	goto ModesCheck_Continue_5
+
+ModesCheck_Continue_8:
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+ModesCheck_Continue_9:
+	setflag FLAG_MINIMAL_GRINDING_MODE
+	goto ModesCheck_Continue
+	goto ModesCheck_Continue_5
+
+
+ModesCheck_Text_0:
+	.string "Please stop smashing A and properly\n"
+	.string "answer the following questions.$"
+
+ModesCheck_Text_1:
+	.string "Would you like to play Dynastic Emerald\n"
+	.string "without any custom options?$"
+
+ModesCheck_Text_2:
+	.string "Dynastic Emerald will be played without\n"
+	.string "any custom options, Enjoy!$"
+
+ModesCheck_Continue_Text_0:
+	.string "Wich option would you like to use?$"
+
+ModesCheck_Continue_Text_1:
+	.string "{COLOR GREEN}Minimal Grinding$"
+
+ModesCheck_Continue_Text_2:
+	.string "Done$"
+
+ModesCheck_Continue_Text_3:
+	.string "{COLOR RED}Minimal Grinding$"
+
+ModesCheck_Text_MinimalGrinding::
+	.string "Minimal Grinding mode guarantees all\n"
+	.string "Pokémon to have perfect IVs and EVs\l"
+	.string "cannot be obtained.\p"
+	.string "This is mostly for people who dislike\n"
+	.string "grinding for perfect IVs and training EVs.\p"
+	.string "Do you want to turn on Minimal Grinding\n"
+	.string "Mode?$"
+
+ModesCheck_Text_DoublesOnly::
+	.string "Doubles Only Mode makes all wild and\n"
+	.string "trainer battles forced double battles.\p"
+	.string "This is mainly for people who like a\n"
+	.string "challenge or for people who are more\l"
+	.string "into VGC than Singles.\p"
+	.string "Do you want to turn on Doubles Only\n"
+	.string "Mode?$"

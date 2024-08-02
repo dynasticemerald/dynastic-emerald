@@ -4276,16 +4276,28 @@ void EnterCodes(void)
 void GetCodesFeedback(void)
 {
     //The codes
-    static const u8 sText_CodeDexnav[]    = _("DexAll"); //Example Code.
+    static const u8 sText_CodeDexnav[]    = _("DexAll");
+    static const u8 sText_CodeEZCatch[]    = _("EZCatch");
 
     //Code 1
     if (!StringCompare(gStringVar2, sText_CodeDexnav)){
         FlagSet(DEXALL_CODE);
         gSpecialVar_Result = 1;
     }
+    //Code 2
+    if (!StringCompare(gStringVar2, sText_CodeEZCatch)){
+        FlagSet(EZCATCH_CODE);
+        gSpecialVar_Result = 2;
+    }
 
     // Invalid cheat code
     else
         gSpecialVar_Result = 0;
 }
+
+void GetTimeOfDaySpecial(void)
+{
+	gSpecialVar_Result = GetTimeOfDay();
+}
+
 

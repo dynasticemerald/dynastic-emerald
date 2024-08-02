@@ -2138,7 +2138,7 @@ static const struct NamingScreenTemplate sCodesScreenTemplate =
 {
     .copyExistingString = FALSE,
     .maxChars = CODES_NAME_LENGTH,
-    .iconFunction = 1,
+    .iconFunction = 2,
     .addGenderIcon = FALSE,
     .initialPage = KBPAGE_LETTERS_UPPER,
     .unused = 35,

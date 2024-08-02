@@ -4410,7 +4410,7 @@ static void Cmd_getexp(void)
                 gBattleScripting.getexpState = 5;
                 gBattleMoveDamage = 0; // used for exp
                 //if (B_MAX_LEVEL_EV_GAINS >= GEN_5)
-                if(gSaveBlock3Ptr->minimalGrindingModeOff)//Minimal Grinding is off
+                if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE))//Minimal Grinding is of
                     MonGainEVs(&gPlayerParty[*expMonId], gBattleMons[gBattlerFainted].species);
             }
             else
@@ -4500,7 +4500,7 @@ static void Cmd_getexp(void)
                         PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
                         gBattleStruct->teamGotExpMsgPrinted = TRUE;
                     }
-                    if(gSaveBlock3Ptr->minimalGrindingModeOff){//Minimal Grinding is off
+                    if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE)){//Minimal Grinding is off
                         MonGainEVs(&gPlayerParty[*expMonId], gBattleMons[gBattlerFainted].species);}
                 }
                 gBattleScripting.getexpState++;
@@ -15374,7 +15374,7 @@ static void Cmd_handleballthrow(void)
                 maxShakes = BALL_3_SHAKES_SUCCESS;
             }
 
-            if (gLastUsedItem == ITEM_MASTER_BALL)
+            if ((gLastUsedItem == ITEM_MASTER_BALL || FlagGet(EZCATCH_CODE)))
             {
                 shakes = maxShakes;
             }

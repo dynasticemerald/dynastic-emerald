@@ -1,0 +1,134 @@
+raw`
+InsideOfTruck_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, InsideOfTruck_OnLoad
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, InsideOfTruck_OnFrame
+	map_script MAP_SCRIPT_ON_RESUME, InsideOfTruck_OnResume
+	.byte 0
+
+InsideOfTruck_OnLoad:
+	setmetatile 4, 1, METATILE_InsideOfTruck_ExitLight_Top, FALSE
+	setmetatile 4, 2, METATILE_InsideOfTruck_ExitLight_Mid, FALSE
+	setmetatile 4, 3, METATILE_InsideOfTruck_ExitLight_Bottom, FALSE
+	end
+
+InsideOfTruck_OnFrame:
+	map_script_2 VAR_MODES_CHECK, 0, ModesCheck
+	.2byte 0
+
+InsideOfTruck_OnResume:
+	setstepcallback STEP_CB_TRUCK
+	end
+
+InsideOfTruck_EventScript_SetIntroFlags::
+	lockall
+	setflag FLAG_HIDE_MAP_NAME_POPUP
+	checkplayergender
+	goto_if_eq VAR_RESULT, MALE, InsideOfTruck_EventScript_SetIntroFlagsMale
+	goto_if_eq VAR_RESULT, FEMALE, InsideOfTruck_EventScript_SetIntroFlagsFemale
+	end
+
+InsideOfTruck_EventScript_SetIntroFlagsMale::
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
+	setvar VAR_LITTLEROOT_INTRO_STATE, 1
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_SIBLING
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1
+	setdynamicwarp MAP_LITTLEROOT_TOWN, 3, 10
+	releaseall
+	end
+
+InsideOfTruck_EventScript_SetIntroFlagsFemale::
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
+	setvar VAR_LITTLEROOT_INTRO_STATE, 2
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 1
+	setdynamicwarp MAP_LITTLEROOT_TOWN, 12, 10
+	releaseall
+	end
+
+InsideOfTruck_EventScript_MovingBox::
+	msgbox InsideOfTruck_Text_BoxPrintedWithMonLogo, MSGBOX_SIGN
+	end
+
+InsideOfTruck_Text_BoxPrintedWithMonLogo:
+	.string "The box is printed with a POKéMON logo.\p"
+	.string "It's a POKéMON brand moving and\n"
+	.string "delivery service.$"
+`
+
+script ModesCheck { //Modes Check.
+	lock
+	fadescreen(FADE_TO_BLACK)
+	msgbox(format("Please stop smashing A and properly answer the following questions."), MSGBOX_DEFAULT)
+	msgbox(format("Would you like to play Dynastic Emerald without any custom options?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == YES)
+	{
+	setvar(VAR_MODES_CHECK, 1)
+	message(format("Dynastic Emerald will be played without any custom options, Enjoy!"))
+	waitmessage
+	fadescreen(FADE_FROM_BLACK) 
+	release
+	end
+	}
+	else{
+	goto(ModesCheck_Continue)
+	}
+}
+script ModesCheck_Continue{
+	if(flag(FLAG_MINIMAL_GRINDING_MODE)){
+	closemessage
+	message(format("Wich option would you like to use?"))
+	waitmessage
+    dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
+                  "{COLOR GREEN}Minimal Grinding","Done")
+	} else {
+	closemessage
+	message(format("Wich option would you like to use?"))
+	waitmessage
+	dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
+                  "{COLOR RED}Minimal Grinding","Done")	
+	}
+	switch(var(VAR_RESULT)){
+	case 0: //Minimal Grinding Mode.
+		setvar(VAR_MODES_CHECK, 1)
+		msgbox(ModesCheck_Text_MinimalGrinding, MSGBOX_YESNO)
+		if(var(VAR_RESULT) == YES){
+		setflag(FLAG_MINIMAL_GRINDING_MODE)
+		goto(ModesCheck_Continue)
+		} else{		
+		clearflag(FLAG_MINIMAL_GRINDING_MODE)
+		goto(ModesCheck_Continue) }
+	case 1: //Done.
+		fadescreen(FADE_FROM_BLACK)
+		release
+		end
+	}
+	end //Fail Save.
+}
+
+text ModesCheck_Text_MinimalGrinding{
+	"Minimal Grinding mode guarantees all\n"
+	"Pokémon to have perfect IVs and EVs\l"
+	"cannot be obtained.\p" 					 
+	"This is mostly for people who dislike\n"
+	"grinding for perfect IVs and training EVs.\p"
+	"Do you want to turn on Minimal Grinding\n"
+	"Mode?$"
+}
+
+text ModesCheck_Text_DoublesOnly{
+	"Doubles Only Mode makes all wild and\n"
+	"trainer battles forced double battles.\p"
+	"This is mainly for people who like a\n"
+	"challenge or for people who are more\l"
+	"into VGC than Singles.\p"
+	"Do you want to turn on Doubles Only\n"
+	"Mode?$"
+}

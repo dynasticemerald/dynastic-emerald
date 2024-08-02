@@ -556,3 +556,4 @@ gSpecials::
 	def_special Script_GetChosenMonDefensiveIVs
 	def_special EnterCodes
 	def_special GetCodesFeedback
+	def_special GetTimeOfDaySpecial

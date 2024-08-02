@@ -53,6 +53,7 @@
 #include "malloc.h"
 #include "constants/event_objects.h"
 #include "day_night.h"
+#include "starter_choose.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(struct ScriptContext *ctx);
@@ -1493,6 +1494,42 @@ bool8 ScrCmd_dynmultipush(struct ScriptContext *ctx)
     item.name = nameBuffer;
     item.id = id;
     MultichoiceDynamic_PushElement(item);
+    return FALSE;
+}
+
+bool8 ScrCmd_bufferregionname(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 region = VarGet(ScriptReadHalfword(ctx));
+
+    StringCopy(sScriptStringVars[stringVarIndex], GetRegionName(region));
+    return FALSE;
+}
+
+bool8 ScrCmd_settimeofday(struct ScriptContext *ctx)
+{
+    u8 timeOfDay = VarGet(ScriptReadHalfword(ctx));
+    u8 hour;
+
+    switch(timeOfDay)
+    {
+        case TIME_MORNING:
+            hour = MORNING_HOUR_BEGIN;
+            break;
+        case TIME_DAY:
+            hour = DAY_HOUR_BEGIN;
+            break;
+        case TIME_EVENING:
+            hour = EVENING_HOUR_BEGIN;
+            break;
+        case TIME_NIGHT:
+            hour = NIGHT_HOUR_BEGIN;
+            break;
+        default: 
+            hour = 0;
+    }
+
+    RtcAdvanceTimeTo(hour, 0, 0);
     return FALSE;
 }
 

@@ -44,6 +44,11 @@ void RtcRestoreInterrupts(void)
     REG_IME = sSavedIme;
 }
 
+struct Time* GetFakeRtc(void)
+{
+    return &gSaveBlock3Ptr->fakeRTC;
+}
+
 u32 ConvertBcdToBinary(u8 bcd)
 {
     if (bcd > 0x9F)
@@ -126,10 +131,11 @@ u16 RtcGetErrorStatus(void)
 
 void RtcGetInfo(struct SiiRtcInfo *rtc)
 {
-    if (sErrorStatus & RTC_ERR_FLAG_MASK)
-        *rtc = sRtcDummy;
-    else
-        RtcGetRawInfo(rtc);
+    struct Time* time = GetFakeRtc();
+    rtc->second = time->seconds;
+    rtc->minute = time->minutes;
+    rtc->hour = time->hours;
+    rtc->day = time->days;
 }
 
 void RtcGetDateTime(struct SiiRtcInfo *rtc)
@@ -211,9 +217,10 @@ u16 RtcCheckInfo(struct SiiRtcInfo *rtc)
 
 void RtcReset(void)
 {
-    RtcDisableInterrupts();
+    memset(GetFakeRtc(), 0, sizeof(struct Time));
+    /*RtcDisableInterrupts();
     SiiRtcReset();
-    RtcRestoreInterrupts();
+    RtcRestoreInterrupts();*/
 }
 
 void FormatDecimalTime(u8 *dest, s32 hour, s32 minute, s32 second)
@@ -366,6 +373,59 @@ u32 RtcGetLocalDayCount(void)
     return RtcGetDayCount(&sRtc);
 }
 
+void RtcAdvanceTime(u32 hours, u32 minutes, u32 seconds)
+{
+    struct Time* time = GetFakeRtc();
+    seconds += time->seconds;
+    minutes += time->minutes;
+    hours += time->hours;
+
+    while(seconds >= SECONDS_PER_MINUTE)
+    {
+	    minutes++;
+	    seconds -= SECONDS_PER_MINUTE;	
+    }
+
+    while(minutes >= MINUTES_PER_HOUR)
+    {
+	    hours++;
+	    minutes -= MINUTES_PER_HOUR;
+    }
+
+    while(hours >= HOURS_PER_DAY)
+    {
+	    time->days++;
+	    hours -= HOURS_PER_DAY;
+    }
+
+    time->seconds = seconds;
+    time->minutes = minutes;
+    time->hours = hours;
+}
+
+void RtcAdvanceTimeTo(u32 hour, u32 minute, u32 second)
+{
+    struct Time diff, target;
+    RtcCalcLocalTime();
+    
+    target.hours = hour;
+    target.minutes = minute;
+    target.seconds = second;
+    target.days = gLocalTime.days;
+    
+    CalcTimeDifference(&diff, &gLocalTime, &target);
+    RtcAdvanceTime(diff.hours, diff.minutes, diff.seconds);
+}
+
+void RtcCalcLocalTimeFast(void)
+{
+    RtcGetStatus(&sRtc);
+    RtcDisableInterrupts();
+    RtcGetInfo(&sRtc);
+    RtcRestoreInterrupts();
+    RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
+}
+
 void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool32 is24Hour)
 {
     if (is24Hour)
@@ -396,7 +456,7 @@ void FormatDecimalTimeWithoutSeconds(u8 *txtPtr, s8 hour, s8 minute, bool32 is24
     *txtPtr = EOS;
 }
 
-void RtcCalcLocalTimeFast(void)
+/*void RtcCalcLocalTimeFast(void)
 {
     if (sErrorStatus & RTC_ERR_FLAG_MASK)
     {
@@ -410,4 +470,4 @@ void RtcCalcLocalTimeFast(void)
         RtcRestoreInterrupts();
     }
     RtcCalcTimeDifference(&sRtc, &gLocalTime, &gSaveBlock2Ptr->localTimeOffset);
-}
+}*/

@@ -92,7 +92,7 @@
 #define FLAG_UNUSED_0x04C    0x4C // Unused Flag
 #define FLAG_UNUSED_0x04D    0x4D // Unused Flag
 #define FLAG_UNUSED_0x04E    0x4E // Unused Flag
-#define FLAG_MINIMAL_GRINDING_MODE    0x4F // Enables/Disables Minimal Grinding mode.
+#define FLAG_UNUSED_UNKOWN   0x4F // Unused Flag
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
@@ -1507,8 +1507,8 @@
 #define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
 
 #define FLAG_RED_1_BEATEN                           (SYSTEM_FLAGS + 0x85)
-#define FLAG_UNUSED_0x8E6                           (SYSTEM_FLAGS + 0x86) // Unused Flag
-#define FLAG_UNUSED_0x8E7                           (SYSTEM_FLAGS + 0x87) // Unused Flag
+#define FLAG_DOUBLES_MODE                           (SYSTEM_FLAGS + 0x86) 
+#define FLAG_MINIMAL_GRINDING_MODE                  (SYSTEM_FLAGS + 0x87)
 #define FLAG_UNUSED_0x8E8                           (SYSTEM_FLAGS + 0x88) // Unused Flag
 #define FLAG_UNUSED_0x8E9                           (SYSTEM_FLAGS + 0x89) // Unused Flag
 #define FLAG_UNUSED_0x8EA                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
@@ -1565,25 +1565,17 @@
 #define FLAG_UNUSED_0x91D                           (SYSTEM_FLAGS + 0xBD) // Unused Flag
 #define FLAG_UNUSED_0x91E                           (SYSTEM_FLAGS + 0xBE) // Unused Flag
 #define FLAG_UNUSED_0x91F                           (SYSTEM_FLAGS + 0xBF) // Unused Flag
-#if UTILITY_CODES == TRUE
 #define SYSTEM_FLAGS_END                            (FLAG_UNUSED_0x91F)
-#endif
 
-#if UTILITY_CODES == TRUE
 #define CODE_FLAGS_START                            (SYSTEM_FLAGS_END + 1)
 #define DEXALL_CODE                                 (CODE_FLAGS_START + 0x0)
-#define CODE_FLAG_END                               (DEXALL_CODE + 1)     
-#endif //UTILITY_CODES
-
+#define EZCATCH_CODE                                (CODE_FLAGS_START + 0x1)
+#define CODE_FLAG_END                               (EZCATCH_CODE)
 
 // Daily Flags
 // These flags are cleared once per day
 // The start and end are byte-aligned because the flags are cleared in byte increments
-#if UTILITY_CODES == TRUE
 #define DAILY_FLAGS_START                           (CODE_FLAG_END + (8 - CODE_FLAG_END % 8))
-#else
-#define DAILY_FLAGS_START                           (FLAG_UNUSED_0x91F + (8 - FLAG_UNUSED_0x91F % 8))
-#endif
 #define FLAG_UNUSED_0x920                           (DAILY_FLAGS_START + 0x0)  // Unused Flag
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x1)
 #define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x2)
@@ -1652,9 +1644,6 @@
 #define DAILY_FLAGS_END                             (FLAG_UNUSED_0x95F + (7 - FLAG_UNUSED_0x95F % 8))
 #define NUM_DAILY_FLAGS                             (DAILY_FLAGS_END - DAILY_FLAGS_START + 1)
 
-/*#if UTILITY_CODES == TRUE
-#define FLAGS_COUNT (CODE_FLAGS_END + 1)
-#else*/
 #define FLAGS_COUNT (DAILY_FLAGS_END + 1)
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)

@@ -1,4 +1,4 @@
-
+raw`
 .set LOCALID_LITTLE_BOY, 7
 .set LOCALID_LITTLE_GIRL, 8
 .set LOCALID_DEVON_EMPLOYEE, 9
@@ -1298,33 +1298,30 @@ RustboroCity_Text_YouCanHave2On2Battle:
 	.string "they'll both challenge you.\p"
 	.string "Don't you think it'd be cool if you\n"
 	.string "could beat two TRAINERS by yourself?$"
+`
 
-RustboroCity_EventScript_Dustox::
-	playmoncry SPECIES_DUSTOX, CRY_MODE_NORMAL
+script RustboroCity_EventScript_Dustox {
+	playmoncry(SPECIES_DUSTOX, CRY_MODE_NORMAL)
 	lock
-	msgbox RustboroCity_EventScript_Dustox_Text_0
+	msgbox(format("The Dustox is too enthralled by the light to pay attention to you."))
 	release
 	end
+}
 
+script RustboroCity_OnTransition {
+	setflag(FLAG_VISITED_RUSTBORO_CITY)
+	call(Common_EventScript_SetupRivalGfxId)
 
-RustboroCity_OnTransition::
-	setflag FLAG_VISITED_RUSTBORO_CITY
-	call Common_EventScript_SetupRivalGfxId
-	special GetTimeOfDaySpecial
-	switch VAR_RESULT
-	case 3, RustboroCity_OnTransition_3
-	removeobject 17
-RustboroCity_OnTransition_1:
-	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup
-	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	goto_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
+	special(GetTimeOfDaySpecial)
+	switch (var(VAR_RESULT)) {
+		case 3: //TIME_NIGHT
+			addobject(17) //Dustox
+		default:
+			removeobject(17) //Dustox
+	}
+
+	call_if_eq(VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup)
+	getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+	goto_if_eq(VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit)
 	end
-
-RustboroCity_OnTransition_3:
-	addobject 17
-	goto RustboroCity_OnTransition_1
-
-
-RustboroCity_EventScript_Dustox_Text_0:
-	.string "The Dustox is too enthralled by the\n"
-	.string "light to pay attention to you.$"
+}
