@@ -4,7 +4,7 @@ Class: Pkmn Trainer 1
 Pic: Hiker
 Gender: Male
 Music: Male
-Double Battle: No
+Double Battle: Yes
 
 === TRAINER_SAWYER_1 ===
 Name: SAWYER
