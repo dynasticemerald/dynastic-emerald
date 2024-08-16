@@ -105,7 +105,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_MEOWTH"
+                "species": "SPECIES_MIENFOO"
               },
               {
                 "min_level": 3,
@@ -130,7 +130,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_BUNEARY"
+                "species": "SPECIES_MEOWTH"
               },
               {
                 "min_level": 3,
@@ -174,7 +174,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_MEOWTH_GALARIAN"
+                "species": "SPECIES_SCRAGGY"
               },
               {
                 "min_level": 3,

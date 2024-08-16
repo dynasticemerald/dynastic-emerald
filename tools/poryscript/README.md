@@ -35,6 +35,7 @@ View the [Changelog](https://github.com/huderlem/poryscript/blob/master/CHANGELO
   * [Comments](#comments)
   * [Constants](#constants)
   * [Scope Modifiers](#scope-modifiers)
+  * [AutoVar Commands](#autovar-commands)
   * [Compile-Time Switches](#compile-time-switches)
   * [Optimization](#optimization)
   * [Line Markers](#line-markers)
@@ -52,6 +53,8 @@ Poryscript is a command-line program.  It reads an input script and outputs the 
 ```
 > ./poryscript -h
 Usage of poryscript:
+  -cc string
+        command config JSON file (default "command_config.json")
   -f string
         set default font id (leave empty to use default defined in font config file)
   -fc string
@@ -78,10 +81,11 @@ Convert a `.pory` script to a compiled `.inc` script, which can be directly incl
 ```
 
 To automatically convert your Poryscript scripts when compiling a decomp project, perform these two steps:
-1. Create a new `tools/poryscript/` directory, and add the `poryscript` command-line executable tool to it. Also copy `font_config.json` to the same location.
+1. Create a new `tools/poryscript/` directory, and add the `poryscript` command-line executable tool to it. Also copy `command_config.json` and `font_config.json` to the same location.
 ```
 # For example, on Windows, place the files here.
 pokeemerald/tools/poryscript/poryscript.exe
+pokeemerald/tools/poryscript/command_config.json
 pokeemerald/tools/poryscript/font_config.json
 ```
 It's also a good idea to add `tools/poryscript` to your `.gitignore` before your next commit.
@@ -261,12 +265,12 @@ The `while` statement can also be written as an infinite loop by omitting the bo
 `break` can be used to break out of a loop, like many programming languages. Similary, `continue` returns to the start of the loop.
 
 ### Conditional Operators
-The condition operators have strict rules about what conditions they accept. The operand on the left side of the condition must be a `flag()`, `var()`, or `defeated()` check. They each have a different set of valid comparison operators, described below.
+The condition operators have strict rules about what conditions they accept. The operand on the left side of the condition must be a `flag()`, `var()`, `defeated()`, or [AutoVar](#autovar-commands) check. They each have a different set of valid comparison operators, described below.
 
 | Type | Valid Operators |
 | ---- | --------------- |
 | `flag` | `==` |
-| `var` | `==`, `!=`, `>`, `>=`, `<`, `<=` |
+| `var` or [AutoVar](#autovar-commands) | `==`, `!=`, `>`, `>=`, `<`, `<=` |
 | `defeated` | `==` |
 
 All operators support implicit truthiness, which means you don't have to specify any of the above operators in a condition. Below are some examples of equivalent conditions:
@@ -719,6 +723,65 @@ The top-level statements have different default scopes. They are as follows:
 | `movement` | Local |
 | `mart` | Local |
 | `mapscripts` | Global |
+
+## AutoVar Commands
+Some scripting commands always store their result in the same variable. For example, `checkitem` always stores its result in `VAR_RESULT`. Poryscript can simplify working with these commands with a concept called "AutoVar" commands.
+
+*Without* using an AutoVar, a script would be written like this:
+```
+checkitem(ITEM_ROOT_FOSSIL)
+if (var(VAR_RESULT) == TRUE) {
+    // player has the Root Fossil
+}
+```
+
+However, AutoVars can be used *inside* the condition, which helps streamline the script:
+```
+if (checkitem(ITEM_ROOT_FOSSIL) == TRUE) {
+    // player has the Root Fossil
+}
+```
+
+AutoVars can be used ***anywhere*** a `var()` operator can be used.  e.g. `if` conditions, `switch` statements--any boolean expression!
+
+### Defining AutoVar Commands
+AutoVar commands are fully configurable with the `command_config.json` file.  Use the `-cc` command line parameter to specifying the location of that config.
+
+There are two types of AutoVar commands:
+1. Implicit
+    - The stored var is defined in the config file, and is not present in the authored script.
+    - Examples: `checkitem`, `getpartysize`, `random`
+2. Explicit
+    - The stored var is provided as part of the command, and the config file stores the 0-based index of the command that specifies the stored var.
+    - Examples: `specialvar`, `checkcoins`
+
+Let's take a look at the example config file:
+```json
+// command_config.json
+{
+    "autovar_commands": {
+        "specialvar": {
+            "var_name_arg_position": 0
+        },
+        "checkitem": {
+            "var_name": "VAR_RESULT"
+        },
+    ...
+}
+```
+
+With the above config, a script could be written like so:
+```
+if (checkitem(ITEM_POKEBLOCK_CASE)) {
+    if (specialvar(VAR_RESULT, GetFirstFreePokeblockSlot) != -1 && 
+        specialvar(VAR_RESULT, PlayerHasBerries)
+    ) {
+        msgbox("Great! You can use the Berry Blender!)
+    }
+} else {
+    msgbox("You don't have a Pokeblock case!")
+}
+```
 
 ## Compile-Time Switches
 Use the `poryswitch` statement to change compiler behavior depending on custom switches. This makes it easy to make scripts behave different depending on, say, the `GAME_VERSION` or `LANGUAGE`. Any content that does not match the compile-time switch will not be included in the final output. To define custom switches, use the `-s` option when running `poryscript`.  You can specify multiple switches, and each key/value pair must be separated by an equals sign. For example:

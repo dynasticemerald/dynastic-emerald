@@ -146,6 +146,69 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     /* You may add any custom species below this point based on the following structure: */
 
+    [SPECIES_SHADOW_LUGIA] = {
+        .baseHP        = 126,
+        .baseAttack    = 50,
+        .baseDefense   = 130,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 110,
+        .baseSpDefense = 154,
+        .types = MON_TYPES(TYPE_DARK, TYPE_FLYING),
+        .catchRate = 3,
+        .expYield = 340,
+        .evYield_SpDefense = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_DARK_AURA },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Lugia"),
+        .cryId = CRY_LUGIA,
+        .natDexNum = NATIONAL_DEX_LUGIA,
+        .categoryName = _("Diving"),
+        .height = 52,
+        .weight = 2160,
+        .description = COMPOUND_STRING(
+            "Lugia is so powerful even a light\n"
+            "fluttering of its wings can blow apart\n"
+            "houses. As a result, it chooses to live out\n"
+            "of sight deep under the sea."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 721,
+        .trainerOffset = 19,
+        .frontPic = gMonFrontPic_LugiaShadow,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_LugiaShadow,
+        .frontAnimId = ANIM_GROW_IN_STAGES,
+        .frontAnimDelay = 20,
+        .enemyMonElevation = 6,
+        .backPic = gMonBackPic_LugiaShadow,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
+        .palette = gMonPalette_LugiaShadow,
+        .shinyPalette = gMonShinyPalette_LugiaShadow,
+        .iconSprite = gMonIcon_LugiaShadow,
+        .iconPalIndex = 0,
+        FOOTPRINT(Lugia)
+        /*OVERWORLD(
+            sPicTable_LugiaShadow,
+            SIZE_64x64,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_LugiaShadow,
+            gShinyOverworldPalette_LugiaShadow
+        )*/
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
+        .levelUpLearnset = sLugiaShadowLevelUpLearnset,
+        .teachableLearnset = sLugiaShadowTeachableLearnset,
+    },
+
     /*
     [SPECIES_NONE] =
     {

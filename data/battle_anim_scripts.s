@@ -14627,46 +14627,88 @@ WickedBlowBuffEffect:
 Move_SURGING_STRIKES::
 	loadspritegfx ANIM_TAG_IMPACT_2
 	loadspritegfx ANIM_TAG_WATER_IMPACT
+	loadspritegfx ANIM_TAG_ORBS @circles
+	setalpha 8, 8
+	fadetobg BG_WATER
+	waitbgfadeout
+	createvisualtask AnimTask_StartSlidingBg, 0x5, 0x400, 0x0, 0x1, 0xffff
+	waitbgfadein
 	jumpifmoveturn 1 SURGING_STRIKES_1
 	jumpifmoveturn 2 SURGING_STRIKES_2
 
 SURGING_STRIKES_0:
+	createsprite gOriginPulseRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0, 0x1F, 0x8
+	delay 0x10
+	createsprite gOriginPulseRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0, 0x1F, 0x8
+	playsewithpan SE_INTRO_BLAST, SOUND_PAN_ATTACKER
+	waitforvisualfinish
 	playsewithpan SE_M_GIGA_DRAIN, SOUND_PAN_TARGET
+	createsprite gWaterPulseRingSpriteTemplate, ANIM_ATTACKER, 2, -40, - 20, 0, 0, 10, -20 @Top left
+	delay 5
 	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, -40, -20, 0, 0, 10, -20 @Top left
 	delay 5
 	playsewithpan SE_M_GIGA_DRAIN, SOUND_PAN_TARGET
+	createsprite gWaterPulseRingSpriteTemplate, ANIM_ATTACKER, 2, -40, 0, 0, 0, 10, 0 @middle
+	delay 5
 	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, 40, 20, 0, 0, 10, 20 @Bottom right
 	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, -5, -5, ANIM_TARGET, 0x1
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 8, 1
 	delay 5
 	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, 5, 5, ANIM_TARGET, 0x1
 	waitforvisualfinish
+	call UnsetPsychicBg
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
 	end
 
 SURGING_STRIKES_1:
-	playsewithpan SE_M_GIGA_DRAIN, SOUND_PAN_TARGET
-	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, 40, -20, 0, 0, 10, -20 @Top Right
-	delay 5
-	playsewithpan SE_M_GIGA_DRAIN, SOUND_PAN_TARGET
-	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, -40, 20, 0, 0, 10, 20 @Bottom left
-	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, 5, -5, ANIM_TARGET, 0x1
-	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 8, 1
-	delay 5
-	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, -5, 5, ANIM_TARGET, 0x1
+	createsprite gOriginPulseRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0, 0x1F, 0x8
+	delay 0x10
+	createsprite gOriginPulseRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0, 0x1F, 0x8
+	playsewithpan SE_INTRO_BLAST, SOUND_PAN_ATTACKER
 	waitforvisualfinish
-	end
-
-SURGING_STRIKES_2:
 	playsewithpan SE_M_GIGA_DRAIN, SOUND_PAN_TARGET
+	createsprite gWaterPulseRingSpriteTemplate, ANIM_ATTACKER, 2, -40, - 20, 0, 0, 10, -20 @Top left
+	delay 5
 	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, -40, -20, 0, 0, 10, -20 @Top left
 	delay 5
 	playsewithpan SE_M_GIGA_DRAIN, SOUND_PAN_TARGET
-	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, 40, -20, 0, 0, 10, -20 @Top Right
-	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, -5, -5, ANIM_TARGET, 0x1
-	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 0, 4, 8, 1
+	createsprite gWaterPulseRingSpriteTemplate, ANIM_ATTACKER, 2, -40, 0, 0, 0, 10, 0 @middle
 	delay 5
-	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, 5, -5, ANIM_TARGET, 0x1
+	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, 40, 20, 0, 0, 10, 20 @Bottom right
+	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, -5, -5, ANIM_TARGET, 0x1
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 8, 1
+	delay 5
+	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, 5, 5, ANIM_TARGET, 0x1
 	waitforvisualfinish
+	call UnsetPsychicBg
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+
+SURGING_STRIKES_2:
+	createsprite gOriginPulseRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0, 0x1F, 0x8
+	delay 0x10
+	createsprite gOriginPulseRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0, 0x1F, 0x8
+	playsewithpan SE_INTRO_BLAST, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	playsewithpan SE_M_GIGA_DRAIN, SOUND_PAN_TARGET
+	createsprite gWaterPulseRingSpriteTemplate, ANIM_ATTACKER, 2, -40, - 20, 0, 0, 10, -20 @Top left
+	delay 5
+	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, -40, -20, 0, 0, 10, -20 @Top left
+	delay 5
+	playsewithpan SE_M_GIGA_DRAIN, SOUND_PAN_TARGET
+	createsprite gWaterPulseRingSpriteTemplate, ANIM_ATTACKER, 2, -40, 0, 0, 0, 10, 0 @middle
+	delay 5
+	createsprite gSpriteTemplate_SurgingStrikesImpact, ANIM_TARGET, 2, 40, 20, 0, 0, 10, 20 @Bottom right
+	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, -5, -5, ANIM_TARGET, 0x1
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 8, 1
+	delay 5
+	createsprite gWaterHitSplatSpriteTemplate, ANIM_TARGET, 1, 5, 5, ANIM_TARGET, 0x1
+	waitforvisualfinish
+	call UnsetPsychicBg
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
 	end
 
 

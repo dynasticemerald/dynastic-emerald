@@ -585,6 +585,8 @@ enum {
     NUM_MON_AFFINES,
 };
 
+static const u8 gTextPreview[] = _("Increases Special Attack by 50% when the\nuser is burned.");
+
 // The animation the Pokémon does during the feeding scene depends on their nature.
 // The below values are offsets into sMonPokeblockAnims of the animation data for that nature.
 #define ANIM_HARDY   0

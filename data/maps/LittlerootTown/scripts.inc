@@ -1025,9 +1025,35 @@ Seafloor_Cavern_Articuno_Encounter::
 	special BattleSetup_StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	removeobject 9
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_WON
+	goto_if_eq Seafloor_Cavern_Articuno_Encounter_2
+	compare VAR_RESULT, B_OUTCOME_RAN
+	goto_if_eq Seafloor_Cavern_Articuno_Encounter_3
+Seafloor_Cavern_Articuno_Encounter_1:
 	setflag FLAG_HIDE_ARTICUNO
 	release
+	end
+
+Seafloor_Cavern_Articuno_Encounter_2:
+	goto Seafloor_Cavern_Articuno_DefeatedArticuno
+	goto Seafloor_Cavern_Articuno_Encounter_1
+
+Seafloor_Cavern_Articuno_Encounter_3:
+	goto Seafloor_Cavern_Articuno_RanFromArticuno
+	goto Seafloor_Cavern_Articuno_Encounter_1
+
+
+Seafloor_Cavern_Articuno_RanFromArticuno::
+	setvar VAR_0x8004, SPECIES_ARTICUNO
+	goto Common_EventScript_LegendaryFlewAway
+	end
+
+
+Seafloor_Cavern_Articuno_DefeatedArticuno::
+	setflag FLAG_HIDE_ARTICUNO
+	removeobject 0
+	goto Common_EventScript_RemoveStaticPokemon
 	end
 
 

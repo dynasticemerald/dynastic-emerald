@@ -5867,14 +5867,14 @@ u8 SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
 
 u8 GetMonMoveType(u16 move, struct Pokemon *mon, u32 battler)
 {
-    u32 moveType, ateType;
+    u32 moveType; //, ateType;
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
     u16 holdEffect = ItemId_GetHoldEffect(item);
-    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    //u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8  abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
-    u16 ability = GetAbilityBySpecies(species, abilityNum);
-    u8 type1 = gSpeciesInfo[battler].types[0];
-    u8 type2 = gSpeciesInfo[battler].types[1];
+    //u16 ability = GetAbilityBySpecies(species, abilityNum);
+    //u8 type1 = gSpeciesInfo[battler].types[0];
+    //u8 type2 = gSpeciesInfo[battler].types[1];
     u32 battlerAtk = battler;
     u32 attackerAbility = GetBattlerAbility(battlerAtk);
 

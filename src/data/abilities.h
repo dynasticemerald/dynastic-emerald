@@ -68,7 +68,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SAND_VEIL] =
     {
         .name = _("Sand Veil"),
-        .description = COMPOUND_STRING("Ups the evasion stat in a sandstorm."),
+        .description = COMPOUND_STRING("Ups the evasion stat by 10% in a sandstorm."),
         .aiRating = 3,
         .breakable = TRUE,
     },
@@ -156,8 +156,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SHIELD_DUST] =
     {
         .name = _("Shield Dust"),
-        .description = COMPOUND_STRING("Prevents added effects.\n"
-                                       "Negates Stealth Rock damage."),
+        .description = COMPOUND_STRING("Prevents added effects.\nNegates Stealth Rock damage."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -181,7 +180,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_INTIMIDATE] =
     {
         .name = _("Intimidate"),
-        .description = COMPOUND_STRING("Lowers the foe's Attack.\n"
+        .description = COMPOUND_STRING("Lowers the foe's Attack by 1 stage.\n"
                                        "Once per turn."),
         .aiRating = 7,
     },
@@ -285,7 +284,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ILLUMINATE] =
     {
         .name = _("Illuminate"),
-        .description = COMPOUND_STRING("Encounter rate increases."),
+        .description = COMPOUND_STRING("Boosts Accuracy by 10%"),
         .aiRating = 0,
         .breakable = TRUE,
     },
@@ -293,7 +292,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TRACE] =
     {
         .name = _("Trace"),
-        .description = COMPOUND_STRING("Copies special ability."),
+        .description = COMPOUND_STRING("Copies opponents ability."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
@@ -702,7 +701,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ADAPTABILITY] =
     {
         .name = _("Adaptability"),
-        .description = COMPOUND_STRING("Boosts same type attacks."),
+        .description = COMPOUND_STRING("Increases the user's STAB multiplier from 1.5x\nto 2.0x instead."),
         .aiRating = 8,
     },
 
@@ -812,7 +811,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_AFTERMATH] =
     {
         .name = _("Aftermath"),
-        .description = COMPOUND_STRING("Fainting damages the foe."),
+        .description = COMPOUND_STRING("If this Pokémon is hit by a physical contact move the\nuserloses 25% of its max HP"),
         .aiRating = 5,
     },
 
@@ -1038,7 +1037,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MULTISCALE] =
     {
         .name = _("Multiscale"),
-        .description = COMPOUND_STRING("Halves damage at full HP."),
+        .description = COMPOUND_STRING("Reduces the damage taken by the user while its HP is full by 50%"),
         .aiRating = 8,
         .breakable = TRUE,
     },
@@ -1046,14 +1045,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TOXIC_BOOST] =
     {
         .name = _("Toxic Boost"),
-        .description = COMPOUND_STRING("Ups Attack if poisoned."),
+        .description = COMPOUND_STRING("Increases Attack stat by 50% when the\nuser is poisoned."),
         .aiRating = 6,
     },
 
     [ABILITY_FLARE_BOOST] =
     {
         .name = _("Flare Boost"),
-        .description = COMPOUND_STRING("Ups Sp. Atk if burned."),
+        .description = COMPOUND_STRING("Increases Special Attack stat by 50% when\nthe user is burned."),
         .aiRating = 5,
     },
 
@@ -1833,7 +1832,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("ShadowShield"),
     #endif
-        .description = COMPOUND_STRING("Halves damage at full HP."),
+        .description = COMPOUND_STRING("Reduces the damage taken by the user while its HP is full by 50%"),
         .aiRating = 8,
     },
 
@@ -2130,21 +2129,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("ChillngNeigh"),
     #endif
-        .description = COMPOUND_STRING("KOs boost Attack stat."),
+        .description = COMPOUND_STRING("Fainting a Pokémon raise the Attack stat."),
         .aiRating = 7,
     },
 
     [ABILITY_GRIM_NEIGH] =
     {
         .name = _("Grim Neigh"),
-        .description = COMPOUND_STRING("KOs boost Sp. Atk stat."),
+        .description = COMPOUND_STRING("Fainting a Pokémon raise the Sp.Atk stat."),
         .aiRating = 7,
     },
 
     [ABILITY_AS_ONE_ICE_RIDER] =
     {
-        .name = _("As One"),
-        .description = COMPOUND_STRING("Unnerve and Chilling Neigh."),
+        .name = _("As One (Glastier)"),
+        .description = COMPOUND_STRING("The Opponent can't eat its Berries.\nFainting a Pokémon raise the Attack stat."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
@@ -2155,8 +2154,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_AS_ONE_SHADOW_RIDER] =
     {
-        .name = _("As One"),
-        .description = COMPOUND_STRING("Unnerve and Grim Neigh."),
+        .name = _("As One (Spectier)"),
+        .description = COMPOUND_STRING("The Opponent can't eat its Berries.\nFainting a Pokémon raise the Sp.Atk stat."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
@@ -2172,14 +2171,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("LngerngAroma"),
     #endif
-        .description = COMPOUND_STRING("Spreads with contact."),
+        .description = COMPOUND_STRING("Protects the user and allies from attacks that would\nlimit their move choices."),
         .aiRating = 5,
     },
 
     [ABILITY_SEED_SOWER] =
     {
         .name = _("Seed Sower"),
-        .description = COMPOUND_STRING("Affects terrain when hit."),
+        .description = COMPOUND_STRING("Summons Grassy Terrain in the field when the Pokemon\nis hit by an attack. Lasts five turns"),
         .aiRating = 5,
     },
 
@@ -2665,6 +2664,17 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Moves hit twice.\nSecond hit does 25% damage."),
         .aiRating = 10,
+    },
+
+    [ABILITY_SWARMING_NEIGH] =
+    {
+    #if B_EXPANDED_ABILITY_NAMES == TRUE
+        .name = _("Swarming Neigh"),
+    #else
+        .name = _("SwarmngNeigh"),
+    #endif
+        .description = COMPOUND_STRING("Fainting a Pokémon raise the Attack stat."),
+        .aiRating = 7,
     },
 
 };

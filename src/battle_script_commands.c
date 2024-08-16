@@ -9582,6 +9582,7 @@ static void Cmd_various(void)
         u16 battlerAbility = GetBattlerAbility(battler);
 
         if ((battlerAbility == ABILITY_MOXIE
+         || battlerAbility == ABILITY_SWARMING_NEIGH
          || battlerAbility == ABILITY_CHILLING_NEIGH
          || battlerAbility == ABILITY_AS_ONE_ICE_RIDER)
           && HasAttackerFaintedTarget()

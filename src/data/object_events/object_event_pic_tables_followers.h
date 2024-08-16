@@ -1832,6 +1832,10 @@ static const struct SpriteFrameImage sPicTable_Tyranitar[] = {
 static const struct SpriteFrameImage sPicTable_Lugia[] = {
     overworld_ascending_frames(gObjectEventPic_Lugia, 4, 4),
 };
+
+static const struct SpriteFrameImage sPicTable_LugiaShadow[] = {
+    overworld_ascending_frames(gObjectEventPic_LugiaShadow, 4, 4),
+};
 #endif //P_FAMILY_LUGIA
 
 #if P_FAMILY_HO_OH

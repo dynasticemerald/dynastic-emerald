@@ -68,8 +68,7 @@ script ModesCheck { //Modes Check.
 	fadescreen(FADE_TO_BLACK)
 	msgbox(format("Please stop smashing A and properly answer the following questions."), MSGBOX_DEFAULT)
 	msgbox(format("Would you like to play Dynastic Emerald without any custom options?"), MSGBOX_YESNO)
-	if(var(VAR_RESULT) == YES)
-	{
+	if(var(VAR_RESULT) == YES){
 	setvar(VAR_MODES_CHECK, 1)
 	message(format("Dynastic Emerald will be played without any custom options, Enjoy!"))
 	waitmessage

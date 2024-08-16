@@ -1049,7 +1049,7 @@ script Seafloor_Cavern_Articuno_RanFromArticuno{
 
 script Seafloor_Cavern_Articuno_DefeatedArticuno{
 	setflag(FLAG_HIDE_ARTICUNO)
-	removeobject(x) //Articuno
+	removeobject(0) //Articuno
 	goto(Common_EventScript_RemoveStaticPokemon)
 	end
 }

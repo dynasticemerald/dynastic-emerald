@@ -3381,6 +3381,23 @@ static const union AnimCmd sAnim_Lugia_1[] =
     ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
+
+static const union AnimCmd sAnim_LugiaShadow_1[] =
+{
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_END,
+};
 #endif //P_FAMILY_LUGIA
 
 #if P_FAMILY_HO_OH
@@ -11006,6 +11023,7 @@ SINGLE_ANIMATION(TyranitarMega);
 #endif //P_FAMILY_LARVITAR
 #if P_FAMILY_LUGIA
 SINGLE_ANIMATION(Lugia);
+SINGLE_ANIMATION(LugiaShadow);
 #endif //P_FAMILY_LUGIA
 #if P_FAMILY_HO_OH
 SINGLE_ANIMATION(HoOh);

@@ -7206,6 +7206,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
     },
+
+
 #endif //P_FAMILY_LUGIA
 
 #if P_FAMILY_HO_OH
@@ -7219,13 +7221,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseSpDefense = 154,
         .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
         .catchRate = 3,
-    #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 340,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_5
-        .expYield = 306,
-    #else
-        .expYield = 220,
-    #endif
         .evYield_SpDefense = 3,
         .itemCommon = ITEM_SACRED_ASH,
         .itemRare   = ITEM_SACRED_ASH,

@@ -76,6 +76,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "pokemon.h"
 
 enum {
     MENU_SUMMARY,
@@ -5045,6 +5046,7 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
     u16 newFriendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
     u16 newEv = ItemEffectToMonEv(mon, effectType);
     u8 holdEffectParam = ItemId_GetHoldEffectParam(*itemPtr); //New
+    u8 maxFriendship = MAX_FRIENDSHIP;
 
     if (cannotUseEffect || (friendship == newFriendship && ev == newEv))
     {
@@ -5070,8 +5072,9 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
             else
                 StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2CantFall);
         }
-        else if ((friendship != newFriendship) && holdEffectParam == 10){
+        else if (holdEffectParam == 10 && friendship != newFriendship){
             StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlierToPlayer);
+            SetMonData(mon, MON_DATA_FRIENDSHIP, &maxFriendship); //Not Needed?
         }
         else
         {
