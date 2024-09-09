@@ -50,10 +50,11 @@
 #define FLAG_UNUSED_0x023    0x23 // Unused Flag
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
+// Other Flags for Dynastic
+#define FLAG_RANDOM_NICKNAMES   0x26
+#define FLAG_SHINY_RATE_SETTING_1    0x27
+#define FLAG_SHINY_RATE_SETTING_2    0x28
+#define FLAG_SHINY_RATE_SETTING_3    0x29 // Unused Flag; For now. will be used in the future.
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
@@ -1508,9 +1509,9 @@
 #define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
 
 #define FLAG_RED_1_BEATEN                           (SYSTEM_FLAGS + 0x85)
-#define FLAG_DOUBLES_MODE                           (SYSTEM_FLAGS + 0x86) 
-#define FLAG_MINIMAL_GRINDING_MODE                  (SYSTEM_FLAGS + 0x87)
-#define FLAG_UNUSED_0x8E8                           (SYSTEM_FLAGS + 0x88) // Unused Flag
+#define FLAG_VGC_MODE                               (SYSTEM_FLAGS + 0x86) // VGC Mode Flag.
+#define FLAG_MINIMAL_GRINDING_MODE                  (SYSTEM_FLAGS + 0x87) // Minimal Grinding Mode Flag.
+#define FLAG_EXPERT_MODE                            (SYSTEM_FLAGS + 0x88) // Expert Mode Flag, for future Proofing.
 #define FLAG_UNUSED_0x8E9                           (SYSTEM_FLAGS + 0x89) // Unused Flag
 #define FLAG_UNUSED_0x8EA                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
 #define FLAG_UNUSED_0x8EB                           (SYSTEM_FLAGS + 0x8B) // Unused Flag

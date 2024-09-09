@@ -5,6 +5,7 @@
 #include "util.h"
 #include "constants/event_objects.h"
 #include "constants/map_scripts.h"
+#include "event_object_movement.h"
 
 #define RAM_SCRIPT_MAGIC 51
 
@@ -500,4 +501,21 @@ void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize)
         scriptSize = sizeof(gSaveBlock1Ptr->ramScript.data.script);
     InitRamScript(script, scriptSize, MAP_GROUP(UNDEFINED), MAP_NUM(UNDEFINED), NO_OBJECT);
 #endif //FREE_MYSTERY_EVENT_BUFFERS
+}
+
+bool8 ScrCmd_removeobjectbyflag(struct ScriptContext *ctx)
+{
+    u8 i;
+    u16 flag = ScriptReadHalfword(ctx);
+    FlagSet(flag);
+
+    for (i = 0; i < gMapHeader.events->objectEventCount; i++)
+    {
+        if (gMapHeader.events->objectEvents[i].flagId == flag)
+        {
+            u8 localId = gMapHeader.events->objectEvents[i].localId;
+            RemoveObjectEventByLocalIdAndMap(localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+        }
+    }
+    return FALSE;
 }

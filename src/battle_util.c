@@ -4167,7 +4167,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 {
                     gBattlerAttacker = B_POSITION_OPPONENT_LEFT;
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_RAIN_OPPONENT;
-                    gBattleWeather & WEATHER_RAIN;
+                    gBattleWeather != WEATHER_RAIN; //Not sure why this gives a warning.
                     gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
                     gWishFutureKnock.weatherDuration = 0; // infinite
                     effect = 1;
@@ -8083,6 +8083,15 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                 RecordItemEffectBattle(battler, battlerHoldEffect);
             }
             break;
+        case HOLD_EFFECT_FROST_ORB:
+            if (CanGetFrostbite(battler))
+            {
+                effect = ITEM_STATUS_CHANGE;
+                gBattleMons[battler].status1 = STATUS1_FROSTBITE;
+                BattleScriptExecute(BattleScript_FrostOrb);
+                RecordItemEffectBattle(battler, battlerHoldEffect);
+            }
+            break;
         case HOLD_EFFECT_STICKY_BARB:   // Not an orb per se, but similar effect, and needs to NOT activate with pickpocket
             if (battlerAbility != ABILITY_MAGIC_GUARD)
             {
@@ -9088,6 +9097,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         break;
     case ABILITY_FLARE_BOOST:
         if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_SPECIAL(move))
+           modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        break;
+    case ABILITY_FROSTY_BOOST:
+        if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && IS_MOVE_PHYSICAL(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_TOXIC_BOOST:

@@ -182,7 +182,7 @@ struct SaveBlock3
 #endif
     u8 dexNavChain;
     struct Time fakeRTC;
-    u8 optionsHpBarSpeed:2;
+    u8 optionsShinyRate:2;
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

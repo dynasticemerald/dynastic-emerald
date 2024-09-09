@@ -134,4 +134,6 @@
 // param1: amount of days
 #define FORM_CHANGE_DAYS_PASSED                 23
 
+#define FORM_CHANGE_BEGIN_BATTLE_ABILITY        24
+
 #endif // GUARD_CONSTANTS_FORM_CHANGE_TYPES_H

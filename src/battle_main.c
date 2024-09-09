@@ -576,6 +576,9 @@ static void CB2_InitBattleInternal(void)
         // Apply party-wide start-of-battle form changes for both sides.
         TryFormChange(i, B_SIDE_PLAYER, FORM_CHANGE_BEGIN_BATTLE);
         TryFormChange(i, B_SIDE_OPPONENT, FORM_CHANGE_BEGIN_BATTLE);
+
+        TryFormChange(i, B_SIDE_PLAYER, FORM_CHANGE_BEGIN_BATTLE_ABILITY);
+        TryFormChange(i, B_SIDE_OPPONENT, FORM_CHANGE_BEGIN_BATTLE_ABILITY);
     }
 
     for (i = 0; i < 3; i++){
@@ -1928,10 +1931,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     u32 personalityValue;
     s32 i;
     u8 monsCount;
+    u8 isDoubleBattle = trainer->doubleBattle;
+    u8 DoubleReady = GetMonsStateToDoubles() == PLAYER_HAS_TWO_USABLE_MONS;
+    u8 enemyPartySize = trainer->partySize;
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
     {
+    //Double Battle Mode
+    if(DoubleReady && enemyPartySize >= 2 && FlagGet(FLAG_VGC_MODE))
+		isDoubleBattle = TRUE;
+	else
+		isDoubleBattle = FALSE;
+
         if (firstTrainer == TRUE)
             ZeroEnemyPartyMons();
 
@@ -4777,9 +4789,9 @@ s8 GetChosenMovePriority(u32 battler)
 s8 GetMovePriority(u32 battler, u16 move)
 {
     s8 priority;
-    u32 i = 0;
+    //u32 i = 0;
     u16 ability = GetBattlerAbility(battler);
-    u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
+    //u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
 
     if (GetActiveGimmick(battler) == GIMMICK_Z_MOVE && gMovesInfo[move].power != 0)
         move = GetUsableZMove(battler, move);
@@ -5871,7 +5883,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, u32 battler)
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
     u16 holdEffect = ItemId_GetHoldEffect(item);
     //u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-    u8  abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
+    //u8  abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
     //u16 ability = GetAbilityBySpecies(species, abilityNum);
     //u8 type1 = gSpeciesInfo[battler].types[0];
     //u8 type2 = gSpeciesInfo[battler].types[1];

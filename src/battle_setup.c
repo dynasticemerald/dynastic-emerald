@@ -462,12 +462,14 @@ void BattleSetup_StartBattlePikeWildBattle(void)
 
 static void DoStandardWildBattle(bool32 isDouble)
 {
+    u8 DoubleReady = GetMonsStateToDoubles() == PLAYER_HAS_TWO_USABLE_MONS;
+
     LockPlayerFieldControls();
     FreezeObjectEvents();
     StopPlayerAvatar();
     gMain.savedCallback = CB2_EndWildBattle;
     gBattleTypeFlags = 0;
-    if ((isDouble) || (FlagGet(FLAG_DOUBLES_MODE))) //Doubles mode is turned on.
+    if ((isDouble) || (DoubleReady && FlagGet(FLAG_VGC_MODE))) //Doubles mode is turned on.
         gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
     if (InBattlePyramid())
     {
@@ -1359,10 +1361,10 @@ void ClearTrainerFlag(u16 trainerId)
 
 void BattleSetup_StartTrainerBattle(void)
 {
-    if ((gNoOfApproachingTrainers == 2) || (FlagGet(FLAG_DOUBLES_MODE))) //Doubles mode is turned on.
+    u8 DoubleReady = GetMonsStateToDoubles() == PLAYER_HAS_TWO_USABLE_MONS;
+
+    if ((gNoOfApproachingTrainers == 2) || (DoubleReady && FlagGet(FLAG_VGC_MODE))) //Doubles mode is turned on.
         gBattleTypeFlags = (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TRAINER);
-    else if (FlagGet(FLAG_DOUBLES_MODE)) //Doubles mode is turned on.
-        gBattleTypeFlags = (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TRAINER);
     else
         gBattleTypeFlags = (BATTLE_TYPE_TRAINER);
 

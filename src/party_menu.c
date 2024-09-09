@@ -104,6 +104,24 @@ enum {
     MENU_CATALOG_FRIDGE,
     MENU_CATALOG_FAN,
     MENU_CATALOG_MOWER,
+    MENU_CATALOG_NORMAL,
+    MENU_CATALOG_FIGHTING,
+    MENU_CATALOG_FLYING,
+    MENU_CATALOG_POISON,
+    MENU_CATALOG_GROUND,
+    MENU_CATALOG_ROCK,
+    MENU_CATALOG_BUG,
+    MENU_CATALOG_GHOST,
+    MENU_CATALOG_STEEL,
+    MENU_CATALOG_FIRE,
+    MENU_CATALOG_WATER,
+    MENU_CATALOG_GRASS,
+    MENU_CATALOG_ELECTRIC,
+    MENU_CATALOG_PSYCHIC,
+    MENU_CATALOG_ICE,
+    MENU_CATALOG_DRAGON,
+    MENU_CATALOG_DARK,
+    MENU_CATALOG_FAIRY,
     MENU_CHANGE_FORM,
     MENU_CHANGE_ABILITY,
     MENU_FIELD_MOVES
@@ -126,6 +144,7 @@ enum {
     ACTIONS_SPIN_TRADE,
     ACTIONS_TAKEITEM_TOSS,
     ACTIONS_ROTOM_CATALOG,
+    ACTIONS_SILVALLY_CATALOG,
     ACTIONS_ZYGARDE_CUBE,
 };
 
@@ -2719,6 +2738,9 @@ static u8 DisplaySelectionWindow(u8 windowType)
         break;
     case SELECTWINDOW_ZYGARDECUBE:
         window = sZygardeCubeSelectWindowTemplate;
+        break;
+    case SELECTWINDOW_SILVALLYCATALOG:
+        window = sSilvallyCatalogSelectWindowTemplate;
         break;
     default: // SELECTWINDOW_MOVES
         window = sMoveSelectWindowTemplate;
@@ -6497,6 +6519,17 @@ void ItemUseCB_RotomCatalog(u8 taskId, TaskFunc task)
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_ROTOM_CATALOG);
     DisplaySelectionWindow(SELECTWINDOW_CATALOG);
+    DisplayPartyMenuStdMessage(PARTY_MSG_WHICH_APPLIANCE);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+void ItemUseCB_SilvallyCatalog(u8 taskId, TaskFunc task)
+{
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_SILVALLY_CATALOG);
+    DisplaySelectionWindow(SELECTWINDOW_SILVALLYCATALOG);
     DisplayPartyMenuStdMessage(PARTY_MSG_WHICH_APPLIANCE);
     gTasks[taskId].data[0] = 0xFF;
     gTasks[taskId].func = Task_HandleSelectionMenuInput;

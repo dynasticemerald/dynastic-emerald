@@ -15,23 +15,25 @@
 #include "window.h"
 #include "gba/m4a_internal.h"
 #include "constants/rgb.h"
+#include "constants/flags.h"
+#include "event_data.h"
 
 #define tMenuSelection data[0]
 #define tTextSpeed data[1]
-#define tHpSpeed data[2]
-#define tBattleSceneOff data[3]
-#define tSound data[4]
-#define tButtonMode data[5]
-#define tWindowFrameType data[6]
+#define tBattleSceneOff data[2]
+#define tSound data[3]
+#define tButtonMode data[4]
+#define tWindowFrameType data[5]
+#define tHpSpeed data[6]
 
 enum
 {
     MENUITEM_TEXTSPEED,
-    MENUITEM_HPSPEED,
     MENUITEM_BATTLESCENE,
     MENUITEM_SOUND,
     MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
+    MENUITEM_HPSPEED, //MENUITEM_SHINYRATE
     MENUITEM_CANCEL,
     MENUITEM_COUNT,
 };
@@ -43,11 +45,11 @@ enum
 };
 
 #define YPOS_TEXTSPEED    (MENUITEM_TEXTSPEED * 16)
-#define YPOS_HPSPEED      (MENUITEM_HPSPEED * 16)
 #define YPOS_BATTLESCENE  (MENUITEM_BATTLESCENE * 16)
 #define YPOS_SOUND        (MENUITEM_SOUND * 16)
 #define YPOS_BUTTONMODE   (MENUITEM_BUTTONMODE * 16)
 #define YPOS_FRAMETYPE    (MENUITEM_FRAMETYPE * 16)
+#define YPOS_HPSPEED      (MENUITEM_HPSPEED * 16)
 
 static void Task_OptionMenuFadeIn(u8 taskId);
 static void Task_OptionMenuProcessInput(u8 taskId);
@@ -79,11 +81,11 @@ static const u8 sEqualSignGfx[] = INCBIN_U8("graphics/interface/option_menu_equa
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
     [MENUITEM_TEXTSPEED]   = gText_TextSpeed,
-    [MENUITEM_HPSPEED]     = gText_BattleStyle, //gText_HPBarSpeed,
     [MENUITEM_BATTLESCENE] = gText_BattleScene,
     [MENUITEM_SOUND]       = gText_Sound,
     [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
     [MENUITEM_FRAMETYPE]   = gText_Frame,
+    [MENUITEM_HPSPEED]     = gText_BattleStyle, //gText_ShinyRate, //MENUITEM_SHINYRATE
     [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
 };
 
@@ -229,19 +231,19 @@ void CB2_InitOptionMenu(void)
 
         gTasks[taskId].tMenuSelection = 0;
         gTasks[taskId].tTextSpeed = gSaveBlock2Ptr->optionsTextSpeed;
-        gTasks[taskId].tHpSpeed = gSaveBlock3Ptr->optionsHpBarSpeed;
         gTasks[taskId].tBattleSceneOff = gSaveBlock2Ptr->optionsBattleSceneOff;
         gTasks[taskId].tSound = gSaveBlock2Ptr->optionsSound;
         gTasks[taskId].tButtonMode = gSaveBlock2Ptr->optionsButtonMode;
         gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
+        gTasks[taskId].tHpSpeed = gSaveBlock3Ptr->optionsShinyRate;
 
         TextSpeed_DrawChoices(gTasks[taskId].tTextSpeed);
-        HpBarSpeed_DrawChoices(gTasks[taskId].tHpSpeed);
         BattleScene_DrawChoices(gTasks[taskId].tBattleSceneOff);
         Sound_DrawChoices(gTasks[taskId].tSound);
         ButtonMode_DrawChoices(gTasks[taskId].tButtonMode);
         FrameType_DrawChoices(gTasks[taskId].tWindowFrameType);
         HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
+        HpBarSpeed_DrawChoices(gTasks[taskId].tHpSpeed);
 
         CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
         gMain.state++;
@@ -301,13 +303,6 @@ static void Task_OptionMenuProcessInput(u8 taskId)
             if (previousOption != gTasks[taskId].tTextSpeed)
                 TextSpeed_DrawChoices(gTasks[taskId].tTextSpeed);
             break;
-        case MENUITEM_HPSPEED:
-            previousOption = gTasks[taskId].tHpSpeed;
-            gTasks[taskId].tHpSpeed = HpBarSpeed_ProcessInput(gTasks[taskId].tHpSpeed);
-
-            if (previousOption != gTasks[taskId].tHpSpeed)
-                HpBarSpeed_DrawChoices(gTasks[taskId].tHpSpeed);
-            break;
         case MENUITEM_BATTLESCENE:
             previousOption = gTasks[taskId].tBattleSceneOff;
             gTasks[taskId].tBattleSceneOff = BattleScene_ProcessInput(gTasks[taskId].tBattleSceneOff);
@@ -336,6 +331,13 @@ static void Task_OptionMenuProcessInput(u8 taskId)
             if (previousOption != gTasks[taskId].tWindowFrameType)
                 FrameType_DrawChoices(gTasks[taskId].tWindowFrameType);
             break;
+        case MENUITEM_HPSPEED:
+            previousOption = gTasks[taskId].tHpSpeed;
+            gTasks[taskId].tHpSpeed = HpBarSpeed_ProcessInput(gTasks[taskId].tHpSpeed);
+            
+            if (previousOption != gTasks[taskId].tHpSpeed)
+                HpBarSpeed_DrawChoices(gTasks[taskId].tHpSpeed);
+            break;
         default:
             return;
         }
@@ -351,11 +353,11 @@ static void Task_OptionMenuProcessInput(u8 taskId)
 static void Task_OptionMenuSave(u8 taskId)
 {
     gSaveBlock2Ptr->optionsTextSpeed = gTasks[taskId].tTextSpeed;
-    gSaveBlock3Ptr->optionsHpBarSpeed = gTasks[taskId].tHpSpeed;
     gSaveBlock2Ptr->optionsBattleSceneOff = gTasks[taskId].tBattleSceneOff;
     gSaveBlock2Ptr->optionsSound = gTasks[taskId].tSound;
     gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].tButtonMode;
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
+    gSaveBlock3Ptr->optionsShinyRate = gTasks[taskId].tHpSpeed;
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -466,49 +468,31 @@ static void BattleScene_DrawChoices(u8 selection)
 
 static u8 HpBarSpeed_ProcessInput(u8 selection)
 {
-    if (JOY_NEW(DPAD_RIGHT))
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
     {
-        if (selection <= 1)
-            selection++;
-        else
-            selection = 0;
-
+        selection ^= 1;
         sArrowPressed = TRUE;
     }
-    if (JOY_NEW(DPAD_LEFT))
-    {
-        if (selection != 0)
-            selection--;
-        else
-            selection = 2;
 
-        sArrowPressed = TRUE;
-    }
     return selection;
 }
 
+static const u8 sText_Shiny_Rate_Normal[]    = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1/4096");
+static const u8 sText_Shiny_Rate_Boosted1[]   = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}1/2048");
+//static const u8 sText_Shiny_Rate_Boosted2[] = _("1/1024");
+
 static void HpBarSpeed_DrawChoices(u8 selection)
 {
-    u8 styles[3];
-    s32 widthSlow, widthMid, widthFast, xMid;
+    u8 styles[2];
 
     styles[0] = 0;
     styles[1] = 0;
-    styles[2] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_TextSpeedSlow, 104, YPOS_HPSPEED, styles[0]);
-
-    widthSlow = GetStringWidth(FONT_NORMAL, gText_TextSpeedSlow, 0);
-    widthMid = GetStringWidth(FONT_NORMAL, gText_TextSpeedMid, 0);
-    widthFast = GetStringWidth(FONT_NORMAL, gText_TextSpeedFast, 0);
-
-    widthMid -= 94;
-    xMid = (widthSlow - widthMid - widthFast) / 2 + 104;
-    DrawOptionMenuChoice(gText_TextSpeedMid, xMid, YPOS_HPSPEED, styles[1]);
-
-    DrawOptionMenuChoice(gText_TextSpeedFast, GetStringRightAlignXOffset(FONT_NORMAL, gText_TextSpeedFast, 198), YPOS_HPSPEED, styles[2]);
+    DrawOptionMenuChoice(sText_Shiny_Rate_Normal, 104, YPOS_HPSPEED, styles[0]);
+    DrawOptionMenuChoice(sText_Shiny_Rate_Boosted1, GetStringRightAlignXOffset(FONT_NORMAL, sText_Shiny_Rate_Boosted1, 198), YPOS_HPSPEED, styles[1]);
 }
+
 
 static u8 Sound_ProcessInput(u8 selection)
 {

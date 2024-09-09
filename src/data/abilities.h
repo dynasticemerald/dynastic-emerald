@@ -2677,4 +2677,15 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 7,
     },
 
+    [ABILITY_FROSTY_BOOST] =
+    {
+    #if B_EXPANDED_ABILITY_NAMES == TRUE
+        .name = _("Frosty Soul"),
+    #else
+        .name = _("SwarmngNeigh"),
+    #endif
+        .description = COMPOUND_STRING("Increases Special Attack stat by 50% when\nthe user is frostbiten."),
+        .aiRating = 7,
+    },
+
 };

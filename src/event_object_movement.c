@@ -6013,6 +6013,17 @@ static bool8 DoesObjectCollideWithObjectAt(struct ObjectEvent *objectEvent, s16 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         curObject = &gObjectEvents[i];
+        //Species
+        if (curObject->graphicsId == OBJ_EVENT_GFX_SPECIES(GOLETT))
+            return FALSE;
+        if (curObject->graphicsId == OBJ_EVENT_GFX_SPECIES(GOLURK))
+            return FALSE;
+        if (curObject->graphicsId == OBJ_EVENT_GFX_SPECIES(GASTLY))
+            return FALSE;
+        if (curObject->graphicsId == OBJ_EVENT_GFX_SPECIES(HAUNTER))
+            return FALSE;
+        if (curObject->graphicsId == OBJ_EVENT_GFX_SPECIES(GENGAR))
+            return FALSE;
         if (curObject->active && (curObject->movementType != MOVEMENT_TYPE_FOLLOW_PLAYER || objectEvent != &gObjectEvents[gPlayerAvatar.objectEventId]) && curObject != objectEvent)
         {
             if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))

@@ -2851,6 +2851,17 @@ bool32 ShouldBurnSelf(u32 battler, u32 ability)
     return FALSE;
 }
 
+bool32 ShouldFrostSelf(u32 battler, u32 ability)
+{
+    if (CanGetFrostbite(battler) && (
+     ability == ABILITY_QUICK_FEET
+      || (ability == ABILITY_FROSTY_BOOST && HasMoveWithCategory(battler, DAMAGE_CATEGORY_SPECIAL))
+      || HasMoveEffect(battler, EFFECT_FACADE)
+      || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)))
+        return TRUE;
+    return FALSE;
+}
+
 bool32 AI_CanBurn(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 battlerAtkPartner, u32 move, u32 partnerMove)
 {
     if (!CanBeBurned(battlerDef, defAbility)

@@ -2088,7 +2088,7 @@ static s32 SetInstantBarMove(struct BattleBarInfo *bar)
 s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
 {
     s32 currentBarValue;
-    u8 healthbarspeed = 4 + (gSaveBlock3Ptr->optionsHpBarSpeed * 2);
+    //u8 healthbarspeed = 4 + (gSaveBlock3Ptr->optionsHpBarSpeed * 2);
 
     if (whichBar == HEALTH_BAR) // health bar
     {
@@ -2097,7 +2097,7 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                     gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
                     gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
                     &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
-                    B_HEALTHBAR_PIXELS / 8, healthbarspeed);
+                    B_HEALTHBAR_PIXELS / 8, hpFraction);
     }
     else // exp bar
     {

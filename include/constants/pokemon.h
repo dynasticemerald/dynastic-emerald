@@ -93,7 +93,9 @@
 #define MAX_STAT_STAGE    12
 
 // Shiny odds
-#define SHINY_ODDS 8 // Actual probability is SHINY_ODDS/65536
+#define SHINY_ODDS_NORMAL 8 // Actual probability is SHINY_ODDS/65536; something like this
+#define SHINY_ODDS_SETTING_1 4 // Actual probability is SHINY_ODDS/32768; something like this
+#define SHINY_ODDS_SETTING_2 2 // Actual probability is SHINY_ODDS/16384; something like this
 
 // Ribbon IDs used by TV and Pokénav
 #define CHAMPION_RIBBON       0

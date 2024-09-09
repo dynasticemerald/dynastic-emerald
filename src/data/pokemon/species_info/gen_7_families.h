@@ -196,8 +196,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .baseHP        = 88,
         .baseAttack    = 112,
         .baseDefense   = 80,
-        .baseSpeed     = 60,
-        .baseSpAttack  = 95,
+        .baseSpeed     = 60 + 20,
+        .baseSpAttack  = 95 - 20,
         .baseSpDefense = 95,
         .types = MON_TYPES(TYPE_GRASS, TYPE_FIGHTING),
         .catchRate = 45,
@@ -208,7 +208,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SCRAPPY },
+        .abilities = { ABILITY_SCRAPPY, ABILITY_NONE, ABILITY_TECHNICIAN },
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Decidueye"),
         .cryId = CRY_DECIDUEYE,
@@ -2158,11 +2158,11 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 
     [SPECIES_WISHIWASHI_SCHOOL] =
     {
-        .baseHP        = 45,
+        .baseHP        = 45 + 30,
         .baseAttack    = 140,
         .baseDefense   = 130,
-        .baseSpeed     = 30,
-        .baseSpAttack  = 140,
+        .baseSpeed     = 30 - 10,
+        .baseSpAttack  = 140 - 20,
         .baseSpDefense = 135,
         .types = MON_TYPES(TYPE_WATER),
         .catchRate = 60,
@@ -4023,14 +4023,18 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_SILVALLY_NORMAL}),
     },
 
+    #define SILVALLY_ICON(typeName, iconPal)        \
+        .iconSprite = gMonIcon_Silvally ##typeName, \
+        .iconPalIndex = iconPal,
+
 #define SILVALLY_SPECIES_INFO(type, _palette)                               \
     {                                                                       \
-        .baseHP        = 95,                                                \
-        .baseAttack    = 95,                                                \
-        .baseDefense   = 95,                                                \
-        .baseSpeed     = 95,                                                \
-        .baseSpAttack  = 95,                                                \
-        .baseSpDefense = 95,                                                \
+        .baseHP        = 100,                                                \
+        .baseAttack    = 100,                                                \
+        .baseDefense   = 100,                                                \
+        .baseSpeed     = 100,                                                \
+        .baseSpAttack  = 100,                                                \
+        .baseSpDefense = 100,                                                \
         .types = MON_TYPES(type),                                           \
         .catchRate = 3,                                                     \
         .expYield = 257,                                                    \
@@ -4040,7 +4044,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = 0,                                                    \
         .growthRate = GROWTH_SLOW,                                          \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),          \
-        .abilities = { ABILITY_RKS_SYSTEM, ABILITY_NONE, ABILITY_NONE },    \
+        .abilities = { ABILITY_PROTEAN, ABILITY_NONE, ABILITY_NONE },    \
         .bodyColor = BODY_COLOR_GRAY,                                       \
         .isLegendary = TRUE,                                                \
         .speciesName = _("Silvally"),                                       \
@@ -4067,6 +4071,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         /*.backAnimId = BACK_ANIM_NONE,*/                                   \
         .palette = gMonPalette_Silvally##_palette,                          \
         .shinyPalette = gMonShinyPalette_Silvally##_palette,                \
+        /*SILVALLY_ICON(typeName, iconPal*/                                 \
         .iconSprite = gMonIcon_Silvally,                                    \
         .iconPalIndex = 0,                                                  \
         FOOTPRINT(Silvally)                                                 \

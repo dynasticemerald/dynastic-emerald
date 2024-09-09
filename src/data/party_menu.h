@@ -537,6 +537,17 @@ static const struct WindowTemplate sCatalogSelectWindowTemplate =
     .baseBlock = 0x2E9,
 };
 
+static const struct WindowTemplate sSilvallyCatalogSelectWindowTemplate =
+{
+    .bg = 2,
+    .tilemapLeft = 17,
+    .tilemapTop = 5,
+    .width = 12,
+    .height = 26,
+    .paletteNum = 14,
+    .baseBlock = 0x2E9,
+};
+
 static const struct WindowTemplate sZygardeCubeSelectWindowTemplate =
 {
     .bg = 2,
@@ -735,10 +746,11 @@ static const u8 sPartyMenuAction_TradeSummaryCancel1[] = {MENU_TRADE1, MENU_SUMM
 static const u8 sPartyMenuAction_TradeSummaryCancel2[] = {MENU_TRADE2, MENU_SUMMARY, MENU_CANCEL1};
 static const u8 sPartyMenuAction_TakeItemTossCancel[] = {MENU_TAKE_ITEM, MENU_TOSS, MENU_CANCEL1};
 static const u8 sPartyMenuAction_RotomCatalog[] = {MENU_CATALOG_BULB, MENU_CATALOG_OVEN, MENU_CATALOG_WASHING, MENU_CATALOG_FRIDGE, MENU_CATALOG_FAN, MENU_CATALOG_MOWER, MENU_CANCEL1};
+static const u8 sPartyMenuAction_SilvallyCatalog[] = {MENU_CATALOG_NORMAL, MENU_CATALOG_FIGHTING, MENU_CATALOG_FLYING, MENU_CATALOG_POISON, MENU_CATALOG_GROUND, MENU_CATALOG_ROCK, MENU_CATALOG_BUG, MENU_CATALOG_GHOST, MENU_CATALOG_STEEL, MENU_CATALOG_FIRE, MENU_CATALOG_WATER, MENU_CATALOG_GRASS, MENU_CATALOG_ELECTRIC, MENU_CATALOG_PSYCHIC, MENU_CATALOG_ICE, MENU_CATALOG_DRAGON, MENU_CATALOG_DARK, MENU_CATALOG_FAIRY, MENU_CANCEL1};
 static const u8 sPartyMenuAction_ZygardeCube[] = {MENU_CHANGE_FORM, MENU_CHANGE_ABILITY, MENU_CANCEL1};
 
 
-
+//TODO: Add The SilvallyCatalog later.
 static const u8 *const sPartyMenuActions[] =
 {
     [ACTIONS_NONE]          = NULL,
@@ -756,6 +768,7 @@ static const u8 *const sPartyMenuActions[] =
     [ACTIONS_SPIN_TRADE]    = sPartyMenuAction_TradeSummaryCancel2,
     [ACTIONS_TAKEITEM_TOSS] = sPartyMenuAction_TakeItemTossCancel,
     [ACTIONS_ROTOM_CATALOG] = sPartyMenuAction_RotomCatalog,
+    [ACTIONS_SILVALLY_CATALOG] = sPartyMenuAction_SilvallyCatalog,
     [ACTIONS_ZYGARDE_CUBE]  = sPartyMenuAction_ZygardeCube,
 };
 
@@ -776,6 +789,7 @@ static const u8 sPartyMenuActionCounts[] =
     [ACTIONS_SPIN_TRADE]    = ARRAY_COUNT(sPartyMenuAction_TradeSummaryCancel2),
     [ACTIONS_TAKEITEM_TOSS] = ARRAY_COUNT(sPartyMenuAction_TakeItemTossCancel),
     [ACTIONS_ROTOM_CATALOG] = ARRAY_COUNT(sPartyMenuAction_RotomCatalog),
+    [ACTIONS_SILVALLY_CATALOG] = ARRAY_COUNT(sPartyMenuAction_SilvallyCatalog),
     [ACTIONS_ZYGARDE_CUBE]  = ARRAY_COUNT(sPartyMenuAction_ZygardeCube),
 };
 

@@ -14127,6 +14127,39 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_PokemonBoxLink,
     },
 
+    [ITEM_FROST_ORB] =
+    {
+        .name = _("Frost Orb"),
+        .price = (I_PRICE >= GEN_9) ? 15000 : ((I_PRICE >= GEN_7) ? 4000 : 200),
+        .holdEffect = HOLD_EFFECT_FROST_ORB,
+        .description = COMPOUND_STRING(
+            "A bizarre orb that\n"
+            "inflicts a Frostbite\n"
+            "on holder in battle."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 30,
+        .iconPic = gItemIcon_FrostOrb,
+        .iconPalette = gItemIconPalette_FrostOrb,
+    },
+
+    [ITEM_SILVALLY_CATALOG] =
+    {
+        .name = HANDLE_EXPANDED_ITEM_NAME("SilvCatalog", "Silvally Catalog"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A catalog full of\n"
+            "memories liked by\n"
+            "Silvally."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_SilvallyCatalog,
+        .iconPic = gItemIcon_SilvallyCatalog,
+        .iconPalette = gItemIconPalette_RotomCatalog,
+    },
+
     // Custom Mega Stones
     [ITEM_FLYGONITE] =
     {

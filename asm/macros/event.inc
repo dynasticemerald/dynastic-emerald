@@ -1915,6 +1915,11 @@
 	.2byte \region
 	.endm
 
+	.macro removeobjectbyflag flag:req
+	.byte 0xe9
+	.2byte \flag
+	.endm
+
 
 @ Supplementary
 

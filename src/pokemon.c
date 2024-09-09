@@ -1129,7 +1129,10 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     else if (otIdType == OT_ID_PRESET)
     {
         value = fixedOtId;
-        isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
+        if(gSaveBlock3Ptr->optionsShinyRate) //setting 1
+            isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS_SETTING_1;
+                else 
+                    isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS_NORMAL;
     }
     else // Player is the OT
     {
@@ -1167,14 +1170,26 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
                 totalRerolls += 1;
             if (IsCurrentEncounterFishing())
                 totalRerolls += CalculateChainFishingShinyRolls();
-
-            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS && totalRerolls > 0)
+            
+        if(gSaveBlock3Ptr->optionsShinyRate){ //setting 1
+            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS_SETTING_1 && totalRerolls > 0)
             {
                 personality = Random32();
                 totalRerolls--;
             }
+        }
+        else{
+            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS_NORMAL && totalRerolls > 0)
+            {
+                personality = Random32();
+                totalRerolls--;
+            }            
+        }
 
-            isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
+        if(gSaveBlock3Ptr->optionsShinyRate) //setting 1
+            isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS_SETTING_1;
+                else 
+                    isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS_NORMAL;
         }
     }
 
@@ -2883,7 +2898,10 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_IS_SHINY:
         {
             u32 shinyValue = GET_SHINY_VALUE(boxMon->otId, boxMon->personality);
-            retVal = (shinyValue < SHINY_ODDS) ^ boxMon->shinyModifier;
+        if(gSaveBlock3Ptr->optionsShinyRate){ //setting 1
+        retVal = (shinyValue < SHINY_ODDS_SETTING_1) ^ boxMon->shinyModifier;}
+        else {
+        retVal = (shinyValue < SHINY_ODDS_NORMAL) ^ boxMon->shinyModifier;}
             break;
         }
         case MON_DATA_HIDDEN_NATURE:
@@ -3318,7 +3336,10 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             u32 shinyValue = GET_SHINY_VALUE(boxMon->otId, boxMon->personality);
             bool32 isShiny;
             SET8(isShiny);
-            boxMon->shinyModifier = (shinyValue < SHINY_ODDS) ^ isShiny;
+        if(gSaveBlock3Ptr->optionsShinyRate){ //setting 1{
+        boxMon->shinyModifier = (shinyValue < SHINY_ODDS_SETTING_1) ^ isShiny;}
+        else {
+        boxMon->shinyModifier = (shinyValue < SHINY_ODDS_NORMAL) ^ isShiny;}
             break;
         }
         case MON_DATA_HIDDEN_NATURE:
@@ -6588,6 +6609,10 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
                         break;
                     }
                     break;
+                case FORM_CHANGE_BEGIN_BATTLE_ABILITY:
+                    if (ability == formChanges[i].param1 || formChanges[i].param1 == ABILITY_NONE)
+                        targetSpecies = formChanges[i].targetSpecies;
+                    break;
                 }
             }
         }
@@ -6762,7 +6787,7 @@ void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method)
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
     if (formChanges == NULL
-        || (method != FORM_CHANGE_BEGIN_BATTLE && method != FORM_CHANGE_END_BATTLE))
+        || (method != FORM_CHANGE_BEGIN_BATTLE && method != FORM_CHANGE_BEGIN_BATTLE_ABILITY && method != FORM_CHANGE_END_BATTLE))
         return;
 
     for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)

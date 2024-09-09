@@ -17152,6 +17152,24 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 
     const u32 gMonPalette_SilvallyFairy[] = INCBIN_U32("graphics/pokemon/silvally/fairy/normal.gbapal.lz");
     const u32 gMonShinyPalette_SilvallyFairy[] = INCBIN_U32("graphics/pokemon/silvally/fairy/shiny.gbapal.lz");
+
+    //const u8 gMonIcon_SilvallyFighting[] = INCBIN_U8("graphics/pokemon/silvally/fighting/icon.4bpp");
+    //const u8 gMonIcon_SilvallyFlying[] = INCBIN_U8("graphics/pokemon/silvally/flying/icon.4bpp");
+    //const u8 gMonIcon_SilvallyPoison[] = INCBIN_U8("graphics/pokemon/silvally/poison/icon.4bpp");
+    //const u8 gMonIcon_SilvallyGround[] = INCBIN_U8("graphics/pokemon/silvally/ground/icon.4bpp");
+    //const u8 gMonIcon_SilvallyRock[] = INCBIN_U8("graphics/pokemon/silvally/rock/icon.4bpp");
+    //const u8 gMonIcon_SilvallyBug[] = INCBIN_U8("graphics/pokemon/silvally/bug/icon.4bpp");
+    //const u8 gMonIcon_SilvallyGhost[] = INCBIN_U8("graphics/pokemon/silvally/ghost/icon.4bpp");
+    //const u8 gMonIcon_SilvallySteel[] = INCBIN_U8("graphics/pokemon/silvally/steel/icon.4bpp");
+    //const u8 gMonIcon_SilvallyFire[] = INCBIN_U8("graphics/pokemon/silvally/fire/icon.4bpp");
+    //const u8 gMonIcon_SilvallyWater[] = INCBIN_U8("graphics/pokemon/silvally/water/icon.4bpp");
+    //const u8 gMonIcon_SilvallyGrass[] = INCBIN_U8("graphics/pokemon/silvally/grass/icon.4bpp");
+    //const u8 gMonIcon_SilvallyElectric[] = INCBIN_U8("graphics/pokemon/silvally/electric/icon.4bpp");
+    //const u8 gMonIcon_SilvallyPsychic[] = INCBIN_U8("graphics/pokemon/silvally/psychic/icon.4bpp");
+    //const u8 gMonIcon_SilvallyIce[] = INCBIN_U8("graphics/pokemon/silvally/ice/icon.4bpp");
+    //const u8 gMonIcon_SilvallyDragon[] = INCBIN_U8("graphics/pokemon/silvally/dragon/icon.4bpp");
+    //onst u8 gMonIcon_SilvallyDark[] = INCBIN_U8("graphics/pokemon/silvally/dark/icon.4bpp");
+    //const u8 gMonIcon_SilvallyFairy[] = INCBIN_U8("graphics/pokemon/silvally/fairy/icon.4bpp");
 #endif //P_FAMILY_TYPE_NULL
 
 #if P_FAMILY_MINIOR
