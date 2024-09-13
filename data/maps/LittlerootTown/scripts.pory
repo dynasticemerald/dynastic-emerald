@@ -1053,5 +1053,3 @@ script Seafloor_Cavern_Articuno_DefeatedArticuno{
 	goto(Common_EventScript_RemoveStaticPokemon)
 	end
 }
-
-

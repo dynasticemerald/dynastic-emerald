@@ -11137,8 +11137,8 @@ static const struct LevelUpMove sGabiteLevelUpLearnset[] = {
 
 static const struct LevelUpMove sGarchompLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_CRUNCH),
-    LEVEL_UP_MOVE( 1, MOVE_SAND_ATTACK),
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 1, MOVE_DRILL_PECK), //MOVE_SAND_ATTACK
+    LEVEL_UP_MOVE( 1, MOVE_FLY), //MOVE_TACKLE
     LEVEL_UP_MOVE( 1, MOVE_DRAGON_BREATH),
     LEVEL_UP_MOVE( 1, MOVE_SAND_TOMB),
     LEVEL_UP_MOVE(18, MOVE_BULLDOZE),

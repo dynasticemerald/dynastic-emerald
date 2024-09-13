@@ -1011,6 +1011,9 @@
 #define ITEMS_COUNT (ITEM_TALONITE + 1)
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
+// For Ball Fetch
+#define ITEM_BALL_ORB ITEM_LIFE_ORB || ITEM_FROST_ORB || ITEM_FLAME_ORB || ITEM_LIGHT_BALL
+
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
 // Its icon is defined at ITEMS_COUNT as the "return to field" arrow
 #define ITEM_LIST_END 0xFFFF

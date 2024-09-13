@@ -195,14 +195,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconSprite = gMonIcon_LugiaShadow,
         .iconPalIndex = 0,
         FOOTPRINT(Lugia)
-        /*OVERWORLD(
-            sPicTable_LugiaShadow,
+        OVERWORLD(
+            sPicTable_Lugia,
             SIZE_64x64,
             SHADOW_SIZE_M,
             TRACKS_NONE,
-            gOverworldPalette_LugiaShadow,
-            gShinyOverworldPalette_LugiaShadow
-        )*/
+            gOverworldPalette_Lugia,
+            gShinyOverworldPalette_Lugia
+        )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sLugiaShadowLevelUpLearnset,

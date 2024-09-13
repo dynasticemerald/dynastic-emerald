@@ -1939,6 +1939,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
     {
     //Double Battle Mode
+    isDoubleBattle = FALSE;
     if(DoubleReady && enemyPartySize >= 2 && FlagGet(FLAG_VGC_MODE))
 		isDoubleBattle = TRUE;
 	else
@@ -4700,6 +4701,7 @@ void SwapTurnOrder(u8 id1, u8 id2)
 // For AI, so it doesn't 'cheat' by knowing player's ability
 u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
 {
+    u8 i = 0;
     u32 speed = gBattleMons[battler].speed;
     u32 highestStat = GetHighestStatId(battler);
 
@@ -4748,6 +4750,8 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     else if (holdEffect == HOLD_EFFECT_CHOICE_SCARF && GetActiveGimmick(battler) != GIMMICK_DYNAMAX)
         speed = (speed * 150) / 100;
     else if (holdEffect == HOLD_EFFECT_QUICK_POWDER && gBattleMons[battler].species == SPECIES_DITTO && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
+        speed *= 2;
+    else if (holdEffect == HOLD_EFFECT_BALL(holdEffect) && ability == ABILITY_BALL_FETCH)
         speed *= 2;
 
     // various effects

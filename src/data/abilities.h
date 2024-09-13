@@ -1881,8 +1881,8 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BALL_FETCH] =
     {
         .name = _("Ball Fetch"),
-        .description = COMPOUND_STRING("Fetches failed Poké Ball."),
-        .aiRating = 0,
+        .description = COMPOUND_STRING("When holding a 'Ball' item\nspeed stat is doubled."),
+        .aiRating = 10,
     },
 
     [ABILITY_COTTON_DOWN] =
@@ -2679,13 +2679,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_FROSTY_BOOST] =
     {
-    #if B_EXPANDED_ABILITY_NAMES == TRUE
         .name = _("Frosty Soul"),
-    #else
-        .name = _("SwarmngNeigh"),
-    #endif
         .description = COMPOUND_STRING("Increases Special Attack stat by 50% when\nthe user is frostbiten."),
         .aiRating = 7,
     },
+
+    [ABILITY_GROUNDED_FLIGHT] =
+    {
+    #if B_EXPANDED_ABILITY_NAMES == TRUE
+        .name = _("Grounded Flight"),
+    #else
+        .name = _("GroundFlight"),
+    #endif
+        .description = COMPOUND_STRING("All of the Pokémon's Flying-Type attacks\nbecome Ground-Type simultaneously"),
+        .aiRating = 10,
+    },
+
 
 };

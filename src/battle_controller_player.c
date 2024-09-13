@@ -1736,6 +1736,7 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, targetId, modifier, illusionSpecies);
 
     // Moves against specific Abilities and Weather
+    // TODO; Make this also see ABILITY_GROUNDED_FLIGHT and MOVE_FLYING_PRESS somehow.
     switch (moveType)
     {
         case TYPE_FIRE:

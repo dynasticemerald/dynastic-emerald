@@ -155,17 +155,21 @@
 // Gen9 hold effects
 #define HOLD_EFFECT_ABILITY_SHIELD      175
 #define HOLD_EFFECT_CLEAR_AMULET        176
-#define HOLD_EFFECT_MIRROR_HERB         177 // Not implemented.
+#define HOLD_EFFECT_MIRROR_HERB         177
 #define HOLD_EFFECT_PUNCHING_GLOVE      178
 #define HOLD_EFFECT_COVERT_CLOAK        179
 #define HOLD_EFFECT_LOADED_DICE         180
-#define HOLD_EFFECT_BOOSTER_ENERGY      181 // Not implemented.
+#define HOLD_EFFECT_BOOSTER_ENERGY      181
 #define HOLD_EFFECT_LEADERS_CREST       182
 #define HOLD_EFFECT_FROST_ORB           183
 
 // Gen2 hold effect
 #define HOLD_EFFECT_BERSERK_GENE        184
 
+// For Ball Fetch
+#define HOLD_EFFECT_BALL(holdEffect)((holdEffect == HOLD_EFFECT_LIFE_ORB || holdEffect == HOLD_EFFECT_FROST_ORB || holdEffect == HOLD_EFFECT_FLAME_ORB || holdEffect == HOLD_EFFECT_LIGHT_BALL))
+
+// Choice
 #define HOLD_EFFECT_CHOICE(holdEffect)((holdEffect == HOLD_EFFECT_CHOICE_BAND || holdEffect == HOLD_EFFECT_CHOICE_SCARF || holdEffect == HOLD_EFFECT_CHOICE_SPECS))
 
 // Terrain seed params
@@ -173,5 +177,4 @@
 #define HOLD_EFFECT_PARAM_GRASSY_TERRAIN    1
 #define HOLD_EFFECT_PARAM_MISTY_TERRAIN     2
 #define HOLD_EFFECT_PARAM_PSYCHIC_TERRAIN   3
-
 #endif // GUARD_HOLD_EFFECTS_H

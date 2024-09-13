@@ -8248,7 +8248,7 @@ BattleScript_TookAttack::
 BattleScript_TruantHealingActivates::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	printstring STRINGID_PKMNSABILITYRESTOREDHPALITTLE
+	printstring STRINGID_SLAKINGSLOAFINDAROUNDHEALS
 	waitmessage B_WAIT_TIME_LONG
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE | HITMARKER_PASSIVE_DAMAGE
 	healthbarupdate BS_ATTACKER
