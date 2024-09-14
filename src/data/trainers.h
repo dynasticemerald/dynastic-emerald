@@ -8323,7 +8323,7 @@ F_TRAINER_FEMALE |
                 MOVE_BUG_BITE,
                 MOVE_BITE,
                 MOVE_BULLDOZE,
-                MOVE_HIDDEN_POWER,
+                MOVE_SECRET_POWER,
             },
             },
             {
@@ -10852,7 +10852,7 @@ F_TRAINER_FEMALE |
         .party = (const struct TrainerMon[])
         {
             {
-            .species = SPECIES_ZIGZAGOON,
+            .species = SPECIES_LECHONK,
             .gender = TRAINER_MON_RANDOM_GENDER,
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
             .lvl = 4,
@@ -10860,7 +10860,7 @@ F_TRAINER_FEMALE |
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             },
             {
-            .species = SPECIES_TAILLOW,
+            .species = SPECIES_PIDOVE,
             .gender = TRAINER_MON_RANDOM_GENDER,
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
             .lvl = 3,
@@ -19846,7 +19846,7 @@ F_TRAINER_FEMALE |
         .party = (const struct TrainerMon[])
         {
             {
-            .species = SPECIES_WURMPLE,
+            .species = SPECIES_NINCADA,
             .gender = TRAINER_MON_RANDOM_GENDER,
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
             .lvl = 4,
@@ -19854,7 +19854,7 @@ F_TRAINER_FEMALE |
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             },
             {
-            .species = SPECIES_WURMPLE,
+            .species = SPECIES_RELLOR,
             .gender = TRAINER_MON_RANDOM_GENDER,
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
             .lvl = 4,

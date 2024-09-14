@@ -110,6 +110,7 @@ struct HpAndStatus
 {
     u16 hp;
     u32 status;
+    u32 ball;
 };
 
 struct MovePpInfo

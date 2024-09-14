@@ -1186,36 +1186,36 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
     {
     case TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT:
         TrainerBattleLoadArgs(sOrdinaryNoIntroBattleParams, data);
-        HealPlayerParty();
+        //HealPlayerParty();
         return EventScript_DoNoIntroTrainerBattle;
     case TRAINER_BATTLE_DOUBLE:
         TrainerBattleLoadArgs(sDoubleBattleParams, data);
         SetMapVarsToTrainer();
-        HealPlayerParty();
+        //HealPlayerParty();
         return EventScript_TryDoDoubleTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT:
         if (gApproachingTrainerId == 0)
         {
             TrainerBattleLoadArgs(sContinueScriptBattleParams, data);
             SetMapVarsToTrainer();
-            HealPlayerParty();
+            //HealPlayerParty();
         }
         else
         {
             TrainerBattleLoadArgs(sTrainerBContinueScriptBattleParams, data);
-            HealPlayerParty();
+            //HealPlayerParty();
         }
         return EventScript_TryDoNormalTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC:
         TrainerBattleLoadArgs(sContinueScriptBattleParams, data);
         SetMapVarsToTrainer();
-        HealPlayerParty();
+        //HealPlayerParty();
         return EventScript_TryDoNormalTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE:
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC:
         TrainerBattleLoadArgs(sContinueScriptDoubleBattleParams, data);
         SetMapVarsToTrainer();
-        HealPlayerParty();
+        //HealPlayerParty();
         return EventScript_TryDoDoubleTrainerBattle;
 #if FREE_MATCH_CALL == FALSE
     case TRAINER_BATTLE_REMATCH_DOUBLE:
@@ -1265,6 +1265,10 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
         gNoOfApproachingTrainers = 2; // set TWO_OPPONENTS gBattleTypeFlags
         gApproachingTrainerId = 1; // prevent trainer approach
         TrainerBattleLoadArgs(sTrainerTwoTrainerBattleParams, data);
+        return EventScript_DoNoIntroTrainerBattle;
+    case TRAINER_BATTLE_BOSS_TRAINER_NO_INTRO:
+        TrainerBattleLoadArgs(sOrdinaryNoIntroBattleParams, data);
+        HealPlayerParty();
         return EventScript_DoNoIntroTrainerBattle;
     default:
         if (gApproachingTrainerId == 0)

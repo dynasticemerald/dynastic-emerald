@@ -34,6 +34,8 @@
 #include "constants/songs.h"
 #include "constants/items.h"
 #include "level_caps.h"
+#include "pokemon.h"
+#include "battle_anim.h"
 
 enum
 {   // Corresponds to gHealthboxElementsGfxTable (and the tables after it) in graphics.c
@@ -1246,7 +1248,7 @@ void SwapHpBarsWithHpText(void)
 #define tIsBattleStart          data[10]
 #define tBlend                  data[15]
 
-u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, bool8 skipPlayer, bool8 isBattleStart)
+u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, bool8 skipPlayer, bool8 isBattleStart, u32 ballId)
 {
     bool8 isOpponent;
     s16 bar_X, bar_Y, bar_pos2_X, bar_data0;
