@@ -8184,19 +8184,19 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 #if P_MEGA_EVOLUTIONS
-    const u32 gMonFrontPic_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/anim_front.4bpp.lz");
-    const u32 gMonPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/normal.gbapal.lz");
-    const u32 gMonBackPic_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/back.4bpp.lz");
-    const u32 gMonShinyPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/shiny.gbapal.lz");
-    const u8 gMonIcon_FlygonMega[] = INCBIN_U8("graphics/pokemon/flygon/icon.4bpp");
+    const u32 gMonFrontPic_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/Mega/front2.4bpp.lz");
+    const u32 gMonPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/Mega/normal.gbapal.lz");
+    const u32 gMonBackPic_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/Mega/back.4bpp.lz");
+    const u32 gMonShinyPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/Mega/shiny.gbapal.lz");
+    const u8 gMonIcon_FlygonMega[] = INCBIN_U8("graphics/pokemon/flygon/Mega/icon.4bpp");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_FlygonMega[] = INCBIN_U8("graphics/pokemon/flygon/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #if OW_POKEMON_OBJECT_EVENTS
-    const u32 gObjectEventPic_FlygonMega[] = INCBIN_COMP("graphics/pokemon/flygon/overworld.4bpp");
+    const u32 gObjectEventPic_FlygonMega[] = INCBIN_COMP("graphics/pokemon/flygon/Mega/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    const u32 gOverworldPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/overworld_normal.gbapal.lz");
-    const u32 gShinyOverworldPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/Mega/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_FlygonMega[] = INCBIN_U32("graphics/pokemon/flygon/Mega/overworld_shiny.gbapal.lz");
 #endif //P_MEGA_EVOLUTIONS
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
