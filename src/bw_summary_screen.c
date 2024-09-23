@@ -4149,6 +4149,7 @@ static void BufferStat(u8 *dst, s8 statIndex, u32 stat, u32 strId, u32 align)
     static const u8 sTextNatureDown[] = _("{COLOR}{08}");
     static const u8 sTextNatureUp[] = _("{COLOR}{05}");
     static const u8 sTextNatureNeutral[] = _("{COLOR}{01}");
+
     u8 *txtPtr;
 
     if (statIndex == 0 
@@ -4169,9 +4170,9 @@ static void BufferStat(u8 *dst, s8 statIndex, u32 stat, u32 strId, u32 align)
         && gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp != gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
     {
         if (statIndex == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp)
-            StringAppend(txtPtr, sTextUpArrow);
+            StringAppend(txtPtr, sTextNatureUp);
         else if (statIndex == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
-            StringAppend(txtPtr, sTextDownArrow);
+            StringAppend(txtPtr, sTextNatureDown);
     }
 
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
