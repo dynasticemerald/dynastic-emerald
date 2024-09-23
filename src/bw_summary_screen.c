@@ -4739,7 +4739,7 @@ static void SetMoveTypeIcons(void)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            movetype = GetMonMoveType(summary->moves[i], mon, 0);
+            movetype = SetTypeBeforeUsingMove(summary->moves[i], 0);
             SetTypeSpritePosAndPal(movetype, 8, 16 + (i * 28), i + SPRITE_ARR_ID_TYPE);
         }
         else
@@ -4772,7 +4772,7 @@ static void SetNewMoveTypeIcon(void)
     else
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){
-            movetype = GetMonMoveType(sMonSummaryScreen->newMove, mon, 0);
+            movetype = SetTypeBeforeUsingMove(sMonSummaryScreen->newMove, 0);
             SetTypeSpritePosAndPal(movetype, 8, 128, SPRITE_ARR_ID_TYPE + 4);
         }
         else

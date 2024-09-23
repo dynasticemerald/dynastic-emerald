@@ -10,6 +10,7 @@
 #include "battle_tv.h"
 #include "battle_z_move.h"
 #include "battle_gimmick.h"
+#include "battle_util.h"
 #include "bg.h"
 #include "data.h"
 #include "item.h"
@@ -1729,7 +1730,7 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
     u32 defAbility = GetBattlerAbility(targetId);
     u32 contactMove = IsMoveMakingContact(move, battlerAtk);
     u32 attackingMove = !(gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS); // or gMovesInfo[move].power > 0;
-    u32 moldBreaker = IsMoldBreakerTypeAbility(atkAbility);
+    u32 moldBreaker = IsMoldBreakerTypeAbility(battlerAtk, atkAbility);
     u32 modifier = CalcTypeEffectivenessMultiplier(move, moveType, battler, targetId, defAbility, TRUE);
 
     if (defAbility == ABILITY_ILLUSION && (illusionSpecies = GetIllusionMonSpecies(targetId)))
@@ -1961,8 +1962,8 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     u16 move = moveInfo->moves[gMoveSelectionCursor[battler]];
     u8 moveType = SetTypeBeforeUsingMove(move, battler);
     u8 movePower = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].power;
-    u8 battlerType1 = gBattleMons[battler].type1;
-    u8 battlerType2 = gBattleMons[battler].type2;
+    u8 battlerType1 = gBattleMons[battler].types[1];
+    u8 battlerType2 = gBattleMons[battler].types[2];
     u16 type, speciesId;
 
     txtPtr = StringCopy(gDisplayedStringBattle, gTypesInfo[moveType].name);

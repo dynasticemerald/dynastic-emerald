@@ -17106,7 +17106,6 @@ Move_STEEL_SPIKES:: @New
 	clearmonbg ANIM_DEF_PARTNER
 	end
 
-Move_TERA_BLAST::
 Move_AXE_KICK::
 	loadspritegfx ANIM_TAG_HANDS_AND_FEET
 	loadspritegfx ANIM_TAG_IMPACT

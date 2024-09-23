@@ -4241,8 +4241,8 @@ static void SetMoveTypeIcons(void)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            movetype = GetMonMoveType(summary->moves[i], mon, 0);
-            SetTypeSpritePosAndPal(movetype, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
+           //movetype = SetTypeBeforeUsingMove(summary->moves[i], &mon);
+            //SetTypeSpritePosAndPal(movetype, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
         }
         else
             SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);
