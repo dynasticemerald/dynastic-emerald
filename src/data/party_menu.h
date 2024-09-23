@@ -750,7 +750,7 @@ static const u8 sPartyMenuAction_SilvallyCatalog[] = {MENU_CATALOG_NORMAL, MENU_
 static const u8 sPartyMenuAction_ZygardeCube[] = {MENU_CHANGE_FORM, MENU_CHANGE_ABILITY, MENU_CANCEL1};
 
 
-//TODO: Add The SilvallyCatalog later.
+//KAIDO: Add The SilvallyCatalog later.
 static const u8 *const sPartyMenuActions[] =
 {
     [ACTIONS_NONE]          = NULL,

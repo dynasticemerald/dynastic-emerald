@@ -77,11 +77,11 @@ RustboroCity_PokemonSchool_EventScript_StudentNotebook::
 RustboroCity_PokemonSchool_EventScript_Teacher::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_GaveQuickClaw
+	goto_if_set FLAG_RECEIVED_TM_ATTRACT, RustboroCity_PokemonSchool_EventScript_GaveQuickClaw
 	call_if_eq VAR_FACING, DIR_EAST, RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast
 	call_if_eq VAR_FACING, DIR_WEST, RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest
 	msgbox RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw, MSGBOX_DEFAULT
-	giveitem ITEM_QUICK_CLAW
+	giveitem ITEM_TM_ATTRACT
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
@@ -244,9 +244,9 @@ RustboroCity_PokemonSchool_Text_ExplainFreeze:
 	.string "Thaw it out using an ICE HEAL.$"
 
 RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw:
-	.string "Students who don't study get a little\n"
-	.string "taste of my QUICK CLAW.\p"
-	.string "Whether or not you are a good student \n"
+	.string "Unfortunately, I can't be attracted to my\n"
+	.string "students... but you can use Attract in\p"
+	.string "a Pokémon Battle.\n"
 	.string "will be evident from the way you use\l"
 	.string "this item.$"
 

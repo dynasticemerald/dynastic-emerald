@@ -119,7 +119,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sNoneEggMoveLearnset,
     },
-
+    //KAIDO, Buff gen 2,3,4,5,6,7,8,9 mons
     #include "species_info/gen_1_families.h"
     #include "species_info/gen_2_families.h"
     #include "species_info/gen_3_families.h"

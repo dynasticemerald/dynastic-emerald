@@ -5541,6 +5541,8 @@ static const u16 sUniversalMoves[] =
     MOVE_SECRET_POWER,
     MOVE_SUBSTITUTE,
     MOVE_TERA_BLAST,
+    MOVE_HIDDEN_POWER,
+    MOVE_SECRET_POWER,
 };
 
 u8 CanLearnTeachableMove(u16 species, u16 move)

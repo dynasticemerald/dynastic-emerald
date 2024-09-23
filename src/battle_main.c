@@ -5691,10 +5691,11 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
         if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
             return FALSE;
         break;
-    case EFFECT_TERA_STARSTORM:
+    /*case EFFECT_TERA_STARSTORM:
         if (gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR)
             return FALSE;
         break;
+    */
     case EFFECT_HIDDEN_POWER:
     case EFFECT_WEATHER_BALL:
     case EFFECT_CHANGE_TYPE_ON_ITEM:
@@ -5829,10 +5830,10 @@ u8 SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     {
         gBattleStruct->dynamicMoveType = GetBattlerTeraType(battlerAtk) | F_DYNAMIC_TYPE_SET;
     }
-    else if (gMovesInfo[move].effect == EFFECT_TERA_STARSTORM && gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR)
+    /*else if (gMovesInfo[move].effect == EFFECT_TERA_STARSTORM && gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR)
     {
         gBattleStruct->dynamicMoveType = TYPE_STELLAR | F_DYNAMIC_TYPE_SET;
-    }
+    }*/
 
     attackerAbility = GetBattlerAbility(battlerAtk);
     if (gMovesInfo[move].type == TYPE_NORMAL
@@ -5988,10 +5989,10 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon, u32 battler)
     {
         gBattleStruct->dynamicMoveType = GetBattlerTeraType(battlerAtk) | F_DYNAMIC_TYPE_SET;
     }
-    else if (gMovesInfo[move].effect == EFFECT_TERA_STARSTORM && gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR)
+    /*else if (gMovesInfo[move].effect == EFFECT_TERA_STARSTORM && gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR)
     {
         gBattleStruct->dynamicMoveType = TYPE_STELLAR | F_DYNAMIC_TYPE_SET;
-    }
+    }*/
 
     if (gMovesInfo[move].type == TYPE_NORMAL
      && TrySetAteType(move, battlerAtk, attackerAbility)

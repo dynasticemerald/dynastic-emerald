@@ -3,6 +3,7 @@ raw`
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
 .set LOCALID_BIRCH, 8
+.set LOCALID_BIRCH_NATIONAL_DEX, 9
 
 LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
@@ -1052,4 +1053,18 @@ script Seafloor_Cavern_Articuno_DefeatedArticuno{
 	removeobject(0) //Articuno
 	goto(Common_EventScript_RemoveStaticPokemon)
 	end
+}
+
+//KAIDO Finish this at 18/09/2024.
+script LittlerootTown_EventScript_NationalDexUpgrade{
+	lock
+	addobject(LOCALID_BIRCH_NATIONAL_DEX)
+	msgbox(format("Hey {PLAYER}, wait up!"), MSGBOX_DEFAULT)
+	applymovement(LOCALID_BIRCH_NATIONAL_DEX, MoveUpBirchNationalDex)
+	waitmovement(0)
+	msgbox(format("mhphm, you know my legs aren't what they used to be...\nanyways, I completely forgot to do something to your Pokédex before i gave it too you! "), MSGBOX_DEFAULT)
+}
+
+movement MoveUpBirchNationalDex{
+	walk_up *4
 }

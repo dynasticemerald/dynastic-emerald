@@ -442,7 +442,6 @@ u16 getHallofFameSpecies(u8 num){
     u8 i;
     u16 item = GetMonData(&gPlayerParty[num], MON_DATA_HELD_ITEM);
     u16 species = GetMonData(&gPlayerParty[num], MON_DATA_SPECIES);
-    //u16 species = GetMonData(&gPlayerParty[num], MON_DATA_SPECIES2);
 
     switch(species){
         case SPECIES_ABOMASNOW:
@@ -639,14 +638,6 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_BLUE_ORB)
                 return SPECIES_KYOGRE_PRIMAL;
         break;
-        case SPECIES_FLYGON:
-            if(item == ITEM_FLYGONITE)
-                return SPECIES_FLYGON_MEGA;
-        break;
-        case SPECIES_TALONFLAME:
-            if(item == ITEM_TALONITE)
-                return SPECIES_TALONFLAME_MEGA;
-        break;
         case SPECIES_RAYQUAZA:
             for(i = 0; i < MAX_MON_MOVES; i++){
                 if(GetMonData(&gPlayerParty[num], MON_DATA_MOVE1 + i) == MOVE_DRAGON_ASCENT)
@@ -666,27 +657,20 @@ static void Task_Hof_InitMonData(u8 taskId)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        u8 nickname[POKEMON_NAME_LENGTH + 1];
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES))
         {
-            sHofMonPtr->mon[i].species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
+            sHofMonPtr->mon[i].species = getHallofFameSpecies(i);
             sHofMonPtr->mon[i].tid = GetMonData(&gPlayerParty[i], MON_DATA_OT_ID);
-            sHofMonPtr->mon[i].isShiny = GetMonData(&gPlayerParty[i], MON_DATA_IS_SHINY);
             sHofMonPtr->mon[i].personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
             sHofMonPtr->mon[i].lvl = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
-            GetMonData(&gPlayerParty[i], MON_DATA_NICKNAME, nickname);
-            for (j = 0; j < POKEMON_NAME_LENGTH; j++)
-                sHofMonPtr->mon[i].nickname[j] = nickname[j];
             gTasks[taskId].tMonNumber++;
         }
         else
         {
             sHofMonPtr->mon[i].species = SPECIES_NONE;
             sHofMonPtr->mon[i].tid = 0;
-            sHofMonPtr->mon[i].isShiny = FALSE;
             sHofMonPtr->mon[i].personality = 0;
             sHofMonPtr->mon[i].lvl = 0;
-            sHofMonPtr->mon[i].nickname[0] = EOS;
         }
     }
 
@@ -704,6 +688,7 @@ static void Task_Hof_InitMonData(u8 taskId)
     else
         gTasks[taskId].func = Task_Hof_InitTeamSaveData;
 }
+
 
 static void Task_Hof_InitTeamSaveData(u8 taskId)
 {

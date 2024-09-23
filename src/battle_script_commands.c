@@ -15617,7 +15617,7 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
 #define NUM_PRESET_NICKNAMES min(ARRAY_COUNT(sNicknamePresetsFemale), ARRAY_COUNT(sNicknamePresetsMale)) //Not sure why; but sNicknamePresetsGenderless works too with this xD.
 #endif
 
-static void RandomNickname(u8 nicknameId, struct Pokemon *mon, u16 monSpecies) //TODO; Change RandomNickname(u8 nicknameId, struct Pokemon *mon, u16 monSpecies) TO RandomNickname(u8 nicknameId) and have the mon struct and species in defined in the code.
+static void RandomNickname(u8 nicknameId, struct Pokemon *mon, u16 monSpecies) //KAIDO; Change RandomNickname(u8 nicknameId, struct Pokemon *mon, u16 monSpecies) TO RandomNickname(u8 nicknameId) and have the mon struct and species in defined in the code.
 {
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
     const u8 *nickName;
@@ -15688,7 +15688,7 @@ static void Cmd_trygivecaughtmonnick(void)
 
             if(FlagGet(FLAG_RANDOM_NICKNAMES))
                 RandomNickname(Random() % NUM_PRESET_NICKNAMES, 
-                0, //TODO; Maybe not make this 0 but not sure.
+                0, //KAIDO; Maybe not make this 0 but not sure.
                 GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SPECIES));
 
             DoNamingScreen(NAMING_SCREEN_CAUGHT_MON, gBattleStruct->caughtMonNick,

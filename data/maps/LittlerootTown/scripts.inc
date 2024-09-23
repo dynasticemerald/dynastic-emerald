@@ -3,6 +3,7 @@
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
 .set LOCALID_BIRCH, 8
+.set LOCALID_BIRCH_NATIONAL_DEX, 9
 
 LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
@@ -1057,5 +1058,32 @@ Seafloor_Cavern_Articuno_DefeatedArticuno::
 	end
 
 
+LittlerootTown_EventScript_NationalDexUpgrade::
+	lock
+	addobject LOCALID_BIRCH_NATIONAL_DEX
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_0, MSGBOX_DEFAULT
+	applymovement LOCALID_BIRCH_NATIONAL_DEX, MoveUpBirchNationalDex
+	waitmovement 0
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_1, MSGBOX_DEFAULT
+	return
+
+
+MoveUpBirchNationalDex:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
 Seafloor_Cavern_Articuno_Encounter_Text_0:
 	.string "Articuno: Gyaoo!$"
+
+LittlerootTown_EventScript_NationalDexUpgrade_Text_0:
+	.string "Hey {PLAYER}, wait up!$"
+
+LittlerootTown_EventScript_NationalDexUpgrade_Text_1:
+	.string "mhphm, you know my legs aren't what\n"
+	.string "they used to be...\n"
+	.string "anyways, I completely forgot to do\l"
+	.string "something to your Pokédex before i\l"
+	.string "gave it too you!$"

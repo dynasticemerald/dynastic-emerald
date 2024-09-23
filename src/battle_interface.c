@@ -37,7 +37,7 @@
 #include "pokemon.h"
 #include "battle_anim.h"
 
-enum
+enum HEALTHBOX_GFX
 {   // Corresponds to gHealthboxElementsGfxTable (and the tables after it) in graphics.c
     // These are indexes into the tables, which are filled with 8x8 square pixel data.
     HEALTHBOX_GFX_0, //hp bar [black section]
@@ -114,6 +114,7 @@ enum
     HEALTHBOX_GFX_STATUS_BALL_FAINTED,
     HEALTHBOX_GFX_STATUS_BALL_STATUSED,
     HEALTHBOX_GFX_STATUS_BALL_CAUGHT,
+    HEALTHBOX_GFX_STATUS_BALL_GREAT,
     HEALTHBOX_GFX_STATUS_PSN_BATTLER1, //status2 "PSN"
     HEALTHBOX_GFX_72,
     HEALTHBOX_GFX_73,
@@ -520,7 +521,7 @@ static const struct SpritePalette sStatusSummaryBallsSpritePal =
 
 static const struct SpriteSheet sStatusSummaryBallsSpriteSheet =
 {
-    &gHealthboxElementsGfxTable[HEALTHBOX_GFX_STATUS_BALL], 0x80, TAG_STATUS_SUMMARY_BALLS_TILE
+    &gHealthboxElementsGfxTable[HEALTHBOX_GFX_STATUS_BALL], 0x100, TAG_STATUS_SUMMARY_BALLS_TILE
 };
 
 static const struct OamData sOamData_StatusSummaryBalls =
@@ -1448,6 +1449,12 @@ u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, 
                 var++;
             }
         }
+    }
+
+    switch(ballId)
+    {
+        case BALL_GREAT:
+            gSprites[ballIconSpritesIds[i]].oam.tileNum += 4;
     }
 
     taskId = CreateTask(TaskDummy, 5);
