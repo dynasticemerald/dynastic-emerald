@@ -248,7 +248,7 @@ SINGLE_BATTLE_TEST("Parental Bond Smack Down effect triggers after 2nd hit")
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_SKARMORY);
     } WHEN {
-        TURN { MOVE(player, MOVE_SMACK_DOWN, megaEvolve: TRUE); }
+        TURN { MOVE(player, MOVE_SMACK_DOWN, gimmick: GIMMICK_MEGA); }
     } SCENE {
         MESSAGE("Kangaskhan's Kangaskhanite is reacting to 1's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
@@ -260,6 +260,29 @@ SINGLE_BATTLE_TEST("Parental Bond Smack Down effect triggers after 2nd hit")
         MESSAGE("Foe Skarmory fell straight down!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond Snore strikes twice while asleep")
+{
+    s16 damage[2];
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SNORE].effect == EFFECT_SNORE);
+        PLAYER(SPECIES_KANGASKHAN_MEGA) { Status1(STATUS1_SLEEP); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SNORE); }
+    } SCENE {
+        MESSAGE("Kangaskhan is fast asleep.");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SNORE, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+        MESSAGE("Hit 2 time(s)!");
+    } THEN {
+        if (B_PARENTAL_BOND_DMG == GEN_6)
+            EXPECT_MUL_EQ(damage[0], Q_4_12(0.5), damage[1]);
+        else
+            EXPECT_MUL_EQ(damage[0], Q_4_12(0.25), damage[1]);
     }
 }
 

@@ -186,6 +186,7 @@ struct SaveBlock3
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;
+
 struct Pokedex
 {
     /*0x00*/ u8 order;

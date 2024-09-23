@@ -507,9 +507,9 @@
 	.byte \battler
 	.endm
 
-	.macro trainerslidein battler:req
+	.macro trainerslidein position:req
 	.byte 0x53
-	.byte \battler
+	.byte \position
 	.endm
 
 	.macro playse song:req
@@ -838,7 +838,7 @@
 	.byte 0x95
 	.endm
 
-	.macro weatherdamage
+	.macro unused_96
 	.byte 0x96
 	.endm
 
@@ -1359,15 +1359,15 @@
 	.macro restoretarget
 	callnative BS_RestoreTarget
 	.endm
-	
+
 	.macro saveattacker
 	callnative BS_SaveAttacker
 	.endm
-	
+
 	.macro restoreattacker
 	callnative BS_RestoreAttacker
 	.endm
-	
+
 	.macro metalburstdamagecalculator failInstr:req
 	callnative BS_CalcMetalBurstDmg
 	.4byte \failInstr
@@ -1560,10 +1560,6 @@
 	.4byte \failInstr
 	.endm
 
-	.macro damagenontypes
-	callnative BS_DamageNonTypes
-	.endm
-
 	.macro trysetstatus1, ptr:req
 	callnative BS_TrySetStatus1
 	.4byte \ptr
@@ -1656,16 +1652,37 @@
 	.4byte \failInstr
 	.endm
 
+	.macro copyfoesstatincrease battler:req, failInstr:req
+	callnative BS_CopyFoesStatIncrease
+	.byte \battler
+	.4byte \failInstr
+	.endm
+
 	.macro removeweather
 	callnative BS_RemoveWeather
 	.endm
-	
+
 	.macro applyterastallization
 	callnative BS_ApplyTerastallization
 	.endm
 
 	.macro damagetoquartertargethp
 	callnative BS_DamageToQuarterTargetHP
+	.endm
+
+	.macro ficklebeamdamagecalculation
+	callnative BS_FickleBeamDamageCalculation
+	.endm
+
+	.macro trytarshot failInstr:req
+	callnative BS_TryTarShot
+	.4byte \failInstr
+	.endm
+
+	.macro jumpifblockedbysoundproof battler:req, failInstr:req
+	callnative BS_JumpIfBlockedBySoundproof
+	.byte \battler
+	.4byte \failInstr
 	.endm
 
 @ various command changed to more readable macros
@@ -2201,11 +2218,6 @@
 
 	.macro trynoretreat battler:req, failInstr:req
 	various \battler, VARIOUS_TRY_NO_RETREAT
-	.4byte \failInstr
-	.endm
-
-	.macro trytarshot battler:req, failInstr:req
-	various \battler, VARIOUS_TRY_TAR_SHOT
 	.4byte \failInstr
 	.endm
 

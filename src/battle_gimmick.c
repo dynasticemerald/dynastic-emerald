@@ -82,8 +82,14 @@ bool32 ShouldTrainerBattlerUseGimmick(u32 battler, enum Gimmick gimmick)
         bool32 isSecondTrainer = (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT) && (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT;
         u16 trainerId = isSecondTrainer ? gTrainerBattleOpponent_B : gTrainerBattleOpponent_A;
         const struct TrainerMon *mon = &GetTrainerPartyFromId(trainerId)[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]];
-        return mon->useGimmick == gimmick;
+
+        if (gimmick == GIMMICK_TERA && mon->teraType != TYPE_NONE)
+            return TRUE;
+        if (gimmick == GIMMICK_DYNAMAX && mon->shouldUseDynamax)
+            return TRUE;
     }
+
+    return FALSE;
 }
 
 // Returns whether a trainer has used a gimmick during a battle.
@@ -138,7 +144,8 @@ void CreateGimmickTriggerSprite(u32 battler)
     // Exit if there shouldn't be a sprite produced.
     if (GetBattlerSide(battler) == B_SIDE_OPPONENT
      || gBattleStruct->gimmick.usableGimmick[battler] == GIMMICK_NONE
-     || gimmick->triggerSheet == NULL)
+     || gimmick->triggerSheet == NULL
+     || HasTrainerUsedGimmick(battler, gBattleStruct->gimmick.usableGimmick[battler]))
     {
         return;
     }
@@ -290,7 +297,7 @@ static inline u32 GetIndicatorSpriteId(u32 healthboxId)
 u32 GetIndicatorTileTag(u32 battler)
 {
     u32 gimmick = GetActiveGimmick(battler);
-    
+
     if (IsBattlerPrimalReverted(battler))
     {
         if (gBattleMons[battler].species == SPECIES_GROUDON_PRIMAL)
