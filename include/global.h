@@ -177,9 +177,7 @@ struct Time
 };
 struct SaveBlock3
 {
-#if USE_DEXNAV_SEARCH_LEVELS == TRUE
     u8 dexNavSearchLevels[ROUND_BITS_TO_BYTES(NUM_SPECIES)];
-#endif
     u8 dexNavChain;
     struct Time fakeRTC;
     u8 optionsShinyRate:2;

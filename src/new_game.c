@@ -98,7 +98,6 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
     gSaveBlock3Ptr->optionsShinyRate = FALSE;
-    
 }
 
 static void ClearPokedexFlags(void)

@@ -166,6 +166,8 @@
 // Gen2 hold effect
 #define HOLD_EFFECT_BERSERK_GENE        184
 
+#define HOLD_EFFECT_COUNT               (HOLD_EFFECT_BERSERK_GENE + 0)
+
 // For Ball Fetch
 #define HOLD_EFFECT_BALL(holdEffect)((holdEffect == HOLD_EFFECT_LIFE_ORB || holdEffect == HOLD_EFFECT_FROST_ORB || holdEffect == HOLD_EFFECT_FLAME_ORB || holdEffect == HOLD_EFFECT_LIGHT_BALL))
 

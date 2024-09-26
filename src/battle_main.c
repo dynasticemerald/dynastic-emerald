@@ -4741,10 +4741,17 @@ void SwapTurnOrder(u8 id1, u8 id2)
     SWAP(gBattlerByTurnOrder[id1], gBattlerByTurnOrder[id2], temp);
 }
 
+static const u16 BallItems[] = 
+{
+    ITEM_LIFE_ORB,
+    ITEM_LIGHT_BALL
+};
+
 // For AI, so it doesn't 'cheat' by knowing player's ability
 u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
 {
     u8 i = 0;
+    u8 j = gBattleMons[battler].item;
     u32 speed = gBattleMons[battler].speed;
 
     // weather abilities
@@ -4761,6 +4768,12 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     }
 
     // other abilities
+    if (ability == ABILITY_BALL_FETCH){
+    for (i = 0; i < ARRAY_COUNT(BallItems); i++){
+    if (j == BallItems[i])
+        speed *= (speed * 150) / 100;
+        } 
+    }
     if (ability == ABILITY_QUICK_FEET && gBattleMons[battler].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
     else if (ability == ABILITY_SURGE_SURFER && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
@@ -4792,8 +4805,6 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     else if (holdEffect == HOLD_EFFECT_CHOICE_SCARF && GetActiveGimmick(battler) != GIMMICK_DYNAMAX)
         speed = (speed * 150) / 100;
     else if (holdEffect == HOLD_EFFECT_QUICK_POWDER && gBattleMons[battler].species == SPECIES_DITTO && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
-        speed *= 2;
-    else if (holdEffect == HOLD_EFFECT_BALL(holdEffect) && ability == ABILITY_BALL_FETCH)
         speed *= 2;
 
     // various effects

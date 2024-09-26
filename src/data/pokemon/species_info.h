@@ -227,8 +227,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         )
         .isLegendary = TRUE,
         .isFrontierBanned = TRUE,
-        .levelUpLearnset = sLugiaShadowLevelUpLearnset,
-        .teachableLearnset = sLugiaShadowTeachableLearnset,
+        .levelUpLearnset = sLugiaLevelUpLearnset,
+        .teachableLearnset = sLugiaTeachableLearnset,
     },
 
     /*

@@ -1885,7 +1885,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BALL_FETCH] =
     {
         .name = _("Ball Fetch"),
-        .description = COMPOUND_STRING("When holding a 'Ball' item\nspeed stat is doubled."),
+        .description = COMPOUND_STRING("When holding a 'Ball' item\nspeed stat is boosted by 1.5x."),
         .aiRating = 10,
     },
 
@@ -2697,6 +2697,13 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("All of the Pokémon's Flying-Type attacks\nbecome Ground-Type simultaneously"),
         .aiRating = 10,
+    },
+
+    [ABILITY_GHOST_FIST] =
+    {
+        .name = _("Ghost Fist"),
+        .description = COMPOUND_STRING("Boosts punching moves by 30%."),
+        .aiRating = 6,
     },
 
 

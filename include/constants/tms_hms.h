@@ -58,7 +58,8 @@
     F(U_TURN) \
     F(ICE_PUNCH) \
     F(THUNDER_PUNCH) \
-    F(FIRE_PUNCH)
+    F(FIRE_PUNCH) \
+    F(DEFOG) \
 
 #define FOREACH_HM(F) \
     F(CUT) \

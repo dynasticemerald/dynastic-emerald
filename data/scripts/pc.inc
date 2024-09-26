@@ -79,26 +79,45 @@ EventScript_AccessTimeChanger::
 	playse SE_PC_LOGIN
 	message EventScript_AccessTimeChanger_Text_0
 	waitmessage
-	dynmultipush EventScript_AccessTimeChanger_Text_1, 0
-	dynmultipush EventScript_AccessTimeChanger_Text_2, 1
-	dynmultipush EventScript_AccessTimeChanger_Text_3, 2
-	dynmultipush EventScript_AccessTimeChanger_Text_4, 3
+	dynmultipush EventScript_AccessTimeChanger_Text_1, 1
+	dynmultipush EventScript_AccessTimeChanger_Text_2, 2
+	dynmultipush EventScript_AccessTimeChanger_Text_3, 3
+	dynmultipush EventScript_AccessTimeChanger_Text_4, 4
 	dynmultipush EventScript_AccessTimeChanger_Text_5, 127
-	dynmultistack 0, 0, FALSE, 4, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE
-	compare VAR_RESULT, 127
+	dynmultistack 0, 0, FALSE, 5, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE
+	compare VAR_RESULT, 1
 	goto_if_eq EventScript_AccessTimeChanger_2
+	compare VAR_RESULT, 2
+	goto_if_eq EventScript_AccessTimeChanger_3
+	compare VAR_RESULT, 3
+	goto_if_eq EventScript_AccessTimeChanger_4
+	compare VAR_RESULT, 4
+	goto_if_eq EventScript_AccessTimeChanger_5
+	compare VAR_RESULT, 127
+	goto_if_eq EventScript_AccessTimeChanger_6
+EventScript_AccessTimeChanger_1:
 	closemessage
-	settimeofday VAR_RESULT
 	release
 	end
 
 EventScript_AccessTimeChanger_2:
+	callnative FakeRtc_ManuallySetTimeDay
+	goto EventScript_AccessTimeChanger_1
+
+EventScript_AccessTimeChanger_3:
+	callnative FakeRtc_ManuallySetTimeNight
+	goto EventScript_AccessTimeChanger_1
+
+EventScript_AccessTimeChanger_4:
+	callnative FakeRtc_ManuallySetTimeDusk
+	goto EventScript_AccessTimeChanger_1
+
+EventScript_AccessTimeChanger_5:
+	callnative RtcReset
+	goto EventScript_AccessTimeChanger_1
+
+EventScript_AccessTimeChanger_6:
 	return
-
-
-TimeDayChange::
-	setvar VAR_TIME_CHANGE, 1
-	end
 
 
 EventScript_AccessTimeChanger_Text_0:
@@ -106,16 +125,16 @@ EventScript_AccessTimeChanger_Text_0:
 	.string "change too?$"
 
 EventScript_AccessTimeChanger_Text_1:
-	.string "Morning$"
-
-EventScript_AccessTimeChanger_Text_2:
 	.string "Day$"
 
+EventScript_AccessTimeChanger_Text_2:
+	.string "Night$"
+
 EventScript_AccessTimeChanger_Text_3:
-	.string "Evening$"
+	.string "Dusk$"
 
 EventScript_AccessTimeChanger_Text_4:
-	.string "Night$"
+	.string "Reset$"
 
 EventScript_AccessTimeChanger_Text_5:
 	.string "Cancel$"

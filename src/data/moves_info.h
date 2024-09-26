@@ -20383,12 +20383,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .battleAnimScript = Move_ELECTRO_SHOT,
     },
 
-    [MOVE_TERA_STARSTORM] =
+    [MOVE_STELLAR_STARSTORM] =
     {
-        .name = HANDLE_EXPANDED_MOVE_NAME("TeraStarstrm", "Tera Starstorm"),
+        .name = HANDLE_EXPANDED_MOVE_NAME("StelrStarstrm", "Stellar Starstorm"),
         .description = COMPOUND_STRING(
-            "Damages all opponents if user is\n"
-            "Stellar form Terapagos."),
+            "Damages all opponents."),
         .effect = EFFECT_TERA_STARSTORM,
         .power = 120,
         .type = TYPE_STELLAR,

@@ -79,11 +79,53 @@ void FakeRtc_ManuallySetTime(u32 hour, u32 minute, u32 second)
     FakeRtc_AdvanceTimeBy(diff.hours, diff.minutes, diff.seconds);
 }
 
+void FakeRtc_ManuallySetTimeDay(u32 hour, u32 minute, u32 second)
+{
+    struct Time diff, target;
+    RtcCalcLocalTime();
+
+    target.hours = 12;
+    target.minutes = 0;
+    target.seconds = 0;
+    target.days = gLocalTime.days;
+
+    CalcTimeDifference(&diff, &gLocalTime, &target);
+    FakeRtc_AdvanceTimeBy(diff.hours, diff.minutes, diff.seconds);
+}
+
+void FakeRtc_ManuallySetTimeNight(u32 hour, u32 minute, u32 second)
+{
+    struct Time diff, target;
+    RtcCalcLocalTime();
+
+    target.hours = 24;
+    target.minutes = 0;
+    target.seconds = 0;
+    target.days = gLocalTime.days;
+
+    CalcTimeDifference(&diff, &gLocalTime, &target);
+    FakeRtc_AdvanceTimeBy(diff.hours, diff.minutes, diff.seconds);
+}
+
+void FakeRtc_ManuallySetTimeDusk(u32 hour, u32 minute, u32 second)
+{
+    struct Time diff, target;
+    RtcCalcLocalTime();
+
+    target.hours = 18;
+    target.minutes = 0;
+    target.seconds = 0;
+    target.days = gLocalTime.days;
+
+    CalcTimeDifference(&diff, &gLocalTime, &target);
+    FakeRtc_AdvanceTimeBy(diff.hours, diff.minutes, diff.seconds);
+}
+
 u32 FakeRtc_GetSecondsRatio(void)
 {
     return (OW_ALTERED_TIME_RATIO == GEN_8_PLA) ? 60 :
            (OW_ALTERED_TIME_RATIO == GEN_9)     ? 20 :
-                                                  1;
+                                                   1;
 }
 
 STATIC_ASSERT((OW_FLAG_PAUSE_TIME == 0 || OW_USE_FAKE_RTC == TRUE), FakeRtcMustBeTrueToPauseTime);
