@@ -4118,6 +4118,12 @@ static void ChooseStatBoostAnimation(u32 battler)
 #undef ANIM_STAT_ACC
 #undef ANIM_STAT_EVASION
 
+static const u32 BallItems[] = 
+{
+    ITEM_LIFE_ORB,
+    ITEM_LIGHT_BALL
+};
+
 u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 moveArg)
 {
     u32 effect = 0;
@@ -4125,6 +4131,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     u32 side;
     u32 i, j;
     u32 partner;
+    u32 HeldItem = gBattleMons[battler].item;
     struct Pokemon *mon;
 
     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
@@ -4749,6 +4756,19 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 SET_STATCHANGER(STAT_ATK, 1, TRUE);
                 BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivates);
                 effect++;
+            }
+            break;
+        case ABILITY_BALL_FETCH:
+            if (!gSpecialStatuses[battler].switchInAbilityDone){
+                for (i = 0; i < ARRAY_COUNT(BallItems); i++){
+                    if (HeldItem == BallItems[i]){
+                        gBattlerAttacker = battler;
+                        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                        BattleScriptPushCursor();
+                        BattleScriptPushCursorAndCallback(BattleScript_BallFetch);
+                        effect++;
+                    }
+                }
             }
             break;
         case ABILITY_SUPERSWEET_SYRUP:
