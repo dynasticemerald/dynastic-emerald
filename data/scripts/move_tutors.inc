@@ -363,7 +363,7 @@ Defog_Tutor::
 PowerUpMoves_Tutor::
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2, PowerUpMoves_Tutor_Text_3, PowerUpMoves_Tutor_Text_4, PowerUpMoves_Tutor_Text_5
+	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2, PowerUpMoves_Tutor_Text_3, PowerUpMoves_Tutor_Text_4, PowerUpMoves_Tutor_Text_5
 	switch VAR_RESULT
 	case 0, PowerUpMoves_Tutor_2
 	case 1, PowerUpMoves_Tutor_3
@@ -419,7 +419,7 @@ PowerUpMoves_Tutor_7:
 KnockoffPursuit_Tutor::
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, KnockoffPursuit_Tutor_Text_0, KnockoffPursuit_Tutor_Text_1
+	dynmultichoice 0, 0, FALSE, 2, 0, DYN_MULTICHOICE_CB_NONE, KnockoffPursuit_Tutor_Text_0, KnockoffPursuit_Tutor_Text_1
 	switch VAR_RESULT
 	case 0, KnockoffPursuit_Tutor_2
 	case 1, KnockoffPursuit_Tutor_3
@@ -443,7 +443,7 @@ KnockoffPursuit_Tutor_3:
 ElementalFangs_Tutor::
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2
+	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2
 	switch VAR_RESULT
 	case 0, ElementalFangs_Tutor_2
 	case 1, ElementalFangs_Tutor_3
@@ -468,6 +468,66 @@ ElementalFangs_Tutor_4:
 	setvar VAR_0x8005, MOVE_FIRE_FANG
 	special ChooseMonForMoveTutor
 	waitstate
+	release
+	end
+
+
+BugBite_Tutor::
+	lock
+	faceplayer
+	msgbox BugBite_Tutor_Text_0, MSGBOX_DEFAULT
+	checkitem ITEM_ORAN_BERRY, 1
+	compare VAR_RESULT, 0
+	goto_if_eq BugBite_Tutor_1
+	msgbox BugBite_Tutor_Text_2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq BugBite_Tutor_4
+	msgbox BugBite_Tutor_Text_4, MSGBOX_DEFAULT
+	dynmultichoice 0, 0, FALSE, 2, 0, DYN_MULTICHOICE_CB_NONE, BugBite_Tutor_Text_5, BugBite_Tutor_Text_6
+	switch VAR_RESULT
+	case 0, BugBite_Tutor_8
+	case 1, BugBite_Tutor_9
+	return
+
+BugBite_Tutor_1:
+	msgbox BugBite_Tutor_Text_1, MSGBOX_DEFAULT
+	release
+	end
+
+BugBite_Tutor_4:
+	msgbox BugBite_Tutor_Text_3, MSGBOX_YESNO
+	release
+	end
+
+BugBite_Tutor_8:
+	setvar VAR_0x8005, MOVE_BUG_BITE
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq BugBite_Tutor_10
+	removeitem ITEM_ORAN_BERRY, 1
+	msgbox BugBite_Tutor_Text_8, MSGBOX_DEFAULT
+	release
+	end
+
+BugBite_Tutor_9:
+	setvar VAR_0x8005, MOVE_SILVER_WIND
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq BugBite_Tutor_13
+	removeitem ITEM_ORAN_BERRY, 1
+	msgbox BugBite_Tutor_Text_8, MSGBOX_DEFAULT
+	release
+	end
+
+BugBite_Tutor_10:
+	msgbox BugBite_Tutor_Text_7, MSGBOX_DEFAULT
+	release
+	end
+
+BugBite_Tutor_13:
+	msgbox BugBite_Tutor_Text_7, MSGBOX_DEFAULT
 	release
 	end
 
@@ -546,3 +606,41 @@ KnockoffPursuit_Tutor_Text_0:
 
 KnockoffPursuit_Tutor_Text_1:
 	.string "Pursuit$"
+
+BugBite_Tutor_Text_0:
+	.string "Hello! My Bug type Pokémon LOVE Oran\n"
+	.string "Berries! If you give me one, I can teach\l"
+	.string "Bug Bite or Silver Wind to one of your\l"
+	.string "Pokémon.$"
+
+BugBite_Tutor_Text_1:
+	.string "You don't carry oran berries?\n"
+	.string "And you call Yourself a Pokémon Trainer.\l"
+	.string "mphm.$"
+
+BugBite_Tutor_Text_2:
+	.string "Oh! An Oran Berry! I can teach Bug Bite\n"
+	.string "or Silver Wind in exchange for one of\l"
+	.string "those!$"
+
+BugBite_Tutor_Text_3:
+	.string "Aw, shooks my weedle was so hungry, you\n"
+	.string "monster >:($"
+
+BugBite_Tutor_Text_4:
+	.string "Great! Wich mon should i teach to one of\n"
+	.string "Your Pokémon?$"
+
+BugBite_Tutor_Text_5:
+	.string "Bug Bite$"
+
+BugBite_Tutor_Text_6:
+	.string "Silver Wind$"
+
+BugBite_Tutor_Text_7:
+	.string "Aw, shooks my Weedle is at 1 hp, you\n"
+	.string "monster >:($"
+
+BugBite_Tutor_Text_8:
+	.string "Thank you! now my weedle can be Healed\n"
+	.string "Up!$"
