@@ -291,15 +291,9 @@ script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor{
 
 		dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE, "Hidden Power", "Secret Power", "Cancel")
 		switch (var(VAR_RESULT)){
-			case 0:
-			   goto(SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower)
-			case 1:
-			   goto(SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower)
-			case 2:
-			   	msgbox("That's fine take you're time, you can\n"
-			   		   "Come back anytime!", MSGBOX_DEFAULT) //Text
-				release
-				end
+			case 0: lock faceplayer setvar (VAR_0x8005, MOVE_HIDDEN_POWER) special (ChooseMonForMoveTutor) waitstate if(var(VAR_RESULT) == 0) { return } goto (HiddenTutor_EventScript_HiddenSecretPowerTaught)
+			case 1: lock faceplayer setvar (VAR_0x8005, MOVE_SECRET_POWER) special (ChooseMonForMoveTutor) waitstate if(var(VAR_RESULT) == 0) { return } goto (HiddenTutor_EventScript_HiddenSecretPowerTaught)
+			case 2: msgbox("That's fine take you're time, you can\nCome back anytime!", MSGBOX_DEFAULT) release end
 		}
 	}
 	elif(var(VAR_RESULT) == NO){
@@ -311,24 +305,6 @@ script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor{
 
 	release
 	end
-}
-
-script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower{
-	lock
-	faceplayer
-	setvar (VAR_0x8005, MOVE_HIDDEN_POWER)
-	special (ChooseMonForMoveTutor) waitstate
-	if(var(VAR_RESULT) == 0) { return }
-	goto (HiddenTutor_EventScript_HiddenSecretPowerTaught)
-}
-
-script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower{
-	lock
-	faceplayer
-	setvar (VAR_0x8005, MOVE_SECRET_POWER)
-	special (ChooseMonForMoveTutor) waitstate
-	if(var(VAR_RESULT) == 0) { return }
-	goto (HiddenTutor_EventScript_HiddenSecretPowerTaught)
 }
 
 script HiddenTutor_EventScript_HiddenSecretPowerTaught{
@@ -382,7 +358,7 @@ script ElementalFangs_Tutor{
 	}
 }
 
-script BugBite_Tutor{
+script BugMoves_Tutor{
 	lock
 	faceplayer
 	msgbox(format("Hello! My Bug type Pokémon LOVE Oran Berries! If you give me one, I can teach some Bug-Type moves to one of your Pokémon."), MSGBOX_DEFAULT)
@@ -395,7 +371,7 @@ script BugBite_Tutor{
 	else{
 		msgbox(format("Oh! An Oran Berry! I can teach a good Number of Bug-Type moves in exchange for one of those!"), MSGBOX_YESNO)
 		if(var(VAR_RESULT) == NO){
-			msgbox(format("Aw, shooks my weedle was so hungry, you monster >:("), MSGBOX_YESNO)
+			msgbox(format("Aw, shooks my weedle was so hungry, you monster >:("), MSGBOX_DEFAULT)
 			release
 			end
 		}

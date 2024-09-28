@@ -835,7 +835,7 @@ extern const u8 Move_MATCHA_GOTCHA[];
 extern const u8 Move_SYRUP_BOMB[];
 extern const u8 Move_IVY_CUDGEL[];
 extern const u8 Move_ELECTRO_SHOT[];
-extern const u8 Move_TERA_STARSTORM[];
+extern const u8 Move_STELLAR_STARSTORM[];
 extern const u8 Move_FICKLE_BEAM[];
 extern const u8 Move_BURNING_BULWARK[];
 extern const u8 Move_THUNDERCLAP[];

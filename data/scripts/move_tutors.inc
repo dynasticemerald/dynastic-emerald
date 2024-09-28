@@ -293,16 +293,30 @@ SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_2:
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_3:
-	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_6, MSGBOX_DEFAULT
+	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_7, MSGBOX_DEFAULT
 	release
 	end
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_7:
-	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower
+	lock
+	faceplayer
+	setvar VAR_0x8005, MOVE_HIDDEN_POWER
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, 0
+	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_11
+	goto HiddenTutor_EventScript_HiddenSecretPowerTaught
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_8:
-	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower
+	lock
+	faceplayer
+	setvar VAR_0x8005, MOVE_SECRET_POWER
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, 0
+	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_14
+	goto HiddenTutor_EventScript_HiddenSecretPowerTaught
 	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_9:
@@ -310,34 +324,10 @@ SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_9:
 	release
 	end
 
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower::
-	lock
-	faceplayer
-	setvar VAR_0x8005, MOVE_HIDDEN_POWER
-	special ChooseMonForMoveTutor
-	waitstate
-	compare VAR_RESULT, 0
-	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower_2
-	goto HiddenTutor_EventScript_HiddenSecretPowerTaught
+SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_11:
 	return
 
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower_2:
-	return
-
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower::
-	lock
-	faceplayer
-	setvar VAR_0x8005, MOVE_SECRET_POWER
-	special ChooseMonForMoveTutor
-	waitstate
-	compare VAR_RESULT, 0
-	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower_2
-	goto HiddenTutor_EventScript_HiddenSecretPowerTaught
-	return
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower_2:
+SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_14:
 	return
 
 
@@ -363,7 +353,7 @@ Defog_Tutor::
 PowerUpMoves_Tutor::
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2, PowerUpMoves_Tutor_Text_3, PowerUpMoves_Tutor_Text_4, PowerUpMoves_Tutor_Text_5
+	dynmultichoice 0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2, PowerUpMoves_Tutor_Text_3, PowerUpMoves_Tutor_Text_4, PowerUpMoves_Tutor_Text_5
 	switch VAR_RESULT
 	case 0, PowerUpMoves_Tutor_2
 	case 1, PowerUpMoves_Tutor_3
@@ -443,7 +433,7 @@ KnockoffPursuit_Tutor_3:
 ElementalFangs_Tutor::
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2
+	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, ElementalFangs_Tutor_Text_0, ElementalFangs_Tutor_Text_1, ElementalFangs_Tutor_Text_2
 	switch VAR_RESULT
 	case 0, ElementalFangs_Tutor_2
 	case 1, ElementalFangs_Tutor_3
@@ -472,62 +462,96 @@ ElementalFangs_Tutor_4:
 	end
 
 
-BugBite_Tutor::
+BugMoves_Tutor::
 	lock
 	faceplayer
-	msgbox BugBite_Tutor_Text_0, MSGBOX_DEFAULT
+	msgbox BugMoves_Tutor_Text_0, MSGBOX_DEFAULT
 	checkitem ITEM_ORAN_BERRY, 1
 	compare VAR_RESULT, 0
-	goto_if_eq BugBite_Tutor_1
-	msgbox BugBite_Tutor_Text_2, MSGBOX_YESNO
+	goto_if_eq BugMoves_Tutor_1
+	msgbox BugMoves_Tutor_Text_2, MSGBOX_YESNO
 	compare VAR_RESULT, NO
-	goto_if_eq BugBite_Tutor_4
-	msgbox BugBite_Tutor_Text_4, MSGBOX_DEFAULT
-	dynmultichoice 0, 0, FALSE, 2, 0, DYN_MULTICHOICE_CB_NONE, BugBite_Tutor_Text_5, BugBite_Tutor_Text_6
+	goto_if_eq BugMoves_Tutor_4
+	msgbox BugMoves_Tutor_Text_4, MSGBOX_DEFAULT
+	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, BugMoves_Tutor_Text_5, BugMoves_Tutor_Text_6, BugMoves_Tutor_Text_7, BugMoves_Tutor_Text_8
 	switch VAR_RESULT
-	case 0, BugBite_Tutor_8
-	case 1, BugBite_Tutor_9
+	case 0, BugMoves_Tutor_8
+	case 1, BugMoves_Tutor_9
+	case 2, BugMoves_Tutor_10
+	case 3, BugMoves_Tutor_11
 	return
 
-BugBite_Tutor_1:
-	msgbox BugBite_Tutor_Text_1, MSGBOX_DEFAULT
+BugMoves_Tutor_1:
+	msgbox BugMoves_Tutor_Text_1, MSGBOX_DEFAULT
 	release
 	end
 
-BugBite_Tutor_4:
-	msgbox BugBite_Tutor_Text_3, MSGBOX_YESNO
+BugMoves_Tutor_4:
+	msgbox BugMoves_Tutor_Text_3, MSGBOX_DEFAULT
 	release
 	end
 
-BugBite_Tutor_8:
+BugMoves_Tutor_8:
 	setvar VAR_0x8005, MOVE_BUG_BITE
 	special ChooseMonForMoveTutor
 	waitstate
 	compare VAR_RESULT, MULTI_B_PRESSED
-	goto_if_eq BugBite_Tutor_10
+	goto_if_eq BugMoves_Tutor_12
 	removeitem ITEM_ORAN_BERRY, 1
-	msgbox BugBite_Tutor_Text_8, MSGBOX_DEFAULT
+	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
 	release
 	end
 
-BugBite_Tutor_9:
+BugMoves_Tutor_9:
 	setvar VAR_0x8005, MOVE_SILVER_WIND
 	special ChooseMonForMoveTutor
 	waitstate
 	compare VAR_RESULT, MULTI_B_PRESSED
-	goto_if_eq BugBite_Tutor_13
+	goto_if_eq BugMoves_Tutor_15
 	removeitem ITEM_ORAN_BERRY, 1
-	msgbox BugBite_Tutor_Text_8, MSGBOX_DEFAULT
+	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
 	release
 	end
 
-BugBite_Tutor_10:
-	msgbox BugBite_Tutor_Text_7, MSGBOX_DEFAULT
+BugMoves_Tutor_10:
+	setvar VAR_0x8005, MOVE_POUNCE
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq BugMoves_Tutor_18
+	removeitem ITEM_ORAN_BERRY, 1
+	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
 	release
 	end
 
-BugBite_Tutor_13:
-	msgbox BugBite_Tutor_Text_7, MSGBOX_DEFAULT
+BugMoves_Tutor_11:
+	setvar VAR_0x8005, MOVE_STRUGGLE_BUG
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq BugMoves_Tutor_21
+	removeitem ITEM_ORAN_BERRY, 1
+	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
+	release
+	end
+
+BugMoves_Tutor_12:
+	msgbox BugMoves_Tutor_Text_9, MSGBOX_DEFAULT
+	release
+	end
+
+BugMoves_Tutor_15:
+	msgbox BugMoves_Tutor_Text_9, MSGBOX_DEFAULT
+	release
+	end
+
+BugMoves_Tutor_18:
+	msgbox BugMoves_Tutor_Text_9, MSGBOX_DEFAULT
+	release
+	end
+
+BugMoves_Tutor_21:
+	msgbox BugMoves_Tutor_Text_9, MSGBOX_DEFAULT
 	release
 	end
 
@@ -563,6 +587,9 @@ SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_5:
 	.string "Cancel$"
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_6:
+	.string "That's fine take you're time, you can\nCome back anytime!$"
+
+SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_7:
 	.string "That's fine take you're time, you can\n"
 	.string "Come back anytime!$"
 
@@ -607,40 +634,55 @@ KnockoffPursuit_Tutor_Text_0:
 KnockoffPursuit_Tutor_Text_1:
 	.string "Pursuit$"
 
-BugBite_Tutor_Text_0:
+ElementalFangs_Tutor_Text_0:
+	.string "Thunder Fang$"
+
+ElementalFangs_Tutor_Text_1:
+	.string "Ice Fang$"
+
+ElementalFangs_Tutor_Text_2:
+	.string "Fire Fang$"
+
+BugMoves_Tutor_Text_0:
 	.string "Hello! My Bug type Pokémon LOVE Oran\n"
 	.string "Berries! If you give me one, I can teach\l"
-	.string "Bug Bite or Silver Wind to one of your\l"
+	.string "some Bug-Type moves to one of your\l"
 	.string "Pokémon.$"
 
-BugBite_Tutor_Text_1:
+BugMoves_Tutor_Text_1:
 	.string "You don't carry oran berries?\n"
 	.string "And you call Yourself a Pokémon Trainer.\l"
 	.string "mphm.$"
 
-BugBite_Tutor_Text_2:
-	.string "Oh! An Oran Berry! I can teach Bug Bite\n"
-	.string "or Silver Wind in exchange for one of\l"
-	.string "those!$"
+BugMoves_Tutor_Text_2:
+	.string "Oh! An Oran Berry! I can teach a good\n"
+	.string "Number of Bug-Type moves in exchange\l"
+	.string "for one of those!$"
 
-BugBite_Tutor_Text_3:
+BugMoves_Tutor_Text_3:
 	.string "Aw, shooks my weedle was so hungry, you\n"
 	.string "monster >:($"
 
-BugBite_Tutor_Text_4:
-	.string "Great! Wich mon should i teach to one of\n"
-	.string "Your Pokémon?$"
+BugMoves_Tutor_Text_4:
+	.string "Great! Wich move should i teach to one\n"
+	.string "of Your Pokémon?$"
 
-BugBite_Tutor_Text_5:
+BugMoves_Tutor_Text_5:
 	.string "Bug Bite$"
 
-BugBite_Tutor_Text_6:
+BugMoves_Tutor_Text_6:
 	.string "Silver Wind$"
 
-BugBite_Tutor_Text_7:
+BugMoves_Tutor_Text_7:
+	.string "Pounce$"
+
+BugMoves_Tutor_Text_8:
+	.string "Struggle Bug$"
+
+BugMoves_Tutor_Text_9:
 	.string "Aw, shooks my Weedle is at 1 hp, you\n"
 	.string "monster >:($"
 
-BugBite_Tutor_Text_8:
+BugMoves_Tutor_Text_10:
 	.string "Thank you! now my weedle can be Healed\n"
 	.string "Up!$"

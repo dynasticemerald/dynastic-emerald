@@ -1638,6 +1638,7 @@ static const u16 sTogepiEggMoveLearnset[] = {
     MOVE_SECRET_POWER,
     MOVE_STORED_POWER,
     MOVE_MORNING_SUN,
+    MOVE_EGG_BOMB,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_TOGEPI

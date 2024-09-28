@@ -1399,20 +1399,14 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     [SPECIES_TOGEKISS] =
     {
         .baseHP        = 85,
-        .baseAttack    = 50,
+        .baseAttack    = 50 - 10,
         .baseDefense   = 95,
-        .baseSpeed     = 80,
+        .baseSpeed     = 80 + 10,
         .baseSpAttack  = 120,
         .baseSpDefense = 115,
         .types = MON_TYPES(TOGEPI_FAMILY_TYPE, TYPE_FLYING),
         .catchRate = 30,
-    #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 273,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_5
-        .expYield = 245,
-    #else
-        .expYield = 220,
-    #endif
         .evYield_SpAttack = 2,
         .evYield_SpDefense = 1,
         .genderRatio = PERCENT_FEMALE(12.5),
