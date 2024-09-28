@@ -1,4 +1,4 @@
-
+raw`
 SlateportCity_PokemonFanClub_EventScript_SwaggerTutor::
 	lock
 	faceplayer
@@ -269,280 +269,146 @@ MoveTutor_EventScript_OpenPartyMenu::
 MoveTutor_EventScript_CanOnlyBeLearnedOnce::
 	msgbox MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO
 	return
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor::
+`
+script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor{
 	lock
 	faceplayer
-	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_0, MSGBOX_DEFAULT
-	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_2
-	compare VAR_RESULT, NO
-	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_3
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1:
+
+	msgbox(format("Every Pokémon can learn one of these two coverage moves. These moves are called Hidden Power and Secret Power. While Hidden Power is a Special Move; Secret Power is a Physical Move."), MSGBOX_DEFAULT) //Text
+	
+	msgbox("... ....\n"
+		   "... ....\p"
+		   "Oh me?\l"
+		   "I am the tutor who tutors these moves\l"
+		   "to Pokémon trainers have!\p"
+		   "would you like to teach one of these\n"
+		   "moves to you're Pokémon?", MSGBOX_YESNO) //Text
+
+	if(var(VAR_RESULT) == YES){
+		msgbox("Well then Trainer wich Pokémon do you\n"
+			   "want to teach one of these moves or\n"
+			   "both, whatever you want!", MSGBOX_DEFAULT) //Text
+
+		dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE, "Hidden Power", "Secret Power", "Cancel")
+		switch (var(VAR_RESULT)){
+			case 0:
+			   goto(SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower)
+			case 1:
+			   goto(SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower)
+			case 2:
+			   	msgbox("That's fine take you're time, you can\n"
+			   		   "Come back anytime!", MSGBOX_DEFAULT) //Text
+				release
+				end
+		}
+	}
+	elif(var(VAR_RESULT) == NO){
+		msgbox("That's fine take you're time, you can\n"
+			   "Come back anytime!", MSGBOX_DEFAULT) //Text
+		release
+		end
+	}
+
 	release
 	end
+}
 
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_2:
-	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_2, MSGBOX_DEFAULT
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_3, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_4, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_5
-	switch VAR_RESULT
-	case 0, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_7
-	case 1, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_8
-	case 2, SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_9
-	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_3:
-	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_6, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_7:
-	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower
-	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_8:
-	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower
-	goto SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_1
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_9:
-	msgbox SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_6, MSGBOX_DEFAULT
-	release
-	end
-
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower::
+script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower{
 	lock
 	faceplayer
-	setvar VAR_0x8005, MOVE_HIDDEN_POWER
-	special ChooseMonForMoveTutor
-	waitstate
-	compare VAR_RESULT, 0
-	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower_2
-	goto HiddenTutor_EventScript_HiddenSecretPowerTaught
-	return
+	setvar (VAR_0x8005, MOVE_HIDDEN_POWER)
+	special (ChooseMonForMoveTutor) waitstate
+	if(var(VAR_RESULT) == 0) { return }
+	goto (HiddenTutor_EventScript_HiddenSecretPowerTaught)
+}
 
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_HiddenPower_2:
-	return
-
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower::
+script SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower{
 	lock
 	faceplayer
-	setvar VAR_0x8005, MOVE_SECRET_POWER
-	special ChooseMonForMoveTutor
-	waitstate
-	compare VAR_RESULT, 0
-	goto_if_eq SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower_2
-	goto HiddenTutor_EventScript_HiddenSecretPowerTaught
-	return
+	setvar (VAR_0x8005, MOVE_SECRET_POWER)
+	special (ChooseMonForMoveTutor) waitstate
+	if(var(VAR_RESULT) == 0) { return }
+	goto (HiddenTutor_EventScript_HiddenSecretPowerTaught)
+}
 
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_SecretPower_2:
-	return
+script HiddenTutor_EventScript_HiddenSecretPowerTaught{
+    lock
+	faceplayer
+	msgbox("Thank you for this amazing experience\n"
+		   "Hope to see you again soon!", MSGBOX_DEFAULT) //Text
+    release
+	end
+}
 
-
-HiddenTutor_EventScript_HiddenSecretPowerTaught::
+script Defog_Tutor{
 	lock
 	faceplayer
-	msgbox HiddenTutor_EventScript_HiddenSecretPowerTaught_Text_0, MSGBOX_DEFAULT
-	release
-	end
+	msgbox(format("Hi there :3\nI am who they call the 'Defog' Tutor i love using defog in battle against those pesky hazards.\lLike why is ceasless Edge even a thing??\pThank god for Rocky Helmet, Corviknight Am i right, Fellas?\nMy jokes haven't seen the light of day... anyways... would you like to teach one of ur Pokémon the Move Defog?"), MSGBOX_DEFAULT)
+	setvar (VAR_0x8005, MOVE_DEFOG) special (ChooseMonForMoveTutor) waitstate release end
+}
 
-
-Defog_Tutor::
+script PowerUpMoves_Tutor{
 	lock
 	faceplayer
-	msgbox Defog_Tutor_Text_0, MSGBOX_DEFAULT
-	setvar VAR_0x8005, MOVE_DEFOG
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
+	dynmultichoice(0,0,FALSE,5,0,DYN_MULTICHOICE_CB_NONE, "Flame Charge", "Trailblaze", "Power-Up Punch", "Charge Beam", "Work Up", "Hone Claws")
+	switch (var(VAR_RESULT)){
+		case 0: setvar (VAR_0x8005, MOVE_FLAME_CHARGE) special (ChooseMonForMoveTutor) waitstate release end
+		case 1: setvar (VAR_0x8005, MOVE_TRAILBLAZE) special (ChooseMonForMoveTutor) waitstate release end
+		case 2: setvar (VAR_0x8005, MOVE_POWER_UP_PUNCH) special (ChooseMonForMoveTutor) waitstate release end
+		case 3: setvar (VAR_0x8005, MOVE_CHARGE_BEAM) special (ChooseMonForMoveTutor) waitstate release end
+		case 4: setvar (VAR_0x8005, MOVE_WORK_UP) special (ChooseMonForMoveTutor) waitstate release end
+		case 5: setvar (VAR_0x8005, MOVE_HONE_CLAWS) special (ChooseMonForMoveTutor) waitstate release end
+	}
+}
 
-
-PowerUpMoves_Tutor::
+script KnockoffPursuit_Tutor{
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2, PowerUpMoves_Tutor_Text_3, PowerUpMoves_Tutor_Text_4, PowerUpMoves_Tutor_Text_5
-	switch VAR_RESULT
-	case 0, PowerUpMoves_Tutor_2
-	case 1, PowerUpMoves_Tutor_3
-	case 2, PowerUpMoves_Tutor_4
-	case 3, PowerUpMoves_Tutor_5
-	case 4, PowerUpMoves_Tutor_6
-	case 5, PowerUpMoves_Tutor_7
-	return
+	dynmultichoice(0,0,FALSE,2,0,DYN_MULTICHOICE_CB_NONE, "Knock Off", "Pursuit")
+	switch (var(VAR_RESULT)){
+		case 0: setvar (VAR_0x8005, MOVE_KNOCK_OFF) special (ChooseMonForMoveTutor) waitstate release end
+		case 1: setvar (VAR_0x8005, MOVE_PURSUIT) special (ChooseMonForMoveTutor) waitstate release end
+	}
+}
 
-PowerUpMoves_Tutor_2:
-	setvar VAR_0x8005, MOVE_FLAME_CHARGE
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-PowerUpMoves_Tutor_3:
-	setvar VAR_0x8005, MOVE_TRAILBLAZE
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-PowerUpMoves_Tutor_4:
-	setvar VAR_0x8005, MOVE_POWER_UP_PUNCH
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-PowerUpMoves_Tutor_5:
-	setvar VAR_0x8005, MOVE_CHARGE_BEAM
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-PowerUpMoves_Tutor_6:
-	setvar VAR_0x8005, MOVE_WORK_UP
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-PowerUpMoves_Tutor_7:
-	setvar VAR_0x8005, MOVE_HONE_CLAWS
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-
-KnockoffPursuit_Tutor::
+script ElementalFangs_Tutor{
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, KnockoffPursuit_Tutor_Text_0, KnockoffPursuit_Tutor_Text_1
-	switch VAR_RESULT
-	case 0, KnockoffPursuit_Tutor_2
-	case 1, KnockoffPursuit_Tutor_3
-	return
+	dynmultichoice(0,0,FALSE,3,0,DYN_MULTICHOICE_CB_NONE, "Flame Charge", "Trailblaze", "Power-Up Punch")
+	switch (var(VAR_RESULT)){
+		case 0: setvar (VAR_0x8005, MOVE_THUNDER_FANG) special (ChooseMonForMoveTutor) waitstate release end
+		case 1: setvar (VAR_0x8005, MOVE_ICE_FANG) special (ChooseMonForMoveTutor) waitstate release end
+		case 2: setvar (VAR_0x8005, MOVE_FIRE_FANG) special (ChooseMonForMoveTutor) waitstate release end
+	}
+}
 
-KnockoffPursuit_Tutor_2:
-	setvar VAR_0x8005, MOVE_KNOCK_OFF
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-KnockoffPursuit_Tutor_3:
-	setvar VAR_0x8005, MOVE_PURSUIT
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-
-ElementalFangs_Tutor::
+script BugBite_Tutor{
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2
-	switch VAR_RESULT
-	case 0, ElementalFangs_Tutor_2
-	case 1, ElementalFangs_Tutor_3
-	case 2, ElementalFangs_Tutor_4
-	return
-
-ElementalFangs_Tutor_2:
-	setvar VAR_0x8005, MOVE_THUNDER_FANG
-	special ChooseMonForMoveTutor
-	waitstate
-	release
+	msgbox(format("Hello! My Bug type Pokémon LOVE Oran Berries! If you give me one, I can teach Bug Bite to one of your Pokémon."), MSGBOX_DEFAULT)
+	checkitem(ITEM_ORAN_BERRY, 1)
+	if(var(VAR_RESULT) == 0){
+		msgbox(format("You don't carry oran berries?\nAnd you call Yourself a Pokémon Trainer. mphm."), MSGBOX_DEFAULT)
+		release
+		end
+	}
+	else{
+		msgbox(format("Oh! An Oran Berry! I can teach Bug Bite in exchange for one of those!"), MSGBOX_YESNO)
+		if(var(VAR_RESULT) == NO){
+			msgbox(format("Aw, shooks my weedle was so hungry, you monster >:("), MSGBOX_YESNO)
+			release
+			end
+		}
+		else{
+		msgbox(format("Great! Who should I teach it to?"), MSGBOX_DEFAULT)
+		setvar (VAR_0x8005, MOVE_BUG_BITE) special (ChooseMonForMoveTutor) waitstate
+		removeitem(ITEM_ORAN_BERRY, 1)
+		msgbox(format("Thank you! now my weedle can survive the hunger!"), MSGBOX_DEFAULT)
+		release
+		end
+		}
+	}
+	//Savefail
+	release 
 	end
-
-ElementalFangs_Tutor_3:
-	setvar VAR_0x8005, MOVE_ICE_FANG
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-ElementalFangs_Tutor_4:
-	setvar VAR_0x8005, MOVE_FIRE_FANG
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_0:
-	.string "Every Pokémon can learn one of these\n"
-	.string "two coverage moves. These moves are\l"
-	.string "called Hidden Power and Secret Power.\l"
-	.string "While Hidden Power is a Special Move;\l"
-	.string "Secret Power is a Physical Move.$"
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_1:
-	.string "... ....\n"
-	.string "... ....\p"
-	.string "Oh me?\l"
-	.string "I am the tutor who tutors these moves\l"
-	.string "to Pokémon trainers have!\p"
-	.string "would you like to teach one of these\n"
-	.string "moves to you're Pokémon?$"
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_2:
-	.string "Well then Trainer wich Pokémon do you\n"
-	.string "want to teach one of these moves or\n"
-	.string "both, whatever you want!$"
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_3:
-	.string "Hidden Power$"
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_4:
-	.string "Secret Power$"
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_5:
-	.string "Cancel$"
-
-SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_6:
-	.string "That's fine take you're time, you can\n"
-	.string "Come back anytime!$"
-
-HiddenTutor_EventScript_HiddenSecretPowerTaught_Text_0:
-	.string "Thank you for this amazing experience\n"
-	.string "Hope to see you again soon!$"
-
-Defog_Tutor_Text_0:
-	.string "Hi there :3\n"
-	.string "I am who they call the 'Defog' Tutor i\l"
-	.string "love using defog in battle against\l"
-	.string "those pesky hazards.\l"
-	.string "Like why is ceasless Edge even a\l"
-	.string "thing??\p"
-	.string "Thank god for Rocky Helmet, Corviknight\n"
-	.string "Am i right, Fellas?\n"
-	.string "My jokes haven't seen the light of day...\l"
-	.string "anyways... would you like to teach one\l"
-	.string "of ur Pokémon the Move Defog?$"
-
-PowerUpMoves_Tutor_Text_0:
-	.string "Flame Charge$"
-
-PowerUpMoves_Tutor_Text_1:
-	.string "Trailblaze$"
-
-PowerUpMoves_Tutor_Text_2:
-	.string "Power-Up Punch$"
-
-PowerUpMoves_Tutor_Text_3:
-	.string "Charge Beam$"
-
-PowerUpMoves_Tutor_Text_4:
-	.string "Work Up$"
-
-PowerUpMoves_Tutor_Text_5:
-	.string "Hone Claws$"
-
-KnockoffPursuit_Tutor_Text_0:
-	.string "Knock Off$"
-
-KnockoffPursuit_Tutor_Text_1:
-	.string "Pursuit$"
+}

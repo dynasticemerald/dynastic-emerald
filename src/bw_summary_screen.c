@@ -4149,6 +4149,8 @@ static void BufferStat(u8 *dst, s8 statIndex, u32 stat, u32 strId, u32 align)
     static const u8 sTextNatureDown[] = _("{COLOR}{08}");
     static const u8 sTextNatureUp[] = _("{COLOR}{05}");
     static const u8 sTextNatureNeutral[] = _("{COLOR}{01}");
+    static const u8 sTextArrowUp[] = _("{CLEAR_TO 0x10}{UP_ARROW_2}{COLOR}{05}");
+    static const u8 sTextArrowDown[] = _("{CLEAR_TO 0x10}{DOWN_ARROW_2}{COLOR}{08}");
 
     u8 *txtPtr;
 
@@ -4170,9 +4172,9 @@ static void BufferStat(u8 *dst, s8 statIndex, u32 stat, u32 strId, u32 align)
         && gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp != gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
     {
         if (statIndex == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statUp)
-            StringAppend(txtPtr, sTextNatureUp);
+            StringAppend(txtPtr, sTextArrowUp);
         else if (statIndex == gNaturesInfo[sMonSummaryScreen->summary.mintNature].statDown)
-            StringAppend(txtPtr, sTextNatureDown);
+            StringAppend(txtPtr, sTextArrowDown);
     }
 
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
@@ -4861,15 +4863,16 @@ static void SetMonTypeIcons(void)
 static void SetMoveTypeIcons(void)
 {
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
-    u8 i, movetype;
+    u8 i;
+    u32 monoType;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            movetype = SetTypeBeforeUsingMove(summary->moves[i], 0);
-            SetTypeSpritePosAndPal(movetype, 8, 16 + (i * 28), i + SPRITE_ARR_ID_TYPE);
+            monoType = SetTypeBeforeUsingMoveSummaryScreen(summary->moves[i], mon, 0);
+            SetTypeSpritePosAndPal(monoType, 8, 16 + (i * 28), i + SPRITE_ARR_ID_TYPE);
         }
         else
             SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);

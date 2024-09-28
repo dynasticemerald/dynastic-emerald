@@ -59,7 +59,7 @@
     F(ICE_PUNCH) \
     F(THUNDER_PUNCH) \
     F(FIRE_PUNCH) \
-    F(DEFOG) \
+    F(ICE_SPINNER) \
 
 #define FOREACH_HM(F) \
     F(CUT) \

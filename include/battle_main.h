@@ -81,6 +81,7 @@ void RunBattleScriptCommands_PopCallbacksStack(void);
 void RunBattleScriptCommands(void);
 void SpecialStatusesClear(void);
 u8 SetTypeBeforeUsingMove(u32 move, u32 battlerAtk);
+u8 SetTypeBeforeUsingMoveSummaryScreen(u32 move, struct Pokemon *mon, bool8 disableRandomizer); //bool8 disableRandomizer is for Future Proofing.
 bool32 IsWildMonSmart(void);
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags);
 void ModifyPersonalityForNature(u32 *personality, u32 newNature);

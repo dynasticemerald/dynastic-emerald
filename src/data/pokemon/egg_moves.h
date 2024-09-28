@@ -1525,6 +1525,7 @@ static const u16 sTotodileEggMoveLearnset[] = {
     MOVE_BLOCK,
     MOVE_WATER_PULSE,
     MOVE_FLATTER,
+    MOVE_TRIPLE_DIVE,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_TOTODILE

@@ -1302,7 +1302,8 @@ static u8 Debug_CheckToggleFlags(u8 id)
                 FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER);
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL:
-            result = FlagGet(FLAG_BADGE01_GET) &&
+            result = FlagGet(FLAG_RED_1_BEATEN) &&
+                FlagGet(FLAG_BADGE01_GET) &&
                 FlagGet(FLAG_BADGE02_GET) &&
                 FlagGet(FLAG_BADGE03_GET) &&
                 FlagGet(FLAG_BADGE04_GET) &&
@@ -2858,6 +2859,7 @@ static void DebugAction_FlagsVars_ToggleBadgeFlags(u8 taskId)
     else
     {
         PlaySE(SE_PC_LOGIN);
+        FlagSet(FLAG_RED_1_BEATEN);
         FlagSet(FLAG_BADGE01_GET);
         FlagSet(FLAG_BADGE02_GET);
         FlagSet(FLAG_BADGE03_GET);

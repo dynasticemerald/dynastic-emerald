@@ -9318,7 +9318,8 @@
       "MOVE_GYRO_BALL",
       "MOVE_PAIN_SPLIT",
       "MOVE_SLUDGE_WAVE",
-      "MOVE_CURSE"
+      "MOVE_CURSE",
+      "MOVE_BANEFUL_BUNKER"
     ],
     "EggMoves": [
       "MOVE_CURSE",
@@ -9326,7 +9327,8 @@
       "MOVE_SPIT_UP",
       "MOVE_SPITE",
       "MOVE_STOCKPILE",
-      "MOVE_SWALLOW"
+      "MOVE_SWALLOW",
+      "MOVE_BANEFUL_BUNKER"
     ],
     "TutorMoves": []
   },
@@ -9441,7 +9443,8 @@
       "MOVE_GYRO_BALL",
       "MOVE_PAIN_SPLIT",
       "MOVE_SLUDGE_WAVE",
-      "MOVE_CURSE"
+      "MOVE_CURSE",
+      "MOVE_BANEFUL_BUNKER"
     ],
     "EggMoves": [
       "MOVE_CURSE",
@@ -9449,7 +9452,8 @@
       "MOVE_SPIT_UP",
       "MOVE_SPITE",
       "MOVE_STOCKPILE",
-      "MOVE_SWALLOW"
+      "MOVE_SWALLOW",
+      "MOVE_BANEFUL_BUNKER"
     ],
     "TutorMoves": []
   },
@@ -13845,14 +13849,16 @@
       "MOVE_WHIRLPOOL",
       "MOVE_MUDDY_WATER",
       "MOVE_BREAKING_SWIPE",
-      "MOVE_CURSE"
+      "MOVE_CURSE",
+      "MOVE_TRIPLE_DIVE"
     ],
     "EggMoves": [
       "MOVE_COUNTER",
       "MOVE_ANCIENT_POWER",
       "MOVE_FLATTER",
       "MOVE_BLOCK",
-      "MOVE_AQUA_JET"
+      "MOVE_AQUA_JET",
+      "MOVE_TRIPLE_DIVE"
     ],
     "TutorMoves": []
   },
@@ -72148,7 +72154,8 @@
       "MOVE_ACUPRESSURE",
       "MOVE_NIGHT_SLASH",
       "MOVE_SLASH",
-      "MOVE_THRASH"
+      "MOVE_THRASH",
+      "MOVE_TRIPLE_DIVE"
     ],
     "TutorMoves": []
   },
@@ -83616,7 +83623,8 @@
     ],
     "EggMoves": [
       "MOVE_FINAL_GAMBIT",
-      "MOVE_MEMENTO"
+      "MOVE_MEMENTO",
+      "MOVE_ICE_SPINNER"
     ],
     "TutorMoves": []
   },

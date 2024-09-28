@@ -5541,7 +5541,6 @@ static const u16 sUniversalMoves[] =
     MOVE_NATURAL_GIFT,
     MOVE_RAGE,
     MOVE_RETURN,
-    MOVE_SECRET_POWER,
     MOVE_SUBSTITUTE,
     MOVE_TERA_BLAST,
     MOVE_HIDDEN_POWER,

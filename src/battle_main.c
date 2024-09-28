@@ -4744,14 +4744,17 @@ void SwapTurnOrder(u8 id1, u8 id2)
 static const u32 BallItems[] = 
 {
     ITEM_LIFE_ORB,
-    ITEM_LIGHT_BALL
+    ITEM_LIGHT_BALL,
+    ITEM_GREAT_BALL,
+    ITEM_POKE_BALL,
+    ITEM_ULTRA_BALL,
 };
 
 // For AI, so it doesn't 'cheat' by knowing player's ability
 u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
 {
     u8 i = 0;
-    u32 j = gBattleMons[battler].item;
+    u32 HeldItem = gBattleMons[battler].item;
     u32 speed = gBattleMons[battler].speed;
 
     // weather abilities
@@ -4770,13 +4773,12 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     // other abilities
     if (ability == ABILITY_BALL_FETCH){
         for (i = 0; i < ARRAY_COUNT(BallItems); i++){
-            if (j == BallItems[i]){
+            if (HeldItem == BallItems[i]){
                 speed = (speed * 150) / 100;
             }
         }
     }
-
-    if (ability == ABILITY_QUICK_FEET && gBattleMons[battler].status1 & STATUS1_ANY)
+    else if (ability == ABILITY_QUICK_FEET && gBattleMons[battler].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
     else if (ability == ABILITY_SURGE_SURFER && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed *= 2;
@@ -5850,8 +5852,7 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
 
 u8 SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
 {
-    u32 moveType, attackerAbility;
-    u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
+    u32 moveType, attackerAbility;  u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
 
     if (move == MOVE_STRUGGLE)
         return TYPE_NORMAL;
@@ -6002,6 +6003,94 @@ u8 SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     return gMovesInfo[move].type;
 }
 
+u8 SetTypeBeforeUsingMoveSummaryScreen(u32 move, struct Pokemon *mon, bool8 disableRandomizer){ //bool8 disableRandomizer is for Future Proofing.
+    u32 moveType, ateType;
+    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+    u16 holdEffect = ItemId_GetHoldEffect(item);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u8  abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
+    u16 ability = GetAbilityBySpecies(species, abilityNum);
+    u8 type1 = gSpeciesInfo[species].types[0];
+    u8 type2 = gSpeciesInfo[species].types[1];
+
+    GET_MOVE_TYPE(move, moveType);
+
+    if (move == MOVE_STRUGGLE)
+        return TYPE_NORMAL;
+
+    if (gMovesInfo[move].effect == EFFECT_HIDDEN_POWER)
+    {
+        u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV, NULL) & 1) << 0)
+                     | ((GetMonData(mon, MON_DATA_ATK_IV, NULL) & 1) << 1)
+                     | ((GetMonData(mon, MON_DATA_DEF_IV, NULL) & 1) << 2)
+                     | ((GetMonData(mon, MON_DATA_SPEED_IV, NULL) & 1) << 3)
+                     | ((GetMonData(mon, MON_DATA_SPATK_IV, NULL) & 1) << 4)
+                     | ((GetMonData(mon, MON_DATA_SPDEF_IV, NULL) & 1) << 5);
+
+        ateType = (15 * typeBits) / 63 + 1;
+        if (ateType >= TYPE_MYSTERY)
+            ateType++;
+
+        return ateType;
+    }
+    else if (gMovesInfo[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
+    {
+        if (holdEffect == gMovesInfo[move].argument)
+            return ItemId_GetSecondaryId(item);
+    }
+    else if (gMovesInfo[move].effect == EFFECT_REVELATION_DANCE)
+    {
+        if (type1 != TYPE_MYSTERY)
+            return type1;
+        else if (type2 != TYPE_MYSTERY)
+            return type2;
+    }
+    else if (gMovesInfo[move].effect == EFFECT_NATURAL_GIFT)
+    {
+        if (ItemId_GetPocket(item) == POCKET_BERRIES)
+            return gNaturalGiftTable[ITEM_TO_BERRY(item)].type;
+    }
+
+   if (gMovesInfo[move].type == TYPE_NORMAL
+             && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
+             && gMovesInfo[move].effect != EFFECT_WEATHER_BALL
+             && gMovesInfo[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+             && gMovesInfo[move].effect != EFFECT_NATURAL_GIFT
+             && (   ((ability == ABILITY_PIXILATE    && (ateType = TYPE_FAIRY))
+                 || ((ability == ABILITY_REFRIGERATE && (ateType = TYPE_ICE))
+                 || ((ability == ABILITY_AERILATE    && (ateType = TYPE_FLYING))
+                 || (((ability == ABILITY_GALVANIZE  && (ateType = TYPE_ELECTRIC))
+                                                                                )))))
+                )
+             ){
+        return ateType;
+    }
+
+    else if (move == MOVE_AURA_WHEEL && species == SPECIES_MORPEKO_HANGRY)
+        return TYPE_DARK;
+	
+    //Sand Song
+    if(ability == ABILITY_SAND_SONG){
+        if (gMovesInfo[move].soundMove)
+            return TYPE_GROUND;
+    }
+    //Normalize
+    if(ability == ABILITY_NORMALIZE){
+        if (gMovesInfo[move].type != TYPE_NORMAL
+             && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
+             && gMovesInfo[move].effect != EFFECT_WEATHER_BALL)
+        return TYPE_NORMAL;
+    }
+    //Liquid Voice
+    if(ability == ABILITY_LIQUID_VOICE){
+        if (gMovesInfo[move].soundMove)
+            return TYPE_WATER;
+    }
+
+    return gMovesInfo[move].type;
+}
+
+  
 // special to set a field's totem boost(s)
 // inputs:
 //  var8000: battler
