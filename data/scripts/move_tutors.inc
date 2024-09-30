@@ -242,7 +242,7 @@ PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTutor::
 	call MoveTutor_EventScript_CanOnlyBeLearnedOnce
 	goto_if_eq VAR_RESULT, NO, MoveTutor_EventScript_ExplosionDeclined
 	msgbox MoveTutor_Text_ExplosionWhichMon, MSGBOX_DEFAULT
-	setvar VAR_0x8005, MOVE_EXPLOSION
+	@setvar VAR_0x8005, MOVE_NONE
 	call MoveTutor_EventScript_OpenPartyMenu
 	goto_if_eq VAR_RESULT, 0, MoveTutor_EventScript_ExplosionDeclined
 	setflag FLAG_MOVE_TUTOR_TAUGHT_EXPLOSION
@@ -556,6 +556,90 @@ BugMoves_Tutor_21:
 	end
 
 
+Hazards_Tutor::
+	lock
+	faceplayer
+	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, Hazards_Tutor_Text_0, Hazards_Tutor_Text_1, Hazards_Tutor_Text_2
+	switch VAR_RESULT
+	case 0, Hazards_Tutor_2
+	case 1, Hazards_Tutor_3
+	case 2, Hazards_Tutor_4
+	case 3, Hazards_Tutor_5
+	return
+
+Hazards_Tutor_2:
+	setvar VAR_0x8005, MOVE_STEALTH_ROCK
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+Hazards_Tutor_3:
+	setvar VAR_0x8005, MOVE_SPIKES
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+Hazards_Tutor_4:
+	setvar VAR_0x8005, MOVE_STEEL_SPIKES
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+Hazards_Tutor_5:
+	setvar VAR_0x8005, MOVE_TOXIC_SPIKES
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+
+ArrayOfMoves_Tutor::
+	lock
+	faceplayer
+	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, Hazards_Tutor_Text_0, Hazards_Tutor_Text_1, Hazards_Tutor_Text_2
+	switch VAR_RESULT
+	case 0, ArrayOfMoves_Tutor_2
+	case 1, ArrayOfMoves_Tutor_3
+	case 2, ArrayOfMoves_Tutor_4
+	case 3, ArrayOfMoves_Tutor_5
+	return
+
+ArrayOfMoves_Tutor_2:
+	setvar VAR_0x8005, MOVE_MYSTICAL_FIRE
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_3:
+	setvar VAR_0x8005, MOVE_ICE_SPINNER
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_4:
+	setvar VAR_0x8005, MOVE_STEEL_SPIKES
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_5:
+	setvar VAR_0x8005, MOVE_TOXIC_SPIKES
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+
+ThisIsntATutorThisIsTooAddMovesTooMons::
+	return
+
+
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_0:
 	.string "Every Pokémon can learn one of these\n"
 	.string "two coverage moves. These moves are\l"
@@ -686,3 +770,12 @@ BugMoves_Tutor_Text_9:
 BugMoves_Tutor_Text_10:
 	.string "Thank you! now my weedle can be Healed\n"
 	.string "Up!$"
+
+Hazards_Tutor_Text_0:
+	.string "Stealth Rock$"
+
+Hazards_Tutor_Text_1:
+	.string "Spikes$"
+
+Hazards_Tutor_Text_2:
+	.string "Steel Spikes$"

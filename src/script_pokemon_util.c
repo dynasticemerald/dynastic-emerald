@@ -561,3 +561,24 @@ void Script_SetStatus1(struct ScriptContext *ctx)
         SetMonData(&gPlayerParty[slot], MON_DATA_STATUS, &status1);
     }
 }
+
+static const u32 WonderEggList[] = 
+{
+    SPECIES_MUDKIP,
+    SPECIES_TREECKO,
+    SPECIES_TORCHIC,
+};
+
+u8 Script_GiveWonderEgg(struct ScriptContext *ctx){
+    u32 species = VarGet(ScriptReadHalfword(ctx));
+    u32 isEgg   = VarGet(ScriptReadHalfword(ctx));
+    struct Pokemon mon;
+    
+    for(species = SPECIES_NONE; species < ARRAY_COUNT(WonderEggList); species++){
+        CreateEgg(&mon, species, FALSE);
+        isEgg = TRUE;
+        SetMonData(&mon, MON_DATA_IS_EGG, &isEgg);
+    }
+
+    return GiveMonToPlayer(&mon);
+}

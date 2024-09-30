@@ -1,4 +1,5 @@
 #ifdef __INTELLISENSE__
+#include "constants/species.h"
 const struct SpeciesInfo gSpeciesInfoGen1[] =
 {
 #endif

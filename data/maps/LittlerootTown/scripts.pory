@@ -1068,3 +1068,23 @@ script LittlerootTown_EventScript_NationalDexUpgrade{
 movement MoveUpBirchNationalDex{
 	walk_up *4
 }
+
+//KAIDO: Make this at 29/09/2024 or 03/10/2024.
+script WonderEgg_Test{
+}
+
+script StarterEggs_Fire{
+	lock
+	faceplayer
+	if(checkitem(ITEM_RED_SHARD)){
+		randomelement(
+		SPECIES_CHARMANDER, SPECIES_CYNDAQUIL, 
+		SPECIES_TORCHIC, SPECIES_CHIMCHAR, 
+		SPECIES_TEPIG, SPECIES_FENNEKIN, 
+		SPECIES_LITTEN, SPECIES_SCORBUNNY,
+		SPECIES_FUECOCO)
+		giveegg(VAR_RESULT)
+		release
+		end
+	}
+}

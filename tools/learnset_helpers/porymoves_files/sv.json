@@ -75242,7 +75242,8 @@
       "MOVE_ENDEAVOR",
       "MOVE_SUPERCELL_SLAM",
       "MOVE_CURSE",
-      "MOVE_HARD_PRESS"
+      "MOVE_HARD_PRESS",
+      "MOVE_STEEL_SPIKES"
     ],
     "EggMoves": [
       "MOVE_BELCH",
@@ -81738,7 +81739,9 @@
       "MOVE_WEATHER_BALL",
       "MOVE_MUDDY_WATER",
       "MOVE_SUPERCELL_SLAM",
-      "MOVE_ELECTROWEB"
+      "MOVE_ELECTROWEB",
+      "MOVE_TOXIC_SPIKES",
+      "MOVE_TELEPORT"
     ],
     "EggMoves": [
       "MOVE_MUDDY_WATER",
@@ -91181,7 +91184,8 @@
       "MOVE_BREAKING_SWIPE",
       "MOVE_METAL_SOUND",
       "MOVE_HARD_PRESS",
-      "MOVE_DRAGON_CHEER"
+      "MOVE_DRAGON_CHEER",
+      "MOVE_STEEL_SPIKES"
     ],
     "EggMoves": [],
     "TutorMoves": []

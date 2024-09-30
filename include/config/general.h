@@ -66,6 +66,8 @@
 // Changing GEN_LATEST's value to a different Generation will change every default setting that uses it at once.
 #define GEN_LATEST GEN_9
 
+//Stuff For Dynastic, test builds.
+#define TEST_BUILD
 #define DYNASTIC //Used for Dynastic Settings.
 
 // General settings

@@ -4,26 +4,26 @@
 #define FOREACH_TM(F) \
     F(FALSE_SWIPE) \
     F(DRAGON_CLAW) \
-    F(WATER_PULSE) \
+    F(FLIP_TURN) \
     F(CALM_MIND) \
-    F(ROAR) \
+    F(RISING_VOLTAGE) \
     F(TOXIC) \
     F(ICE_FANG) \
     F(BULK_UP) \
     F(BULLET_SEED) \
-    F(HIDDEN_POWER) \
+    F(TERRAIN_PULSE) \
     F(FIRE_FANG) \
-    F(STEALTH_ROCK) \
+    F(STOMPING_TANTRUM) \
     F(ICE_BEAM) \
     F(BLIZZARD) \
-    F(FLAME_CHARGE) \
+    F(HEAT_WAVE) \
     F(LIGHT_SCREEN) \
     F(PROTECT) \
-    F(THUNDER_FANG) \
+    F(SUPERCELL_SLAM) \
     F(GIGA_DRAIN) \
-    F(TRAILBLAZE) \
-    F(FRUSTRATION) \
-    F(SOLAR_BEAM) \
+    F(TAUNT) \
+    F(ELECTROWEB) \
+    F(WEATHER_BALL) \
     F(IRON_TAIL) \
     F(THUNDERBOLT) \
     F(THUNDER) \
@@ -33,26 +33,26 @@
     F(PSYCHIC) \
     F(SHADOW_BALL) \
     F(BRICK_BREAK) \
-    F(DOUBLE_TEAM) \
+    F(AURA_SPHERE) \
     F(REFLECT) \
-    F(SHOCK_WAVE) \
+    F(ROCK_SLIDE) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
-    F(PSYCHIC_FANGS) \
+    F(TELEPORT) \
     F(FIRE_BLAST) \
     F(ROCK_TOMB) \
-    F(AERIAL_ACE) \
+    F(HIGH_HORSEPOWER) \
     F(TORMENT) \
     F(FACADE) \
     F(SECRET_POWER) \
-    F(REST) \
-    F(ATTRACT) \
+    F(ENERGY_BALL) \
+    F(LEECH_LIFE) \
     F(THIEF) \
     F(STEEL_WING) \
-    F(SKILL_SWAP) \
+    F(EXPLOSION) \
     F(TEMPER_FLARE) \
     F(OVERHEAT) \
-    F(FLIP_TURN) \
+    F(LOW_KICK) \
     F(GRASSY_GLIDE) \
     F(VOLT_SWITCH) \
     F(U_TURN) \
@@ -60,6 +60,22 @@
     F(THUNDER_PUNCH) \
     F(FIRE_PUNCH) \
     F(ICE_SPINNER) \
+    F(THUNDER_FANG) \
+    F(SNARL) \
+    F(LIQUIDATION) \
+    F(WILD_CHARGE) \
+    F(DRAGON_PULSE) \
+    F(STEEL_BEAM) \
+    F(EARTH_POWER) \
+    F(LOW_SWEEP) \
+    F(FROST_BREATH) \
+    F(BUsLLDOZE) \
+    F(PSYSHIC_NOISE) \
+    F(SCORCHING_SANDS) \
+    F(DAZZLING_GLEAM) \
+    F(FLASH_CANNON) \
+    F(DUAL_CHOP) \
+    F(STONE_EDGE) \
 
 #define FOREACH_HM(F) \
     F(CUT) \

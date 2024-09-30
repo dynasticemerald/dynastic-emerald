@@ -1075,6 +1075,25 @@ MoveUpBirchNationalDex:
 	walk_up
 	step_end
 
+WonderEgg_Test::
+	return
+
+
+StarterEggs_Fire::
+	lock
+	faceplayer
+	checkitem ITEM_RED_SHARD
+	compare VAR_RESULT, 0
+	goto_if_ne StarterEggs_Fire_1
+	return
+
+StarterEggs_Fire_1:
+	randomelement SPECIES_CHARMANDER, SPECIES_CYNDAQUIL, SPECIES_TORCHIC, SPECIES_CHIMCHAR, SPECIES_TEPIG, SPECIES_FENNEKIN, SPECIES_LITTEN, SPECIES_SCORBUNNY, SPECIES_FUECOCO
+	giveegg VAR_RESULT
+	release
+	end
+
+
 Seafloor_Cavern_Articuno_Encounter_Text_0:
 	.string "Articuno: Gyaoo!$"
 

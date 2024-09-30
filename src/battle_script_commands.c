@@ -7283,7 +7283,6 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
     }
     else if (!(gDisableStructs[battler].spikesDone)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SPIKES)
-        && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STEELSPIKES)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD
         && IsBattlerAffectedByHazards(battler, FALSE)
         && IsBattlerGrounded(battler))
@@ -7303,6 +7302,17 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
     {
         gDisableStructs[battler].stealthRockDone = TRUE;
         gBattleMoveDamage = GetStealthHazardDamage(gMovesInfo[MOVE_STEALTH_ROCK].type, battler);
+
+        if (gBattleMoveDamage != 0)
+            SetDmgHazardsBattlescript(battler, B_MSG_STEALTHROCKDMG);
+    }
+    else if (!(gDisableStructs[battler].steelSpikesDone)
+        && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STEELSPIKES)
+        && IsBattlerAffectedByHazards(battler, FALSE)
+        && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
+    {
+        gDisableStructs[battler].steelSpikesDone = TRUE;
+        gBattleMoveDamage = GetStealthHazardDamage(gMovesInfo[MOVE_STEEL_SPIKES].type, battler);
 
         if (gBattleMoveDamage != 0)
             SetDmgHazardsBattlescript(battler, B_MSG_STEALTHROCKDMG);

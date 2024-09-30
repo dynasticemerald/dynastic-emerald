@@ -55,7 +55,7 @@
 #define FLAG_SHINY_RATE_SETTING_1    0x27
 #define FLAG_SHINY_RATE_SETTING_2    0x28
 #define FLAG_SHINY_RATE_SETTING_3    0x29 // Unused Flag; For now. will be used in the future.
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
+#define FLAG_WONDER_TRADE    0x2A
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
@@ -657,6 +657,7 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
+//
 #define FLAG_UNUSED_0x264  0x264 // Unused Flag
 #define FLAG_UNUSED_0x265  0x265 // Unused Flag
 #define FLAG_UNUSED_0x266  0x266 // Unused Flag
@@ -1227,10 +1228,10 @@
 #define FLAG_RECEIVED_TM_FLIP_TURN                                  0x493
 #define FLAG_RECEIVED_TM_GRASSY_GLIDE                               0x494
 #define FLAG_RECEIVED_TM_VOLT_SWITCH                                0x495
-#define FLAG_RECEIVED_TM_U_TURN                                      0x496
-#define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
-#define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
-#define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
+#define FLAG_RECEIVED_TM_U_TURN                                     0x496
+#define FLAG_RECEIVED_TM_ELECTRO_WEB                                0x497 
+#define FLAG_UNUSED_0x498                                           0x498
+#define FLAG_UNUSED_0x499                                           0x499
 #define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
 #define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag
 #define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag

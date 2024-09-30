@@ -2628,7 +2628,7 @@ static bool32 PartyBattlerShouldAvoidHazards(u32 currBattler, u32 switchBattler)
     }
 
     if (flags & SIDE_STATUS_STEELSPIKES)
-    hazardDamage += GetStealthHazardDamageByTypesAndHP(gMovesInfo[MOVE_STEEL_SPIKES].type, type1, type2, maxHp);
+        hazardDamage += GetStealthHazardDamageByTypesAndHP(gMovesInfo[MOVE_STEEL_SPIKES].type, type1, type2, maxHp);
 
     if (hazardDamage >= GetMonData(mon, MON_DATA_HP))
         return TRUE;

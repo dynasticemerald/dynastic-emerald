@@ -37,6 +37,7 @@
 #include "battle.h" // to get rid of later
 #include "constants/rgb.h"
 #include "party_menu.h"
+#include "config/general.h"
 
 #define GFXTAG_EGG       12345
 #define GFXTAG_EGG_SHARD 23456
@@ -931,13 +932,27 @@ u8 GetEggCyclesToSubtract(void)
         if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
         {
             u16 ability = GetMonAbility(&gPlayerParty[i]);
-            if (ability == ABILITY_MAGMA_ARMOR
+            if ((!FlagGet(FLAG_MINIMAL_GRINDING_MODE) 
+             && (ability == ABILITY_MAGMA_ARMOR
              || ability == ABILITY_FLAME_BODY
-             || ability == ABILITY_STEAM_ENGINE)
-                return 2;
+             || ability == ABILITY_STEAM_ENGINE)))
+                return 3;
+            
+            if (FlagGet(FLAG_MINIMAL_GRINDING_MODE))
+                return 4;
+            else if ((FlagGet(FLAG_MINIMAL_GRINDING_MODE)
+                  && (ability == ABILITY_MAGMA_ARMOR
+                  || ability == ABILITY_FLAME_BODY
+                  || ability == ABILITY_STEAM_ENGINE)))
+                return 5;
+            
+            #ifdef TEST_BUILD
+                return 24;
+            #endif
+
         }
     }
-    return 1;
+    return 2;
 }
 
 u16 CountPartyAliveNonEggMons(void)
