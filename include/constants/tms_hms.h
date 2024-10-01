@@ -68,8 +68,9 @@
     F(STEEL_BEAM) \
     F(EARTH_POWER) \
     F(LOW_SWEEP) \
+    F(SCALD) \
     F(FROST_BREATH) \
-    F(BUsLLDOZE) \
+    F(BULLDOZE) \
     F(PSYSHIC_NOISE) \
     F(SCORCHING_SANDS) \
     F(DAZZLING_GLEAM) \

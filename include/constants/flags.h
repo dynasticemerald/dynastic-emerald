@@ -1230,7 +1230,7 @@
 #define FLAG_RECEIVED_TM_VOLT_SWITCH                                0x495
 #define FLAG_RECEIVED_TM_U_TURN                                     0x496
 #define FLAG_RECEIVED_TM_ELECTRO_WEB                                0x497 
-#define FLAG_UNUSED_0x498                                           0x498
+#define FLAG_RECEIVED_TM_SNARL                                           0x498
 #define FLAG_UNUSED_0x499                                           0x499
 #define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
 #define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag

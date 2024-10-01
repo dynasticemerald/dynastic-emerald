@@ -4866,71 +4866,146 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
 
-Machop
-Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Karate Chop
-- Low Kick
-- Seismic Toss
-- Bulk Up
+Monferno @ Focus Sash  
+Ability: Iron Fist  
+Level: 27  
+Tera Type: Fire  
+Jolly Nature  
+- Stealth Rock  
+- Thunder Punch  
+- Drain Punch  
+- Fire Punch  
 
-Meditite
-Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Focus Punch
-- Light Screen
-- Reflect
-- Bulk Up
+Mienfoo @ Eviolite  
+Ability: Technician  
+Level: 28  
+Tera Type: Fighting
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+Timid Nature  
+- Calm Mind  
+- Hidden Power  
+- Aura Sphere  
+- Psybeam  
 
-Makuhita @ Sitrus Berry
-Level: 19
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Arm Thrust
-- Vital Throw
-- Reversal
-- Bulk Up
+Machoke @ Flame Orb  
+Ability: Guts  
+Level: 26  
+Tera Type: Fighting  
+Adamant Nature  
+- Detect  
+- Ice Punch  
+- Drain Punch  
+- Knock Off  
+
+Hitmonlee @ Expert Belt  
+Ability: Limber  
+Level: 26  
+Tera Type: Fighting  
+Jolly Nature  
+- Blaze Kick  
+- Rock Slide  
+- Double Kick  
+- Stomping Tantrum  
+
+Breloom @ Toxic Orb  
+Ability: Poison Heal  
+Level: 27  
+Tera Type: Grass  
+Jolly Nature  
+- Spore  
+- Seed Bomb  
+- Brick Break  
+- Rock Slide  
+
+Sawk @ Black Belt  
+Ability: Inner Focus  
+Level: 28  
+Tera Type: Fighting  
+Jolly Nature  
+- Knock Off  
+- Fire Punch  
+- Brick Break  
+- Knock Off  
+
 
 === TRAINER_WATTSON_1 ===
-Name: WATTSON
+Name: Wattson
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
 
-Voltorb
-Level: 20
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rollout
-- Spark
-- Self Destruct
-- Shock Wave
+Dedenne @ Terrain Extender  
+Ability: Electric Surge  
+Level: 36  
+Tera Type: Electric  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+Timid Nature  
+- Volt Switch  
+- Dazzling Gleam  
+- Grass Knot  
+- Hidden Power 
 
-Electrike
-Level: 20
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shock Wave
-- Leer
-- Quick Attack
-- Howl
+Rotom-Heat @ Leftovers  
+Ability: Levitate  
+Level: 36
+Tera Type: Electric  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD/ 31 Spe
+Timid Nature    
+- Volt Switch  
+- Overheat  
+- Nasty Plot  
+- Hidden Power  
 
-Magneton
-Level: 22
-IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Supersonic
-- Shock Wave
-- Thunder Wave
-- Sonic Boom
+Pawmot @ Punching Glove  
+Ability: Iron Fist  
+Level: 36  
+Tera Type: Electric  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Thunder Punch  
+- Drain Punch  
+- Ice Punch  
+- Mach Punch  
 
-Manectric @ Sitrus Berry
-Level: 24
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Quick Attack
-- Thunder Wave
-- Shock Wave
-- Howl
+Manectric @ Manectite  
+Ability: Intimidate  
+Level: 36 
+Tera Type: Electric  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD/ 31 Spe
+Timid Nature  
+- Volt Switch  
+- Thunderbolt  
+- Hidden Power 
+- Flamethrower  
+
+Vikavolt @ Occa Berry  
+Ability: Levitate  
+Level: 36  
+Tera Type: Bug  
+EVs: 252 HP / 252 Def / 4 SpA  
+Bold Nature  
+- Roost  
+- Thunderbolt  
+- Energy Ball  
+- Quiver Dance  
+
+Toxtricity @ Air Balloon  
+Ability: Punk Rock  
+Level: 36  
+Tera Type: Electric  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature   
+- Volt Switch  
+- Overdrive  
+- Sludge Bomb  
+- Hyper Voice  
+
 
 === TRAINER_FLANNERY_1 ===
 Name: FLANNERY
@@ -6005,23 +6080,6 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Smoliv
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_BILLY_NIGHT ===
-Name: BILLY
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Check Bad Move
-
-Zigzagoon-Galar
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Capsakid
 Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -14641,7 +14699,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 
 === TRAINER_WATTSON_2 ===
-Name: WATTSON
+Name: Wattson
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
@@ -14683,7 +14741,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Protect
 
 === TRAINER_WATTSON_3 ===
-Name: WATTSON
+Name: Wattson
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
@@ -14733,7 +14791,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Protect
 
 === TRAINER_WATTSON_4 ===
-Name: WATTSON
+Name: Wattson
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
@@ -14783,7 +14841,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Protect
 
 === TRAINER_WATTSON_5 ===
-Name: WATTSON
+Name: Wattson
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
@@ -17005,3 +17063,143 @@ Tera Type: Fire
 - Growl  
 - Incinerate  
 - Brick Break
+
+=== TRAINER_KARATE_MASTER_1 ===
+Name: Pops
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
+
+Tornadus (M) @ Sitrus Berry  
+Ability: Prankster  
+Tera Type: Flying  
+EVs: 84 HP / 216 Def / 56 SpA / 136 SpD / 16 Spe  
+Timid Nature  
+- Tailwind  
+- Bleakwind Storm  
+- Icy Wind  
+- U-turn  
+
+Urshifu-Rapid-Strike @ Mystic Water  
+Ability: Unseen Fist  
+Tera Type: Fighting  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Surging Strikes  
+- Close Combat  
+- Ice Spinner  
+- Aqua Jet  
+
+Incineroar @ Leftovers  
+Ability: Intimidate  
+Tera Type: Fire  
+EVs: 252 HP / 252 Atk / 4 SpD  
+Adamant Nature  
+- Parting Shot  
+- Fake Out  
+- Flare Blitz  
+- Darkest Lariat  
+
+Ogerpon-Wellspring (F) @ Wellspring Mask  
+Ability: Water Absorb  
+Tera Type: Water  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Spiky Shield  
+- Ivy Cudgel  
+- Power Whip  
+- Follow Me  
+
+Urshifu @ Choice Band  
+Ability: Unseen Fist  
+Tera Type: Fighting  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Wicked Blow  
+- Close Combat  
+- Poison Jab  
+- Ice Punch  
+
+Raging Bolt @ Assault Vest  
+Ability: Protosynthesis  
+Tera Type: Flying  
+EVs: 252 HP / 252 SpA / 4 SpD  
+Modest Nature  
+IVs: 20 Atk  
+- Thunderclap  
+- Thunderbolt  
+- Dragon Pulse  
+- Snarl  
+
+=== TRAINER_KARATE_MASTER_2 ===
+Name: Pops
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
+
+Galvantula @ Focus Sash  
+Ability: Compound Eyes  
+Tera Type: Bug  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Sticky Web  
+- Thunder  
+- Energy Ball  
+- Volt Switch  
+
+Meowscarada @ Protective Pads  
+Ability: Protean  
+Tera Type: Grass  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Flower Trick  
+- Knock Off  
+- U-turn  
+- Triple Axel  
+
+Urshifu-Rapid-Strike @ Choice Band  
+Ability: Unseen Fist  
+Tera Type: Fighting  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Surging Strikes  
+- Ice Spinner  
+- Close Combat  
+- U-turn  
+
+Urshifu @ Focus Sash  
+Ability: Unseen Fist  
+Tera Type: Fighting  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Wicked Blow  
+- Close Combat  
+- Swords Dance  
+- Trailblaze  
+
+Ceruledge @ Focus Sash  
+Ability: Weak Armor  
+Tera Type: Ghost  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Swords Dance  
+- Poltergeist  
+- Bitter Blade  
+- Close Combat  
+
+Iron Treads @ Assault Vest  
+Ability: Quark Drive  
+Tera Type: Dragon  
+EVs: 252 HP / 252 SpD / 4 Spe  
+Careful Nature  
+- Earthquake  
+- Volt Switch  
+- Rapid Spin  
+- Ice Spinner  

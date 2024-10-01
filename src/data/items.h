@@ -11453,7 +11453,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_PSYSHIC_NOISE, // Todo
+        .secondaryId = MOVE_PSYCHIC_NOISE, // Todo
     },
 
     [ITEM_TM_SCORCHING_SANDS] =
