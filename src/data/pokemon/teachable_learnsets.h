@@ -271,7 +271,6 @@ static const u16 sVenusaurTeachableLearnset[] = {
 static const u16 sCharmanderTeachableLearnset[] = {
     MOVE_AURA_SPHERE,
     MOVE_BRICK_BREAK,
-    MOVE_DUAL_CHOP,
     MOVE_CUT,
     MOVE_DIG,
     MOVE_DRAGON_CLAW,
@@ -324,7 +323,6 @@ static const u16 sCharmanderTeachableLearnset[] = {
 static const u16 sCharmeleonTeachableLearnset[] = {
     MOVE_AURA_SPHERE,
     MOVE_BRICK_BREAK,
-    MOVE_DUAL_CHOP,
     MOVE_CUT,
     MOVE_DIG,
     MOVE_DRAGON_CLAW,
@@ -378,7 +376,6 @@ static const u16 sCharizardTeachableLearnset[] = {
     MOVE_AURA_SPHERE,
     MOVE_BRICK_BREAK,
     MOVE_BULLDOZE,
-    MOVE_DUAL_CHOP,
     MOVE_CUT,
     MOVE_DIG,
     MOVE_DRAGON_CLAW,
