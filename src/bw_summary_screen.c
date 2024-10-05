@@ -1,4 +1,6 @@
 #include "global.h"
+#include "config/general.h"
+#include "battle_util.h"
 #include "main.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -50,6 +52,7 @@
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/species.h"
 
 #if BW_SUMMARY_SCREEN == TRUE
 enum BWPSSPage
@@ -337,7 +340,7 @@ static void SetContestMoveTypeIcons(void);
 static void SetNewMoveTypeIcon(void);
 static void SwapMovesTypeSprites(u8, u8);
 static u8 LoadMonGfxAndSprite(struct Pokemon *, s16 *, bool32);
-static u8 CreateMonSprite(struct Pokemon *, bool32);
+static u16 CreateMonSprite(struct Pokemon *, bool32, u32);
 static void SpriteCB_Pokemon(struct Sprite *);
 static void StopPokemonAnimations(void);
 static void CreateMonMarkingsSprite(struct Pokemon *);
@@ -2091,16 +2094,17 @@ static void CopyMonToSummaryStruct(struct Pokemon *mon)
     }
 }
 
+//Kaido: try to make Obligated mons be mega in summary screen with stats, when holding their respective mega stones. Needs mega ring.
 static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
 {
-    u32 i;
+    u32 i = 0;
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
     // Spread the data extraction over multiple frames.
     switch (sMonSummaryScreen->switchCounter)
     {
     case 0:
         sum->species = GetMonData(mon, MON_DATA_SPECIES);
-        sum->species2 = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+        sum->species2 = /*GetSummaryScreenBWMegaSpecies(mon);*/ GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
         sum->exp = GetMonData(mon, MON_DATA_EXP);
         sum->level = GetMonData(mon, MON_DATA_LEVEL);
         sum->abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
@@ -2129,11 +2133,11 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
             sum->mintNature = GetMonData(mon, MON_DATA_HIDDEN_NATURE);
             sum->currentHP = GetMonData(mon, MON_DATA_HP);
             sum->maxHP = GetMonData(mon, MON_DATA_MAX_HP);
-            sum->atk = GetMonData(mon, MON_DATA_ATK);
-            sum->def = GetMonData(mon, MON_DATA_DEF);
-            sum->spatk = GetMonData(mon, MON_DATA_SPATK);
-            sum->spdef = GetMonData(mon, MON_DATA_SPDEF);
-            sum->speed = GetMonData(mon, MON_DATA_SPEED);
+            sum->atk = GetMonDataSummaryScreen(mon, MON_DATA_ATK);
+            sum->def = GetMonDataSummaryScreen(mon, MON_DATA_DEF);
+            sum->spatk = GetMonDataSummaryScreen(mon, MON_DATA_SPATK);
+            sum->spdef = GetMonDataSummaryScreen(mon, MON_DATA_SPDEF);
+            sum->speed = GetMonDataSummaryScreen(mon, MON_DATA_SPEED);
         }
         else
         {
@@ -2496,7 +2500,7 @@ static void Task_ChangeSummaryMon(u8 taskId)
         break;
     case 8:
         sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &data[1], FALSE);
-
+        //sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON] = LoadMonGfxAndSprite(getSummaryScreenBWSpecies(&sMonSummaryScreen->currentMon), &sMonSummaryScreen->switchCounter, FALSE);
         if (BW_SUMMARY_MON_SHADOWS)
             sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_SHADOW] = LoadMonGfxAndSprite(&sMonSummaryScreen->currentMon, &data[1], TRUE);
 
@@ -3858,13 +3862,13 @@ static void PrintMonOTID(void)
 
 static void PrintMonAbilityName(void)
 {
-    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
+    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species2, sMonSummaryScreen->summary.abilityNum);
     PrintTextOnWindow(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_ABILITY), gAbilitiesInfo[ability].name, 1, 1, 0, 0);
 }
 
 static void PrintMonAbilityDescription(void)
 {
-    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
+    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species2, sMonSummaryScreen->summary.abilityNum);
     PrintTextOnWindow_BW_Font(AddWindowFromTemplateList(sPageSkillsTemplate, PSS_DATA_WINDOW_SKILLS_ABILITY), gAbilitiesInfo[ability].description, 1, 14, 0, 0);
 }
 
@@ -4953,7 +4957,7 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state, bool32 isShadow)
     switch (*state)
     {
     default:
-        return CreateMonSprite(mon, isShadow);
+        return CreateMonSprite(mon, isShadow, summary->species2);
     case 0:
         if (gMain.inBattle)
         {
@@ -5001,7 +5005,7 @@ static void PlayMonCry(void)
     }
 }
 
-static u8 CreateMonSprite(struct Pokemon *unused, bool32 isShadow)
+static u16 CreateMonSprite(struct Pokemon *mon, bool32 isShadow, u32 species)
 {
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     u8 shadowPalette = 0;

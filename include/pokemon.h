@@ -116,6 +116,7 @@ enum {
     MON_DATA_GIGANTAMAX_FACTOR,
     MON_DATA_TERA_TYPE,
     MON_DATA_EVOLUTION_TRACKER,
+    MON_DATA_STATS_COMBINED,
 };
 
 struct PokemonSubstruct0
@@ -493,6 +494,7 @@ struct MoveInfo
     u32 pulseMove:1;
     u32 soundMove:1;
     u32 ballisticMove:1;
+    u32 beamMove:1; //Ice Beam, etc.
     u32 powderMove:1;
     u32 danceMove:1;
     u32 windMove:1;
@@ -756,6 +758,7 @@ void SetMultiuseSpriteTemplateToTrainerFront(u16 trainerPicId, u8 battlerPositio
 #define GetBoxMonData(...) CAT(GetBoxMonData, NARG_8(__VA_ARGS__))(__VA_ARGS__)
 u32 GetMonData3(struct Pokemon *mon, s32 field, u8 *data);
 u32 GetMonData2(struct Pokemon *mon, s32 field);
+u16 GetMonDataSummaryScreen(struct Pokemon *mon, s32 field);
 u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data);
 u32 GetBoxMonData2(struct BoxPokemon *boxMon, s32 field);
 

@@ -14,6 +14,7 @@
 #include <string.h>
 #include <unistd.h>
 
+
 #define MAX_TRAINER_AI_FLAGS 32
 #define MAX_TRAINER_ITEMS 4
 #define PARTY_SIZE 6
@@ -37,6 +38,13 @@ enum Gender
     GENDER_FEMALE,
 };
 
+enum HiddenPower
+{
+    HP_FIRE,
+    HP_GRASS,
+    HP_WATER,
+};
+
 // TODO: Support Hidden Power.
 struct Pokemon
 {
@@ -51,6 +59,9 @@ struct Pokemon
 
     struct Stats ivs;
     int ivs_line;
+
+    struct Stats hiddenPower;
+    int hidden_power_line;
 
     struct String ability;
     int ability_line;
@@ -808,6 +819,29 @@ static struct String token_string(const struct Token *t)
             .string = NULL,
             .string_n = 0,
         };
+    }
+}
+
+static bool token_hidden_power(struct Parser *p, const struct Token *t, enum HiddenPower *g)
+{
+    if (is_literal_token(t, "Hp Fire"))
+    {
+        *g = HP_FIRE;
+        return true;
+    }
+    else if (is_literal_token(t, "Hp Water"))
+    {
+        *g = HP_WATER;
+        return true;
+    }
+    else if (is_literal_token(t, "Hp Grass"))
+    {
+        *g = HP_GRASS;
+        return true;
+    }
+    else
+    {
+        return set_parse_error(p, t->location, "invalid hidden power");
     }
 }
 
@@ -1761,9 +1795,36 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
                 fprint_stats(f, "TRAINER_PARTY_EVS", pokemon->evs);
                 fprintf(f, ",\n");
             }
-
+            
             if (pokemon->ivs_line)
             {
+            /*switch (pokemon->ivs_line)
+            {
+            case HP_FIRE:
+                fprintf(f, "#line %d\n", pokemon->ivs_line);
+                fprintf(f, "            .iv = ");
+                fprint_stats(f, "TRAINER_PARTY_IVS(31, 31, 31, 30, 31, 30)", pokemon->ivs);
+                fprintf(f, ",\n");
+                break;
+            case GENDER_MALE:
+                fprintf(f, "#line %d\n", pokemon->ivs_line);
+                fprintf(f, "            .iv = ");
+                fprint_stats(f, "TRAINER_PARTY_IVS()", pokemon->ivs);
+                fprintf(f, ",\n");
+                break;
+            case GENDER_FEMALE:
+                fprintf(f, "#line %d\n", pokemon->ivs_line);
+                fprintf(f, "            .iv = ");
+                fprint_stats(f, "TRAINER_PARTY_IVS", pokemon->ivs);
+                fprintf(f, ",\n");
+                break;
+            default:
+                fprintf(f, "#line %d\n", pokemon->ivs_line);
+                fprintf(f, "            .iv = ");
+                fprint_stats(f, "TRAINER_PARTY_IVS", pokemon->ivs);
+                fprintf(f, ",\n");
+                break;
+            }*/
                 fprintf(f, "#line %d\n", pokemon->ivs_line);
                 fprintf(f, "            .iv = ");
                 fprint_stats(f, "TRAINER_PARTY_IVS", pokemon->ivs);

@@ -439,6 +439,7 @@
       "MOVE_SECRET_POWER",
       "MOVE_ROAR",
       "MOVE_FOCUS_PUNCH",
+      "MOVE_DUAL_CHOP",
       "MOVE_WEATHER_BALL",
       "MOVE_TEMPER_FLARE",
       "MOVE_BREAKING_SWIPE"
@@ -550,6 +551,7 @@
       "MOVE_WEATHER_BALL",
       "MOVE_FOCUS_BLAST",
       "MOVE_AURA_SPHERE",
+      "MOVE_DUAL_CHOP",
       "MOVE_TEMPER_FLARE",
       "MOVE_BREAKING_SWIPE"
     ],
@@ -677,6 +679,7 @@
       "MOVE_GIGA_IMPACT",
       "MOVE_BLAST_BURN",
       "MOVE_OUTRAGE",
+      "MOVE_DUAL_CHOP",
       "MOVE_OVERHEAT",
       "MOVE_FOCUS_BLAST",
       "MOVE_AURA_SPHERE",
@@ -61376,7 +61379,8 @@
       "MOVE_WEATHER_BALL",
       "MOVE_FLIP_TURN",
       "MOVE_MUDDY_WATER",
-      "MOVE_SLUDGE_WAVE"
+      "MOVE_SLUDGE_WAVE",
+      "MOVE_AGILITY"
     ],
     "EggMoves": [
       "MOVE_AQUA_TAIL",

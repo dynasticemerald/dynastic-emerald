@@ -84,7 +84,7 @@ bool32 ShouldTrainerBattlerUseGimmick(u32 battler, enum Gimmick gimmick)
         const struct TrainerMon *mon = &GetTrainerPartyFromId(trainerId)[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]];
 
         if (gimmick == GIMMICK_TERA && mon->teraType != TYPE_NONE)
-            return TRUE;
+            return FALSE; //Put back to TRUE when Tera is something the player can use.
         if (gimmick == GIMMICK_DYNAMAX && mon->shouldUseDynamax)
             return TRUE;
     }

@@ -2422,6 +2422,13 @@ u32 GetMonData3(struct Pokemon *mon, s32 field, u8 *data)
     case MON_DATA_MAIL:
         ret = mon->mail;
         break;
+    case MON_DATA_STATS_COMBINED:
+        ret = mon->attack;
+        ret = mon->defense;
+        ret = mon->spAttack;
+        ret = mon->spDefense;
+        ret = mon->speed;
+        break;
     default:
         ret = GetBoxMonData(&mon->box, field, data);
         break;
@@ -2430,6 +2437,11 @@ u32 GetMonData3(struct Pokemon *mon, s32 field, u8 *data)
 }
 
 u32 GetMonData2(struct Pokemon *mon, s32 field)
+{
+    return GetMonData3(mon, field, NULL);
+}
+
+u16 GetMonDataSummaryScreen(struct Pokemon *mon, s32 field)
 {
     return GetMonData3(mon, field, NULL);
 }

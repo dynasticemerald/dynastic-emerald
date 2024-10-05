@@ -173,7 +173,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "StarterEggs_Fire",
+      "script": "ArrayOfMoves_Tutor",
       "flag": "0"
     }
   ],
@@ -287,18 +287,18 @@
       "x": 10,
       "y": 1,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "5",
-      "script": "LittlerootTown_EventScript_NeedPokemonTriggerLeft"
+      "var": "VAR_POKEDEX_UPGRADED",
+      "var_value": "0",
+      "script": "LittlerootTown_EventScript_NationalDexUpgrade"
     },
     {
       "type": "trigger",
       "x": 11,
       "y": 1,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "5",
-      "script": "LittlerootTown_EventScript_NeedPokemonTriggerLeft"
+      "var": "VAR_POKEDEX_UPGRADED",
+      "var_value": "0",
+      "script": "LittlerootTown_EventScript_NationalDexUpgrade"
     }
   ],
   "bg_events": [

@@ -80,58 +80,39 @@ script ModesCheck { //Modes Check.
 	goto(ModesCheck_Continue)
 	}
 }
-script ModesCheck_Continue{
-	if(flag(FLAG_MINIMAL_GRINDING_MODE)){
+
+script ModesCheck_Continue {
 	closemessage
 	message(format("Wich option would you like to use?"))
 	waitmessage
-    dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
-                  "{COLOR GREEN}Minimal Grinding","{COLOR RED}VGC Mode","{COLOR RED}Random Nicknames","Done")
-	} elif(flag(FLAG_VGC_MODE)) {
-	closemessage
-	message(format("Wich option would you like to use?"))
-	waitmessage
-	dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
-                  "{COLOR RED}Minimal Grinding","{COLOR GREEN}VGC Mode","{COLOR RED}Random Nicknames","Done")	
-	} elif(flag(FLAG_RANDOM_NICKNAMES)){ 
-	closemessage
-	message(format("Wich option would you like to use?"))
-	waitmessage
-	dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
-                  "{COLOR RED}Minimal Grinding","{COLOR RED}VGC Mode","{COLOR GREEN}Random Nicknames","Done")	
-	} else {
-	closemessage
-	message(format("Wich option would you like to use?"))
-	waitmessage
-	dynmultichoice(0,0,TRUE,6,0,DYN_MULTICHOICE_CB_NONE,
-                  "{COLOR RED}Minimal Grinding","{COLOR RED}VGC Mode","{COLOR RED}Random Nicknames","Done")	
-	}
+	dynmultichoice(0,0,TRUE,4,0,DYN_MULTICHOICE_CB_NONE,"Minimal Grinding","VGC Mode","Random Nicknames","Done")	
 	switch(var(VAR_RESULT)){
 	case 0: //Minimal Grinding Mode.
-		setvar(VAR_MODES_CHECK, 1)
 		msgbox(ModesCheck_Text_MinimalGrinding, MSGBOX_YESNO)
 		if(var(VAR_RESULT) == YES){
 		setflag(FLAG_MINIMAL_GRINDING_MODE)
+		setvar(VAR_MODES_CHECK, 1)
 		goto(ModesCheck_Continue)
 		} else {		
 		goto(ModesCheck_Continue) }
 	case 1: //VGC Mode.
-		setvar(VAR_MODES_CHECK, 1)
 		msgbox(ModesCheck_Text_DoublesOnly, MSGBOX_YESNO)
 		if(var(VAR_RESULT) == YES){
 		setflag(FLAG_VGC_MODE)
+		setvar(VAR_MODES_CHECK, 1)
 		goto(ModesCheck_Continue)
 		} else {		
 		goto(ModesCheck_Continue) }
 	case 2: //Random Nicknames.
-		setvar(VAR_MODES_CHECK, 1)
 		msgbox(ModesCheck_Text_Test, MSGBOX_YESNO)
 		if(var(VAR_RESULT) == YES){
 		setflag(FLAG_RANDOM_NICKNAMES)
+		setvar(VAR_MODES_CHECK, 1)
 		goto(ModesCheck_Continue)
 		} else {		
 		goto(ModesCheck_Continue) }
 	case 3: //Done.
+		setvar(VAR_MODES_CHECK, 1)
 		fadescreen(FADE_FROM_BLACK)
 		release
 		end

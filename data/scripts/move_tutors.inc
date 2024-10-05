@@ -353,7 +353,7 @@ Defog_Tutor::
 PowerUpMoves_Tutor::
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 6, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2, PowerUpMoves_Tutor_Text_3, PowerUpMoves_Tutor_Text_4, PowerUpMoves_Tutor_Text_5
+	dynmultichoice 0, 0, FALSE, 7, 0, DYN_MULTICHOICE_CB_NONE, PowerUpMoves_Tutor_Text_0, PowerUpMoves_Tutor_Text_1, PowerUpMoves_Tutor_Text_2, PowerUpMoves_Tutor_Text_3, PowerUpMoves_Tutor_Text_4, PowerUpMoves_Tutor_Text_5, PowerUpMoves_Tutor_Text_6
 	switch VAR_RESULT
 	case 0, PowerUpMoves_Tutor_2
 	case 1, PowerUpMoves_Tutor_3
@@ -361,6 +361,7 @@ PowerUpMoves_Tutor::
 	case 3, PowerUpMoves_Tutor_5
 	case 4, PowerUpMoves_Tutor_6
 	case 5, PowerUpMoves_Tutor_7
+	case 6, PowerUpMoves_Tutor_8
 	return
 
 PowerUpMoves_Tutor_2:
@@ -405,6 +406,13 @@ PowerUpMoves_Tutor_7:
 	release
 	end
 
+PowerUpMoves_Tutor_8:
+	setvar VAR_0x8005, MOVE_AGILITY
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
 
 KnockoffPursuit_Tutor::
 	lock
@@ -412,50 +420,10 @@ KnockoffPursuit_Tutor::
 	dynmultichoice 0, 0, FALSE, 2, 0, DYN_MULTICHOICE_CB_NONE, KnockoffPursuit_Tutor_Text_0, KnockoffPursuit_Tutor_Text_1
 	switch VAR_RESULT
 	case 0, KnockoffPursuit_Tutor_2
-	case 1, KnockoffPursuit_Tutor_3
 	return
 
 KnockoffPursuit_Tutor_2:
-	setvar VAR_0x8005, MOVE_KNOCK_OFF
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-KnockoffPursuit_Tutor_3:
 	setvar VAR_0x8005, MOVE_PURSUIT
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-
-ElementalFangs_Tutor::
-	lock
-	faceplayer
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, ElementalFangs_Tutor_Text_0, ElementalFangs_Tutor_Text_1, ElementalFangs_Tutor_Text_2
-	switch VAR_RESULT
-	case 0, ElementalFangs_Tutor_2
-	case 1, ElementalFangs_Tutor_3
-	case 2, ElementalFangs_Tutor_4
-	return
-
-ElementalFangs_Tutor_2:
-	setvar VAR_0x8005, MOVE_THUNDER_FANG
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-ElementalFangs_Tutor_3:
-	setvar VAR_0x8005, MOVE_ICE_FANG
-	special ChooseMonForMoveTutor
-	waitstate
-	release
-	end
-
-ElementalFangs_Tutor_4:
-	setvar VAR_0x8005, MOVE_FIRE_FANG
 	special ChooseMonForMoveTutor
 	waitstate
 	release
@@ -599,12 +567,24 @@ Hazards_Tutor_5:
 ArrayOfMoves_Tutor::
 	lock
 	faceplayer
-	dynmultichoice 0, 0, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, Hazards_Tutor_Text_0, Hazards_Tutor_Text_1, Hazards_Tutor_Text_2
+	msgbox ArrayOfMoves_Tutor_Text_0
+	dynmultichoice 0, 0, FALSE, 7, 0, DYN_MULTICHOICE_CB_NONE, ArrayOfMoves_Tutor_Text_1, ArrayOfMoves_Tutor_Text_2, ArrayOfMoves_Tutor_Text_3, ArrayOfMoves_Tutor_Text_4, ArrayOfMoves_Tutor_Text_5, ArrayOfMoves_Tutor_Text_6, ArrayOfMoves_Tutor_Text_7, ArrayOfMoves_Tutor_Text_8, ArrayOfMoves_Tutor_Text_9, ArrayOfMoves_Tutor_Text_10, ArrayOfMoves_Tutor_Text_11, ArrayOfMoves_Tutor_Text_12, ArrayOfMoves_Tutor_Text_13, ArrayOfMoves_Tutor_Text_14, ArrayOfMoves_Tutor_Text_15
 	switch VAR_RESULT
 	case 0, ArrayOfMoves_Tutor_2
 	case 1, ArrayOfMoves_Tutor_3
 	case 2, ArrayOfMoves_Tutor_4
 	case 3, ArrayOfMoves_Tutor_5
+	case 4, ArrayOfMoves_Tutor_6
+	case 5, ArrayOfMoves_Tutor_7
+	case 6, ArrayOfMoves_Tutor_8
+	case 7, ArrayOfMoves_Tutor_9
+	case 8, ArrayOfMoves_Tutor_10
+	case 9, ArrayOfMoves_Tutor_11
+	case 10, ArrayOfMoves_Tutor_12
+	case 11, ArrayOfMoves_Tutor_13
+	case 12, ArrayOfMoves_Tutor_14
+	case 13, ArrayOfMoves_Tutor_15
+	case 14, ArrayOfMoves_Tutor_16
 	return
 
 ArrayOfMoves_Tutor_2:
@@ -615,21 +595,98 @@ ArrayOfMoves_Tutor_2:
 	end
 
 ArrayOfMoves_Tutor_3:
-	setvar VAR_0x8005, MOVE_ICE_SPINNER
+	setvar VAR_0x8005, MOVE_PAIN_SPLIT
 	special ChooseMonForMoveTutor
 	waitstate
 	release
 	end
 
 ArrayOfMoves_Tutor_4:
-	setvar VAR_0x8005, MOVE_STEEL_SPIKES
+	setvar VAR_0x8005, MOVE_PSYCHIC_FANGS
 	special ChooseMonForMoveTutor
 	waitstate
 	release
 	end
 
 ArrayOfMoves_Tutor_5:
-	setvar VAR_0x8005, MOVE_TOXIC_SPIKES
+	setvar VAR_0x8005, MOVE_CROSS_CHOP
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_6:
+	setvar VAR_0x8005, MOVE_LEAF_BLADE
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_7:
+	setvar VAR_0x8005, MOVE_POISON_JAB
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_8:
+	setvar VAR_0x8005, MOVE_MEGAHORN
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_9:
+	setvar VAR_0x8005, MOVE_DRILL_RUN
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_10:
+	setvar VAR_0x8005, MOVE_ALLURING_VOICE
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_11:
+	setvar VAR_0x8005, MOVE_ROCK_BLAST
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_12:
+	setvar VAR_0x8005, MOVE_PIN_MISSILE
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_13:
+	setvar VAR_0x8005, MOVE_ICICLE_SPEAR
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_14:
+	setvar VAR_0x8005, MOVE_POWER_GEM
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_15:
+	setvar VAR_0x8005, MOVE_BLAZE_KICK
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+ArrayOfMoves_Tutor_16:
+	setvar VAR_0x8005, MOVE_PHANTOM_FORCE
 	special ChooseMonForMoveTutor
 	waitstate
 	release
@@ -712,20 +769,14 @@ PowerUpMoves_Tutor_Text_4:
 PowerUpMoves_Tutor_Text_5:
 	.string "Hone Claws$"
 
+PowerUpMoves_Tutor_Text_6:
+	.string "Agility$"
+
 KnockoffPursuit_Tutor_Text_0:
 	.string "Knock Off$"
 
 KnockoffPursuit_Tutor_Text_1:
 	.string "Pursuit$"
-
-ElementalFangs_Tutor_Text_0:
-	.string "Thunder Fang$"
-
-ElementalFangs_Tutor_Text_1:
-	.string "Ice Fang$"
-
-ElementalFangs_Tutor_Text_2:
-	.string "Fire Fang$"
 
 BugMoves_Tutor_Text_0:
 	.string "Hello! My Bug type Pokémon LOVE Oran\n"
@@ -779,3 +830,53 @@ Hazards_Tutor_Text_1:
 
 Hazards_Tutor_Text_2:
 	.string "Steel Spikes$"
+
+ArrayOfMoves_Tutor_Text_0:
+	.string "Hi there, I teach a array of good moves,\n"
+	.string "that a trainer like you would probally\l"
+	.string "really like. Here have a look!$"
+
+ArrayOfMoves_Tutor_Text_1:
+	.string "Mystical Fire$"
+
+ArrayOfMoves_Tutor_Text_2:
+	.string "Pain Split$"
+
+ArrayOfMoves_Tutor_Text_3:
+	.string "Psychic Fangs$"
+
+ArrayOfMoves_Tutor_Text_4:
+	.string "Cross Chop$"
+
+ArrayOfMoves_Tutor_Text_5:
+	.string "Leaf Blade$"
+
+ArrayOfMoves_Tutor_Text_6:
+	.string "Poison Jab$"
+
+ArrayOfMoves_Tutor_Text_7:
+	.string "Megahorn$"
+
+ArrayOfMoves_Tutor_Text_8:
+	.string "Drill Run$"
+
+ArrayOfMoves_Tutor_Text_9:
+	.string "Alluring Voice$"
+
+ArrayOfMoves_Tutor_Text_10:
+	.string "Rock Blast$"
+
+ArrayOfMoves_Tutor_Text_11:
+	.string "Pin Missile$"
+
+ArrayOfMoves_Tutor_Text_12:
+	.string "Icicle Spear$"
+
+ArrayOfMoves_Tutor_Text_13:
+	.string "Power Gem$"
+
+ArrayOfMoves_Tutor_Text_14:
+	.string "Blaze Kick$"
+
+ArrayOfMoves_Tutor_Text_15:
+	.string "Phantom Force$"

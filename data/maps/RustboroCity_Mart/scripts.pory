@@ -1,4 +1,4 @@
-
+raw`
 RustboroCity_Mart_MapScripts::
 	.byte 0
 
@@ -86,23 +86,25 @@ RustboroCity_Mart_Text_GettingEscapeRopeJustInCase:
 	.string "case I get lost in a cave.\p"
 	.string "I just need to use it to get back to\n"
 	.string "the entrance.$"
+`
 
-RustboroCity_Mart_EventScript_Clerk_TMs::
+script RustboroCity_Mart_EventScript_Clerk_TMs{
 	lock
 	faceplayer
-	message gText_HowMayIServeYou
+	message(gText_HowMayIServeYou)
 	waitmessage
-	pokemart RustboroCity_Mart_Pokemart_TMs
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	pokemart(RustboroCity_Mart_Pokemart_TMs)
+	msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
 	release
 	end
+}
 
+mart RustboroCity_Mart_Pokemart_TMs{
+	ITEM_TM76 //Roost
+	ITEM_TM66 //Low Sweep
+	ITEM_TM46 //Thief
+	ITEM_TM41 //Torment
+	ITEM_TM37 //Teleport
+	ITEM_NONE
+}
 
-	.align 2
-RustboroCity_Mart_Pokemart_TMs:
-	.2byte ITEM_TM76
-	.2byte ITEM_TM66
-	.2byte ITEM_TM46
-	.2byte ITEM_TM41
-	.2byte ITEM_TM37
-	.2byte ITEM_NONE

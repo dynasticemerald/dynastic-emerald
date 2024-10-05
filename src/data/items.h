@@ -10805,19 +10805,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_EARTHQUAKE,
     },
 
-    [ITEM_TM_RETURN] =
+    [ITEM_TM_KNOCK_OFF] =
     {
         .name = _("TM27"),
         .price = 1000,
         .description = COMPOUND_STRING(
-            "The more the user\n"
-            "likes you, the more\n"
-            "powerful this move."),
+            "Knocks down the foe's\n"
+            "held item to prevent\n"
+            "its use."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_RETURN,
+        .secondaryId = MOVE_KNOCK_OFF,
     },
 
     [ITEM_TM_DIG] =
@@ -10957,8 +10957,8 @@ const struct Item gItemsInfo[] =
 
     [ITEM_TM_TELEPORT] =
     {
-        .name = _("TM37"),
-        .price = 3000,
+        .name = _("TM37  Teleport"),
+        .price = 1000,
         .description = COMPOUND_STRING(
             "A psychic move for\n"
             "fleeing from the\n"
@@ -11017,8 +11017,8 @@ const struct Item gItemsInfo[] =
 
     [ITEM_TM_TORMENT] =
     {
-        .name = _("TM41"),
-        .price = 3000,
+        .name = _("TM41  Torment"),
+        .price = 750,
         .description = COMPOUND_STRING(
             "Prevents the foe\n"
             "from using the same\n"
@@ -11092,8 +11092,8 @@ const struct Item gItemsInfo[] =
 
     [ITEM_TM_THIEF] =
     {
-        .name = _("TM46"),
-        .price = 3000,
+        .name = _("TM46  Thief"),
+        .price = 1500,
         .description = COMPOUND_STRING(
             "While attacking,\n"
             "it may steal the\n"
@@ -11386,7 +11386,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_TM_LOW_SWEEP] =
     {
-        .name = _("TM66"),
+        .name = _("TM66 Low Sweep"),
         .price = 1500,
         .description = COMPOUND_STRING(
             "Attacks the foe's\n"
@@ -11531,19 +11531,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_STONE_EDGE, // Todo
     },
 
-    [ITEM_TM76] =
+    [ITEM_TM_ROOST] =
     {
-        .name = _("TM76"),
-        .price = 3000,
+        .name = _("TM76  Roost"),
+        .price = 1000,
         .description = COMPOUND_STRING(
-            "??????????????\n"
-            "??????????????\n"
-            "??????????????"), // Todo
+            "Restores the user's\n"
+            "HP by half of\n"
+            "its maximum HP."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_ROOST,
     },
 
     [ITEM_TM77] =

@@ -4,6 +4,14 @@
 #include "pokemon.h"
 #include "data.h"
 
+enum LevelScaling
+{
+    PLAYER_MAX,
+    ONE_BELOW_PLAYER_MAX,
+    TWO_BELOW_PLAYER_MAX,
+    THREE_BELOW_PLAYER_MAX,
+};
+
 // For displaying a multi battle partner's Pokémon in the party menu
 struct MultiPartnerMenuPokemon
 {
@@ -88,6 +96,7 @@ void ModifyPersonalityForNature(u32 *personality, u32 newNature);
 u32 GeneratePersonalityForGender(u32 gender, u32 species);
 void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon *partyEntry);
 u8 GetMonMoveType(u16 move, struct Pokemon *mon, u32 battler);
+s32 GetHighestLevelInPlayerParty(void);
 extern struct MultiPartnerMenuPokemon gMultiPartnerParty[MULTI_PARTY_SIZE];
 
 extern const struct SpriteTemplate gUnusedBattleInitSprite;

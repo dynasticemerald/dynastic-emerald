@@ -28,7 +28,7 @@
     F(THUNDERBOLT) \
     F(THUNDER) \
     F(EARTHQUAKE) \
-    F(RETURN) \
+    F(KNOCK_OFF) \
     F(DIG) \
     F(PSYCHIC) \
     F(SHADOW_BALL) \
@@ -77,6 +77,7 @@
     F(FLASH_CANNON) \
     F(DUAL_CHOP) \
     F(STONE_EDGE) \
+    F(ROOST) \
 
 #define FOREACH_HM(F) \
     F(CUT) \

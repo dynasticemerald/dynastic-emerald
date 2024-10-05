@@ -1932,6 +1932,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     u32 personalityValue;
     s32 i;
     u8 monsCount;
+    u8 level;
     u8 isDoubleBattle = trainer->doubleBattle;
     u8 DoubleReady = GetMonsStateToDoubles() == PLAYER_HAS_TWO_USABLE_MONS;
     u8 enemyPartySize = trainer->partySize;
@@ -1990,7 +1991,26 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otIdType = OT_ID_PRESET;
                 fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
-            CreateMon(&party[i], partyData[i].species, partyData[i].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
+
+            //Kaido: Fix level scaling.
+            //Kaido: Make level scaling compatible with the Trainerproc tool.
+
+            level = GetHighestLevelInPlayerParty();
+            if (level + partyData[i].lvl > 100)
+            {
+                level = 100;
+            }
+            else if (level + partyData[i].lvl < 1)
+            {
+                level = 1;
+            }
+            else
+            {
+                level = level + partyData[i].lvl;
+            }
+
+            CreateMon(&party[i], partyData[i].species, partyData[i].lvl, 31, TRUE, personalityValue, otIdType, fixedOtId);
+
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[i]);

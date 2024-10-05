@@ -5048,7 +5048,7 @@ Tera Type: Grass
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Modest Nature  
 IVs: 30 Atk  
-- Hidden Power [Rock]  
+- Hidden Power
 - Flamethrower  
 - Giga Drain  
 - Growth  
@@ -6090,38 +6090,62 @@ Level: 39
 IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe
 
 === TRAINER_CALVIN_1 ===
-Name: CALVIN
+Name: Calvin
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Rookidee
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Lechonk @ Oran Berry  
+Ability: Thick Fat  
+Level: 8
+Tera Type: Normal  
+Serious Nature  
+- Covet  
+- Bullet Seed  
+- Headbutt  
+- Trailblaze  
 
-Teddiursa
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Azurill @ Oran Berry  
+Ability: Huge Power  
+Level: 8
+Tera Type: Normal  
+Serious Nature  
+- Covet  
+- Headbutt  
+- Aqua Jet  
+- Bounce  
 
 === TRAINER_BILLY ===
-Name: BILLY
+Name: Billy
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Zigzagoon
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Smoliv @ Oran Berry  
+Ability: Harvest  
+Level: 9  
+Tera Type: Grass  
+IVs: 30 SpA / 30 SpD  
+- Mega Drain  
+- Hidden Power
+- Synthesis  
+- Growth  
 
-Smoliv
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Helioptile @ Expert Belt  
+Ability: Dry Skin  
+Level: 9  
+Tera Type: Electric  
+IVs: 0 Atk  
+- Mud-Slap  
+- Signal Beam  
+- Electroweb  
+- Glare  
 
 === TRAINER_JOSH ===
 Name: JOSH
@@ -6360,21 +6384,33 @@ Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALLEN ===
-Name: ALLEN
+Name: Allen
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Zigzagoon
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Doduo @ Silk Scarf  
+Ability: Early Bird  
+Level: 8  
+Tera Type: Normal  
+Serious Nature  
+- Low Kick  
+- Quick Attack  
+- Pursuit  
+- Aerial Ace  
 
-Taillow
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Zubat @ Heavy-Duty Boots  
+Ability: Inner Focus  
+Level: 8  
+Tera Type: Poison  
+Serious Nature  
+- Aerial Ace  
+- Pursuit  
+- Poison Fang  
+- Taunt  
 
 === TRAINER_TIMMY ===
 Name: TIMMY
@@ -11204,21 +11240,32 @@ Level: 25
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_TIANA ===
-Name: TIANA
+Name: Tiana
 Class: Lass
 Pic: Lass
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Zigzagoon
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Flabebe @ Leftovers  
+Ability: Flower Veil  
+Level: 8  
+Tera Type: Fairy  
+IVs: 0 Atk  
+- Draining Kiss  
+- Chilling Water  
+- Magical Leaf  
+- Wish  
 
-Shroomish
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Snubbull @ Oran Berry  
+Ability: Intimidate  
+Level: 8  
+Tera Type: Fairy  
+- Fire Fang  
+- Ice Fang  
+- Thunder Fang  
+- Covet  
 
 === TRAINER_HALEY_1 ===
 Name: HALEY
@@ -11408,21 +11455,32 @@ Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_RICK ===
-Name: RICK
+Name: Rick
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Nincada
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Skorupi @ Scope Lens  
+Ability: Sniper  
+Level: 2  
+Tera Type: Poison  
+- Bug Bite  
+- Aerial Ace  
+- Poison Tail  
+- Toxic Spikes  
 
-Wurmple
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Venonat @ Leftovers  
+Ability: Tinted Lens  
+Level: 2 
+Tera Type: Bug  
+Serious Nature  
+- Skitter Smack  
+- Poison Fang  
+- Headbutt  
+- Sleep Powder  
 
 === TRAINER_LYLE ===
 Name: LYLE
@@ -13127,17 +13185,32 @@ Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DARIAN ===
-Name: DARIAN
+Name: Darian
 Class: Fisherman
 Pic: Fisherman
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Magikarp
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Barboach @ Iapapa Berry  
+Ability: Oblivious  
+Level: 9  
+Tera Type: Water  
+IVs: 0 Atk  
+- Mud Shot  
+- Water Pulse  
+- Icy Wind  
+- Stealth Rock  
+
+Goldeen @ Mystic Water  
+Ability: Swift Swim  
+Level: 9  
+Tera Type: Water  
+- Aqua Jet  
+- Fury Cutter  
+- Facade  
+- Flip Turn  
 
 === TRAINER_HAILEY ===
 Name: HAILEY

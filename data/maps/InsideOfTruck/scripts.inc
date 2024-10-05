@@ -82,86 +82,62 @@ ModesCheck_1:
 
 
 ModesCheck_Continue::
-	goto_if_set FLAG_MINIMAL_GRINDING_MODE, ModesCheck_Continue_2
-	goto_if_set FLAG_VGC_MODE, ModesCheck_Continue_3
-	goto_if_set FLAG_RANDOM_NICKNAMES, ModesCheck_Continue_4
 	closemessage
 	message ModesCheck_Continue_Text_0
 	waitmessage
-	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_5, ModesCheck_Continue_Text_2, ModesCheck_Continue_Text_3, ModesCheck_Continue_Text_4
-ModesCheck_Continue_1:
+	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_1, ModesCheck_Continue_Text_2, ModesCheck_Continue_Text_3, ModesCheck_Continue_Text_4
 	switch VAR_RESULT
-	case 0, ModesCheck_Continue_11
-	case 1, ModesCheck_Continue_12
-	case 2, ModesCheck_Continue_13
-	case 3, ModesCheck_Continue_14
-ModesCheck_Continue_9:
+	case 0, ModesCheck_Continue_3
+	case 1, ModesCheck_Continue_4
+	case 2, ModesCheck_Continue_5
+	case 3, ModesCheck_Continue_6
+ModesCheck_Continue_1:
 	end
 
-ModesCheck_Continue_2:
-	closemessage
-	message ModesCheck_Continue_Text_0
-	waitmessage
-	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_1, ModesCheck_Continue_Text_2, ModesCheck_Continue_Text_3, ModesCheck_Continue_Text_4
-	goto ModesCheck_Continue_1
-
 ModesCheck_Continue_3:
-	closemessage
-	message ModesCheck_Continue_Text_0
-	waitmessage
-	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_5, ModesCheck_Continue_Text_6, ModesCheck_Continue_Text_3, ModesCheck_Continue_Text_4
+	msgbox ModesCheck_Text_MinimalGrinding, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq ModesCheck_Continue_7
+	goto ModesCheck_Continue
 	goto ModesCheck_Continue_1
 
 ModesCheck_Continue_4:
-	closemessage
-	message ModesCheck_Continue_Text_0
-	waitmessage
-	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_5, ModesCheck_Continue_Text_2, ModesCheck_Continue_Text_7, ModesCheck_Continue_Text_4
-	goto ModesCheck_Continue_1
-
-ModesCheck_Continue_11:
-	setvar VAR_MODES_CHECK, 1
-	msgbox ModesCheck_Text_MinimalGrinding, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq ModesCheck_Continue_15
-	goto ModesCheck_Continue
-	goto ModesCheck_Continue_9
-
-ModesCheck_Continue_12:
-	setvar VAR_MODES_CHECK, 1
 	msgbox ModesCheck_Text_DoublesOnly, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq ModesCheck_Continue_18
+	goto_if_eq ModesCheck_Continue_10
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_9
+	goto ModesCheck_Continue_1
 
-ModesCheck_Continue_13:
-	setvar VAR_MODES_CHECK, 1
+ModesCheck_Continue_5:
 	msgbox ModesCheck_Text_Test, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq ModesCheck_Continue_21
+	goto_if_eq ModesCheck_Continue_13
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_9
+	goto ModesCheck_Continue_1
 
-ModesCheck_Continue_14:
+ModesCheck_Continue_6:
+	setvar VAR_MODES_CHECK, 1
 	fadescreen FADE_FROM_BLACK
 	release
 	end
 
-ModesCheck_Continue_15:
+ModesCheck_Continue_7:
 	setflag FLAG_MINIMAL_GRINDING_MODE
+	setvar VAR_MODES_CHECK, 1
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_9
+	goto ModesCheck_Continue_1
 
-ModesCheck_Continue_18:
+ModesCheck_Continue_10:
 	setflag FLAG_VGC_MODE
+	setvar VAR_MODES_CHECK, 1
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_9
+	goto ModesCheck_Continue_1
 
-ModesCheck_Continue_21:
+ModesCheck_Continue_13:
 	setflag FLAG_RANDOM_NICKNAMES
+	setvar VAR_MODES_CHECK, 1
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_9
+	goto ModesCheck_Continue_1
 
 
 ModesCheck_Text_0:
@@ -180,25 +156,16 @@ ModesCheck_Continue_Text_0:
 	.string "Wich option would you like to use?$"
 
 ModesCheck_Continue_Text_1:
-	.string "{COLOR GREEN}Minimal Grinding$"
+	.string "Minimal Grinding$"
 
 ModesCheck_Continue_Text_2:
-	.string "{COLOR RED}VGC Mode$"
+	.string "VGC Mode$"
 
 ModesCheck_Continue_Text_3:
-	.string "{COLOR RED}Random Nicknames$"
+	.string "Random Nicknames$"
 
 ModesCheck_Continue_Text_4:
 	.string "Done$"
-
-ModesCheck_Continue_Text_5:
-	.string "{COLOR RED}Minimal Grinding$"
-
-ModesCheck_Continue_Text_6:
-	.string "{COLOR GREEN}VGC Mode$"
-
-ModesCheck_Continue_Text_7:
-	.string "{COLOR GREEN}Random Nicknames$"
 
 ModesCheck_Text_MinimalGrinding::
 	.string "Minimal Grinding mode guarantees all\n"

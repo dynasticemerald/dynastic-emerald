@@ -1060,19 +1060,47 @@ Seafloor_Cavern_Articuno_DefeatedArticuno::
 
 LittlerootTown_EventScript_NationalDexUpgrade::
 	lock
-	addobject LOCALID_BIRCH_NATIONAL_DEX
-	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_0, MSGBOX_DEFAULT
-	applymovement LOCALID_BIRCH_NATIONAL_DEX, MoveUpBirchNationalDex
-	waitmovement 0
+	addobject 9
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_0, MSGBOX_AUTOCLOSE
+	applymovement OBJ_EVENT_ID_PLAYER, FaceDown
+	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement 9, MoveUpBirchNationalDex
+	waitmovement 9
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_1, MSGBOX_DEFAULT
-	return
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_2, MSGBOX_DEFAULT
+	setflag FLAG_SYS_NATIONAL_DEX
+	special EnableNationalPokedex
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_3, MSGBOX_DEFAULT
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_4, MSGBOX_DEFAULT
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_5, MSGBOX_AUTOCLOSE
+	applymovement 9, MoveDownBirchNationalDex
+	waitmovement 9
+	removeobject 9
+	setvar VAR_POKEDEX_UPGRADED, 1
+	release
+	end
 
+
+FaceDown:
+	face_down
+	step_end
 
 MoveUpBirchNationalDex:
 	walk_up
 	walk_up
 	walk_up
 	walk_up
+	walk_up
+	step_end
+
+MoveDownBirchNationalDex:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
 	step_end
 
 WonderEgg_Test::
@@ -1098,11 +1126,28 @@ Seafloor_Cavern_Articuno_Encounter_Text_0:
 	.string "Articuno: Gyaoo!$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_0:
-	.string "Hey {PLAYER}, wait up!$"
+	.string "Prof. Birch: Hey {PLAYER}, wait up!$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_1:
-	.string "mhphm, you know my legs aren't what\n"
-	.string "they used to be...\n"
-	.string "anyways, I completely forgot to do\l"
-	.string "something to your Pokédex before i\l"
-	.string "gave it too you!$"
+	.string "Prof. Birch: you know my legs aren't\n"
+	.string "what they used to be...\n"
+	.string "$"
+
+LittlerootTown_EventScript_NationalDexUpgrade_Text_2:
+	.string "Prof. Birch: ...anyways I completely\n"
+	.string "forgot to upgrade your Pokédex before\l"
+	.string "i gave it too you!$"
+
+LittlerootTown_EventScript_NationalDexUpgrade_Text_3:
+	.string "{PLAYER}'s Pokédex was upgrade to a\n"
+	.string "National Dex.$"
+
+LittlerootTown_EventScript_NationalDexUpgrade_Text_4:
+	.string "Prof. Birch: The National Dex upgrade,\n"
+	.string "lets you see and register all Pokémon\l"
+	.string "from every region in the Pokédex.$"
+
+LittlerootTown_EventScript_NationalDexUpgrade_Text_5:
+	.string "Prof. Birch: Well that will be all,\n"
+	.string "{PLAYER}!\n"
+	.string "Now back to regular job schedule.$"

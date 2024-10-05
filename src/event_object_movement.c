@@ -53,6 +53,7 @@
 #include "constants/union_room.h"
 #include "constants/weather.h"
 #include "day_night.h"
+#include "item.h"
 
 // this file was known as evobjmv.c in Game Freak's original source
 
@@ -1893,7 +1894,7 @@ struct ObjectEvent *GetFollowerObject(void)
 static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, u8 form)
 {
     const struct ObjectEventGraphicsInfo *graphicsInfo = NULL;
-#if OW_POKEMON_OBJECT_EVENTS
+#if OW_POKEMON_OBJECT_EVENTS == TRUE
     switch (species)
     {
     case SPECIES_UNOWN: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
@@ -2033,6 +2034,214 @@ static void RefreshFollowerGraphics(struct ObjectEvent *objEvent)
     }
 }
 
+u16 getOverworldSpecies(struct Pokemon *mon){
+    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+
+    switch(species){
+        case SPECIES_ABOMASNOW:
+            if(item == ITEM_ABOMASITE)
+                return SPECIES_ABOMASNOW_MEGA;
+        break;
+        case SPECIES_ABSOL:
+            if(item == ITEM_ABSOLITE)
+                return SPECIES_ABSOL_MEGA;
+        break;
+        case SPECIES_AERODACTYL:
+            if(item == ITEM_AERODACTYLITE)
+                return SPECIES_AERODACTYL_MEGA;
+        break;
+        case SPECIES_AGGRON:
+            if(item == ITEM_AGGRONITE)
+                return SPECIES_AGGRON_MEGA;
+        break;
+        case SPECIES_ALAKAZAM:
+            if(item == ITEM_ALAKAZITE)
+                return SPECIES_ALAKAZAM_MEGA;
+        break;
+        case SPECIES_ALTARIA:
+            if(item == ITEM_ALTARIANITE)
+                return SPECIES_ALTARIA_MEGA;
+        break;
+        case SPECIES_AMPHAROS:
+            if(item == ITEM_AMPHAROSITE)
+                return SPECIES_AMPHAROS_MEGA;
+        break;
+        case SPECIES_AUDINO:
+            if(item == ITEM_AUDINITE)
+                return SPECIES_AUDINO_MEGA;
+        break;
+        case SPECIES_BANETTE:
+            if(item == ITEM_BANETTITE)
+                return SPECIES_BANETTE_MEGA;
+        break;
+        case SPECIES_BEEDRILL:
+            if(item == ITEM_BEEDRILLITE)
+                return SPECIES_BEEDRILL_MEGA;
+        break;
+        case SPECIES_BLASTOISE:
+            if(item == ITEM_BLASTOISINITE)
+                return SPECIES_BLASTOISE_MEGA;
+        break;
+        case SPECIES_BLAZIKEN:
+            if(item == ITEM_BLAZIKENITE)
+                return SPECIES_BLAZIKEN_MEGA;
+        break;
+        case SPECIES_CAMERUPT:
+            if(item == ITEM_CAMERUPTITE)
+                return SPECIES_CAMERUPT_MEGA;
+        break;
+        case SPECIES_CHARIZARD:
+            if(item == ITEM_CHARIZARDITE_X)
+                return SPECIES_CHARIZARD_MEGA_X;
+            else if(item == ITEM_CHARIZARDITE_Y)
+                return SPECIES_CHARIZARD_MEGA_Y;
+        break;
+        case SPECIES_DIANCIE:
+            if(item == ITEM_DIANCITE)
+                return SPECIES_DIANCIE_MEGA;
+        break;
+        case SPECIES_GALLADE:
+            if(item == ITEM_GALLADITE)
+                return SPECIES_GALLADE_MEGA;
+        break;
+        case SPECIES_GARCHOMP:
+            if(item == ITEM_GARCHOMPITE)
+                return SPECIES_GARCHOMP_MEGA;
+        break;
+        case SPECIES_GARDEVOIR:
+            if(item == ITEM_GARDEVOIRITE)
+                return SPECIES_GARDEVOIR_MEGA;
+        break;
+        case SPECIES_GENGAR:
+            if(item == ITEM_GENGARITE)
+                return SPECIES_GENGAR_MEGA;
+        break;
+        case SPECIES_GLALIE:
+            if(item == ITEM_GLALITITE)
+                return SPECIES_GLALIE_MEGA;
+        break;
+        case SPECIES_GYARADOS:
+            if(item == ITEM_GYARADOSITE)
+                return SPECIES_GYARADOS_MEGA;
+        break;
+        case SPECIES_HERACROSS:
+            if(item == ITEM_HERACRONITE)
+                return SPECIES_HERACROSS_MEGA;
+        break;
+        case SPECIES_HOUNDOOM:
+            if(item == ITEM_HOUNDOOMINITE)
+                return SPECIES_HOUNDOOM_MEGA;
+        break;
+        case SPECIES_KANGASKHAN:
+            if(item == ITEM_KANGASKHANITE)
+                return SPECIES_KANGASKHAN_MEGA;
+        break;
+        case SPECIES_LATIAS:
+            if(item == ITEM_LATIASITE)
+                return SPECIES_LATIAS_MEGA;
+        break;
+        case SPECIES_LATIOS:
+            if(item == ITEM_LATIOSITE)
+                return SPECIES_LATIOS_MEGA;
+        break;
+        case SPECIES_LOPUNNY:
+            if(item == ITEM_LOPUNNITE)
+                return SPECIES_LOPUNNY_MEGA;
+        break;
+        case SPECIES_LUCARIO:
+            if(item == ITEM_LUCARIONITE)
+                return SPECIES_LUCARIO_MEGA;
+        break;
+        case SPECIES_MANECTRIC:
+            if(item == ITEM_MANECTITE)
+                return SPECIES_MANECTRIC_MEGA;
+        break;
+        case SPECIES_MAWILE:
+            if(item == ITEM_MAWILITE)
+                return SPECIES_MAWILE_MEGA;
+        break;
+        case SPECIES_MEDICHAM:
+            if(item == ITEM_MEDICHAMITE)
+                return SPECIES_MEDICHAM_MEGA;
+        break;
+        case SPECIES_METAGROSS:
+            if(item == ITEM_METAGROSSITE)
+                return SPECIES_METAGROSS_MEGA;
+        break;
+        case SPECIES_MEWTWO:
+            if(item == ITEM_MEWTWONITE_X)
+                return SPECIES_MEWTWO_MEGA_X;
+            else if(item == ITEM_MEWTWONITE_Y)
+                return SPECIES_MEWTWO_MEGA_Y;
+        break;
+        case SPECIES_PIDGEOT:
+            if(item == ITEM_PIDGEOTITE)
+                return SPECIES_PIDGEOT_MEGA;
+        break;
+        case SPECIES_PINSIR:
+            if(item == ITEM_PINSIRITE)
+                return SPECIES_PINSIR_MEGA;
+        break;
+        case SPECIES_SABLEYE:
+            if(item == ITEM_SABLENITE)
+                return SPECIES_SABLEYE_MEGA;
+        break;
+        case SPECIES_SALAMENCE:
+            if(item == ITEM_SALAMENCITE)
+                return SPECIES_SALAMENCE_MEGA;
+        break;
+        case SPECIES_SCEPTILE:
+            if(item == ITEM_SCEPTILITE)
+                return SPECIES_SCEPTILE_MEGA;
+        break;
+        case SPECIES_SCIZOR:
+            if(item == ITEM_SCIZORITE)
+                return SPECIES_SCIZOR_MEGA;
+        break;
+        case SPECIES_SHARPEDO:
+            if(item == ITEM_SHARPEDONITE)
+                return SPECIES_SHARPEDO_MEGA;
+        break;
+        case SPECIES_SLOWBRO:
+            if(item == ITEM_SLOWBRONITE)
+                return SPECIES_SLOWBRO_MEGA;
+        break;
+        case SPECIES_STEELIX:
+            if(item == ITEM_STEELIXITE)
+                return SPECIES_STEELIX_MEGA;
+        break;
+        case SPECIES_SWAMPERT:
+            if(item == ITEM_SWAMPERTITE)
+                return SPECIES_SWAMPERT_MEGA;
+        break;
+        case SPECIES_TYRANITAR:
+            if(item == ITEM_TYRANITARITE)
+                return SPECIES_TYRANITAR_MEGA;
+        break;
+        case SPECIES_VENUSAUR:
+            if(item == ITEM_VENUSAURITE)
+                return SPECIES_VENUSAUR_MEGA;
+            /*else if(item == ITEM_VENUSAURITE)
+                return SPECIES_VENUSAUR_GMAX;*/
+        break;
+        case SPECIES_GROUDON:
+            if(item == ITEM_RED_ORB)
+                return SPECIES_GROUDON_PRIMAL;
+        break;
+        case SPECIES_KYOGRE:
+            if(item == ITEM_BLUE_ORB)
+                return SPECIES_KYOGRE_PRIMAL;
+        break;
+        case SPECIES_FLYGON:
+            if(item == ITEM_FLYGONITE)
+                return SPECIES_FLYGON_MEGA;
+        break;
+    }
+
+    return species;
+}
+
 static u16 GetOverworldCastformSpecies(void)
 {
     switch (GetCurrentWeather())
@@ -2060,7 +2269,11 @@ static bool8 GetMonInfo(struct Pokemon *mon, u16 *species, u8 *form, u8 *shiny)
         *shiny = 0;
         return FALSE;
     }
+    if(!CheckBagHasItem(ITEM_MEGA_RING, 1))
     *species = GetMonData(mon, MON_DATA_SPECIES);
+    else
+    *species = getOverworldSpecies(mon);
+
     *shiny = IsMonShiny(mon);
     switch (*species)
     {
