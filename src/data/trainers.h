@@ -12228,7 +12228,7 @@ F_TRAINER_FEMALE |
 #line 4941
             .ability = ABILITY_ELECTRIC_SURGE,
 #line 4942
-            .lvl = 36,
+            .lvl = 34,
 #line 4946
             .nature = NATURE_TIMID,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12255,7 +12255,7 @@ F_TRAINER_FEMALE |
 #line 4953
             .ability = ABILITY_LEVITATE,
 #line 4954
-            .lvl = 36,
+            .lvl = 34,
 #line 4958
             .nature = NATURE_TIMID,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12282,7 +12282,7 @@ F_TRAINER_FEMALE |
 #line 4965
             .ability = ABILITY_IRON_FIST,
 #line 4966
-            .lvl = 36,
+            .lvl = 34,
 #line 4969
             .nature = NATURE_JOLLY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12309,7 +12309,7 @@ F_TRAINER_FEMALE |
 #line 4976
             .ability = ABILITY_INTIMIDATE,
 #line 4977
-            .lvl = 36,
+            .lvl = 34,
 #line 4981
             .nature = NATURE_TIMID,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12336,7 +12336,7 @@ F_TRAINER_FEMALE |
 #line 4988
             .ability = ABILITY_LEVITATE,
 #line 4989
-            .lvl = 36,
+            .lvl = 34,
 #line 4992
             .nature = NATURE_BOLD,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12363,7 +12363,7 @@ F_TRAINER_FEMALE |
 #line 4999
             .ability = ABILITY_PUNK_ROCK,
 #line 5000
-            .lvl = 36,
+            .lvl = 34,
 #line 5003
             .nature = NATURE_TIMID,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,

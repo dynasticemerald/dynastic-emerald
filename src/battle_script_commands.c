@@ -1158,6 +1158,36 @@ static bool32 TryAegiFormChange(void)
     return TRUE;
 }
 
+static bool32 TryDarmFormChange(void)
+{
+    // Only Darmanitan with Zen Mode can transform, transformed mons cannot.
+    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_ZEN_MODE
+        || gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
+        return FALSE;
+
+    switch (gBattleMons[gBattlerAttacker].species)
+    {
+    default:
+        return FALSE;
+    case SPECIES_DARMANITAN: // Normal -> Zen
+        if (gCurrentMove == MOVE_PROTECT)
+            gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_ZEN;
+        if (gCurrentMove != MOVE_PROTECT)
+            return FALSE;
+        break;
+    case SPECIES_DARMANITAN_ZEN: // Zen -> Normal
+        if (IS_MOVE_STATUS(gCurrentMove))
+            return FALSE;
+        if (!IS_MOVE_STATUS(gCurrentMove))
+            gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN;
+        break;
+    }
+
+    BattleScriptPushCursor();
+    gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
+    return TRUE;
+}
+
 bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
 {
       if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
@@ -1219,6 +1249,8 @@ static void Cmd_attackcanceler(void)
         return;
     }
     if (B_STANCE_CHANGE_FAIL < GEN_7 && TryAegiFormChange())
+        return;
+    if (TryDarmFormChange())
         return;
     if (AtkCanceller_UnableToUseMove(moveType))
         return;
@@ -1292,6 +1324,8 @@ static void Cmd_attackcanceler(void)
         return;
     }
     if (B_STANCE_CHANGE_FAIL >= GEN_7 && TryAegiFormChange())
+        return;
+    if (TryDarmFormChange())
         return;
 
     gHitMarker &= ~HITMARKER_ALLOW_NO_PP;
