@@ -20351,8 +20351,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = HANDLE_EXPANDED_MOVE_NAME("StelrStarstrm", "Stellar Starstorm"),
         .description = COMPOUND_STRING(
-            "Damages all opponents."),
-        .effect = EFFECT_TERA_STARSTORM,
+            "The user summons a Meteor using\n"
+            "its stellar Power from within."),
+        .effect = EFFECT_PHOTON_GEYSER,
         .power = 120,
         .type = TYPE_STELLAR,
         .accuracy = 100,

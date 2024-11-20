@@ -4793,7 +4793,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 
 === TRAINER_ROXANNE_1 ===
-Name: ROXANNE
+Name: Roxanne
 Class: Leader
 Pic: Leader Roxanne
 Gender: Female
@@ -4868,7 +4868,7 @@ AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switchi
 
 Monferno @ Focus Sash  
 Ability: Iron Fist  
-Level: 27  
+Level: 24  
 Tera Type: Fire  
 Jolly Nature  
 - Stealth Rock  
@@ -4878,7 +4878,7 @@ Jolly Nature
 
 Mienfoo @ Eviolite  
 Ability: Technician  
-Level: 28  
+Level: 24  
 Tera Type: Fighting
 IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
 Timid Nature  
@@ -4889,7 +4889,7 @@ Timid Nature
 
 Machoke @ Flame Orb  
 Ability: Guts  
-Level: 26  
+Level: 23  
 Tera Type: Fighting  
 Adamant Nature  
 - Detect  
@@ -4899,7 +4899,7 @@ Adamant Nature
 
 Hitmonlee @ Expert Belt  
 Ability: Limber  
-Level: 26  
+Level: 22  
 Tera Type: Fighting  
 Jolly Nature  
 - Blaze Kick  
@@ -4909,7 +4909,7 @@ Jolly Nature
 
 Breloom @ Toxic Orb  
 Ability: Poison Heal  
-Level: 27  
+Level: 22  
 Tera Type: Grass  
 Jolly Nature  
 - Spore  
@@ -4919,7 +4919,7 @@ Jolly Nature
 
 Sawk @ Black Belt  
 Ability: Inner Focus  
-Level: 28  
+Level: 23  
 Tera Type: Fighting  
 Jolly Nature  
 - Knock Off  
@@ -4939,7 +4939,7 @@ AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switchi
 
 Dedenne @ Terrain Extender  
 Ability: Electric Surge  
-Level: 36  
+Level: 34  
 Tera Type: Electric  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
@@ -4951,7 +4951,7 @@ Timid Nature
 
 Rotom-Heat @ Leftovers  
 Ability: Levitate  
-Level: 36
+Level: 34
 Tera Type: Electric  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD/ 31 Spe
@@ -4963,7 +4963,7 @@ Timid Nature
 
 Pawmot @ Punching Glove  
 Ability: Iron Fist  
-Level: 36  
+Level: 34  
 Tera Type: Electric  
 EVs: 252 Atk / 4 SpD / 252 Spe  
 Jolly Nature  
@@ -4974,7 +4974,7 @@ Jolly Nature
 
 Manectric @ Manectite  
 Ability: Intimidate  
-Level: 36 
+Level: 34 
 Tera Type: Electric  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD/ 31 Spe
@@ -4986,7 +4986,7 @@ Timid Nature
 
 Vikavolt @ Occa Berry  
 Ability: Levitate  
-Level: 36  
+Level: 34  
 Tera Type: Bug  
 EVs: 252 HP / 252 Def / 4 SpA  
 Bold Nature  
@@ -4997,7 +4997,7 @@ Bold Nature
 
 Toxtricity @ Air Balloon  
 Ability: Punk Rock  
-Level: 36  
+Level: 34  
 Tera Type: Electric  
 EVs: 252 SpA / 4 SpD / 252 Spe  
 Timid Nature   

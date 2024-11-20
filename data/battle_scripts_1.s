@@ -2719,9 +2719,10 @@ BattleScript_TryTailwindAbilitiesLoop:
 	savetarget
 	setbyte gBattlerTarget, 0
 BattleScript_TryTailwindAbilitiesLoop_Iter:
-	trywindriderpower BS_TARGET, BattleScript_TryTailwindAbilitiesLoop_Increment
+	trywindriderpowerjetstream BS_TARGET, BattleScript_TryTailwindAbilitiesLoop_Increment
 	jumpifability BS_TARGET, ABILITY_WIND_RIDER, BattleScript_TryTailwindAbilitiesLoop_WindRider
 	jumpifability BS_TARGET, ABILITY_WIND_POWER, BattleScript_TryTailwindAbilitiesLoop_WindPower
+	jumpifability BS_TARGET, ABILITY_JETSTREAM, BattleScript_TryTailwindAbilitiesLoop_JetStream
 BattleScript_TryTailwindAbilitiesLoop_Increment:
 	addbyte gBattlerTarget, 0x1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_TryTailwindAbilitiesLoop_Iter
@@ -2738,6 +2739,11 @@ BattleScript_TryTailwindAbilitiesLoop_WindPower:
 	setcharge BS_TARGET
 	printstring STRINGID_BEINGHITCHARGEDPKMNWITHPOWER
 	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_TryTailwindAbilitiesLoop_Increment
+
+BattleScript_TryTailwindAbilitiesLoop_JetStream:
+	call BattleScript_AbilityPopUp
+	modifybattlerstatstage BS_TARGET, STAT_ATK, INCREASE, 1, BattleScript_TryTailwindAbilitiesLoop_Increment, ANIM_ON
 	goto BattleScript_TryTailwindAbilitiesLoop_Increment
 
 BattleScript_EffectMircleEye::
@@ -7640,6 +7646,7 @@ BattleScript_MoveEffectConfusion::
 
 BattleScript_MoveEffectRecoil::
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil
+	jumpifability BS_ATTACKER, ABILITY_FIERY_BODY, BattleScript_RecoilEnd
 	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD, BattleScript_RecoilEnd
 	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD, BattleScript_RecoilEnd
 BattleScript_DoRecoil::

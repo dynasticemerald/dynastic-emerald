@@ -2706,5 +2706,19 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 6,
     },
 
+    [ABILITY_FIERY_BODY] =
+    {
+        .name = _("Talon's Resolve"),
+        .description = COMPOUND_STRING("Fire-Type and Flying-Type Moves cannot\ncause recoil damage."),
+        .aiRating = 5,
+    },
+
+    [ABILITY_JETSTREAM] =
+    {
+        .name = _("Jetstrean"),
+        .description = COMPOUND_STRING("Boosts Pokémon's Sp. Atk stat if\nTailwind is active. Immune to Wind Moves."),
+        .aiRating = 4,
+        .breakable = TRUE,
+    },
 
 };

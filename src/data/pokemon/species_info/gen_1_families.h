@@ -12292,12 +12292,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_WEEZING] =
     {
-        .baseHP        = 65,
-        .baseAttack    = 90 - 20,
+        .baseHP        = 65 + 10,
+        .baseAttack    = 90,
         .baseDefense   = 120,
-        .baseSpeed     = 60,
-        .baseSpAttack  = 85 + 10,
-        .baseSpDefense = 70 + 10,
+        .baseSpeed     = 60 - 10,
+        .baseSpAttack  = 85 + 5,
+        .baseSpDefense = 70 + 5,
         .types = MON_TYPES(TYPE_POISON),
         .catchRate = 60,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 172 : 173,
@@ -12361,12 +12361,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #if P_GALARIAN_FORMS
     [SPECIES_WEEZING_GALARIAN] =
     {
-        .baseHP        = 65,
+        .baseHP        = 65 + 10,
         .baseAttack    = 90,
         .baseDefense   = 120,
         .baseSpeed     = 60,
-        .baseSpAttack  = 85,
-        .baseSpDefense = 70,
+        .baseSpAttack  = 85 + 5,
+        .baseSpDefense = 70 + 5,
         .types = MON_TYPES(TYPE_POISON, TYPE_FAIRY),
         .catchRate = 60,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 172 : 173,

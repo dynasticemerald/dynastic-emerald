@@ -14953,7 +14953,8 @@
       "MOVE_FLAIL",
       "MOVE_PRESENT",
       "MOVE_TICKLE",
-      "MOVE_WISH"
+      "MOVE_WISH",
+      "MOVE_FLYING_PRESS"
     ],
     "TutorMoves": []
   },

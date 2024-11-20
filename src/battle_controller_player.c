@@ -1890,6 +1890,7 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
         break;
         case ABILITY_WIND_RIDER:
         case ABILITY_WIND_POWER:
+        case ABILITY_JETSTREAM:
         {
             if ((gMovesInfo[move].windMove) && (!moldBreaker))
                 return COLOR_IMMUNE;

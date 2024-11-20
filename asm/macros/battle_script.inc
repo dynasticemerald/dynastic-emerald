@@ -2290,8 +2290,8 @@
 	.byte \stat
 	.endm
 
-	.macro trywindriderpower battler:req, failInstr:req
-	various \battler, VARIOUS_TRY_WIND_RIDER_POWER
+	.macro trywindriderpowerjetstream battler:req, failInstr:req
+	various \battler, VARIOUS_TRY_WIND_RIDER_POWER_JETSTREAM
 	.4byte \failInstr
 	.endm
 

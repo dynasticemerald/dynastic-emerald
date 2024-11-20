@@ -10978,12 +10978,12 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = cmd->jumpInstr;
         return;
     }
-    case VARIOUS_TRY_WIND_RIDER_POWER:
+    case VARIOUS_TRY_WIND_RIDER_POWER_JETSTREAM:
         {
             VARIOUS_ARGS(const u8 *failInstr);
             u16 ability = GetBattlerAbility(battler);
             if (GetBattlerSide(battler) == GetBattlerSide(gBattlerAttacker)
-             && (ability == ABILITY_WIND_RIDER || ability == ABILITY_WIND_POWER))
+             && (ability == ABILITY_WIND_RIDER || ability == ABILITY_WIND_POWER || ability == ABILITY_JETSTREAM))
             {
                 gLastUsedAbility = ability;
                 RecordAbilityBattle(battler, gLastUsedAbility);

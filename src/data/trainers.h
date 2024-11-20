@@ -11868,7 +11868,7 @@ F_TRAINER_FEMALE |
     [TRAINER_ROXANNE_1] =
     {
 #line 4796
-        .trainerName = _("ROXANNE"),
+        .trainerName = _("Roxanne"),
 #line 4797
         .trainerClass = TRAINER_CLASS_LEADER,
 #line 4798
@@ -12055,7 +12055,7 @@ F_TRAINER_FEMALE |
 #line 4870
             .ability = ABILITY_IRON_FIST,
 #line 4871
-            .lvl = 27,
+            .lvl = 24,
 #line 4873
             .nature = NATURE_JOLLY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12080,7 +12080,7 @@ F_TRAINER_FEMALE |
 #line 4880
             .ability = ABILITY_TECHNICIAN,
 #line 4881
-            .lvl = 28,
+            .lvl = 24,
 #line 4884
             .nature = NATURE_TIMID,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12105,7 +12105,7 @@ F_TRAINER_FEMALE |
 #line 4891
             .ability = ABILITY_GUTS,
 #line 4892
-            .lvl = 26,
+            .lvl = 23,
 #line 4894
             .nature = NATURE_ADAMANT,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12130,7 +12130,7 @@ F_TRAINER_FEMALE |
 #line 4901
             .ability = ABILITY_LIMBER,
 #line 4902
-            .lvl = 26,
+            .lvl = 22,
 #line 4904
             .nature = NATURE_JOLLY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12155,7 +12155,7 @@ F_TRAINER_FEMALE |
 #line 4911
             .ability = ABILITY_POISON_HEAL,
 #line 4912
-            .lvl = 27,
+            .lvl = 22,
 #line 4914
             .nature = NATURE_JOLLY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
@@ -12180,7 +12180,7 @@ F_TRAINER_FEMALE |
 #line 4921
             .ability = ABILITY_INNER_FOCUS,
 #line 4922
-            .lvl = 28,
+            .lvl = 23,
 #line 4924
             .nature = NATURE_JOLLY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,

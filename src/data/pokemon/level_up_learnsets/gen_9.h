@@ -4033,6 +4033,7 @@ static const struct LevelUpMove sPinsirLevelUpLearnset[] = {
     LEVEL_UP_MOVE(44, MOVE_SUBMISSION),
     LEVEL_UP_MOVE(48, MOVE_GUILLOTINE),
     LEVEL_UP_MOVE(52, MOVE_SUPERPOWER),
+    LEVEL_UP_MOVE(85, MOVE_MEGAHORN),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_PINSIR
@@ -4485,6 +4486,7 @@ static const struct LevelUpMove sPorygonZLevelUpLearnset[] = {
     LEVEL_UP_MOVE(55, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(60, MOVE_ZAP_CANNON),
     LEVEL_UP_MOVE(65, MOVE_HYPER_BEAM),
+    LEVEL_UP_MOVE(85, MOVE_BOOMBURST),
     LEVEL_UP_END
 };
 #endif //P_GEN_4_CROSS_EVOS
