@@ -4875,7 +4875,7 @@ static void SetMoveTypeIcons(void)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            monoType = SetTypeBeforeUsingMoveSummaryScreen(summary->moves[i], mon, 0);
+            monoType = GetDynamicMoveType(mon, summary->moves[i], 0);
             SetTypeSpritePosAndPal(monoType, 8, 16 + (i * 28), i + SPRITE_ARR_ID_TYPE);
         }
         else
