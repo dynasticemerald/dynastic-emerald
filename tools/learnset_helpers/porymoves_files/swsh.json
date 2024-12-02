@@ -2254,7 +2254,9 @@
       "MOVE_POISON_JAB",
       "MOVE_EARTH_POWER",
       "MOVE_DRILL_RUN",
-      "MOVE_VENOM_DRENCH"
+      "MOVE_VENOM_DRENCH",
+      "MOVE_SCORCHING_SANDS",
+      "MOVE_GUNK_SHOT"
     ],
     "EggMoves": [
       "MOVE_CONFUSION",
@@ -2359,7 +2361,9 @@
       "MOVE_POISON_JAB",
       "MOVE_EARTH_POWER",
       "MOVE_DRILL_RUN",
-      "MOVE_VENOM_DRENCH"
+      "MOVE_VENOM_DRENCH",
+      "MOVE_SCORCHING_SANDS",
+      "MOVE_GUNK_SHOT"
     ],
     "EggMoves": [
       "MOVE_CONFUSION",
@@ -2511,7 +2515,9 @@
       "MOVE_VENOM_DRENCH",
       "MOVE_HIGH_HORSEPOWER",
       "MOVE_THROAT_CHOP",
-      "MOVE_BODY_PRESS"
+      "MOVE_BODY_PRESS",
+      "MOVE_SCORCHING_SANDS",
+      "MOVE_GUNK_SHOT"
     ],
     "EggMoves": [
       "MOVE_CONFUSION",

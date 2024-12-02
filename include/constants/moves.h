@@ -892,12 +892,12 @@
 #define MOVE_SYRUP_BOMB 831
 #define MOVE_IVY_CUDGEL 832
 // The Indigo Disk Moves
-#define MOVE_ELECTRO_SHOT 833
-#define MOVE_STELLAR_STARSTORM 834
-#define MOVE_FICKLE_BEAM 835
-#define MOVE_BURNING_BULWARK 836
-#define MOVE_THUNDERCLAP 837
-#define MOVE_MIGHTY_CLEAVE 838
+#define MOVE_ELECTRO_SHOT 833 //Given to Raikou and Ampharos Mega or No Mega
+#define MOVE_STELLAR_STARSTORM 834 //Given to Togekiss and Noivern.
+#define MOVE_FICKLE_BEAM 835 //Given to Heidrygon.
+#define MOVE_BURNING_BULWARK 836 //Given to Coalossol, Turtator, Entei and Torkoal.
+#define MOVE_THUNDERCLAP 837 //Given to Vikavolt, Eelektross, Ampharos Mega or No Mega.
+#define MOVE_MIGHTY_CLEAVE 838 //Given to Barbaricle, LycanDusk, Bisharp and Kingambit, Kartana and Terrakion.
 #define MOVE_TACHYON_CUTTER 839
 #define MOVE_HARD_PRESS 840
 #define MOVE_DRAGON_CHEER 841

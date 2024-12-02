@@ -9408,6 +9408,7 @@ static const struct LevelUpMove sGigalithLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_SANDSTORM),
     LEVEL_UP_MOVE(48, MOVE_STONE_EDGE),
     LEVEL_UP_MOVE(55, MOVE_EXPLOSION),
+    LEVEL_UP_MOVE(65, MOVE_DIAMOND_STORM),
     LEVEL_UP_END
 };
 #endif //P_FAMILY_ROGGENROLA

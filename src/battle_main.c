@@ -1996,6 +1996,8 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             //Kaido: Make level scaling compatible with the Trainerproc tool.
 
             level = GetHighestLevelInPlayerParty();
+            u32 level1 = GetHighestLevelInPlayerParty() - 1;
+            u32 level2 = GetHighestLevelInPlayerParty() - 2;
             if (level + partyData[i].lvl > 100)
             {
                 level = 100;
@@ -2009,6 +2011,13 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 level = level + partyData[i].lvl;
             }
 
+        if(partyData[i].lvl == PLAYER_MAX)
+            CreateMon(&party[i], partyData[i].species, level, 31, TRUE, personalityValue, otIdType, fixedOtId);
+        else if(partyData[i].lvl == ONE_BELOW_PLAYER_MAX)
+            CreateMon(&party[i], partyData[i].species, level1, 31, TRUE, personalityValue, otIdType, fixedOtId);
+        else if (partyData[i].lvl == TWO_BELOW_PLAYER_MAX)
+            CreateMon(&party[i], partyData[i].species, level2, 31, TRUE, personalityValue, otIdType, fixedOtId);
+        else
             CreateMon(&party[i], partyData[i].species, partyData[i].lvl, 31, TRUE, personalityValue, otIdType, fixedOtId);
 
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
@@ -4794,7 +4803,7 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     if (ability == ABILITY_BALL_FETCH){
         for (i = 0; i < ARRAY_COUNT(BallItems); i++){
             if (HeldItem == BallItems[i]){
-                speed = (speed * 150) / 100;
+                speed = (speed * 130) / 100;
             }
         }
     }
@@ -5893,6 +5902,8 @@ u8 SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
                 gBattleStruct->dynamicMoveType = TYPE_FIRE | F_DYNAMIC_TYPE_SET;
             else if (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW))
                 gBattleStruct->dynamicMoveType = TYPE_ICE | F_DYNAMIC_TYPE_SET;
+            else if (gBattleWeather & (B_WEATHER_FOG && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA))
+                gBattleStruct->dynamicMoveType = TYPE_FLYING | F_DYNAMIC_TYPE_SET;
             else
                 gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_SET;
         }

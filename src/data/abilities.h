@@ -397,14 +397,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_RUN_AWAY] =
     {
         .name = _("Run Away"),
-        .description = COMPOUND_STRING("Makes escaping easier."),
+        .description = COMPOUND_STRING("Makes escaping easier.\nRaises Speed when stats are dropped."),
         .aiRating = 0,
     },
 
     [ABILITY_KEEN_EYE] =
     {
         .name = _("Keen Eye"),
-        .description = COMPOUND_STRING("Prevents loss of accuracy."),
+        .description = COMPOUND_STRING("Prevents the loss of accuracy.\nRaises accuracy by 30%."),
         .aiRating = 1,
         .breakable = TRUE,
     },
@@ -1107,7 +1107,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BIG_PECKS] =
     {
         .name = _("Big Pecks"),
-        .description = COMPOUND_STRING("Prevents Defense loss."),
+        .description = COMPOUND_STRING("Prevents the loss of stats.\nBoosts Flying-Type moves by 10%."),
         .aiRating = 1,
         .breakable = TRUE,
     },
@@ -1885,7 +1885,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BALL_FETCH] =
     {
         .name = _("Ball Fetch"),
-        .description = COMPOUND_STRING("When holding a 'Ball' item\nspeed stat is boosted by 1.5x."),
+        .description = COMPOUND_STRING("When holding a 'Ball' item\nspeed stat is boosted by 1.3x."),
         .aiRating = 10,
     },
 
@@ -2485,7 +2485,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MINDS_EYE] =
     {
         .name = _("Mind's Eye"),
-        .description = COMPOUND_STRING("Keen Eye and Scrappy."),
+        .description = COMPOUND_STRING("Prevents the loss of accuracy.\nCan hit Ghost-type Pokémon."),
         .aiRating = 8,
         .breakable = TRUE,
     },
@@ -2719,6 +2719,20 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Boosts Pokémon's Sp. Atk stat if\nTailwind is active. Immune to Wind Moves."),
         .aiRating = 4,
         .breakable = TRUE,
+    },
+
+    [ABILITY_SUPER_SLAMMER] =
+    {
+        .name = _("Super Slammer"),
+        .description = COMPOUND_STRING("Boosts hammer and slamming moves by 30%."),
+        .aiRating = 6,
+    },
+
+    [ABILITY_FOG_BANK] =
+    {
+        .name = _("Fog Bank"),
+        .description = COMPOUND_STRING("Summons a fog bank in battle.\nLasts 5 turns"),
+        .aiRating = 9,
     },
 
 };

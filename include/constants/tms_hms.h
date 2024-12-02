@@ -78,6 +78,10 @@
     F(DUAL_CHOP) \
     F(STONE_EDGE) \
     F(ROOST) \
+    F(GUNK_SHOT) \
+    F(DRAGON_HAMMER) \
+    F(POWER_WHIP) \
+    F(SHADOW_CLAW) \
 
 #define FOREACH_HM(F) \
     F(CUT) \

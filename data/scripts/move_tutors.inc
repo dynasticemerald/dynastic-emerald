@@ -568,7 +568,7 @@ ArrayOfMoves_Tutor::
 	lock
 	faceplayer
 	msgbox ArrayOfMoves_Tutor_Text_0
-	dynmultichoice 0, 0, FALSE, 7, 0, DYN_MULTICHOICE_CB_NONE, ArrayOfMoves_Tutor_Text_1, ArrayOfMoves_Tutor_Text_2, ArrayOfMoves_Tutor_Text_3, ArrayOfMoves_Tutor_Text_4, ArrayOfMoves_Tutor_Text_5, ArrayOfMoves_Tutor_Text_6, ArrayOfMoves_Tutor_Text_7, ArrayOfMoves_Tutor_Text_8, ArrayOfMoves_Tutor_Text_9, ArrayOfMoves_Tutor_Text_10, ArrayOfMoves_Tutor_Text_11, ArrayOfMoves_Tutor_Text_12, ArrayOfMoves_Tutor_Text_13, ArrayOfMoves_Tutor_Text_14, ArrayOfMoves_Tutor_Text_15
+	dynmultichoice 0, 0, FALSE, 7, 0, DYN_MULTICHOICE_CB_NONE, ArrayOfMoves_Tutor_Text_1, ArrayOfMoves_Tutor_Text_2, ArrayOfMoves_Tutor_Text_3, ArrayOfMoves_Tutor_Text_4, ArrayOfMoves_Tutor_Text_5, ArrayOfMoves_Tutor_Text_6, ArrayOfMoves_Tutor_Text_7, ArrayOfMoves_Tutor_Text_8, ArrayOfMoves_Tutor_Text_9, ArrayOfMoves_Tutor_Text_10, ArrayOfMoves_Tutor_Text_11, ArrayOfMoves_Tutor_Text_12, ArrayOfMoves_Tutor_Text_13, ArrayOfMoves_Tutor_Text_14, ArrayOfMoves_Tutor_Text_15, ArrayOfMoves_Tutor_Text_16
 	switch VAR_RESULT
 	case 0, ArrayOfMoves_Tutor_2
 	case 1, ArrayOfMoves_Tutor_3
@@ -585,6 +585,7 @@ ArrayOfMoves_Tutor::
 	case 12, ArrayOfMoves_Tutor_14
 	case 13, ArrayOfMoves_Tutor_15
 	case 14, ArrayOfMoves_Tutor_16
+	case 15, ArrayOfMoves_Tutor_17
 	return
 
 ArrayOfMoves_Tutor_2:
@@ -692,9 +693,46 @@ ArrayOfMoves_Tutor_16:
 	release
 	end
 
+ArrayOfMoves_Tutor_17:
+	setvar VAR_0x8005, MOVE_HEAT_CRASH
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
 
-ThisIsntATutorThisIsTooAddMovesTooMons::
+
+SpecialUpMoves_Tutor::
+	lock
+	faceplayer
+	dynmultichoice 0, 0, FALSE, 2, 0, DYN_MULTICHOICE_CB_NONE, SpecialUpMoves_Tutor_Text_0, SpecialUpMoves_Tutor_Text_1
+	switch VAR_RESULT
+	case 0, SpecialUpMoves_Tutor_2
+	case 1, SpecialUpMoves_Tutor_3
 	return
+
+SpecialUpMoves_Tutor_2:
+	setvar VAR_0x8005, MOVE_METEOR_BEAM
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+SpecialUpMoves_Tutor_3:
+	setvar VAR_0x8005, MOVE_RAZOR_WIND
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+
+FocusBlastTutor::
+	lock
+	faceplayer
+	setvar VAR_0x8005, MOVE_FOCUS_BLAST
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
 
 
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_0:
@@ -745,8 +783,8 @@ Defog_Tutor_Text_0:
 	.string "those pesky hazards.\l"
 	.string "Like why is ceasless Edge even a\l"
 	.string "thing??\p"
-	.string "Thank god for Rocky Helmet, Corviknight\n"
-	.string "Am i right, Fellas?\n"
+	.string "Thank god for Rocky Helmet Corviknight\n"
+	.string "am i right, Fellas?\n"
 	.string "My jokes haven't seen the light of day...\l"
 	.string "anyways... would you like to teach one\l"
 	.string "of ur Pokémon the Move Defog?$"
@@ -880,3 +918,12 @@ ArrayOfMoves_Tutor_Text_14:
 
 ArrayOfMoves_Tutor_Text_15:
 	.string "Phantom Force$"
+
+ArrayOfMoves_Tutor_Text_16:
+	.string "Heat Crash$"
+
+SpecialUpMoves_Tutor_Text_0:
+	.string "Meteor Beam$"
+
+SpecialUpMoves_Tutor_Text_1:
+	.string "Razor Wind$"

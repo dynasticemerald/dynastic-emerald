@@ -950,12 +950,9 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 if (moveEffect == EFFECT_ACCURACY_DOWN || moveEffect == EFFECT_ACCURACY_DOWN_2)
                     RETURN_SCORE_MINUS(10);
                 break;
-            case ABILITY_BIG_PECKS:
-                if (moveEffect == EFFECT_DEFENSE_DOWN || moveEffect == EFFECT_DEFENSE_DOWN_2)
-                    RETURN_SCORE_MINUS(10);
-                break;
             case ABILITY_DEFIANT:
             case ABILITY_COMPETITIVE:
+            case ABILITY_RUN_AWAY:
                 if (IsStatLoweringEffect(moveEffect) && !IS_TARGETING_PARTNER(battlerAtk, battlerDef))
                     RETURN_SCORE_MINUS(8);
                 break;

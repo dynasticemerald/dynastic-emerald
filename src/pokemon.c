@@ -5554,7 +5554,7 @@ static const u16 sUniversalMoves[] =
     MOVE_RAGE,
     MOVE_RETURN,
     MOVE_SUBSTITUTE,
-    MOVE_TERA_BLAST,
+    //MOVE_TERA_BLAST,
     MOVE_HIDDEN_POWER,
     MOVE_SECRET_POWER,
 };

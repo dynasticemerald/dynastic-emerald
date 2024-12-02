@@ -233,7 +233,7 @@ Pic: Aqua Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
 Poochyena
 Level: 9
@@ -2118,18 +2118,35 @@ Level: 42
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_CINDY_1 ===
-Name: CINDY
+Name: Cindy
 Class: Lady
 Pic: Lady
 Gender: Female
 Music: Female
-Items: Full Restore
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Zigzagoon @ Nugget
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Blitzle @ Expert Belt  
+Ability: Lightning Rod  
+Level: 10  
+Tera Type: Electric  
+Timid Nature  
+IVs: 0 Atk  
+- Protect  
+- Flash  
+- Incinerate  
+- Signal Beam  
+
+Budew @ Black Sludge  
+Ability: Poison Touch  
+Level: 10  
+Tera Type: Grass  
+Timid Nature  
+IVs: 0 Atk  
+- Clear Smog  
+- Mega Drain  
+- Flash  
+- Sleep Powder  
 
 === TRAINER_DAPHNE ===
 Name: DAPHNE
@@ -4810,16 +4827,6 @@ Jolly Nature
 - Bulldoze  
 - Fire Fang  
 
-Trapinch @ Eviolite  
-Ability: Arena Trap  
-Level: 13  
-Brave Nature
-IVs: 31 HP / 30 Atk / 31 Def / 30 Spe / 30 SpA / 31 SpD
-- Bug Bite  
-- Bite  
-- Bulldoze  
-- Hidden Power 
-
 Archen @ Berry Juice  
 Ability: Defeatist  
 Level: 13  
@@ -4836,15 +4843,6 @@ Careful Nature
 - Sandstorm  
 - Trailblaze  
 - Bulldoze  
-- Rock Tomb  
-
-Kabuto @ Rindo Berry  
-Ability: Weak Armor  
-Level: 14  
-Adamant Nature  
-- Aerial Ace  
-- Rapid Spin  
-- Aqua Jet  
 - Rock Tomb  
 
 Onix @ Berry Juice  
@@ -4876,17 +4874,6 @@ Jolly Nature
 - Drain Punch  
 - Fire Punch  
 
-Mienfoo @ Eviolite  
-Ability: Technician  
-Level: 24  
-Tera Type: Fighting
-IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
-Timid Nature  
-- Calm Mind  
-- Hidden Power  
-- Aura Sphere  
-- Psybeam  
-
 Machoke @ Flame Orb  
 Ability: Guts  
 Level: 23  
@@ -4899,7 +4886,7 @@ Adamant Nature
 
 Hitmonlee @ Expert Belt  
 Ability: Limber  
-Level: 22  
+Level: 23  
 Tera Type: Fighting  
 Jolly Nature  
 - Blaze Kick  
@@ -4909,23 +4896,13 @@ Jolly Nature
 
 Breloom @ Toxic Orb  
 Ability: Poison Heal  
-Level: 22  
+Level: 24  
 Tera Type: Grass  
 Jolly Nature  
 - Spore  
 - Seed Bomb  
 - Brick Break  
 - Rock Slide  
-
-Sawk @ Black Belt  
-Ability: Inner Focus  
-Level: 23  
-Tera Type: Fighting  
-Jolly Nature  
-- Knock Off  
-- Fire Punch  
-- Brick Break  
-- Knock Off  
 
 
 === TRAINER_WATTSON_1 ===
@@ -4982,18 +4959,7 @@ Timid Nature
 - Volt Switch  
 - Thunderbolt  
 - Hidden Power 
-- Flamethrower  
-
-Vikavolt @ Occa Berry  
-Ability: Levitate  
-Level: 34  
-Tera Type: Bug  
-EVs: 252 HP / 252 Def / 4 SpA  
-Bold Nature  
-- Roost  
-- Thunderbolt  
-- Energy Ball  
-- Quiver Dance  
+- Flamethrower
 
 Toxtricity @ Air Balloon  
 Ability: Punk Rock  
@@ -6129,7 +6095,7 @@ AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
 Smoliv @ Oran Berry  
 Ability: Harvest  
-Level: 9  
+Level: 8  
 Tera Type: Grass  
 IVs: 30 SpA / 30 SpD  
 - Mega Drain  
@@ -6139,7 +6105,7 @@ IVs: 30 SpA / 30 SpD
 
 Helioptile @ Expert Belt  
 Ability: Dry Skin  
-Level: 9  
+Level: 8  
 Tera Type: Electric  
 IVs: 0 Atk  
 - Mud-Slap  
@@ -6148,44 +6114,91 @@ IVs: 0 Atk
 - Glare  
 
 === TRAINER_JOSH ===
-Name: JOSH
+Name: Josh
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Geodude
-Level: 10
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
+Nacli @ Berry Juice  
+Ability: Sturdy  
+Level: 13  
+Tera Type: Rock  
+Adamant Nature  
+- Salt Cure  
+- Facade  
+- Bulldoze  
+- Stealth Rock  
+
+Cranidos @ Berry Juice  
+Ability: Mold Breaker  
+Level: 13  
+Tera Type: Rock  
+Jolly Nature  
+- Bite  
+- Pursuit  
+- Rock Blast  
+- Curse  
+
+Kabuto @ Rindo Berry  
+Ability: Battle Armor  
+Level: 13  
+Tera Type: Rock  
+Jolly Nature  
+- Rock Tomb  
+- Aqua Jet  
+- Knock Off  
+- Aerial Ace  
 
 === TRAINER_TOMMY ===
-Name: TOMMY
+Name: Tommy
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Geodude
-Level: 8
-IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
+Onix @ Berry Juice  
+Ability: Sturdy  
+Level: 13  
+Tera Type: Rock  
+Jolly Nature  
+- Bulldoze  
+- Breaking Swipe  
+- Smack Down  
+- Taunt  
 
-Geodude
-Level: 8
-IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
+Rockruff @ Berry Juice  
+Ability: Steadfast  
+Level: 13  
+Tera Type: Rock  
+Jolly Nature  
+- Fire Fang  
+- Rock Tomb  
+- Bulldoze  
+- Trailblaze  
+
+Growlithe-Hisui @ Passho Berry  
+Ability: Intimidate  
+Level: 13  
+Tera Type: Fire  
+Jolly Nature  
+- Fire Fang  
+- Rock Blast  
+- Howl  
+- Morning Sun  
 
 === TRAINER_JOEY ===
-Name: JOEY
+Name: Joey
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
 Machop
 Level: 9
@@ -6198,7 +6211,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
 Zigzagoon
 Level: 17
@@ -10747,7 +10760,7 @@ Level: 22
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MARC ===
-Name: MARC
+Name: Marc
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -11465,7 +11478,7 @@ AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
 Skorupi @ Scope Lens  
 Ability: Sniper  
-Level: 2  
+Level: 8  
 Tera Type: Poison  
 - Bug Bite  
 - Aerial Ace  
@@ -11474,7 +11487,7 @@ Tera Type: Poison
 
 Venonat @ Leftovers  
 Ability: Tinted Lens  
-Level: 2 
+Level: 8 
 Tera Type: Bug  
 Serious Nature  
 - Skitter Smack  
@@ -11483,29 +11496,34 @@ Serious Nature
 - Sleep Powder  
 
 === TRAINER_LYLE ===
-Name: LYLE
+Name: Lyle
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Beedrill @ Black Sludge  
+Ability: Sniper  
+Level: 10  
+Tera Type: Bug  
+Jolly Nature  
+- Pin Missile  
+- Dual Wingbeat  
+- Cut  
+- Toxic Spikes  
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Butterfree @ Charti Berry  
+Ability: Compound Eyes  
+Level: 10  
+Tera Type: Bug  
+Timid Nature  
+IVs: 0 Atk  
+- Air Cutter  
+- Signal Beam  
+- Mega Drain  
+- Roost  
 
 === TRAINER_JOSE ===
 Name: JOSE

@@ -900,7 +900,7 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 
 LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_PlayerGetOldRod, MSGBOX_DEFAULT
-	giveitem ITEM_OLD_ROD
+	giveitem ITEM_SUPER_ROD
 	msgbox LittlerootTown_Text_PlayerGetCandyBox, MSGBOX_DEFAULT
 	giveitem ITEM_RARE_CANDY
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
@@ -1059,6 +1059,10 @@ Seafloor_Cavern_Articuno_DefeatedArticuno::
 
 
 LittlerootTown_EventScript_NationalDexUpgrade::
+	goto_if_set FLAG_SYS_POKEDEX_GET, LittlerootTown_EventScript_NationalDexUpgrade_1
+	end
+
+LittlerootTown_EventScript_NationalDexUpgrade_1:
 	lock
 	addobject 9
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_0, MSGBOX_AUTOCLOSE
@@ -1077,8 +1081,7 @@ LittlerootTown_EventScript_NationalDexUpgrade::
 	waitmovement 9
 	removeobject 9
 	setvar VAR_POKEDEX_UPGRADED, 1
-	release
-	end
+	return
 
 
 FaceDown:

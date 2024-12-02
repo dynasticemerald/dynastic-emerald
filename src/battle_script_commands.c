@@ -1181,6 +1181,18 @@ static bool32 TryDarmFormChange(void)
         if (!IS_MOVE_STATUS(gCurrentMove))
             gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN;
         break;
+    case SPECIES_DARMANITAN_GALARIAN: // GalarNormal -> GalarZen
+        if (IS_MOVE_STATUS(gCurrentMove))
+            gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALARIAN_ZEN_MODE;
+        if (gCurrentMove != MOVE_PROTECT)
+            return FALSE;
+        break;
+    case SPECIES_DARMANITAN_GALARIAN_ZEN_MODE: // GalarZen -> GalarNormal
+        if (IS_MOVE_STATUS(gCurrentMove))
+            return FALSE;
+        if (!IS_MOVE_STATUS(gCurrentMove))
+            gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALARIAN;
+        break;
     }
 
     BattleScriptPushCursor();
@@ -1619,13 +1631,15 @@ static bool32 AccuracyCalcHelper(u16 move)
             JumpIfMoveFailed(7, move);
             return TRUE;
         }
-        else if ((gBattleWeather & (B_WEATHER_SANDSTORM)) && gMovesInfo[move].effect == EFFECT_SAND_ALWAYS_HIT) //Sand Acc Check
+        else if ((gMovesInfo[move].effect == EFFECT_SAND_ALWAYS_HIT)
+            && IsBattlerWeatherAffected(gBattlerTarget, B_WEATHER_SANDSTORM)) //Sand Acc Check
         {
             // sandsear ignore acc checks in sand unless target is holding utility umbrella
             JumpIfMoveFailed(7, move);
             return TRUE;
         }
-        else if ((gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && gMovesInfo[move].effect == EFFECT_SNOW_ALWAYS_HIT) //Snow Acc Check
+        else if ((gMovesInfo[move].effect == EFFECT_SNOW_ALWAYS_HIT)
+            && IsBattlerWeatherAffected(gBattlerTarget, B_WEATHER_SANDSTORM)) //Snow Acc Check
         {
             // nleakwind ignore acc checks in snow unless target is holding utility umbrella
             JumpIfMoveFailed(7, move);
@@ -1710,6 +1724,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     case ABILITY_COMPOUND_EYES:
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
         break;
+    case ABILITY_KEEN_EYE:
+        calc = (calc * 120) / 100; // 1.2 Keen Eye boost
+        break;
     case ABILITY_VICTORY_STAR:
         calc = (calc * 110) / 100; // 1.1 victory star boost
         break;
@@ -1782,8 +1799,8 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerDef) == AFFECTION_FIVE_HEARTS)
         calc = (calc * 90) / 100;
 
-    if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_FOG)
-        calc = (calc * 60) / 100; // modified by 3/5
+    /*if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_FOG)
+        calc = (calc * 60) / 100; // modified by 3/5*/
 
     return calc;
 }
@@ -5374,8 +5391,7 @@ static void Cmd_playstatchangeanimation(void)
                         && ability != ABILITY_WHITE_SMOKE
                         && !((ability == ABILITY_KEEN_EYE || ability == ABILITY_MINDS_EYE) && currStat == STAT_ACC)
                         && !(B_ILLUMINATE_EFFECT >= GEN_9 && ability == ABILITY_ILLUMINATE && currStat == STAT_ACC)
-                        && !(ability == ABILITY_HYPER_CUTTER && currStat == STAT_ATK)
-                        && !(ability == ABILITY_BIG_PECKS && currStat == STAT_DEF))
+                        && !(ability == ABILITY_HYPER_CUTTER && currStat == STAT_ATK))
                 {
                     if (gBattleMons[battler].statStages[currStat] > MIN_STAT_STAGE)
                     {
@@ -11888,8 +11904,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         else if (!certain
                 && (((battlerAbility == ABILITY_KEEN_EYE || battlerAbility == ABILITY_MINDS_EYE) && statId == STAT_ACC)
                 || (B_ILLUMINATE_EFFECT >= GEN_9 && battlerAbility == ABILITY_ILLUMINATE && statId == STAT_ACC)
-                || (battlerAbility == ABILITY_HYPER_CUTTER && statId == STAT_ATK)
-                || (battlerAbility == ABILITY_BIG_PECKS && statId == STAT_DEF)))
+                || (battlerAbility == ABILITY_HYPER_CUTTER && statId == STAT_ATK)))
         {
             if (flags == STAT_CHANGE_ALLOW_PTR)
             {

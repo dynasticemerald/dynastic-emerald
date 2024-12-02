@@ -125,6 +125,7 @@ extern const u16 gPokedexOrder_Weight[];
 static const u8 sText_No0000[] = _("0000");
 static const u8 sCaughtBall_Gfx[] = INCBIN_U8("graphics/pokedex/caught_ball.4bpp");
 static const u8 sText_TenDashes[] = _("----------");
+static const u8 sText_TripleBullet[] = _("   ···");
 ALIGNED(4) static const u8 sExpandedPlaceholder_PokedexDescription[] = _("");
 static const u16 sSizeScreenSilhouette_Pal[] = INCBIN_U16("graphics/pokedex/size_silhouette.gbapal");
 
@@ -309,6 +310,9 @@ static const u32 sPokedexPlusHGSS_ScreenSearchNational_Tilemap[] = INCBIN_U32("g
 #define MAX_EVOLUTION_ICONS 8
 
 #define LIST_SCROLL_STEP         16
+
+#define SKIP_THRESHOLD           4 // Number of Pokémon to check are unseen before triggering a skip
+#define SHOW_TRIPLE_BULLET       0xFFFE // Used to indicate sText_TripleBullet should be displayed (0xFFFE is an invalid dex number)
 
 #define POKEBALL_ROTATION_TOP    64
 #define POKEBALL_ROTATION_BOTTOM (POKEBALL_ROTATION_TOP - 16)

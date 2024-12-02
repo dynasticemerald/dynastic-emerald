@@ -319,7 +319,7 @@ script HiddenTutor_EventScript_HiddenSecretPowerTaught{
 script Defog_Tutor{
 	lock
 	faceplayer
-	msgbox(format("Hi there :3\nI am who they call the 'Defog' Tutor i love using defog in battle against those pesky hazards.\lLike why is ceasless Edge even a thing??\pThank god for Rocky Helmet, Corviknight Am i right, Fellas?\nMy jokes haven't seen the light of day... anyways... would you like to teach one of ur Pokémon the Move Defog?"), MSGBOX_DEFAULT)
+	msgbox(format("Hi there :3\nI am who they call the 'Defog' Tutor i love using defog in battle against those pesky hazards.\lLike why is ceasless Edge even a thing??\pThank god for Rocky Helmet Corviknight am i right, Fellas?\nMy jokes haven't seen the light of day... anyways... would you like to teach one of ur Pokémon the Move Defog?"), MSGBOX_DEFAULT)
 	setvar (VAR_0x8005, MOVE_DEFOG) 
 	special (ChooseMonForMoveTutor) 
 	waitstate 
@@ -404,26 +404,45 @@ script ArrayOfMoves_Tutor{
 	"Cross Chop", "Leaf Blade", "Poison Jab", 
 	"Megahorn", "Drill Run", "Alluring Voice", 
 	"Rock Blast", "Pin Missile", "Icicle Spear",
-	"Power Gem", "Blaze Kick", "Phantom Force")
+	"Power Gem", "Blaze Kick", "Phantom Force", 
+	"Heat Crash")
 	switch (var(VAR_RESULT)){
-		case 0: setvar (VAR_0x8005, MOVE_MYSTICAL_FIRE) special (ChooseMonForMoveTutor) waitstate release end
-		case 1: setvar (VAR_0x8005, MOVE_PAIN_SPLIT) special (ChooseMonForMoveTutor) waitstate release end
-		case 2: setvar (VAR_0x8005, MOVE_PSYCHIC_FANGS) special (ChooseMonForMoveTutor) waitstate release end
-		case 3: setvar (VAR_0x8005, MOVE_CROSS_CHOP) special (ChooseMonForMoveTutor) waitstate release end
-		case 4: setvar (VAR_0x8005, MOVE_LEAF_BLADE) special (ChooseMonForMoveTutor) waitstate release end
-		case 5: setvar (VAR_0x8005, MOVE_POISON_JAB) special (ChooseMonForMoveTutor) waitstate release end
-		case 6: setvar (VAR_0x8005, MOVE_MEGAHORN) special (ChooseMonForMoveTutor) waitstate release end
-		case 7: setvar (VAR_0x8005, MOVE_DRILL_RUN) special (ChooseMonForMoveTutor) waitstate release end
-		case 8: setvar (VAR_0x8005, MOVE_ALLURING_VOICE) special (ChooseMonForMoveTutor) waitstate release end
-		case 9: setvar (VAR_0x8005, MOVE_ROCK_BLAST) special (ChooseMonForMoveTutor) waitstate release end
+		case  0: setvar (VAR_0x8005, MOVE_MYSTICAL_FIRE) special (ChooseMonForMoveTutor) waitstate release end
+		case  1: setvar (VAR_0x8005, MOVE_PAIN_SPLIT) special (ChooseMonForMoveTutor) waitstate release end
+		case  2: setvar (VAR_0x8005, MOVE_PSYCHIC_FANGS) special (ChooseMonForMoveTutor) waitstate release end
+		case  3: setvar (VAR_0x8005, MOVE_CROSS_CHOP) special (ChooseMonForMoveTutor) waitstate release end
+		case  4: setvar (VAR_0x8005, MOVE_LEAF_BLADE) special (ChooseMonForMoveTutor) waitstate release end
+		case  5: setvar (VAR_0x8005, MOVE_POISON_JAB) special (ChooseMonForMoveTutor) waitstate release end
+		case  6: setvar (VAR_0x8005, MOVE_MEGAHORN) special (ChooseMonForMoveTutor) waitstate release end
+		case  7: setvar (VAR_0x8005, MOVE_DRILL_RUN) special (ChooseMonForMoveTutor) waitstate release end
+		case  8: setvar (VAR_0x8005, MOVE_ALLURING_VOICE) special (ChooseMonForMoveTutor) waitstate release end
+		case  9: setvar (VAR_0x8005, MOVE_ROCK_BLAST) special (ChooseMonForMoveTutor) waitstate release end
 		case 10: setvar (VAR_0x8005, MOVE_PIN_MISSILE) special (ChooseMonForMoveTutor) waitstate release end
 		case 11: setvar (VAR_0x8005, MOVE_ICICLE_SPEAR) special (ChooseMonForMoveTutor) waitstate release end
 		case 12: setvar (VAR_0x8005, MOVE_POWER_GEM) special (ChooseMonForMoveTutor) waitstate release end
 		case 13: setvar (VAR_0x8005, MOVE_BLAZE_KICK) special (ChooseMonForMoveTutor) waitstate release end
 		case 14: setvar (VAR_0x8005, MOVE_PHANTOM_FORCE) special (ChooseMonForMoveTutor) waitstate release end
+		case 15: setvar (VAR_0x8005, MOVE_HEAT_CRASH) special (ChooseMonForMoveTutor) waitstate release end 
 	}
 }
 
+script SpecialUpMoves_Tutor{
+	lock
+	faceplayer
+	dynmultichoice(0,0,FALSE,2,0,DYN_MULTICHOICE_CB_NONE, 
+	"Meteor Beam", "Razor Wind")
+	switch (var(VAR_RESULT)){
+		case 0: setvar (VAR_0x8005, MOVE_METEOR_BEAM) special (ChooseMonForMoveTutor) waitstate release end
+		case 1: setvar (VAR_0x8005, MOVE_RAZOR_WIND) special (ChooseMonForMoveTutor) waitstate release end
+	}
+}
 
-script ThisIsntATutorThisIsTooAddMovesTooMons{
+script FocusBlastTutor{
+	lock
+	faceplayer
+	setvar (VAR_0x8005, MOVE_FOCUS_BLAST) 
+	special (ChooseMonForMoveTutor) 
+	waitstate 
+	release 
+	end
 }

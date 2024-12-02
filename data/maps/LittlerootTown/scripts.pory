@@ -900,7 +900,7 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 
 LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_PlayerGetOldRod, MSGBOX_DEFAULT
-	giveitem ITEM_OLD_ROD
+	giveitem ITEM_SUPER_ROD
 	msgbox LittlerootTown_Text_PlayerGetCandyBox, MSGBOX_DEFAULT
 	giveitem ITEM_RARE_CANDY
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
@@ -1056,6 +1056,7 @@ script Seafloor_Cavern_Articuno_DefeatedArticuno{
 }
 
 script LittlerootTown_EventScript_NationalDexUpgrade{
+	if(flag(FLAG_SYS_POKEDEX_GET)){
 	lock
 	addobject(9)
 	msgbox(format("Prof. Birch: Hey {PLAYER}, wait up!"), MSGBOX_AUTOCLOSE)
@@ -1074,8 +1075,10 @@ script LittlerootTown_EventScript_NationalDexUpgrade{
 	waitmovement(9)
 	removeobject(9)
 	setvar(VAR_POKEDEX_UPGRADED, 1)
-	release
-	end
+	}
+	else{
+		end
+	}
 }
 
 movement FaceDown{

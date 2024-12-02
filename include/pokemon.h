@@ -495,6 +495,7 @@ struct MoveInfo
     u32 soundMove:1;
     u32 ballisticMove:1;
     u32 beamMove:1; //Ice Beam, etc.
+    u32 hammerSlammerMove:1; //GigaHammer, Woodhammer, etc.
     u32 powderMove:1;
     u32 danceMove:1;
     u32 windMove:1;

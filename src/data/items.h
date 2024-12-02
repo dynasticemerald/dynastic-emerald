@@ -11406,12 +11406,12 @@ const struct Item gItemsInfo[] =
         .description = COMPOUND_STRING(
             "Shoots boiling water\n"
             "at the foe.\n"
-            "Can inflict a burn."), // Todo
+            "Can inflict a burn."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SCALD, // Todo
+        .secondaryId = MOVE_SCALD,
     },
 
     [ITEM_TM_FROST_BREATH] =
@@ -11546,52 +11546,52 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_ROOST,
     },
 
-    [ITEM_TM77] =
+    [ITEM_TM_GUNK_SHOT] =
     {
         .name = _("TM77"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "??????????????\n"
-            "??????????????\n"
-            "??????????????"), // Todo
+            "Shoots filthy garbage\n"
+            "at the foe.\n"
+            "May also poison."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_GUNK_SHOT,
     },
 
-    [ITEM_TM78] =
+    [ITEM_TM_DRAGON_HAMMER] =
     {
         .name = _("TM78"),
-        .price = 3000,
+        .price = 4000,
         .description = COMPOUND_STRING(
-            "??????????????\n"
-            "??????????????\n"
-            "??????????????"), // Todo
+            "Swings its whole\n"
+            "body a hammer\n"
+            "to damage."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_DRAGON_HAMMER,
     },
 
-    [ITEM_TM79] =
+    [ITEM_TM_POWER_WHIP] =
     {
         .name = _("TM79"),
-        .price = 3000,
+        .price = 4500,
         .description = COMPOUND_STRING(
-            "??????????????\n"
-            "??????????????\n"
-            "??????????????"), // Todo
+            "Violently lashes\n"
+            "the foe with\n"
+            "vines or tentacles."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_POWER_WHIP,
     },
 
-    [ITEM_TM80] =
+    [ITEM_TM_SHADOW_CLAW] =
     {
         .name = _("TM80"),
         .price = 3000,
@@ -11603,7 +11603,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_SHADOW_CLAW,
     },
 
     [ITEM_TM81] =
