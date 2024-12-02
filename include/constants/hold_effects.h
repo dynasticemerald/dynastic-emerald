@@ -162,6 +162,7 @@
 #define HOLD_EFFECT_BOOSTER_ENERGY      181
 #define HOLD_EFFECT_LEADERS_CREST       182
 #define HOLD_EFFECT_FROST_ORB           183
+#define HOLD_EFFECT_OGERPON_MASK        184
 
 // Gen2 hold effect
 #define HOLD_EFFECT_BERSERK_GENE        184

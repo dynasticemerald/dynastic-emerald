@@ -136,4 +136,8 @@
 
 #define FORM_CHANGE_BEGIN_BATTLE_ABILITY        24
 
+// Form change for Aegislash
+#define FORM_CHANGE_BATTLE_ATTACK               24
+#define FORM_CHANGE_BATTLE_KINGS_SHIELD         25
+
 #endif // GUARD_CONSTANTS_FORM_CHANGE_TYPES_H
