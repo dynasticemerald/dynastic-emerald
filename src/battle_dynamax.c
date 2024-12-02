@@ -279,7 +279,7 @@ u16 GetMaxMove(u32 battler, u32 baseMove)
 {
     u32 moveType;
     SetTypeBeforeUsingMove(baseMove, battler);
-    GET_MOVE_TYPE(baseMove, moveType);
+    moveType = GetMoveType(baseMove);
 
     if (baseMove == MOVE_NONE) // for move display
     {
@@ -409,7 +409,7 @@ static u8 GetMaxPowerTier(u32 move)
         case EFFECT_GYRO_BALL:
             return MAX_POWER_TIER_5;
         case EFFECT_MAGNITUDE:
-        case EFFECT_VARY_POWER_BASED_ON_HP:
+        case EFFECT_POWER_BASED_ON_TARGET_HP:
             return MAX_POWER_TIER_6;
         case EFFECT_FLAIL:
         case EFFECT_LOW_KICK:

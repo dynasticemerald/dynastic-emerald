@@ -79,7 +79,7 @@ Class: Pkmn Trainer 1
 Pic: Hiker
 Gender: Male
 Music: Male
-Double Battle: Yes
+Double Battle: No
 
 === TRAINER_SAWYER_1 ===
 Name: SAWYER
@@ -88,13 +88,9 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
-Naclstack
-Level: 21
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Shuckle
+Geodude
 Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -107,7 +103,7 @@ Music: Aqua
 Double Battle: No
 AI: Check Bad Move
 
-Sharpedo
+Poochyena
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -233,7 +229,7 @@ Pic: Aqua Grunt M
 Gender: Male
 Music: Aqua
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
 Poochyena
 Level: 9
@@ -247,7 +243,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Manectric
 Level: 29
@@ -517,7 +513,7 @@ Pic: Expert M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Makuhita
 Level: 30
@@ -535,7 +531,7 @@ Gender: Male
 Music: Aqua
 Items: Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mightyena
 Level: 34
@@ -565,7 +561,7 @@ Pic: Aqua Admin F
 Gender: Female
 Music: Aqua
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Carvanha
 Level: 28
@@ -582,7 +578,7 @@ Pic: Aqua Admin F
 Gender: Female
 Music: Aqua
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Sharpedo
 Level: 37
@@ -600,7 +596,7 @@ Gender: Male
 Music: Aqua
 Items: Super Potion / Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mightyena
 Level: 41
@@ -673,7 +669,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Medicham
 Level: 43
@@ -1270,7 +1266,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Swellow
 Level: 26
@@ -1287,7 +1283,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Spinda
 Level: 26
@@ -1304,7 +1300,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slakoth @ Sitrus Berry
 Level: 26
@@ -1321,7 +1317,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Vigoroth
 Level: 26
@@ -1337,7 +1333,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Swellow
 Level: 28
@@ -1387,7 +1383,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Sableye
 Level: 44
@@ -1409,7 +1405,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mawile
 Level: 46
@@ -1427,7 +1423,7 @@ Gender: Male
 Music: Cool
 Items: Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Electrike
 Level: 17
@@ -1449,7 +1445,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Cacturne
 Level: 43
@@ -1467,7 +1463,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Magneton
 Level: 43
@@ -1485,7 +1481,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Swellow
 Level: 42
@@ -1507,7 +1503,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Dodrio
 Level: 42
@@ -1533,7 +1529,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Kecleon
 Level: 42
@@ -1555,7 +1551,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Electrike
 Level: 26
@@ -1577,7 +1573,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Manectric
 Level: 29
@@ -1599,7 +1595,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Manectric
 Level: 32
@@ -1621,7 +1617,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Manectric
 Level: 35
@@ -1643,7 +1639,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Graveler
 Level: 33
@@ -1661,7 +1657,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Delcatty
 Level: 26
@@ -1677,7 +1673,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Wigglytuff
 Level: 26
@@ -1694,7 +1690,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Zangoose
 Level: 26
@@ -1710,7 +1706,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Mawile
 Level: 29
@@ -1744,7 +1740,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Lairon
 Level: 45
@@ -1762,7 +1758,7 @@ Gender: Female
 Music: Cool
 Items: Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Wingull
 Level: 17
@@ -1784,7 +1780,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Sableye
 Level: 30
@@ -1798,7 +1794,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Roselia
 Level: 45
@@ -1812,7 +1808,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Claydol
 Level: 45
@@ -1826,7 +1822,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Torkoal
 Level: 42
@@ -1848,7 +1844,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Skarmory
 Level: 43
@@ -1866,7 +1862,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Sandslash
 Level: 42
@@ -1888,7 +1884,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Wingull
 Level: 26
@@ -1910,7 +1906,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Pelipper
 Level: 29
@@ -1932,7 +1928,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Pelipper
 Level: 32
@@ -1954,7 +1950,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Pelipper
 Level: 34
@@ -2118,35 +2114,18 @@ Level: 42
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_CINDY_1 ===
-Name: Cindy
+Name: CINDY
 Class: Lady
 Pic: Lady
 Gender: Female
 Music: Female
+Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Blitzle @ Expert Belt  
-Ability: Lightning Rod  
-Level: 10  
-Tera Type: Electric  
-Timid Nature  
-IVs: 0 Atk  
-- Protect  
-- Flash  
-- Incinerate  
-- Signal Beam  
-
-Budew @ Black Sludge  
-Ability: Poison Touch  
-Level: 10  
-Tera Type: Grass  
-Timid Nature  
-IVs: 0 Atk  
-- Clear Smog  
-- Mega Drain  
-- Flash  
-- Sleep Powder  
+Zigzagoon @ Nugget
+Level: 7
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DAPHNE ===
 Name: DAPHNE
@@ -4613,7 +4592,7 @@ Gender: Male
 Music: Elite Four
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Setup First Turn
+AI: Basic Trainer / Force Setup First Turn
 Mugshot: Purple
 
 Mightyena
@@ -4664,7 +4643,7 @@ Gender: Female
 Music: Elite Four
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 Mugshot: Green
 
 Dusclops
@@ -4715,7 +4694,7 @@ Gender: Female
 Music: Elite Four
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 Mugshot: Pink
 
 Sealeo
@@ -4766,7 +4745,7 @@ Gender: Male
 Music: Elite Four
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 Mugshot: Blue
 
 Shelgon
@@ -4810,50 +4789,38 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 
 === TRAINER_ROXANNE_1 ===
-Name: Roxanne
+Name: ROXANNE
 Class: Leader
 Pic: Leader Roxanne
 Gender: Female
 Music: Female
+Items: Potion / Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
+AI: Basic Trainer
 
-Tyrunt @ Berry Juice  
-Ability: Sturdy  
-Level: 14  
-Jolly Nature  
-- Dragon Tail  
-- Stealth Rock  
-- Bulldoze  
-- Fire Fang  
+Geodude
+Level: 12
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Tackle
+- Defense Curl
+- Rock Throw
+- Rock Tomb
 
-Archen @ Berry Juice  
-Ability: Defeatist  
-Level: 13  
-Jolly Nature  
-- Roost  
-- Pluck  
-- Bulldoze  
-- Rock Tomb  
+Geodude
+Level: 12
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Tackle
+- Defense Curl
+- Rock Throw
+- Rock Tomb
 
-Bonsly @ Berry Juice  
-Ability: Rattled  
-Level: 15   
-Careful Nature  
-- Sandstorm  
-- Trailblaze  
-- Bulldoze  
-- Rock Tomb  
-
-Onix @ Berry Juice  
-Ability: Sturdy  
-Level: 15    
-Jolly Nature  
-IVs: 31 HP / 30 Atk / 31 Def / 30 Spe / 30 SpA / 31 SpD
-- Dragon Tail  
-- Rock Tomb  
-- Bulldoze  
-- Secret Power
+Nosepass @ Oran Berry
+Level: 15
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Block
+- Harden
+- Tackle
+- Rock Tomb
 
 === TRAINER_BRAWLY_1 ===
 Name: BRAWLY
@@ -4861,117 +4828,75 @@ Class: Leader
 Pic: Leader Brawly
 Gender: Male
 Music: Male
+Items: Super Potion / Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
+AI: Basic Trainer
 
-Monferno @ Focus Sash  
-Ability: Iron Fist  
-Level: 24  
-Tera Type: Fire  
-Jolly Nature  
-- Stealth Rock  
-- Thunder Punch  
-- Drain Punch  
-- Fire Punch  
+Machop
+Level: 16
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Karate Chop
+- Low Kick
+- Seismic Toss
+- Bulk Up
 
-Machoke @ Flame Orb  
-Ability: Guts  
-Level: 23  
-Tera Type: Fighting  
-Adamant Nature  
-- Detect  
-- Ice Punch  
-- Drain Punch  
-- Knock Off  
+Meditite
+Level: 16
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Focus Punch
+- Light Screen
+- Reflect
+- Bulk Up
 
-Hitmonlee @ Expert Belt  
-Ability: Limber  
-Level: 23  
-Tera Type: Fighting  
-Jolly Nature  
-- Blaze Kick  
-- Rock Slide  
-- Double Kick  
-- Stomping Tantrum  
-
-Breloom @ Toxic Orb  
-Ability: Poison Heal  
-Level: 24  
-Tera Type: Grass  
-Jolly Nature  
-- Spore  
-- Seed Bomb  
-- Brick Break  
-- Rock Slide  
-
+Makuhita @ Sitrus Berry
+Level: 19
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Arm Thrust
+- Vital Throw
+- Reversal
+- Bulk Up
 
 === TRAINER_WATTSON_1 ===
-Name: Wattson
+Name: WATTSON
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
+Items: Super Potion / Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
+AI: Basic Trainer
 
-Dedenne @ Terrain Extender  
-Ability: Electric Surge  
-Level: 34  
-Tera Type: Electric  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
-Timid Nature  
-- Volt Switch  
-- Dazzling Gleam  
-- Grass Knot  
-- Hidden Power 
+Voltorb
+Level: 20
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Rollout
+- Spark
+- Self Destruct
+- Shock Wave
 
-Rotom-Heat @ Leftovers  
-Ability: Levitate  
-Level: 34
-Tera Type: Electric  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD/ 31 Spe
-Timid Nature    
-- Volt Switch  
-- Overheat  
-- Nasty Plot  
-- Hidden Power  
+Electrike
+Level: 20
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Shock Wave
+- Leer
+- Quick Attack
+- Howl
 
-Pawmot @ Punching Glove  
-Ability: Iron Fist  
-Level: 34  
-Tera Type: Electric  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Thunder Punch  
-- Drain Punch  
-- Ice Punch  
-- Mach Punch  
+Magneton
+Level: 22
+IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
+- Supersonic
+- Shock Wave
+- Thunder Wave
+- Sonic Boom
 
-Manectric @ Manectite  
-Ability: Intimidate  
-Level: 34 
-Tera Type: Electric  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD/ 31 Spe
-Timid Nature  
-- Volt Switch  
-- Thunderbolt  
-- Hidden Power 
-- Flamethrower
-
-Toxtricity @ Air Balloon  
-Ability: Punk Rock  
-Level: 34  
-Tera Type: Electric  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature   
-- Volt Switch  
-- Overdrive  
-- Sludge Bomb  
-- Hyper Voice  
-
+Manectric @ Sitrus Berry
+Level: 24
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Quick Attack
+- Thunder Wave
+- Shock Wave
+- Howl
 
 === TRAINER_FLANNERY_1 ===
 Name: FLANNERY
@@ -4981,79 +4906,39 @@ Gender: Female
 Music: Female
 Items: Hyper Potion / Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
-Ninetales @ Heat Rock  
-Ability: Drought  
-Level: 42
-Tera Type: Fire  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Weather Ball  
-- Solar Beam  
-- Will-O-Wisp  
-- Reflect  
+Numel
+Level: 24
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Overheat
+- Take Down
+- Magnitude
+- Sunny Day
 
-Chandelure @ Air Balloon  
-Ability: Shadow Tag  
-Level: 42
-Tera Type: Ghost  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Shadow Ball  
-- Energy Ball  
-- Flamethrower  
-- Calm Mind  
+Slugma
+Level: 24
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+- Overheat
+- Smog
+- Light Screen
+- Sunny Day
 
-Scovillain @ Life Orb  
-Ability: Chlorophyll  
-Level: 42
-Tera Type: Grass  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Modest Nature  
-IVs: 30 Atk  
-- Hidden Power
-- Flamethrower  
-- Giga Drain  
-- Growth  
+Camerupt
+Level: 26
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Overheat
+- Tackle
+- Sunny Day
+- Attract
 
-Charizard-Mega-Y @ Charizardite Y  
-Ability: Drought  
-Level: 42
-Tera Type: Fire  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Bleakwind Storm  
-- Weather Ball  
-- Solar Beam  
-- Roost  
-
-Turtonator @ Leftovers  
-Ability: Dauntless Shield  
-Level: 42
-Tera Type: Fire  
-EVs: 252 HP / 4 SpA / 252 SpD  
-Calm Nature  
-IVs: 0 Atk  
-- Dragon Pulse  
-- Flamethrower  
-- Rest  
-- Sleep Talk  
-
-Magmortar @ Life Orb  
-Ability: Mega Launcher  
-Level: 42
-Tera Type: Fire  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Fiery Wrath  
-- Flamethrower  
-- Thunderbolt  
-- Psychic  
+Torkoal @ White Herb
+Level: 29
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Overheat
+- Sunny Day
+- Body Slam
+- Attract
 
 === TRAINER_NORMAN_1 ===
 Name: NORMAN
@@ -5063,7 +4948,7 @@ Gender: Male
 Music: Male
 Items: Hyper Potion / Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Spinda
 Level: 27
@@ -5105,7 +4990,7 @@ Gender: Female
 Music: Female
 Items: Hyper Potion / Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Risky
+AI: Basic Trainer / Risky
 
 Swablu
 Level: 29
@@ -5155,7 +5040,7 @@ Gender: Male
 Music: Female
 Items: Hyper Potion / Hyper Potion / Hyper Potion / Hyper Potion
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Claydol
 Level: 41
@@ -5197,7 +5082,7 @@ Gender: Male
 Music: Male
 Items: Hyper Potion / Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Luvdisc
 Level: 41
@@ -5879,7 +5764,7 @@ Pic: Expert M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hariyama
 Level: 27
@@ -5892,7 +5777,7 @@ Pic: Expert M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hariyama
 Level: 33
@@ -5909,7 +5794,7 @@ Pic: Expert M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hariyama
 Level: 36
@@ -5926,7 +5811,7 @@ Pic: Expert M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hariyama
 Level: 39
@@ -5943,7 +5828,7 @@ Pic: Expert M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hariyama
 Level: 42
@@ -5960,7 +5845,7 @@ Pic: Expert F
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Meditite
 Level: 18
@@ -5977,7 +5862,7 @@ Pic: Expert F
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Meditite
 Level: 21
@@ -5994,7 +5879,7 @@ Pic: Expert F
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Meditite
 Level: 30
@@ -6011,7 +5896,7 @@ Pic: Expert F
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Medicham
 Level: 33
@@ -6028,7 +5913,7 @@ Pic: Expert F
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Medicham
 Level: 36
@@ -6045,7 +5930,7 @@ Pic: Expert F
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Medicham
 Level: 39
@@ -6056,149 +5941,74 @@ Level: 39
 IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe
 
 === TRAINER_CALVIN_1 ===
-Name: Calvin
+Name: CALVIN
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Lechonk @ Oran Berry  
-Ability: Thick Fat  
-Level: 8
-Tera Type: Normal  
-Serious Nature  
-- Covet  
-- Bullet Seed  
-- Headbutt  
-- Trailblaze  
-
-Azurill @ Oran Berry  
-Ability: Huge Power  
-Level: 8
-Tera Type: Normal  
-Serious Nature  
-- Covet  
-- Headbutt  
-- Aqua Jet  
-- Bounce  
+Poochyena
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BILLY ===
-Name: Billy
+Name: BILLY
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Smoliv @ Oran Berry  
-Ability: Harvest  
-Level: 8  
-Tera Type: Grass  
-IVs: 30 SpA / 30 SpD  
-- Mega Drain  
-- Hidden Power
-- Synthesis  
-- Growth  
+Zigzagoon
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Helioptile @ Expert Belt  
-Ability: Dry Skin  
-Level: 8  
-Tera Type: Electric  
-IVs: 0 Atk  
-- Mud-Slap  
-- Signal Beam  
-- Electroweb  
-- Glare  
+Seedot
+Level: 7
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOSH ===
-Name: Josh
+Name: JOSH
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Nacli @ Berry Juice  
-Ability: Sturdy  
-Level: 13  
-Tera Type: Rock  
-Adamant Nature  
-- Salt Cure  
-- Facade  
-- Bulldoze  
-- Stealth Rock  
-
-Cranidos @ Berry Juice  
-Ability: Mold Breaker  
-Level: 13  
-Tera Type: Rock  
-Jolly Nature  
-- Bite  
-- Pursuit  
-- Rock Blast  
-- Curse  
-
-Kabuto @ Rindo Berry  
-Ability: Battle Armor  
-Level: 13  
-Tera Type: Rock  
-Jolly Nature  
-- Rock Tomb  
-- Aqua Jet  
-- Knock Off  
-- Aerial Ace  
+Geodude
+Level: 10
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Tackle
 
 === TRAINER_TOMMY ===
-Name: Tommy
+Name: TOMMY
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Onix @ Berry Juice  
-Ability: Sturdy  
-Level: 13  
-Tera Type: Rock  
-Jolly Nature  
-- Bulldoze  
-- Breaking Swipe  
-- Smack Down  
-- Taunt  
+Geodude
+Level: 8
+IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
 
-Rockruff @ Berry Juice  
-Ability: Steadfast  
-Level: 13  
-Tera Type: Rock  
-Jolly Nature  
-- Fire Fang  
-- Rock Tomb  
-- Bulldoze  
-- Trailblaze  
-
-Growlithe-Hisui @ Passho Berry  
-Ability: Intimidate  
-Level: 13  
-Tera Type: Fire  
-Jolly Nature  
-- Fire Fang  
-- Rock Blast  
-- Howl  
-- Morning Sun  
+Geodude
+Level: 8
+IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
 === TRAINER_JOEY ===
-Name: Joey
+Name: JOEY
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
 Machop
 Level: 9
@@ -6211,7 +6021,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
 Zigzagoon
 Level: 17
@@ -6237,7 +6047,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slaking
 Level: 43
@@ -6263,7 +6073,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Gardevoir
 Level: 43
@@ -6397,33 +6207,21 @@ Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALLEN ===
-Name: Allen
+Name: ALLEN
 Class: Youngster
 Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Doduo @ Silk Scarf  
-Ability: Early Bird  
-Level: 8  
-Tera Type: Normal  
-Serious Nature  
-- Low Kick  
-- Quick Attack  
-- Pursuit  
-- Aerial Ace  
+Zigzagoon
+Level: 4
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Zubat @ Heavy-Duty Boots  
-Ability: Inner Focus  
-Level: 8  
-Tera Type: Poison  
-Serious Nature  
-- Aerial Ace  
-- Pursuit  
-- Poison Fang  
-- Taunt  
+Taillow
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TIMMY ===
 Name: TIMMY
@@ -6450,7 +6248,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 Mugshot: Yellow
 
 Wailord
@@ -9391,7 +9189,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Absol
 Level: 27
@@ -9404,7 +9202,7 @@ Pic: Ninja Boy
 Gender: Male
 Music: Suspicious
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Koffing
 Level: 31
@@ -9473,7 +9271,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Manectric
 Level: 34
@@ -9661,7 +9459,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Altaria
 Level: 44
@@ -9710,12 +9508,11 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Treecko
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Pound
 
 === TRAINER_BRENDAN_ROUTE_110_MUDKIP ===
 Name: BRENDAN
@@ -9724,7 +9521,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slugma
 Level: 18
@@ -9745,7 +9542,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slugma
 Level: 29
@@ -9766,12 +9563,11 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Torchic
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Scratch
 
 === TRAINER_BRENDAN_ROUTE_110_TREECKO ===
 Name: BRENDAN
@@ -9780,7 +9576,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Wingull
 Level: 18
@@ -9801,7 +9597,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Pelipper
 Level: 29
@@ -9822,12 +9618,11 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mudkip
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Tackle
 
 === TRAINER_BRENDAN_ROUTE_110_TORCHIC ===
 Name: BRENDAN
@@ -9836,7 +9631,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Lombre
 Level: 18
@@ -9857,7 +9652,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Lombre
 Level: 29
@@ -9878,12 +9673,11 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Treecko
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Pound
 
 === TRAINER_MAY_ROUTE_110_MUDKIP ===
 Name: MAY
@@ -9892,7 +9686,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Wingull
 Level: 18
@@ -9913,7 +9707,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slugma
 Level: 29
@@ -9934,12 +9728,11 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Torchic
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Scratch
 
 === TRAINER_MAY_ROUTE_110_TREECKO ===
 Name: MAY
@@ -9948,7 +9741,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Wingull
 Level: 18
@@ -9969,7 +9762,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Pelipper
 Level: 29
@@ -9990,12 +9783,11 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mudkip
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Tackle
 
 === TRAINER_MAY_ROUTE_110_TORCHIC ===
 Name: MAY
@@ -10004,7 +9796,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Lombre
 Level: 18
@@ -10025,7 +9817,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Lombre
 Level: 29
@@ -10092,7 +9884,7 @@ Pic: Cooltrainer M
 Gender: Male
 Music: Cool
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Lunatone
 Level: 43
@@ -10283,7 +10075,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Sableye
 Level: 43
@@ -10446,7 +10238,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Breloom
 Level: 27
@@ -10460,7 +10252,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Seedot
 Level: 28
@@ -10482,7 +10274,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Cacturne
 Level: 39
@@ -10496,7 +10288,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Breloom
 Level: 31
@@ -10510,7 +10302,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Breloom
 Level: 34
@@ -10524,7 +10316,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Breloom
 Level: 37
@@ -10538,7 +10330,7 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Kecleon
 Level: 39
@@ -10556,7 +10348,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Gloom
 Level: 26
@@ -10574,7 +10366,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Lotad
 Level: 28
@@ -10596,7 +10388,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Swablu
 Level: 38
@@ -10614,7 +10406,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Gloom
 Level: 30
@@ -10632,7 +10424,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Gloom
 Level: 33
@@ -10650,7 +10442,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Gloom
 Level: 36
@@ -10668,7 +10460,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Bellossom
 Level: 39
@@ -10760,7 +10552,7 @@ Level: 22
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MARC ===
-Name: Marc
+Name: MARC
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -10849,7 +10641,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Manectric
 Level: 32
@@ -11091,7 +10883,7 @@ Pic: Expert M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Swellow
 Level: 33
@@ -11138,7 +10930,7 @@ Pic: Magma Admin
 Gender: Male
 Music: Magma
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Numel
 Level: 18
@@ -11164,7 +10956,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Kecleon
 Level: 33
@@ -11181,7 +10973,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slugma
 Level: 13
@@ -11198,7 +10990,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Wingull
 Level: 13
@@ -11216,7 +11008,7 @@ Gender: Male
 Music: Magma
 Items: Super Potion / Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mightyena
 Level: 37
@@ -11238,7 +11030,7 @@ Gender: Male
 Music: Magma
 Items: Super Potion / Super Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mightyena
 Level: 24
@@ -11253,32 +11045,21 @@ Level: 25
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_TIANA ===
-Name: Tiana
+Name: TIANA
 Class: Lass
 Pic: Lass
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Flabebe @ Leftovers  
-Ability: Flower Veil  
-Level: 8  
-Tera Type: Fairy  
-IVs: 0 Atk  
-- Draining Kiss  
-- Chilling Water  
-- Magical Leaf  
-- Wish  
+Zigzagoon
+Level: 4
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Snubbull @ Oran Berry  
-Ability: Intimidate  
-Level: 8  
-Tera Type: Fairy  
-- Fire Fang  
-- Ice Fang  
-- Thunder Fang  
-- Covet  
+Shroomish
+Level: 4
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HALEY_1 ===
 Name: HALEY
@@ -11317,7 +11098,7 @@ Pic: Lass
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Marill
 Level: 15
@@ -11468,62 +11249,46 @@ Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_RICK ===
-Name: Rick
+Name: RICK
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Skorupi @ Scope Lens  
-Ability: Sniper  
-Level: 8  
-Tera Type: Poison  
-- Bug Bite  
-- Aerial Ace  
-- Poison Tail  
-- Toxic Spikes  
+Wurmple
+Level: 4
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Venonat @ Leftovers  
-Ability: Tinted Lens  
-Level: 8 
-Tera Type: Bug  
-Serious Nature  
-- Skitter Smack  
-- Poison Fang  
-- Headbutt  
-- Sleep Powder  
+Wurmple
+Level: 4
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LYLE ===
-Name: Lyle
+Name: LYLE
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Beedrill @ Black Sludge  
-Ability: Sniper  
-Level: 10  
-Tera Type: Bug  
-Jolly Nature  
-- Pin Missile  
-- Dual Wingbeat  
-- Cut  
-- Toxic Spikes  
+Wurmple
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Butterfree @ Charti Berry  
-Ability: Compound Eyes  
-Level: 10  
-Tera Type: Bug  
-Timid Nature  
-IVs: 0 Atk  
-- Air Cutter  
-- Signal Beam  
-- Mega Drain  
-- Roost  
+Wurmple
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Wurmple
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Wurmple
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOSE ===
 Name: JOSE
@@ -12102,7 +11867,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Kecleon
 Level: 23
@@ -12274,7 +12039,7 @@ Pic: Wally
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Ralts
 Level: 16
@@ -12288,7 +12053,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Altaria
 Level: 47
@@ -12338,7 +12103,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Altaria
 Level: 50
@@ -12388,7 +12153,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Altaria
 Level: 53
@@ -12438,7 +12203,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Altaria
 Level: 56
@@ -12487,7 +12252,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Tropius
 Level: 31
@@ -12512,7 +12277,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Tropius
 Level: 31
@@ -12537,7 +12302,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Tropius
 Level: 31
@@ -12562,7 +12327,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Tropius
 Level: 31
@@ -12587,7 +12352,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Tropius
 Level: 31
@@ -12612,7 +12377,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Tropius
 Level: 31
@@ -12697,7 +12462,7 @@ Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Gloom
 Level: 34
@@ -12715,7 +12480,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Shiftry
 Level: 34
@@ -12905,7 +12670,7 @@ Pic: Old Couple
 Gender: Male
 Music: Intense
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Medicham
 Level: 39
@@ -12930,7 +12695,7 @@ Pic: Old Couple
 Gender: Male
 Music: Intense
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Medicham
 Level: 43
@@ -12955,7 +12720,7 @@ Pic: Old Couple
 Gender: Male
 Music: Intense
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Medicham
 Level: 46
@@ -12980,7 +12745,7 @@ Pic: Old Couple
 Gender: Male
 Music: Intense
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Setup First Turn
+AI: Check Bad Move / Try To Faint / Force Setup First Turn
 
 Medicham
 Level: 49
@@ -13005,7 +12770,7 @@ Pic: Old Couple
 Gender: Male
 Music: Intense
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Medicham
 Level: 52
@@ -13203,32 +12968,17 @@ Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DARIAN ===
-Name: Darian
+Name: DARIAN
 Class: Fisherman
 Pic: Fisherman
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient
+AI: Check Bad Move
 
-Barboach @ Iapapa Berry  
-Ability: Oblivious  
-Level: 9  
-Tera Type: Water  
-IVs: 0 Atk  
-- Mud Shot  
-- Water Pulse  
-- Icy Wind  
-- Stealth Rock  
-
-Goldeen @ Mystic Water  
-Ability: Swift Swim  
-Level: 9  
-Tera Type: Water  
-- Aqua Jet  
-- Fury Cutter  
-- Facade  
-- Flip Turn  
+Magikarp
+Level: 9
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HAILEY ===
 Name: HAILEY
@@ -13766,7 +13516,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Pelipper
 Level: 33
@@ -13783,7 +13533,7 @@ Pic: Magma Leader Maxie
 Gender: Male
 Music: Magma
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mightyena
 Level: 42
@@ -13899,7 +13649,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Manectric
 Level: 24
@@ -14181,7 +13931,7 @@ Gender: Female
 Music: Intense
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Roselia
 Level: 33
@@ -14242,7 +13992,7 @@ Gender: Male
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Manectric
 Level: 30
@@ -14359,7 +14109,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Loudred
 Level: 29
@@ -14376,7 +14126,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Lotad
 Level: 13
@@ -14393,7 +14143,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Torkoal
 Level: 13
@@ -14409,75 +14159,41 @@ Class: Leader
 Pic: Leader Roxanne
 Gender: Female
 Music: Female
-Items: Mega Ring
-Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
 
-Kabutops @ Choice Scarf  
-Ability: Sharpness  
-Tera Type: Rock  
-EVs: 252 Atk / 252 Spe
-Level: 68  
-Adamant Nature  
-- Stone Axe  
-- Flip Turn  
-- Razor Shell  
-- Leech Life  
+Golem
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Protect
+- Rollout
+- Magnitude
+- Explosion
 
-Tyranitar @ Chople Berry  
-Ability: Sand Stream  
-Tera Type: Rock  
-EVs: 252 Atk / 252 Spe  
-Level: 68 
-Jolly Nature  
-- Dragon Dance  
-- Fire Punch  
-- Stone Edge  
-- Knock Off  
+Kabuto @ Sitrus Berry
+Level: 35
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Swords Dance
+- Ice Beam
+- Surf
+- Rock Slide
 
-Mamoswine @ Loaded Dice  
-Ability: Thick Fat  
-Tera Type: Ice  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Level: 68 
-Jolly Nature  
-- Icicle Spear  
-- Rock Blast  
-- Ice Shard  
-- Trailblaze  
+Onix
+Level: 35
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Iron Tail
+- Explosion
+- Roar
+- Rock Slide
 
-Ogerpon-Cornerstone (F) @ Cornerstone Mask  
-Ability: Sturdy  
-Tera Type: Rock  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Level: 68 
-Jolly Nature  
-- Power Whip  
-- Ivy Cudgel  
-- Knock Off  
-- U-turn  
-
-Landorus-Therian (M) @ Yache Berry  
-Ability: Intimidate  
-Tera Type: Water  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Level: 68 
-Jolly Nature  
-- Earthquake  
-- Stone Edge  
-- Knock Off  
-- Swords Dance  
-
-Aerodactyl-Mega @ Aerodactylite  
-Ability: Tough Claws  
-Tera Type: Rock  
-EVs: 252 Atk / 4 SpD / 252 Spe 
-Level: 68  
-Jolly Nature  
-- Dragon Dance  
-- Stone Edge  
-- Dual Wingbeat  
-- Earthquake  
+Nosepass @ Sitrus Berry
+Level: 37
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Double Team
+- Explosion
+- Protect
+- Rock Slide
 
 === TRAINER_ROXANNE_3 ===
 Name: ROXANNE
@@ -14487,7 +14203,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Omanyte
 Level: 37
@@ -14537,7 +14253,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Omastar
 Level: 42
@@ -14587,7 +14303,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Aerodactyl
 Level: 47
@@ -14645,7 +14361,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Machamp @ Sitrus Berry
 Level: 33
@@ -14687,7 +14403,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Machamp @ Sitrus Berry
 Level: 38
@@ -14729,7 +14445,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hitmonchan
 Level: 40
@@ -14779,7 +14495,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hitmonlee
 Level: 46
@@ -14830,14 +14546,14 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 
 === TRAINER_WATTSON_2 ===
-Name: Wattson
+Name: WATTSON
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Mareep
 Level: 36
@@ -14872,14 +14588,14 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Protect
 
 === TRAINER_WATTSON_3 ===
-Name: Wattson
+Name: WATTSON
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Pikachu
 Level: 39
@@ -14922,14 +14638,14 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Protect
 
 === TRAINER_WATTSON_4 ===
-Name: Wattson
+Name: WATTSON
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Raichu
 Level: 44
@@ -14972,14 +14688,14 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Protect
 
 === TRAINER_WATTSON_5 ===
-Name: Wattson
+Name: WATTSON
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Electabuzz
 Level: 50
@@ -15037,7 +14753,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Magcargo @ White Herb
 Level: 38
@@ -15079,7 +14795,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Growlithe
 Level: 41
@@ -15129,7 +14845,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Houndour
 Level: 46
@@ -15187,7 +14903,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Arcanine
 Level: 51
@@ -15245,7 +14961,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Chansey
 Level: 42
@@ -15287,7 +15003,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slaking @ Sitrus Berry
 Level: 47
@@ -15337,7 +15053,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slaking @ Sitrus Berry
 Level: 52
@@ -15387,7 +15103,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slaking @ Sitrus Berry
 Level: 57
@@ -15445,7 +15161,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability / Risky
+AI: Basic Trainer / Risky
 
 Dratini @ Sitrus Berry
 Level: 40
@@ -15495,7 +15211,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability / Risky
+AI: Basic Trainer / Risky
 
 Hoothoot
 Level: 43
@@ -15553,7 +15269,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability / Risky
+AI: Basic Trainer / Risky
 
 Noctowl
 Level: 48
@@ -15611,7 +15327,7 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability / Risky
+AI: Basic Trainer / Risky
 
 Noctowl
 Level: 53
@@ -15669,7 +15385,7 @@ Gender: Male
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Slowpoke
 Level: 48
@@ -15719,7 +15435,7 @@ Gender: Male
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Drowzee
 Level: 53
@@ -15777,7 +15493,7 @@ Gender: Male
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hypno
 Level: 58
@@ -15835,7 +15551,7 @@ Gender: Male
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Hypno
 Level: 63
@@ -15893,7 +15609,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Poliwag
 Level: 46
@@ -15943,7 +15659,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Poliwhirl
 Level: 50
@@ -15993,7 +15709,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Lapras
 Level: 56
@@ -16051,7 +15767,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Lapras
 Level: 61
@@ -16108,7 +15824,7 @@ Pic: Bug Maniac
 Gender: Male
 Music: Suspicious
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Illumise
 Level: 17
@@ -16131,7 +15847,7 @@ Pic: Bird Keeper
 Gender: Male
 Music: Cool
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Tropius
 Level: 30
@@ -16145,7 +15861,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Skarmory
 Level: 77
@@ -16202,7 +15918,7 @@ Pic: Salon Maiden Anabel
 Gender: Female
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Beldum
 Level: 5
@@ -16215,7 +15931,7 @@ Pic: Dome Ace Tucker
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Beldum
 Level: 5
@@ -16228,7 +15944,7 @@ Pic: Palace Maven Spenser
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Beldum
 Level: 5
@@ -16241,7 +15957,7 @@ Pic: Arena Tycoon Greta
 Gender: Female
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Beldum
 Level: 5
@@ -16254,7 +15970,7 @@ Pic: Factory Head Noland
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Beldum
 Level: 5
@@ -16267,7 +15983,7 @@ Pic: Pike Queen Lucy
 Gender: Female
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Beldum
 Level: 5
@@ -16280,7 +15996,7 @@ Pic: Pyramid King Brandon
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Beldum
 Level: 5
@@ -16618,7 +16334,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Loudred
 Level: 35
@@ -16636,7 +16352,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Spinda
 Level: 37
@@ -16658,7 +16374,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Spinda
 Level: 39
@@ -16680,7 +16396,7 @@ Gender: Female
 Music: Cool
 Items: Hyper Potion
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Spinda
 Level: 41
@@ -16785,7 +16501,7 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Geodude
 Level: 26
@@ -16802,7 +16518,7 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Machop
 Level: 28
@@ -16823,7 +16539,7 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Machop
 Level: 30
@@ -16844,7 +16560,7 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
+AI: Basic Trainer
 
 Machoke
 Level: 33
@@ -17157,180 +16873,3 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_RIVAL_RED_PWOODS ===
-Name: Red
-Class: Rival
-Pic: Red
-Gender: Male
-Music: Male
-Double Battle: No
-
-Squirtle (M) @ Oran Berry  
-Ability: Torrent  
-Level: 10  
-Tera Type: Water  
-Hardy Nature  
-- Aqua Jet  
-- Curse  
-- Rock Tomb  
-- Tail Whip  
-
-Bulbasaur (M) @ Oran Berry  
-Ability: Overgrow  
-Level: 10  
-Tera Type: Grass  
-IVs: 0 Atk  
-- Sludge  
-- Mega Drain  
-- Leech Seed  
-- Growl  
-
-Charmander @ Oran Berry  
-Ability: Blaze  
-Level: 10  
-Tera Type: Fire  
-- Aerial Ace  
-- Growl  
-- Incinerate  
-- Brick Break
-
-=== TRAINER_KARATE_MASTER_1 ===
-Name: Pops
-Class: Black Belt
-Pic: Black Belt
-Gender: Male
-Music: Male
-Double Battle: Yes
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
-
-Tornadus (M) @ Sitrus Berry  
-Ability: Prankster  
-Tera Type: Flying  
-EVs: 84 HP / 216 Def / 56 SpA / 136 SpD / 16 Spe  
-Timid Nature  
-- Tailwind  
-- Bleakwind Storm  
-- Icy Wind  
-- U-turn
-
-Urshifu-Rapid-Strike @ Mystic Water  
-Ability: Unseen Fist  
-Tera Type: Fighting  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Surging Strikes  
-- Close Combat  
-- Ice Spinner  
-- Aqua Jet  
-
-Incineroar @ Leftovers  
-Ability: Intimidate  
-Tera Type: Fire  
-EVs: 252 HP / 252 Atk / 4 SpD  
-Adamant Nature  
-- Parting Shot  
-- Fake Out  
-- Flare Blitz  
-- Darkest Lariat  
-
-Ogerpon-Wellspring (F) @ Wellspring Mask  
-Ability: Water Absorb  
-Tera Type: Water  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Spiky Shield  
-- Ivy Cudgel  
-- Power Whip  
-- Follow Me  
-
-Urshifu @ Choice Band  
-Ability: Unseen Fist  
-Tera Type: Fighting  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Wicked Blow  
-- Close Combat  
-- Poison Jab  
-- Ice Punch  
-
-Raging Bolt @ Assault Vest  
-Ability: Protosynthesis  
-Tera Type: Flying  
-EVs: 252 HP / 252 SpA / 4 SpD  
-Modest Nature  
-IVs: 20 Atk  
-- Thunderclap  
-- Thunderbolt  
-- Dragon Pulse  
-- Snarl  
-
-=== TRAINER_KARATE_MASTER_2 ===
-Name: Pops
-Class: Black Belt
-Pic: Black Belt
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability / Omniscient / Smart Switching / Smart Mon Choices
-
-Galvantula @ Focus Sash  
-Ability: Compound Eyes  
-Tera Type: Bug  
-EVs: 252 SpA / 4 SpD / 252 Spe  
-Timid Nature  
-IVs: 0 Atk  
-- Sticky Web  
-- Thunder  
-- Energy Ball  
-- Volt Switch  
-
-Meowscarada @ Protective Pads  
-Ability: Protean  
-Tera Type: Grass  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Flower Trick  
-- Knock Off  
-- U-turn  
-- Triple Axel  
-
-Urshifu-Rapid-Strike @ Choice Band  
-Ability: Unseen Fist  
-Tera Type: Fighting  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Surging Strikes  
-- Ice Spinner  
-- Close Combat  
-- U-turn  
-
-Urshifu @ Focus Sash  
-Ability: Unseen Fist  
-Tera Type: Fighting  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Wicked Blow  
-- Close Combat  
-- Swords Dance  
-- Trailblaze  
-
-Ceruledge @ Focus Sash  
-Ability: Weak Armor  
-Tera Type: Ghost  
-EVs: 252 Atk / 4 SpD / 252 Spe  
-Jolly Nature  
-- Swords Dance  
-- Poltergeist  
-- Bitter Blade  
-- Close Combat  
-
-Iron Treads @ Assault Vest  
-Ability: Quark Drive  
-Tera Type: Dragon  
-EVs: 252 HP / 252 SpD / 4 Spe  
-Careful Nature  
-- Earthquake  
-- Volt Switch  
-- Rapid Spin  
-- Ice Spinner  

@@ -556,3 +556,4 @@ gSpecials::
 	def_special EnterCodes
 	def_special GetCodesFeedback
 	def_special GetTimeOfDaySpecial
+	def_special UseBlankMessageToCancelPokemonPic
