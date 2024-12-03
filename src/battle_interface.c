@@ -33,7 +33,6 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/items.h"
-#include "level_caps.h"
 #include "pokemon.h"
 #include "battle_anim.h"
 #include "caps.h"

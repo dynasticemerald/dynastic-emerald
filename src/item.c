@@ -30,13 +30,9 @@ static bool8 CheckPyramidBagHasItem(u16 itemId, u16 count);
 static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count);
 static const u8 *ItemId_GetPluralName(u16);
 static bool32 DoesItemHavePluralName(u16);
-static void ShowItemIconSprite(u16 item, bool8 firstTime, bool8 flash);
-static void DestroyItemIconSprite(void);
 
 EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
 EWRAM_DATA static u8 sHeaderBoxWindowId = 0;
-EWRAM_DATA u8 sItemIconSpriteId = 0;
-EWRAM_DATA u8 sItemIconSpriteId2 = 0;
 
 #include "data/pokemon/item_effects.h"
 #include "data/items.h"
@@ -1024,28 +1020,6 @@ u32 GetItemStatus2Mask(u16 itemId)
         return 0;
 }
 
-// Item Description Header
-bool8 GetSetItemObtained(u16 item, u8 caseId)
-{
-    u8 index;
-    u8 bit;
-    u8 mask;
-
-    index = item / 8;
-    bit = item % 8;
-    mask = 1 << bit;
-    switch (caseId)
-    {
-    case FLAG_GET_OBTAINED:
-        return gSaveBlock2Ptr->itemFlags[index] & mask;
-    case FLAG_SET_OBTAINED:
-        gSaveBlock2Ptr->itemFlags[index] |= mask;
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
 static u8 ReformatItemDescription(u16 item, u8 *dest)
 {
     u8 count = 0;
@@ -1107,12 +1081,6 @@ void DrawHeaderBox(void)
     else
         dst = gStringVar1;
 
-    if (GetSetItemObtained(item, FLAG_GET_OBTAINED))
-    {
-        ShowItemIconSprite(item, FALSE, handleFlash);
-        return; //no box if item obtained previously
-    }
-
     SetWindowTemplateFields(&template, 0, 1, 1, 28, 3, 15, 8);
     sHeaderBoxWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sHeaderBoxWindowId, PIXEL_FILL(0));
@@ -1126,86 +1094,18 @@ void DrawHeaderBox(void)
     else
         textY = 0;
 
-    ShowItemIconSprite(item, TRUE, handleFlash);
     AddTextPrinterParameterized(sHeaderBoxWindowId, 0, dst, ITEM_ICON_X + 2, textY, 0, NULL);
 }
 
 void HideHeaderBox(void)
 {
-    DestroyItemIconSprite();
 
-    if (!GetSetItemObtained(gSpecialVar_0x8006, FLAG_GET_OBTAINED))
+    if (!GetSetItemObtained(gSpecialVar_0x8006, FLAG_GET_ITEM_OBTAINED))
     {
         //header box only exists if haven't seen item before
-        GetSetItemObtained(gSpecialVar_0x8006, FLAG_SET_OBTAINED);
+        GetSetItemObtained(gSpecialVar_0x8006, FLAG_SET_ITEM_OBTAINED);
         ClearStdWindowAndFrameToTransparent(sHeaderBoxWindowId, FALSE);
         CopyWindowToVram(sHeaderBoxWindowId, 3);
         RemoveWindow(sHeaderBoxWindowId);
-    }
-}
-
-#include "gpu_regs.h"
-
-#define ITEM_TAG 0x2722 //same as money label
-static void ShowItemIconSprite(u16 item, bool8 firstTime, bool8 flash)
-{
-    s16 x = 0, y = 0;
-    u8 iconSpriteId;   
-    u8 spriteId2 = MAX_SPRITES;
-
-    if (flash)
-    {
-        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
-        SetGpuRegBits(REG_OFFSET_WINOUT, WINOUT_WINOBJ_OBJ);
-    }
-
-    iconSpriteId = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
-    if (flash)
-        spriteId2 = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
-    if (iconSpriteId != MAX_SPRITES)
-    {
-        if (!firstTime)
-        {
-            //show in message box
-            x = 213;
-            y = 140;
-        }
-        else
-        {
-            // show in header box
-            x = ITEM_ICON_X;
-            y = ITEM_ICON_Y;
-        }
-
-        gSprites[iconSpriteId].x2 = x;
-        gSprites[iconSpriteId].y2 = y;
-        gSprites[iconSpriteId].oam.priority = 0;
-    }
-
-    if (spriteId2 != MAX_SPRITES)
-    {
-        gSprites[spriteId2].x2 = x;
-        gSprites[spriteId2].y2 = y;
-        gSprites[spriteId2].oam.priority = 0;
-        gSprites[spriteId2].oam.objMode = ST_OAM_OBJ_WINDOW;
-        sItemIconSpriteId2 = spriteId2;
-    }
-
-    sItemIconSpriteId = iconSpriteId;
-}
-
-static void DestroyItemIconSprite(void)
-{
-    FreeSpriteTilesByTag(ITEM_TAG);
-    FreeSpritePaletteByTag(ITEM_TAG);
-    FreeSpriteOamMatrix(&gSprites[sItemIconSpriteId]);
-    DestroySprite(&gSprites[sItemIconSpriteId]);
-
-    if ((GetFlashLevel() > 0 || InBattlePyramid_()) && sItemIconSpriteId2 != MAX_SPRITES)
-    {
-        //FreeSpriteTilesByTag(ITEM_TAG);
-        //FreeSpritePaletteByTag(ITEM_TAG);
-        FreeSpriteOamMatrix(&gSprites[sItemIconSpriteId2]);
-        DestroySprite(&gSprites[sItemIconSpriteId2]);
     }
 }

@@ -2726,7 +2726,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_UNBURDEN, ABILITY_POISON_TOUCH, ABILITY_PRANKSTER },
+        .abilities = { ABILITY_UNBURDEN, ABILITY_PRANKSTER, ABILITY_POISON_TOUCH },
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Shroodle"),
         .cryId = CRY_SHROODLE,
@@ -2769,7 +2769,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .levelUpLearnset = sShroodleLevelUpLearnset,
         .teachableLearnset = sShroodleTeachableLearnset,
         .eggMoveLearnset = sShroodleEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_GRAFAIAI}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_GRAFAIAI}),
     },
 
     [SPECIES_GRAFAIAI] =
@@ -2789,7 +2789,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_UNBURDEN, ABILITY_TOXIC_CHAIN, ABILITY_PRANKSTER },
+        .abilities = { ABILITY_UNBURDEN, ABILITY_PRANKSTER, ABILITY_PROTEAN },
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Grafaiai"),
         .cryId = CRY_GRAFAIAI,

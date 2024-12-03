@@ -446,3 +446,13 @@ script FocusBlastTutor{
 	release 
 	end
 }
+
+script DragonDanceTutor{
+	lock
+	faceplayer
+	setvar (VAR_0x8005, MOVE_DRAGON_DANCE) 
+	special (ChooseMonForMoveTutor) 
+	waitstate 
+	release 
+	end
+}

@@ -1596,7 +1596,7 @@
 #define SPECIES_RIBOMBEE_TOTEM                          1484
 #define SPECIES_ARAQUANID_TOTEM                         1485
 #define SPECIES_TOGEDEMARU_TOTEM                        1486
-#define SPECIES_PIKACHU_PARTNER                         1487
+#define SPECIES_PIKACHU_PARTNER_UNUSED                  1487
 #define SPECIES_EEVEE_PARTNER                           1488
 #define SPECIES_VENUSAUR_MEGA_D                         1489
 #define SPECIES_BLASTOISE_MEGA_D                        1490
@@ -1645,7 +1645,11 @@
 // Shadow Form
 #define SPECIES_SHADOW_LUGIA                            CUSTOM_FROMS_START + 5
 
-#define SPECIES_EGG (SPECIES_SHADOW_LUGIA + 1)
+//Starter Forms
+#define SPECIES_EEVEE_STARTER                           CUSTOM_FROMS_START + 6
+#define SPECIES_PIKACHU_STARTER                         CUSTOM_FROMS_START + 7
+
+#define SPECIES_EGG (SPECIES_PIKACHU_STARTER + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 

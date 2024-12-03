@@ -4745,7 +4745,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .formChangeTable = sMimikyuTotemFormChangeTable,
     },
 
-    [SPECIES_MIMIKYU_BUSTED_TOTEM] =
+    [SPECIES_MIMIKYU_TOTEM_BUSTED] =
     {
         .baseHP        = 55,
         .baseAttack    = 90,
@@ -7165,7 +7165,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
     },
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_MELMETAL_GMAX] =
+    [SPECIES_MELMETAL_GIGANTAMAX] =
     {
         .baseHP        = 135,
         .baseAttack    = 143,

@@ -44,7 +44,6 @@
 #include "constants/trainers.h"
 #include "constants/rgb.h"
 #include "constants/abilities.h"
-#include "level_caps.h"
 #include "caps.h"
 #include "menu.h"
 #include "pokemon_summary_screen.h"
@@ -1984,33 +1983,15 @@ static void MoveSelectionDisplayMoveType(u32 battler)
                 break;
         }
     }
-    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-    type = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
 
-    if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_BLAST)
-    {
-        if (IsGimmickSelected(battler, GIMMICK_TERA) || GetActiveGimmick(battler) == GIMMICK_TERA)
-            type = GetBattlerTeraType(battler);
-    }
-    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
+    if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
     {
         speciesId = gBattleMons[battler].species;
 
         if (speciesId == SPECIES_OGERPON_WELLSPRING || speciesId == SPECIES_OGERPON_WELLSPRING_TERA
             || speciesId == SPECIES_OGERPON_HEARTHFLAME || speciesId == SPECIES_OGERPON_HEARTHFLAME_TERA
             || speciesId == SPECIES_OGERPON_CORNERSTONE || speciesId == SPECIES_OGERPON_CORNERSTONE_TERA)
-            type = gBattleMons[battler].types[1];
-    }
-    else if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category == DAMAGE_CATEGORY_STATUS
-             && (GetActiveGimmick(battler) == GIMMICK_DYNAMAX || IsGimmickSelected(battler, GIMMICK_DYNAMAX)))
-    {
-        type = TYPE_NORMAL; // Max Guard is always a Normal-type move
-    }
-    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_STELLAR_STARSTORM)
-    {
-        if (gBattleMons[battler].species == SPECIES_TERAPAGOS_STELLAR
-        || (IsGimmickSelected(battler, GIMMICK_TERA) && gBattleMons[battler].species == SPECIES_TERAPAGOS_TERASTAL))
-            type = TYPE_STELLAR;
+            type = battlerType1;
     }
 
     BattlePutTextOnWindow(gDisplayedStringBattle, typeColor);
@@ -2026,15 +2007,6 @@ static void MoveSelectionDisplayMoveType(u32 battler)
         StringCopy(gDisplayedStringBattle, gText_MoveInterfaceSTAB);
         BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_STAB_SYMBOL);
     }
-    else if (P_SHOW_DYNAMIC_TYPES) // Non-vanilla changes to battle UI showing dynamic types
-    {
-        struct Pokemon *mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
-        type = CheckDynamicMoveType(mon, moveInfo->moves[gMoveSelectionCursor[battler]], battler);
-    }
-    u16 end = StringCopy(txtPtr, gTypesInfo[type].name);
-
-    PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
 }
 
 static void MoveSelectionDisplayMoveDescription(u32 battler)

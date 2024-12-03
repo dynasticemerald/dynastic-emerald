@@ -159,7 +159,6 @@ static bool32 IsMetatileBlocking(s16, s16, u32);
 static bool32 IsMetatileLand(s16, s16, u32);
 
 static u8 TrySpinPlayerForWarp(struct ObjectEvent *, s16 *);
-static void PlayerGoSlow(u8 direction);
 
 // .rodata
 
@@ -675,7 +674,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         if (FlagGet(FLAG_SYS_DEXNAV_SEARCH) && (heldKeys & A_BUTTON))
         {
             gPlayerAvatar.creeping = TRUE;
-            PlayerGoSlow(direction);
+            PlayerWalkSlow(direction);
         }
         else
         {
@@ -699,7 +698,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
     else if (FlagGet(FLAG_SYS_DEXNAV_SEARCH) && (heldKeys & A_BUTTON))
     {
         gPlayerAvatar.creeping = TRUE;
-        PlayerGoSlow(direction);
+        PlayerWalkSlow(direction);
     }
     else
     {

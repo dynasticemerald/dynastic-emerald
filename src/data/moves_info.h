@@ -1695,7 +1695,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
         .cantUseTwice = TRUE,
-        .battleAnimScript = Move_HYPER_BEAM,
+        .battleAnimScript = gBattleAnimMove_HyperBeam,
     },
 
     [MOVE_PECK] =
@@ -3673,7 +3673,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .cantUseTwice = TRUE,
-        .battleAnimScript = Move_SKY_ATTACK,
+        .battleAnimScript = gBattleAnimMove_SkyAttack,
     },
 
     [MOVE_TRANSFORM] =
@@ -14475,7 +14475,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Plays rough with the foe.\n"
             "May lower Attack."),
         .effect = EFFECT_HIT,
-        .power = 90,
+        .power = 95,
         .type = TYPE_FAIRY,
         .accuracy = 100,
         .pp = 10,
@@ -14483,9 +14483,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
+        .hammerSlammerMove = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_ATK_MINUS_1,
-            .chance = 10,
+            .chance = 20,
         }),
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,

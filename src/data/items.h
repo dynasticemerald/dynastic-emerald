@@ -14312,7 +14312,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_SILVALLY_CATALOG] =
     {
-        .name = HANDLE_EXPANDED_ITEM_NAME("SilvCatalog", "Silvally Catalog"),
+        .name = _("Silvally Catalog"),
         .price = 0,
         .importance = 1,
         .description = COMPOUND_STRING(

@@ -2730,7 +2730,7 @@ BattleScript_TryTailwindAbilitiesLoop:
 	savetarget
 	setbyte gBattlerTarget, 0
 BattleScript_TryTailwindAbilitiesLoop_Iter:
-	trywindriderpowerjetstream BS_TARGET, BattleScript_TryTailwindAbilitiesLoop_Increment
+	trywindriderpower BS_TARGET, BattleScript_TryTailwindAbilitiesLoop_Increment
 	jumpifability BS_TARGET, ABILITY_WIND_RIDER, BattleScript_TryTailwindAbilitiesLoop_WindRider
 	jumpifability BS_TARGET, ABILITY_WIND_POWER, BattleScript_TryTailwindAbilitiesLoop_WindPower
 	jumpifability BS_TARGET, ABILITY_JETSTREAM, BattleScript_TryTailwindAbilitiesLoop_JetStream

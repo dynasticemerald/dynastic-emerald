@@ -62,10 +62,10 @@
 #define PSS_LABEL_WINDOW_POKEMON_EVS_TITLE 5
 
 // Button control text (upper right)
-#define PSS_LABEL_WINDOW_PROMPT_CANCEL 4 // Also handles the "rename" prompt if P_SUMMARY_SCREEN_RENAME is true
-#define PSS_LABEL_WINDOW_PROMPT_INFO 5
-#define PSS_LABEL_WINDOW_PROMPT_SWITCH 6
-#define PSS_LABEL_WINDOW_UNUSED1 7
+#define PSS_LABEL_WINDOW_PROMPT_CANCEL 6// Also handles the "rename" prompt if P_SUMMARY_SCREEN_RENAME is true
+#define PSS_LABEL_WINDOW_PROMPT_INFO 7
+#define PSS_LABEL_WINDOW_PROMPT_SWITCH 8
+#define PSS_LABEL_WINDOW_UNUSED1 9
 
 // Info screen
 #define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 10
@@ -78,9 +78,9 @@
 #define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS 15
 
 // Moves screen
-#define PSS_LABEL_WINDOW_MOVES_POWER_ACC 14 // Also contains the power and accuracy values
-#define PSS_LABEL_WINDOW_MOVES_APPEAL_JAM 15
-#define PSS_LABEL_WINDOW_PROMPT_RELEARN 16
+#define PSS_LABEL_WINDOW_MOVES_POWER_ACC 16 // Also contains the power and accuracy values
+#define PSS_LABEL_WINDOW_MOVES_APPEAL_JAM 17
+#define PSS_LABEL_WINDOW_PROMPT_RELEARN 18
 
 // Above/below the pokemon's portrait (left)
 #define PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER 19
@@ -1777,7 +1777,6 @@ static void Task_HandleInput(u8 taskId)
             ChangeSummaryState(data, taskId);
             DrawStatsButtonPrompt(data);
             PlaySE(SE_SELECT);
-            BufferIvOrEvStats(data[2]);
             }
         }
         else if (JOY_NEW(L_BUTTON))
@@ -1788,7 +1787,6 @@ static void Task_HandleInput(u8 taskId)
             ChangeSummaryState(data, taskId);
             DrawStatsButtonPrompt(data);
             PlaySE(SE_SELECT);
-            BufferIvOrEvStats(data[2]);
             }
         }
         else if (JOY_NEW(A_BUTTON))
@@ -1818,7 +1816,6 @@ static void Task_HandleInput(u8 taskId)
                 ChangeSummaryState(data, taskId);
                 DrawStatsButtonPrompt(data);
                 PlaySE(SE_SELECT);
-                BufferIvOrEvStats(data[2]);
             }
             }
         }
@@ -3771,7 +3768,7 @@ static void BufferStat(u8 *dst, u8 statIndex, u32 stat, u32 strId, u32 n)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(strId, dst);
 }
 
-static void BufferIvOrEvStats(u8 mode)
+static UNUSED void BufferIvOrEvStats(u8 mode)
 {
     u16 hp, hp2, atk, def, spA, spD, spe; //Why hp2 isn't compiled(?)
     u8 *currHPString = Alloc(20);

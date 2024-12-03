@@ -1986,9 +1986,6 @@ $(POKEMONGFXDIR)/vibrava/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/flygon/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/flygon/mega/overworld.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 4 -mheight 4
-
 $(POKEMONGFXDIR)/cacnea/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 

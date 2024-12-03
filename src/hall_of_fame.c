@@ -627,8 +627,6 @@ u16 getHallofFameSpecies(u8 num){
         case SPECIES_VENUSAUR:
             if(item == ITEM_VENUSAURITE)
                 return SPECIES_VENUSAUR_MEGA;
-            /*else if(item == ITEM_VENUSAURITE)
-                return SPECIES_VENUSAUR_GMAX;*/
         break;
         case SPECIES_GROUDON:
             if(item == ITEM_RED_ORB)

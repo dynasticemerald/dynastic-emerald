@@ -5755,7 +5755,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     },
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_GARBODOR_GMAX] =
+    [SPECIES_GARBODOR_GIGANTAMAX] =
     {
         .baseHP        = 80,
         .baseAttack    = 95,
@@ -10226,7 +10226,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sRuffletLevelUpLearnset,
         .teachableLearnset = sRuffletTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL_DAY, 37, SPECIES_BRAVIARY},
-                                {EVO_LEVEL_NIGHT, 37, SPECIES_BRAVIARY_HISUIAN}),
+                                {EVO_LEVEL_NIGHT, 37, SPECIES_BRAVIARY_HISUI}),
     },
 
     [SPECIES_BRAVIARY] =

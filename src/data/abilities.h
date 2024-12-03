@@ -2034,7 +2034,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_AS_ONE_ICE_RIDER] =
     {
-        .name = _("As One (Glastier)"),
+        .name = _("As One"),
         .description = COMPOUND_STRING("The Opponent can't eat its Berries.\nFainting a Pokémon raise the Attack stat."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
@@ -2046,7 +2046,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_AS_ONE_SHADOW_RIDER] =
     {
-        .name = _("As One (Spectier)"),
+        .name = _("As One"),
         .description = COMPOUND_STRING("The Opponent can't eat its Berries.\nFainting a Pokémon raise the Sp.Atk stat."),
         .aiRating = 10,
         .cantBeCopied = TRUE,

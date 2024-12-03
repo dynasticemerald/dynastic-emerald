@@ -1231,7 +1231,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_BUTTERFREE_GMAX] =
+    [SPECIES_BUTTERFREE_GIGANTAMAX] =
     {
         .baseHP        = 60,
         .baseAttack    = 45,
@@ -3394,7 +3394,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_CAP_PIKACHU_FORMS
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_PIKACHU_GMAX] =
+    [SPECIES_PIKACHU_GIGANTAMAX] =
     {
         .baseHP        = 35,
         .baseAttack    = 55,
@@ -6513,7 +6513,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_GALARIAN_FORMS
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_MEOWTH_GMAX] =
+    [SPECIES_MEOWTH_GIGANTAMAX] =
     {
         .baseHP        = 40,
         .baseAttack    = 45,
@@ -7292,7 +7292,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     [SPECIES_POLIWRATH] =
     {
         .baseHP        = 90,
-        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 95 : 85,
+        .baseAttack    = 95 + 10,
         .baseDefense   = 95,
         .baseSpeed     = 70 + 10,
         .baseSpAttack  = 70,
@@ -7307,7 +7307,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1),
-        .abilities = { ABILITY_WATER_ABSORB, ABILITY_SWIFT_SWIM, ABILITY_UNSEEN_FIST },
+        .abilities = { ABILITY_WATER_ABSORB, ABILITY_SWIFT_SWIM, ABILITY_IRON_FIST },
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = TRUE,
         .speciesName = _("Poliwrath"),
@@ -7357,9 +7357,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     {
         .baseHP        = 90,
         .baseAttack    = 75,
-        .baseDefense   = 75,
+        .baseDefense   = 75 + 10,
         .baseSpeed     = 70,
-        .baseSpAttack  = 90,
+        .baseSpAttack  = 90 + 10,
         .baseSpDefense = 100,
         .types = MON_TYPES(TYPE_WATER, TYPE_FAIRY),
         .catchRate = 45,
@@ -7376,7 +7376,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1),
-        .abilities = { ABILITY_WATER_ABSORB, ABILITY_DAMP, ABILITY_DRIZZLE },
+        .abilities = { ABILITY_WATER_ABSORB, ABILITY_PIXILATE, ABILITY_DRIZZLE },
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
         .speciesName = _("Politoed"),
@@ -7943,7 +7943,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_MACHAMP_GMAX] =
+    [SPECIES_MACHAMP_GIGANTAMAX] =
     {
         .baseHP        = 90,
         .baseAttack    = 130,
@@ -10828,7 +10828,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_GENGAR_GMAX] =
+    [SPECIES_GENGAR_GIGANTAMAX] =
     {
         .baseHP        = 60,
         .baseAttack    = 65,
@@ -15713,7 +15713,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_LAPRAS_GMAX] =
+    [SPECIES_LAPRAS_GIGANTAMAX] =
     {
         .baseHP        = 130,
         .baseAttack    = 85,
@@ -15928,7 +15928,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_EEVEE_GMAX] =
+    [SPECIES_EEVEE_GIGANTAMAX] =
     {
         .baseHP        = 55,
         .baseAttack    = 55,
@@ -17285,7 +17285,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 
 #if P_GIGANTAMAX_FORMS
-    [SPECIES_SNORLAX_GMAX] =
+    [SPECIES_SNORLAX_GIGANTAMAX] =
     {
         .baseHP        = 160,
         .baseAttack    = 110,

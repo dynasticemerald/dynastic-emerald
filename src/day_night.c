@@ -257,17 +257,17 @@ void ProcessImmediateTimeEvents(void)
 
 void LoadCompressedPalette_HandleDayNight(const u32 *src, u16 offset, u16 size, bool32 isDayNight)
 {
-    LZ77UnCompWram(src, gPaletteDecompressionBuffer);
+    LZ77UnCompWram(src, gDecompressionBuffer);
     if (isDayNight)
     {
-        CpuCopy16(gPaletteDecompressionBuffer, &sPlttBufferPreDN[offset], size);
+        CpuCopy16(gDecompressionBuffer, &sPlttBufferPreDN[offset], size);
         TintPaletteForDayNight(offset, size);
         CpuCopy16(&gPlttBufferUnfaded[offset], &gPlttBufferFaded[offset], size);
     }
     else
     {
-        CpuCopy16(gPaletteDecompressionBuffer, &gPlttBufferUnfaded[offset], size);
-        CpuCopy16(gPaletteDecompressionBuffer, &gPlttBufferFaded[offset], size);
+        CpuCopy16(gDecompressionBuffer, &gPlttBufferUnfaded[offset], size);
+        CpuCopy16(gDecompressionBuffer, &gPlttBufferFaded[offset], size);
     }
 }
 

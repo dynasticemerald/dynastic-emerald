@@ -1178,17 +1178,17 @@ static bool32 TryDarmFormChange(void)
         if (!IS_MOVE_STATUS(gCurrentMove))
             gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN;
         break;
-    case SPECIES_DARMANITAN_GALARIAN: // GalarNormal -> GalarZen
+    case SPECIES_DARMANITAN_GALAR: // GalarNormal -> GalarZen
         if (IS_MOVE_STATUS(gCurrentMove))
-            gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALARIAN_ZEN_MODE;
+            gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALAR_ZEN;
         if (gCurrentMove != MOVE_PROTECT)
             return FALSE;
         break;
-    case SPECIES_DARMANITAN_GALARIAN_ZEN_MODE: // GalarZen -> GalarNormal
+    case SPECIES_DARMANITAN_GALAR_ZEN: // GalarZen -> GalarNormal
         if (IS_MOVE_STATUS(gCurrentMove))
             return FALSE;
         if (!IS_MOVE_STATUS(gCurrentMove))
-            gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALARIAN;
+            gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALAR;
         break;
     }
 
@@ -1305,7 +1305,7 @@ static void Cmd_attackcanceler(void)
     if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_OFF
     && GetBattlerAbility(gBattlerAttacker) == ABILITY_HYPER_AGGRESIVE
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
-    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+    && !(gAbsentBattlerFlags & (1u << gBattlerTarget))
     && GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE)
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondState = PARENTAL_BOND_1ST_HIT;
@@ -2533,7 +2533,7 @@ static void Cmd_datahpupdate(void)
             if (gBattleStruct->changedSpecies[side][gBattlerPartyIndexes[battler]] == SPECIES_NONE)
                 gBattleStruct->changedSpecies[side][gBattlerPartyIndexes[battler]] = gBattleMons[battler].species;
             if (gBattleMons[battler].species == SPECIES_MIMIKYU_TOTEM_DISGUISED)
-                gBattleMons[battler].species = SPECIES_MIMIKYU_BUSTED_TOTEM;
+                gBattleMons[battler].species = SPECIES_MIMIKYU_TOTEM_BUSTED;
             else
                 gBattleMons[battler].species = SPECIES_MIMIKYU_BUSTED;
             if (B_DISGUISE_HP_LOSS >= GEN_8)

@@ -735,6 +735,16 @@ FocusBlastTutor::
 	end
 
 
+DragonDanceTutor::
+	lock
+	faceplayer
+	setvar VAR_0x8005, MOVE_DRAGON_DANCE
+	special ChooseMonForMoveTutor
+	waitstate
+	release
+	end
+
+
 SlateportCity_EventScript_SecretPowerAndHiddenPowerTutor_Text_0:
 	.string "Every Pokémon can learn one of these\n"
 	.string "two coverage moves. These moves are\l"
