@@ -82,6 +82,9 @@
     F(DRAGON_HAMMER) \
     F(POWER_WHIP) \
     F(SHADOW_CLAW) \
+    F(NASTY_PLOT) \
+    F(SWORDS_DANCE) \
+    F(DRILL_PECK) \
 
 #define FOREACH_HM(F) \
     F(CUT) \

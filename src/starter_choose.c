@@ -23,6 +23,7 @@
 #include "window.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "script.h"
 
 #define STARTER_MON_COUNT   3
 
@@ -137,9 +138,12 @@ static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
 static const u16 sStarterMon[REGION_COUNT][STARTER_MON_COUNT] = {
     [REGION_KANTO] =
     {
-        SPECIES_BULBASAUR,
+        /*SPECIES_BULBASAUR,
         SPECIES_CHARMANDER,
-        SPECIES_SQUIRTLE
+        SPECIES_SQUIRTLE*/
+        SPECIES_TREECKO,
+        SPECIES_TORCHIC,
+        SPECIES_MUDKIP
     },
     [REGION_JOHTO] =
     {
@@ -545,9 +549,13 @@ static void CB2_StarterChoose(void)
     UpdatePaletteFade();
 }
 
+//static const u8 gText_BirchStarterRegionSelection[] = _("What Region would you like\nur starter to be from?");
+
 static void Task_StarterChoose(u8 taskId)
 {
     CreateStarterPokemonLabel(gTasks[taskId].tStarterSelection);
+    DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x2A8, 0xD);
+    //AddTextPrinterParameterized(0, FONT_NORMAL, gText_BirchStarterRegionSelection, 0, 1, 0, NULL);
     DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x2A8, 0xD);
     AddTextPrinterParameterized(0, FONT_NORMAL, gText_BirchInTrouble, 0, 1, 0, NULL);
     PutWindowTilemap(0);

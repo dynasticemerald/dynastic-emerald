@@ -41242,7 +41242,9 @@
       "MOVE_DOUBLE_EDGE",
       "MOVE_SCORCHING_SANDS",
       "MOVE_BREAKING_SWIPE",
-      "MOVE_DRAGON_CHEER"
+      "MOVE_DRAGON_CHEER",
+      "MOVE_FLY",
+      "MOVE_DRILL_PECK"
     ],
     "EggMoves": [
       "MOVE_DOUBLE_EDGE",
@@ -64028,7 +64030,8 @@
       "MOVE_WEATHER_BALL",
       "MOVE_DOUBLE_EDGE",
       "MOVE_SLUDGE_WAVE",
-      "MOVE_SCORCHING_SANDS"
+      "MOVE_SCORCHING_SANDS",
+      "MOVE_NASTY_PLOT"
     ],
     "EggMoves": [],
     "TutorMoves": []

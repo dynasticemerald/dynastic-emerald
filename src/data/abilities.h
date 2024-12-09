@@ -502,28 +502,28 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_OVERGROW] =
     {
         .name = _("Overgrow"),
-        .description = COMPOUND_STRING("Ups Grass moves in a pinch."),
+        .description = COMPOUND_STRING("Boosts Grass moves by 20% above 1/3 HP\nBoosts Grass moves by 50% below 1/3 HP"),
         .aiRating = 5,
     },
 
     [ABILITY_BLAZE] =
     {
         .name = _("Blaze"),
-        .description = COMPOUND_STRING("Ups Fire moves in a pinch."),
+        .description = COMPOUND_STRING("Boosts Fire moves by 20% above 1/3 HP\nBoosts Fire moves by 50% below 1/3 HP"),
         .aiRating = 5,
     },
 
     [ABILITY_TORRENT] =
     {
         .name = _("Torrent"),
-        .description = COMPOUND_STRING("Ups Water moves in a pinch."),
+        .description = COMPOUND_STRING("Boosts Water moves by 20% above 1/3 HP\nBoosts Water moves by 50% below 1/3 HP"),
         .aiRating = 5,
     },
 
     [ABILITY_SWARM] =
     {
         .name = _("Swarm"),
-        .description = COMPOUND_STRING("Ups Bug moves in a pinch."),
+        .description = COMPOUND_STRING("Boosts Bug moves by 20% above 1/3 HP\nBoosts Bug moves by 50% below 1/3 HP"),
         .aiRating = 5,
     },
 
@@ -2423,11 +2423,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_GROUNDSHOCK] =
     {
-    #if B_EXPANDED_ABILITY_NAMES == TRUE
         .name = _("Ground Shock"),
-    #else
-        .name = _("GroundShock"),
-    #endif
         .description = COMPOUND_STRING("Electric-Type moves are able to\nhit Ground-Type Pokémon."),
         .aiRating = 10,
     },
@@ -2462,22 +2458,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_HYPER_AGGRESIVE] =
     {
-    #if B_EXPANDED_ABILITY_NAMES == TRUE
         .name = _("Hyper Aggressive"),
-    #else
-        .name = _("HyperAggr"),
-    #endif
         .description = COMPOUND_STRING("Moves hit twice.\nSecond hit does 25% damage."),
         .aiRating = 10,
     },
 
     [ABILITY_SWARMING_NEIGH] =
     {
-    #if B_EXPANDED_ABILITY_NAMES == TRUE
         .name = _("Swarming Neigh"),
-    #else
-        .name = _("SwarmngNeigh"),
-    #endif
         .description = COMPOUND_STRING("Fainting a Pokémon raise the Attack stat."),
         .aiRating = 7,
     },
@@ -2491,11 +2479,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_GROUNDED_FLIGHT] =
     {
-    #if B_EXPANDED_ABILITY_NAMES == TRUE
         .name = _("Grounded Flight"),
-    #else
-        .name = _("GroundFlight"),
-    #endif
         .description = COMPOUND_STRING("All of the Pokémon's Flying-Type attacks\nbecome Ground-Type simultaneously"),
         .aiRating = 10,
     },
@@ -2517,7 +2501,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_JETSTREAM] =
     {
         .name = _("Jetstrean"),
-        .description = COMPOUND_STRING("Boosts Pokémon's Sp. Atk stat if\nTailwind is active. Immune to Wind Moves."),
+        .description = COMPOUND_STRING("Boosts Pokémon's Sp. Atk stat if Tailwind is active.\nImmune to Wind Moves."),
         .aiRating = 4,
         .breakable = TRUE,
     },
@@ -2532,7 +2516,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FOG_BANK] =
     {
         .name = _("Fog Bank"),
-        .description = COMPOUND_STRING("Summons a fog bank in battle.\nLasts 5 turns"),
+        .description = COMPOUND_STRING("Summons a fog bank in battle.\nLasts 5 turns,"),
         .aiRating = 9,
     },
 

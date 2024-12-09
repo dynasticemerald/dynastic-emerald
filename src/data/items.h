@@ -11621,7 +11621,7 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_SHADOW_CLAW,
     },
 
-    [ITEM_TM81] =
+    [ITEM_TM_NASTY_PLOT] =
     {
         .name = _("TM81"),
         .price = 3000,
@@ -11633,10 +11633,10 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_NASTY_PLOT, // Todo
     },
 
-    [ITEM_TM82] =
+    [ITEM_TM_SWORDS_DANCE] =
     {
         .name = _("TM82"),
         .price = 3000,
@@ -11648,10 +11648,10 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_SWORDS_DANCE, // Todo
     },
 
-    [ITEM_TM83] =
+    [ITEM_TM_DRILL_PECK] =
     {
         .name = _("TM83"),
         .price = 3000,
@@ -11663,7 +11663,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_DRILL_PECK, // Todo
     },
 
     [ITEM_TM84] =
