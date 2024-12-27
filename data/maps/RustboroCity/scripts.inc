@@ -1300,8 +1300,8 @@ RustboroCity_Text_YouCanHave2On2Battle:
 	.string "could beat two TRAINERS by yourself?$"
 
 RustboroCity_EventScript_Dustox::
-	playmoncry SPECIES_DUSTOX, CRY_MODE_NORMAL
 	lock
+	playmoncry SPECIES_DUSTOX, CRY_MODE_NORMAL
 	msgbox RustboroCity_EventScript_Dustox_Text_0
 	release
 	end

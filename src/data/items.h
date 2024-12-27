@@ -11666,19 +11666,16 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_DRILL_PECK, // Todo
     },
 
-    [ITEM_TM84] =
+    [ITEM_TM_TAKE_FLIGHT] =
     {
         .name = _("TM84"),
         .price = 3000,
-        .description = COMPOUND_STRING(
-            "??????????????\n"
-            "??????????????\n"
-            "??????????????"), // Todo
+        .description = sUTurnDescription, // Im lazy
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_TAKE_FLIGHT,
     },
 
     [ITEM_TM85] =

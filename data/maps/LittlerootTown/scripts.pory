@@ -40,21 +40,6 @@ LittlerootTown_MapScripts::
 	@ 3: Met Rival
 	@ 4: Received Pokedex
 
-
-LittlerootTown_OnTransition:
-	setflag FLAG_VISITED_LITTLEROOT_TOWN
-	call Common_EventScript_SetupRivalGfxId
-	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
-	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
-	call_if_eq VAR_LITTLEROOT_TOWN_STATE, 3, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
-	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	call_if_eq VAR_OLDALE_RIVAL_STATE, 1, LittlerootTown_EventScript_MoveRivalFromOldale
-	call_if_eq VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103
-	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
-	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
-	end
-
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade::
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
 	return
@@ -1017,41 +1002,74 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 
 script Seafloor_Cavern_Articuno_Encounter{
 	lock
-
 	playbgm(MUS_RG_VS_LEGEND, FALSE)
-	//applymovement(9) //Isnt needed since its not a script.
+		playmoncry(SPECIES_ARTICUNO, CRY_MODE_ENCOUNTER)
+		msgbox(format("Articuno: Gyaoo!"))
+		delay(40)
+		waitmoncry
+		setwildbattle(SPECIES_ARTICUNO, 50) //No Item, for now.
+		setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+		special(BattleSetup_StartLegendaryBattle)
+		waitstate
+		clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+		specialvar(VAR_RESULT, GetBattleOutcome)
+		if(var(VAR_RESULT) == B_OUTCOME_WON){
+			goto(Seafloor_Cavern_Articuno_DefeatedArticuno)
+		}
+		elif(var(VAR_RESULT) == B_OUTCOME_RAN){
+			goto(Seafloor_Cavern_Articuno_RanFromArticuno)
+		}
+	release
+	end
+}
 
-	playmoncry(SPECIES_ARTICUNO, CRY_MODE_ENCOUNTER)
-	msgbox(format("Articuno: Gyaoo!"))
-	delay(40)
-	waitmoncry
-	setwildbattle(SPECIES_ARTICUNO, 50) //No Item, for now.
-	setflag(FLAG_SYS_CTRL_OBJ_DELETE)
-	special(BattleSetup_StartLegendaryBattle)
-	waitstate
-	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
-	specialvar(VAR_RESULT, GetBattleOutcome)
-	if(var(VAR_RESULT) == B_OUTCOME_WON){
-		goto(Seafloor_Cavern_Articuno_DefeatedArticuno)
-	}
-	elif(var(VAR_RESULT) == B_OUTCOME_RAN){
-		goto(Seafloor_Cavern_Articuno_RanFromArticuno)
-	}
-	setflag(FLAG_HIDE_ARTICUNO)
+script Seafloor_Cavern_ArticunoGalar_Encounter{
+	lock
+	playbgm(MUS_RG_VS_LEGEND, FALSE)
+		playmoncry(SPECIES_ARTICUNO_GALAR, CRY_MODE_ENCOUNTER)
+		msgbox(format("Articuno: Gyaoo!"))
+		delay(40)
+		waitmoncry
+		setwildbattle(SPECIES_ARTICUNO_GALAR, 50) //No Item, for now.
+		setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+		special(BattleSetup_StartLegendaryBattle)
+		waitstate
+		clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+		specialvar(VAR_RESULT, GetBattleOutcome)
+		if(var(VAR_RESULT) == B_OUTCOME_WON){
+			goto(Seafloor_Cavern_Articuno_DefeatedArticunoGalar)
+		}
+		elif(var(VAR_RESULT) == B_OUTCOME_RAN){
+			goto(Seafloor_Cavern_Articuno_RanFromArticuno)
+		}
 	release
 	end
 }
 
 script Seafloor_Cavern_Articuno_RanFromArticuno{
+	lock
 	setvar (VAR_0x8004, SPECIES_ARTICUNO)
 	goto (Common_EventScript_LegendaryFlewAway)
+	release
 	end
 }
 
 script Seafloor_Cavern_Articuno_DefeatedArticuno{
-	setflag(FLAG_HIDE_ARTICUNO)
-	removeobject(0) //Articuno
+	lock
+	setflag(FLAG_HIDE_ARTICUNO_N)
+	removeobject(12) //Articuno
+	removeobject(13)
 	goto(Common_EventScript_RemoveStaticPokemon)
+	release
+	end
+}
+
+script Seafloor_Cavern_Articuno_DefeatedArticunoGalar{
+	lock
+	setflag(FLAG_HIDE_ARTICUNO_G)
+	removeobject(13)
+	goto(Common_EventScript_RemoveStaticPokemon)
+	release
 	end
 }
 
@@ -1068,7 +1086,7 @@ script LittlerootTown_EventScript_NationalDexUpgrade{
 	msgbox(format("Prof. Birch: ...anyways I completely forgot to upgrade your Pokédex before i gave it too you!"), MSGBOX_DEFAULT)
 	setflag(FLAG_SYS_NATIONAL_DEX)
 	special(EnableNationalPokedex)
-	msgbox(format("{PLAYER}'s Pokédex was upgrade to a National Dex."), MSGBOX_DEFAULT)
+	msgbox(format("{PLAYER}'s Pokédex was upgrade to the National Dex."), MSGBOX_DEFAULT)
 	msgbox(format("Prof. Birch: The National Dex upgrade, lets you see and register all Pokémon from every region in the Pokédex."), MSGBOX_DEFAULT)
 	msgbox(format("Prof. Birch: Well that will be all, {PLAYER}!\nNow back to regular job schedule."), MSGBOX_AUTOCLOSE)
 	applymovement(9, MoveDownBirchNationalDex)
@@ -1095,6 +1113,23 @@ movement MoveDownBirchNationalDex{
 
 //KAIDO: Make this at 29/09/2024 or 03/10/2024.
 script WonderEgg_Test{
+	lock
+	faceplayer
+
+	//Gives the wonderegg
+	goto(GiveWonderEgg_Test)
+}
+
+script GiveWonderEgg_Test{
+	lock
+	showmoneybox(0, 0)
+	if(checkmoney(2000)){
+		removemoney(2000)
+		return
+	}
+
+	release 
+	end
 }
 
 script StarterEggs_Fire{
@@ -1111,4 +1146,19 @@ script StarterEggs_Fire{
 		release
 		end
 	}
+}
+
+script LittlerootTown_OnTransition{
+	setflag (FLAG_VISITED_LITTLEROOT_TOWN)
+	call (Common_EventScript_SetupRivalGfxId)
+	call_if_eq (VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor)
+	call_if_unset (FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos)
+	call_if_eq (VAR_LITTLEROOT_TOWN_STATE, 3, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos)
+	call_if_eq (VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent)
+	call_if_eq (VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent)
+	call_if_eq (VAR_OLDALE_RIVAL_STATE, 1, LittlerootTown_EventScript_MoveRivalFromOldale)
+	call_if_eq (VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103)
+	call_if_eq (VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup)
+	call_if_eq (VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade)
+	end
 }

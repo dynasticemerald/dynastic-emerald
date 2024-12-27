@@ -1301,8 +1301,8 @@ RustboroCity_Text_YouCanHave2On2Battle:
 `
 
 script RustboroCity_EventScript_Dustox {
-	playmoncry(SPECIES_DUSTOX, CRY_MODE_NORMAL)
 	lock
+	playmoncry(SPECIES_DUSTOX, CRY_MODE_NORMAL)
 	msgbox(format("The Dustox is too enthralled by the light to pay attention to you."))
 	release
 	end

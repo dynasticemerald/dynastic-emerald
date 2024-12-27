@@ -417,6 +417,19 @@ RivalsHouse_1F_EventScript_RegionChoice::
 	return
 
 
+Eevee::
+	lock
+	faceplayer
+	message Eevee_Text_0
+	showmonpic SPECIES_EEVEE, 10, 3
+	playmoncry SPECIES_EEVEE, CRY_MODE_NORMAL
+	closemessage
+	waitmoncry
+	hidemonpic
+	release
+	end
+
+
 EventScript_StarterRegionSelection_Text_0:
 	.string "Kanto$"
 
@@ -454,6 +467,9 @@ EventScript_StarterRegionSelection_Text_9:
 RivalsHouse_1F_EventScript_RegionChoice_Text_0:
 	.string "Ah the {STR_VAR_1} region?\n"
 	.string "{PLAYER} Good choice.$"
+
+Eevee_Text_0:
+	.string "Eevee: Vee Vee!$"
 
 RivalsHouse_1F_Text_WhichRegion::
 	.string "BEFORE YOU CHOOSE!\n"

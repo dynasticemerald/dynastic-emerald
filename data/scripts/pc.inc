@@ -85,39 +85,42 @@ EventScript_AccessTimeChanger::
 	dynmultipush EventScript_AccessTimeChanger_Text_4, 4
 	dynmultipush EventScript_AccessTimeChanger_Text_5, 127
 	dynmultistack 0, 0, FALSE, 5, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE
-	compare VAR_RESULT, 1
-	goto_if_eq EventScript_AccessTimeChanger_2
-	compare VAR_RESULT, 2
-	goto_if_eq EventScript_AccessTimeChanger_3
-	compare VAR_RESULT, 3
-	goto_if_eq EventScript_AccessTimeChanger_4
-	compare VAR_RESULT, 4
-	goto_if_eq EventScript_AccessTimeChanger_5
-	compare VAR_RESULT, 127
-	goto_if_eq EventScript_AccessTimeChanger_6
-EventScript_AccessTimeChanger_1:
+	switch VAR_RESULT
+	case 1, EventScript_AccessTimeChanger_2
+	case 2, EventScript_AccessTimeChanger_3
+	case 3, EventScript_AccessTimeChanger_4
+	case 4, EventScript_AccessTimeChanger_5
+	case 127, EventScript_AccessTimeChanger_6
+	return
+
+EventScript_AccessTimeChanger_2:
+	callnative FakeRtc_ManuallySetTimeDay
 	closemessage
 	release
 	end
 
-EventScript_AccessTimeChanger_2:
-	callnative FakeRtc_ManuallySetTimeDay
-	goto EventScript_AccessTimeChanger_1
-
 EventScript_AccessTimeChanger_3:
 	callnative FakeRtc_ManuallySetTimeNight
-	goto EventScript_AccessTimeChanger_1
+	closemessage
+	release
+	end
 
 EventScript_AccessTimeChanger_4:
 	callnative FakeRtc_ManuallySetTimeDusk
-	goto EventScript_AccessTimeChanger_1
+	closemessage
+	release
+	end
 
 EventScript_AccessTimeChanger_5:
 	callnative RtcReset
-	goto EventScript_AccessTimeChanger_1
+	closemessage
+	release
+	end
 
 EventScript_AccessTimeChanger_6:
-	return
+	closemessage
+	release
+	end
 
 
 EventScript_AccessTimeChanger_Text_0:

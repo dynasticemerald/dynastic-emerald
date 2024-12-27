@@ -1,4 +1,4 @@
-
+raw `
 PetalburgCity_House2_MapScripts::
 	.byte 0
 
@@ -22,17 +22,17 @@ PetalburgCity_House2_Text_BattledNormanOnce:
 	.string "How would I put it?\p"
 	.string "I just got the feeling that he\n"
 	.string "lives for POKéMON.$"
+`
 
-PetalburgCity_House2_EventScript_Boltund::
+script PetalburgCity_House2_EventScript_Boltund{
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_BOLTUND, CRY_MODE_NORMAL
-	msgbox PetalburgCity_House2_EventScript_Boltund_Text_0, MSGBOX_DEFAULT
+	playmoncry(SPECIES_BOLTUND, CRY_MODE_NORMAL)
+	msgbox (format("Boltund!"), MSGBOX_DEFAULT)
 	waitmoncry
 	release
 	end
+}
 
 
-PetalburgCity_House2_EventScript_Boltund_Text_0:
-	.string "Boltund!$"

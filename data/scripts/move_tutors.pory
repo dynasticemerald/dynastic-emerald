@@ -447,6 +447,38 @@ script FocusBlastTutor{
 	end
 }
 
+script ElementalFangsTutor{
+	lock
+	faceplayer
+	if(!defeated(TRAINER_BRAWLY_1)){
+		msgbox(format("My Boltund know the three Elemental fang moves! Ice Fang, Fire Fang, Thunder Fang. I can teach you're Pokémon these moves too but you will have to show me the knuckle badge first."), MSGBOX_DEFAULT)
+		release
+		end
+	}
+	else{
+		msgbox(format("My Boltund know the three Elemental fang moves! Ice Fang, Fire Fang, Thunder Fang."), MSGBOX_DEFAULT)
+		applymovement(2, Common_Movement_ExclamationMark)
+		waitmovement(0)
+		msgbox(format("I see you have the Knuckle Badge, Fair Enough. Do you want me teach one of ur pokemon one of the Elemental Fangs?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == YES){
+		dynmultichoice(0,0,FALSE,2,0,DYN_MULTICHOICE_CB_NONE, 
+		"Ice Fang", "Fire Fang", "Thunder Fang")
+		switch (var(VAR_RESULT)){
+			case 0: setvar (VAR_0x8005, MOVE_ICE_FANG) special (ChooseMonForMoveTutor) waitstate applymovement(2, LookUp) waitmovement(0) release end
+			case 1: setvar (VAR_0x8005, MOVE_FIRE_FANG) special (ChooseMonForMoveTutor) waitstate applymovement(2, LookUp) waitmovement(0) release end
+			case 2: setvar (VAR_0x8005, MOVE_THUNDER_FANG) special (ChooseMonForMoveTutor) waitstate applymovement(2, LookUp) waitmovement(0) release end
+		}
+	  }
+	else{
+		msgbox(format("Owh, well that okay come back anytime!"), MSGBOX_DEFAULT)
+		applymovement(2, LookUp)
+		waitmovement(0)
+		release
+		end
+		}
+	}
+}
+
 script DragonDanceTutor{
 	lock
 	faceplayer

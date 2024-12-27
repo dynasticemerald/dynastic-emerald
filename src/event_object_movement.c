@@ -2389,7 +2389,6 @@ static bool8 GetMonInfo(struct Pokemon *mon, u16 *species, u8 *form, u8 *shiny)
         *shiny = 0;
         return FALSE;
     }
-    if(!CheckBagHasItem(ITEM_MEGA_RING, 1))
     *species = GetMonData(mon, MON_DATA_SPECIES);
     *form = GetMonGender(mon) == MON_FEMALE;
     *shiny = IsMonShiny(mon);
@@ -2425,11 +2424,11 @@ void UpdateFollowingPokemon(void)
     // 3. flag is set
     if (OW_POKEMON_OBJECT_EVENTS == FALSE
      || OW_FOLLOWERS_ENABLED == FALSE
-     || FlagGet(FLAG_FOLLOWER_DISABLE)
      || !GetFollowerInfo(&species, &form, &shiny)
      || SpeciesToGraphicsInfo(species, form) == NULL
      || (gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, form)->oam->size > ST_OAM_SIZE_2)
-     || FlagGet(FLAG_TEMP_HIDE_FOLLOWER))
+     || FlagGet(FLAG_TEMP_HIDE_FOLLOWER)
+     || FlagGet(FLAG_FOLLOWER_DISABLE))
     {
         RemoveFollowingPokemon();
         return;

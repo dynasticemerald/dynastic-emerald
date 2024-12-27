@@ -13,6 +13,7 @@
 #include "sprite.h"
 #include "util.h"
 #include "test_runner.h"
+#include "event_data.h"
 
 #include "data/gimmicks.h"
 
@@ -84,7 +85,9 @@ bool32 ShouldTrainerBattlerUseGimmick(u32 battler, enum Gimmick gimmick)
         const struct TrainerMon *mon = &GetTrainerPartyFromId(trainerId)[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]];
 
         if (gimmick == GIMMICK_TERA && mon->teraType != TYPE_NONE)
-            return FALSE; //Put back to TRUE when Tera is something the player can use.
+            return TRUE;
+        else if(!FlagGet(FLAG_BADGE04_GET) && gimmick == GIMMICK_TERA && mon->teraType != TYPE_NONE)
+            return FALSE;
         if (gimmick == GIMMICK_DYNAMAX && mon->shouldUseDynamax)
             return TRUE;
     }

@@ -4601,6 +4601,15 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_MYCELIUM_MIGHT:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MYCELIUM_MIGHT;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
+            }
+            break;
         case ABILITY_TERAVOLT:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5684,6 +5693,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             {
                 if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_ESCAPE && CanBattlerSwitch(gBattlerAttacker))
                     gProtectStructs[battler].disableEjectPack = TRUE;  // Set flag for target
+                else if  (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_ESCAPE_PHOTON_GEYSER_EFFECT && CanBattlerSwitch(gBattlerAttacker))
+                    gProtectStructs[battler].disableEjectPack = TRUE;  // Set flag for target
 
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_WeakArmorActivates;
@@ -6590,8 +6601,7 @@ bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability)
     if (gStatuses3[battler] & STATUS3_GASTRO_ACID)
         return FALSE;
 
-    return (ability == ABILITY_MOLD_BREAKER || ability == ABILITY_TERAVOLT || ability == ABILITY_TURBOBLAZE
-        || (ability == ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gCurrentMove)));
+    return (ability == ABILITY_MOLD_BREAKER || ability == ABILITY_TERAVOLT || ability == ABILITY_TURBOBLAZE);
 }
 
 static inline bool32 CanBreakThroughAbility(u32 battlerAtk, u32 battlerDef, u32 ability)
@@ -9512,6 +9522,17 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
     case ABILITY_SUPREME_OVERLORD:
         modifier = uq4_12_multiply(modifier, GetSupremeOverlordModifier(battlerAtk));
         break;
+    case ABILITY_ILLUSION:
+        if(gBattleStruct->illusion[gBattlerTarget].on)
+        {
+            if(((gMovesInfo[move].type == TYPE_DARK) || (gMovesInfo[move].type == TYPE_GHOST)) 
+            && ((gBattleMons[battlerAtk].species == SPECIES_ZORUA) || (gBattleMons[battlerAtk].species == SPECIES_ZOROARK)))
+                modifier = uq4_12_multiply(modifier, UQ_4_12(1.33));
+            else if (((gMovesInfo[move].type == TYPE_NORMAL) || (gMovesInfo[move].type == TYPE_GHOST)) 
+            && ((gBattleMons[battlerAtk].species == SPECIES_ZORUA_HISUI) || (gBattleMons[battlerAtk].species == SPECIES_ZOROARK_HISUI)))
+                modifier = uq4_12_multiply(modifier, UQ_4_12(1.33));
+        }
+        break;    
     }
 
     // field abilities
@@ -9655,7 +9676,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
         || GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_BISHARP
         || GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_KINGAMBIT)
         && (moveType == TYPE_DARK || moveType == TYPE_STEEL)))
-            modifier = uq4_12_multiply(modifier, holdEffectModifier);
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
     case HOLD_EFFECT_OGERPON_MASK:
         if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_OGERPON)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
@@ -10636,6 +10657,10 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
     uq4_12_t mod = GetTypeModifier(moveType, defType);
     u32 abilityAtk = GetBattlerAbility(battlerAtk);
     u32 abilityDef = GetBattlerAbility(battlerDef);
+    u32 itemAtk = gBattleMons[battlerDef].item;
+    u32 itemDef = gBattleMons[battlerDef].item;
+    u32 defTeraType = GetActiveGimmick(battlerDef) == GIMMICK_TERA;
+    u32 isStatusMove = IS_MOVE_STATUS(move);
 
     if (mod == UQ_4_12(0.0) && GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_RING_TARGET)
     {
@@ -10682,6 +10707,42 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
         mod = UQ_4_12(0.0);
     if (moveType == TYPE_STELLAR && GetActiveGimmick(battlerDef) == GIMMICK_TERA)
         mod = UQ_4_12(2.0);
+
+    if (abilityAtk == ABILITY_MYCELIUM_MIGHT)
+    {
+        if(isStatusMove)
+        {
+            switch(moveType)
+            {
+                case TYPE_GRASS: //Spore, Stun Spore, Sleep Powder, etc.
+                    if(defType == TYPE_GRASS || defTeraType == TYPE_GRASS || itemDef == ITEM_SAFETY_GOGGLES)
+                        mod = UQ_4_12(1.0);
+                case TYPE_POISON: //Toxic, Poison Powder, etc.
+                    if((defType == TYPE_POISON || defTeraType == TYPE_POISON) 
+                   || (defType == TYPE_STEEL || defTeraType == TYPE_STEEL))
+                        mod = UQ_4_12(1.0);
+                case TYPE_FIRE: //Will-O-Wisp, etc.
+                    if(defType == TYPE_FIRE || defTeraType == TYPE_FIRE)
+                        mod = UQ_4_12(1.0);
+            }
+
+            switch(abilityDef)
+            {
+                case ABILITY_GOOD_AS_GOLD:
+                    mod = UQ_4_12(1.0);
+                case ABILITY_PURIFYING_SALT:
+                    mod = UQ_4_12(1.0);
+            }
+
+            switch(itemDef)
+            {
+                case ITEM_ABILITY_SHIELD:
+                    mod = UQ_4_12(1.0);
+            }
+        }
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, abilityAtk);
+    }
 
     // B_WEATHER_STRONG_WINDS weakens Super Effective moves against Flying-type Pokémon
     if (gBattleWeather & B_WEATHER_STRONG_WINDS && WEATHER_HAS_EFFECT)

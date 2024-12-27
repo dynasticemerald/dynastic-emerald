@@ -81,6 +81,292 @@ Gender: Male
 Music: Male
 Double Battle: No
 
+/*Route 103*/
+
+/*Route 102*/
+
+=== TRAINER_CALVIN_1 ===
+Name: Calvin
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Lechonk @ Oran Berry  
+Ability: Thick Fat  
+Level: 7
+Tera Type: Normal  
+Serious Nature  
+- Covet  
+- Bullet Seed  
+- Headbutt  
+- Trailblaze  
+
+Azurill @ Oran Berry  
+Ability: Huge Power  
+Level: 7
+Tera Type: Normal  
+Serious Nature  
+- Covet  
+- Headbutt  
+- Aqua Jet  
+- Bounce 
+
+=== TRAINER_RICK ===
+Name: Rick
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Surskit @ Charti Berry  
+Ability: Rain Dish  
+Level: 7  
+Tera Type: Bug  
+Timid Nature  
+IVs: 0 Atk  
+- Mega Drain  
+- Icy Wind  
+- Psybeam  
+- Baton Pass  
+
+Yanma @ Charti Berry  
+Ability: Speed Boost  
+Level: 7  
+Tera Type: Bug  
+Timid Nature  
+IVs: 0 Atk  
+- Ancient Power  
+- Mega Drain  
+- Air Cutter  
+- Detect  
+
+=== TRAINER_ALLEN ===
+Name: Allen
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Cacnea @ Miracle Seed  
+Ability: Water Absorb  
+Level: 7  
+Tera Type: Grass  
+Jolly Nature  
+- Power-Up Punch  
+- Trailblaze  
+- Spikes  
+- Destiny Bond  
+
+Blitzle @ Magnet  
+Ability: Sap Sipper  
+Level: 7  
+Tera Type: Electric  
+Jolly Nature  
+- Flame Charge  
+- Double Kick  
+- Spark  
+- Volt Switch  
+
+=== TRAINER_TIANA ===
+Name: TIANA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Tinkatink @ Leftovers  
+Ability: Mold Breaker  
+Level: 7  
+Tera Type: Fairy  
+Jolly Nature  
+- Stealth Rock  
+- Knock Off  
+- Rock Tomb  
+- Rock Smash  
+
+Archen @ Oran Berry  
+Ability: Defeatist  
+Level: 7  
+Tera Type: Rock  
+Jolly Nature  
+- Wing Attack  
+- Rock Throw  
+- Bulldoze  
+- Roost  
+
+/*Route 104*/
+
+=== TRAINER_BILLY ===
+Name: Billy
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Smoliv @ Oran Berry  
+Ability: Harvest  
+Level: 8  
+Tera Type: Grass  
+IVs: 30 SpA / 30 SpD  
+- Mega Drain  
+- Hidden Power
+- Synthesis  
+- Growth  
+
+Helioptile @ Expert Belt  
+Ability: Dry Skin  
+Level: 8  
+Tera Type: Electric  
+IVs: 0 Atk  
+- Mud-Slap  
+- Signal Beam  
+- Electroweb  
+- Glare
+
+=== TRAINER_SARAH ===
+Name: SARAH
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Items: Full Restore
+Double Battle: No
+AI: Basic Trainer
+
+Lotad
+Level: 8
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Zigzagoon @ Nugget
+Level: 8
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_DARIAN ===
+Name: Darian
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Basic Trainer
+
+Arrokuda @ Covert Cloak  
+Ability: Swift Swim  
+Level: 8  
+Tera Type: Water  
+Jolly Nature  
+- Bite  
+- Aerial Ace  
+- Slash  
+- Aqua Jet  
+
+Bergmite @ Berry Juice  
+Ability: Sturdy  
+Level: 8  
+Tera Type: Ice  
+Adamant Nature  
+IVs: 0 Spe  
+- Ice Shard  
+- Gyro Ball  
+- Curse  
+- Endeavor  
+
+
+
+=== TRAINER_CINDY_1 ===
+Name: Cindy
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Chespin @ Red Card  
+Ability: Iron Barbs  
+Level: 8  
+Tera Type: Grass  
+Adamant Nature  
+- Spikes  
+- Leech Seed  
+- Rock Tomb  
+- Drain Punch  
+
+Chimchar @ Expert Belt  
+Ability: Blaze  
+Level: 8  
+Tera Type: Fire  
+Jolly Nature  
+- Fake Out  
+- Cut  
+- Flame Charge  
+- Brick Break  
+
+Totodile @ Oran Berry  
+Ability: Strong Jaw  
+Level: 8  
+Tera Type: Water  
+Jolly Nature  
+- Bite  
+- Ice Fang  
+- Rock Tomb  
+- Flip Turn  
+
+/*Petalburg Woods*/
+
+=== TRAINER_LYLE ===
+Name: LYLE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Wurmple
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Wurmple
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Wurmple
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Wurmple
+Level: 3
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_JOSE ===
+Name: JOSE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Wurmple
+Level: 8
+IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+
+Nincada
+Level: 8
+IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+
 === TRAINER_SAWYER_1 ===
 Name: SAWYER
 Class: Hiker
@@ -2112,20 +2398,6 @@ IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 Grumpig
 Level: 42
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-
-=== TRAINER_CINDY_1 ===
-Name: CINDY
-Class: Lady
-Pic: Lady
-Gender: Female
-Music: Female
-Items: Full Restore
-Double Battle: No
-AI: Check Bad Move
-
-Zigzagoon @ Nugget
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DAPHNE ===
 Name: DAPHNE
@@ -4788,83 +5060,141 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
 - Crunch
 
+/* Gym Leaders */
+
 === TRAINER_ROXANNE_1 ===
-Name: ROXANNE
+Name: Roxanne
 Class: Leader
 Pic: Leader Roxanne
 Gender: Female
 Music: Female
-Items: Potion / Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Geodude
-Level: 12
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
+Gible @ Rocky Helmet  
+Ability: Rough Skin  
+Level: 14   
+Tera Type: Dragon  
+Jolly Nature  
+IVs: 30 def / 30 SpA / 30 SpD
+- Fire Fang  
+- Bulldoze  
+- Secret Power  
+- Stealth Rock  
 
-Geodude
-Level: 12
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
+Archen @ Berry Juice  
+Ability: Defeatist  
+Level: 13  
+Tera Type: Rock  
+Jolly Nature  
+- Wing Attack  
+- Rock Tomb  
+- Bulldoze  
+- Roost  
 
-Nosepass @ Oran Berry
-Level: 15
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Block
-- Harden
-- Tackle
-- Rock Tomb
+Toedscool @ Berry Juice  
+Ability: Mycelium Might  
+Level: 15  
+Tera Type: Ground  
+Timid Nature  
+IVs: 0 Atk  
+- Stun Spore  
+- Mud Shot  
+- Mega Drain  
+- Growth  
+
+Amaura @ Chople Berry  
+Ability: Refrigerate  
+Level: 14  
+Tera Type: Rock  
+Brave Nature  
+IVs: 30 atk / 30 spAtk
+- Rock Tomb  
+- Echoed Voice  
+- Hidden Power
+- Thunder Wave  
+
+Tirtouga @ Custap Berry  
+Ability: Sturdy  
+Level: 15  
+Tera Type: Water  
+Adamant Nature  
+- Curse  
+- Rock Tomb  
+- Bulldoze  
+- Aqua Jet  
 
 === TRAINER_BRAWLY_1 ===
-Name: BRAWLY
+Name: Brawly
 Class: Leader
 Pic: Leader Brawly
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Machop
-Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Karate Chop
-- Low Kick
-- Seismic Toss
-- Bulk Up
+Primeape @ Black Belt  
+Ability: Defiant  
+Level: 26  
+Tera Type: Fighting  
+Jolly Nature  
+- Drain Punch  
+- Rock Slide  
+- Encore  
+- Stealth Rock  
 
-Meditite
-Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Focus Punch
-- Light Screen
-- Reflect
-- Bulk Up
+Lucario @ Expert Belt  
+Ability: Steadfast  
+Level: 25  
+Tera Type: Fighting  
+Jolly Nature  
+- Bullet Punch  
+- Crunch  
+- Thunder Punch  
+- Drain Punch  
 
-Makuhita @ Sitrus Berry
-Level: 19
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Arm Thrust
-- Vital Throw
-- Reversal
-- Bulk Up
+Heracross @ Leftovers  
+Ability: Guts  
+Level: 25  
+Tera Type: Bug  
+Jolly Nature  
+- Knock Off  
+- Drain Punch  
+- Rock Slide  
+- Trailblaze  
+
+Grapploct @ Mystic Water  
+Ability: Technician  
+Level: 26  
+Tera Type: Fighting  
+EVs: 4 SpD  
+Adamant Nature  
+- Brutal Swing  
+- Stomping Tantrum  
+- Power-Up Punch  
+- Aqua Jet  
+
+Hariyama @ Leftovers  
+Ability: Thick Fat  
+Level: 27  
+Tera Type: Fighting  
+EVs: 4 SpD  
+Adamant Nature  
+- Brick Break  
+- Lash Out  
+- Bullet Punch  
+- Fake Out  
+
+
 
 === TRAINER_WATTSON_1 ===
-Name: WATTSON
+Name: Wattson
 Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
 Voltorb
 Level: 20
@@ -5938,37 +6268,7 @@ IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe
 
 Hariyama
 Level: 39
-IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe
-
-=== TRAINER_CALVIN_1 ===
-Name: CALVIN
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Check Bad Move
-
-Poochyena
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_BILLY ===
-Name: BILLY
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Check Bad Move
-
-Zigzagoon
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Seedot
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe  
 
 === TRAINER_JOSH ===
 Name: JOSH
@@ -5977,7 +6277,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Geodude
 Level: 10
@@ -5991,7 +6291,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Geodude
 Level: 8
@@ -6008,7 +6308,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Machop
 Level: 9
@@ -6021,7 +6321,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Zigzagoon
 Level: 17
@@ -6204,23 +6504,6 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Zigzagoon
 Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_ALLEN ===
-Name: ALLEN
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Check Bad Move
-
-Zigzagoon
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Taillow
-Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TIMMY ===
@@ -11044,23 +11327,6 @@ Camerupt
 Level: 25
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_TIANA ===
-Name: TIANA
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Female
-Double Battle: No
-AI: Check Bad Move
-
-Zigzagoon
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Shroomish
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_HALEY_1 ===
 Name: HALEY
 Class: Lass
@@ -11247,65 +11513,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 Wailmer
 Level: 39
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-=== TRAINER_RICK ===
-Name: RICK
-Class: Bug Catcher
-Pic: Bug Catcher
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Check Bad Move
-
-Wurmple
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Wurmple
-Level: 4
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_LYLE ===
-Name: LYLE
-Class: Bug Catcher
-Pic: Bug Catcher
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Check Bad Move
-
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_JOSE ===
-Name: JOSE
-Class: Bug Catcher
-Pic: Bug Catcher
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Check Bad Move
-
-Wurmple
-Level: 8
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
-
-Nincada
-Level: 8
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_DOUG ===
 Name: DOUG
@@ -12947,37 +13154,6 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Poochyena
 Level: 8
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_SARAH ===
-Name: SARAH
-Class: Lady
-Pic: Lady
-Gender: Female
-Music: Female
-Items: Full Restore
-Double Battle: No
-AI: Check Bad Move
-
-Lotad
-Level: 8
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Zigzagoon @ Nugget
-Level: 8
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_DARIAN ===
-Name: DARIAN
-Class: Fisherman
-Pic: Fisherman
-Gender: Male
-Music: Hiker
-Double Battle: No
-AI: Check Bad Move
-
-Magikarp
-Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HAILEY ===

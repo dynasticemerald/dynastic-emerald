@@ -79,8 +79,8 @@
 #define FLAG_UNUSED_0x03D    0x3D // Unused Flag
 #define FLAG_UNUSED_0x03E    0x3E // Unused Flag
 // Legendary Scripts for Dynastic
-#define FLAG_HIDE_ARTICUNO   0x3F
-#define FLAG_UNUSED_0x040    0x40 // Unused Flag
+#define FLAG_HIDE_ARTICUNO_N   0x3F
+#define FLAG_HIDE_ARTICUNO_G    0x40 // Unused Flag
 #define FLAG_UNUSED_0x041    0x41 // Unused Flag
 #define FLAG_UNUSED_0x042    0x42 // Unused Flag
 #define FLAG_UNUSED_0x043    0x43 // Unused Flag
@@ -1184,7 +1184,7 @@
 #define FLAG_ITEM_OLD_MAGMA_HIDEOUT_B1F_MASTER_BALL                 0x465 // Unused Flag, leftover from the Ruby Magma hideout
 #define FLAG_ITEM_OLD_MAGMA_HIDEOUT_B1F_MAX_ELIXIR                  0x466 // Unused Flag, leftover from the Ruby Magma hideout
 #define FLAG_ITEM_OLD_MAGMA_HIDEOUT_B2F_NEST_BALL                   0x467 // Unused Flag, leftover from the Ruby Magma hideout
-#define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_EEVEE               0x468 // Unused Flag
+#define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_EEVEE               0x468
 #define FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL                             0x469
 #define FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE                            0x46A
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_WEST_MAX_REVIVE                 0x46B

@@ -64,6 +64,7 @@
 #include "wild_encounter.h"
 #include "day_night.h"
 #include "constants/day_night.h"
+#include "daycare.h"
 
 #define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_8) ? 160 : 220)
 
@@ -5569,7 +5570,7 @@ static const u16 sUniversalMoves[] =
     MOVE_RAGE,
     MOVE_RETURN,
     MOVE_SUBSTITUTE,
-    //MOVE_TERA_BLAST,
+    MOVE_TERA_BLAST,
     MOVE_HIDDEN_POWER,
     MOVE_SECRET_POWER,
 };
@@ -5606,6 +5607,8 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
     }
     else
     {
+        u16 type1 = gSpeciesInfo[species].types[0];
+        u16 type2 = gSpeciesInfo[species].types[1];
         u32 i, j;
         const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);
         for (i = 0; i < ARRAY_COUNT(sUniversalMoves); i++)
@@ -7052,4 +7055,22 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
     if (moveType != TYPE_NONE)
         return moveType;
     return gMovesInfo[move].type;
+}
+
+static const u32 WonderEggList[] = 
+{
+    SPECIES_MUDKIP,
+    SPECIES_TREECKO,
+    SPECIES_TORCHIC,
+};
+
+u32 GiveWonderEgg(struct Pokemon *mon, u32 randomSpecies, bool8 isEgg){
+    u32 i;
+    randomSpecies = Random32() < ARRAY_COUNT(WonderEggList);
+
+    CreateEgg(mon, randomSpecies, TRUE);
+    isEgg = TRUE;
+    SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
+
+    return GiveMonToPlayer(mon);
 }

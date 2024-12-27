@@ -1813,10 +1813,6 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
             if ((defAbility == ABILITY_PURIFYING_SALT)
                 && (!moldBreaker))
                 return COLOR_NOT_VERY_EFFECTIVE;
-
-            // Attacker Ability
-            /*if(atkAbility == ABILITY_SCRAPPY || atkAbility == ABILITY_aaaaaaaaaaa)
-                return COLOR_EFFECTIVE;*/ //Already done in CalcTypeEffectivenessMultiplier
         }
         break;
     }

@@ -40,21 +40,6 @@ LittlerootTown_MapScripts::
 	@ 3: Met Rival
 	@ 4: Received Pokedex
 
-
-LittlerootTown_OnTransition:
-	setflag FLAG_VISITED_LITTLEROOT_TOWN
-	call Common_EventScript_SetupRivalGfxId
-	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
-	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
-	call_if_eq VAR_LITTLEROOT_TOWN_STATE, 3, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
-	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	call_if_eq VAR_OLDALE_RIVAL_STATE, 1, LittlerootTown_EventScript_MoveRivalFromOldale
-	call_if_eq VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103
-	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
-	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
-	end
-
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade::
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
 	return
@@ -1032,7 +1017,6 @@ Seafloor_Cavern_Articuno_Encounter::
 	compare VAR_RESULT, B_OUTCOME_RAN
 	goto_if_eq Seafloor_Cavern_Articuno_Encounter_3
 Seafloor_Cavern_Articuno_Encounter_1:
-	setflag FLAG_HIDE_ARTICUNO
 	release
 	end
 
@@ -1045,16 +1029,60 @@ Seafloor_Cavern_Articuno_Encounter_3:
 	goto Seafloor_Cavern_Articuno_Encounter_1
 
 
+Seafloor_Cavern_ArticunoGalar_Encounter::
+	lock
+	playbgm MUS_RG_VS_LEGEND, FALSE
+	playmoncry SPECIES_ARTICUNO_GALAR, CRY_MODE_ENCOUNTER
+	msgbox Seafloor_Cavern_Articuno_Encounter_Text_0
+	delay 40
+	waitmoncry
+	setwildbattle SPECIES_ARTICUNO_GALAR, 50
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_WON
+	goto_if_eq Seafloor_Cavern_ArticunoGalar_Encounter_2
+	compare VAR_RESULT, B_OUTCOME_RAN
+	goto_if_eq Seafloor_Cavern_ArticunoGalar_Encounter_3
+Seafloor_Cavern_ArticunoGalar_Encounter_1:
+	release
+	end
+
+Seafloor_Cavern_ArticunoGalar_Encounter_2:
+	goto Seafloor_Cavern_Articuno_DefeatedArticunoGalar
+	goto Seafloor_Cavern_ArticunoGalar_Encounter_1
+
+Seafloor_Cavern_ArticunoGalar_Encounter_3:
+	goto Seafloor_Cavern_Articuno_RanFromArticuno
+	goto Seafloor_Cavern_ArticunoGalar_Encounter_1
+
+
 Seafloor_Cavern_Articuno_RanFromArticuno::
+	lock
 	setvar VAR_0x8004, SPECIES_ARTICUNO
 	goto Common_EventScript_LegendaryFlewAway
+	release
 	end
 
 
 Seafloor_Cavern_Articuno_DefeatedArticuno::
-	setflag FLAG_HIDE_ARTICUNO
-	removeobject 0
+	lock
+	setflag FLAG_HIDE_ARTICUNO_N
+	removeobject 12
+	removeobject 13
 	goto Common_EventScript_RemoveStaticPokemon
+	release
+	end
+
+
+Seafloor_Cavern_Articuno_DefeatedArticunoGalar::
+	lock
+	setflag FLAG_HIDE_ARTICUNO_G
+	removeobject 13
+	goto Common_EventScript_RemoveStaticPokemon
+	release
 	end
 
 
@@ -1107,6 +1135,23 @@ MoveDownBirchNationalDex:
 	step_end
 
 WonderEgg_Test::
+	lock
+	faceplayer
+	goto GiveWonderEgg_Test
+	return
+
+
+GiveWonderEgg_Test::
+	lock
+	showmoneybox 0, 0
+	checkmoney 2000
+	compare VAR_RESULT, 0
+	goto_if_ne GiveWonderEgg_Test_2
+	release
+	end
+
+GiveWonderEgg_Test_2:
+	removemoney 2000
 	return
 
 
@@ -1122,6 +1167,21 @@ StarterEggs_Fire_1:
 	randomelement SPECIES_CHARMANDER, SPECIES_CYNDAQUIL, SPECIES_TORCHIC, SPECIES_CHIMCHAR, SPECIES_TEPIG, SPECIES_FENNEKIN, SPECIES_LITTEN, SPECIES_SCORBUNNY, SPECIES_FUECOCO
 	giveegg VAR_RESULT
 	release
+	end
+
+
+LittlerootTown_OnTransition::
+	setflag FLAG_VISITED_LITTLEROOT_TOWN
+	call Common_EventScript_SetupRivalGfxId
+	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
+	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
+	call_if_eq VAR_LITTLEROOT_TOWN_STATE, 3, LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
+	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
+	call_if_eq VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4, LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
+	call_if_eq VAR_OLDALE_RIVAL_STATE, 1, LittlerootTown_EventScript_MoveRivalFromOldale
+	call_if_eq VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103
+	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
+	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
 	end
 
 
@@ -1142,8 +1202,8 @@ LittlerootTown_EventScript_NationalDexUpgrade_Text_2:
 	.string "i gave it too you!$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_3:
-	.string "{PLAYER}'s Pokédex was upgrade to a\n"
-	.string "National Dex.$"
+	.string "{PLAYER}'s Pokédex was upgrade to\n"
+	.string "the National Dex.$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_4:
 	.string "Prof. Birch: The National Dex upgrade,\n"

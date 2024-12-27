@@ -890,6 +890,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ELECTRICCURRENTISRUNNING]             = COMPOUND_STRING("An electric current is running across the battlefield!"),
     [STRINGID_SEEMSWEIRD]                           = COMPOUND_STRING("The battlefield seems weird!"),
     [STRINGID_WAGGLINGAFINGER]                      = COMPOUND_STRING("Waggling a finger let it use {B_CURRENT_MOVE}!"),
+    [STRINGID_MYCELIUMENTERS]                       = COMPOUND_STRING("{B_SCR_NAME_WITH_PREFIX}'s Spores makes its status moves\nhit trough immunities!"),
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -985,6 +986,7 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_CURIOUS_MEDICINE] = STRINGID_CURIOUSMEDICINEENTERS,
     [B_MSG_SWITCHIN_PASTEL_VEIL] = STRINGID_PASTELVEILENTERS,
     [B_MSG_SWITCHIN_NEUTRALIZING_GAS] = STRINGID_NEUTRALIZINGGASENTERS,
+    [B_MSG_SWITCHIN_MYCELIUM_MIGHT] = STRINGID_MYCELIUMENTERS,
 };
 
 const u16 gMissStringIds[] =

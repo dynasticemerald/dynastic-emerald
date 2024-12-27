@@ -544,7 +544,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ARENA_TRAP] =
     {
         .name = _("Arena Trap"),
-        .description = COMPOUND_STRING("Prevents fleeing."),
+        .description = COMPOUND_STRING("The user traps the opponent in a trap."),
         .aiRating = 9,
     },
 
@@ -728,7 +728,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_NORMALIZE] =
     {
         .name = _("Normalize"),
-        .description = COMPOUND_STRING("Moves become Normal-type."
+        .description = COMPOUND_STRING("Moves become Normal-type.\n"
                                        "20% Boost to its Moves."),
         .aiRating = -1,
     },
@@ -745,7 +745,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Magic Guard"),
         .description = COMPOUND_STRING("This Pokémon Can't be damaged by\n"
-                                       "By Status."),
+                                       "Status, Recoil and Hazards."),
         .aiRating = 9,
     },
 
@@ -767,7 +767,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_TECHNICIAN] =
     {
         .name = _("Technician"),
-        .description = COMPOUND_STRING("Boosts moves under 60 Base Power"),
+        .description = COMPOUND_STRING("Boosts moves below or at 60 Base Power"),
         .aiRating = 8,
     },
 
@@ -1129,7 +1129,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_ILLUSION] =
     {
         .name = _("Illusion"),
-        .description = COMPOUND_STRING("Appears as a partner."),
+        .description = COMPOUND_STRING("Disguises as the last member of ur team.\n33% boost to its STAB moves when disguised."),
         .aiRating = 8,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
@@ -2088,7 +2088,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_PURIFYING_SALT] =
     {
         .name = _("Purifying Salt"),
-        .description = COMPOUND_STRING("Protected by pure salts."),
+        .description = COMPOUND_STRING("This Pokémon can't be statused.\nTakes 50% less damage from Ghost Attacks."),
         .aiRating = 6,
         .breakable = TRUE,
     },
@@ -2096,7 +2096,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_WELL_BAKED_BODY] =
     {
         .name = _("Well-Baked Body"),
-        .description = COMPOUND_STRING("Strengthened by Fire."),
+        .description = COMPOUND_STRING("When hit by a Fire attack, Plus 2 defense."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -2300,7 +2300,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_MYCELIUM_MIGHT] =
     {
         .name = _("Mycelium Might"),
-        .description = COMPOUND_STRING("Status moves never fail."),
+        .description = COMPOUND_STRING("Status hit through immunities and items.\nSpeed is lowered by 25% when using Status."),
         .aiRating = 2,
     },
 
@@ -2518,6 +2518,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Fog Bank"),
         .description = COMPOUND_STRING("Summons a fog bank in battle.\nLasts 5 turns,"),
         .aiRating = 9,
+    },
+
+    [ABILITY_AROMATIC_MIST] =
+    {
+        .name = _("Aromatic Mist"),
+        .description = COMPOUND_STRING("Protects holder from additional effects of\nmoves. Negates Hazard damage."),
+        .aiRating = 5,
+        .breakable = TRUE,
     },
 
 };

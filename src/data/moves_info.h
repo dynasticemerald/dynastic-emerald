@@ -2331,18 +2331,22 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Fissure"),
         .description = COMPOUND_STRING(
-            "A one-hit KO move that\n"
-            "drops the foe in a fissure."),
-        .effect = EFFECT_OHKO,
-        .power = 1,
+            "Fissure.\n"
+            "Fissure."),
+        .effect = EFFECT_HIT,
+        .power = 130,
         .type = TYPE_GROUND,
-        .accuracy = 30,
-        .pp = 5,
+        .accuracy = 90,
+        .pp = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .damagesUnderground = TRUE,
         .skyBattleBanned = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_FLINCH,
+            .chance = 10,
+        }),
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -5724,9 +5728,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Baton Pass"),
         .description = COMPOUND_STRING(
-            "Switches out the user while\n"
-            "keeping effects in play."),
-        .effect = EFFECT_BATON_PASS,
+            "Switches out the user."),
+        .effect = EFFECT_TELEPORT,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -13374,9 +13377,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Night Daze"),
         .description = COMPOUND_STRING(
             "Looses a pitch-black shock\n"
-            "wave. May lower accuracy."),
+            "wave. May Flinch Opponent."),
         .effect = EFFECT_HIT,
-        .power = 85,
+        .power = 95,
         .type = TYPE_DARK,
         .accuracy = 100,
         .pp = 10,
@@ -13384,8 +13387,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
-            .chance = 40,
+            .moveEffect = MOVE_EFFECT_FLINCH,
+            .chance = 20,
         }),
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
@@ -13422,7 +13425,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .effect = EFFECT_MULTI_HIT,
         .power = 25,
         .type = TYPE_NORMAL,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -13444,7 +13447,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .effect = EFFECT_THUNDER,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 110 : 120,
         .type = TYPE_FLYING,
-        .accuracy = 70,
+        .accuracy = 80,
         .pp = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -20671,6 +20674,26 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = 0,
         .contestComboMoves = {0},
         .battleAnimScript = gBattleAnimMove_SteelSpikes,
+    },
+
+    [MOVE_TAKE_FLIGHT] =
+    {
+        .name = COMPOUND_STRING("Take Flight"),
+        .description = sUTurnDescription,
+        .effect = EFFECT_HIT_ESCAPE_PHOTON_GEYSER_EFFECT,
+        .power = 70,
+        .type = TYPE_FLYING,
+        .accuracy = 100,
+        .pp = 20,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .makesContact = TRUE,
+        .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
+        .contestCategory = CONTEST_CATEGORY_CUTE,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0},
+        .battleAnimScript = gBattleAnimMove_Acrobatics,
     },
 
     //All moves have been buffed.

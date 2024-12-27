@@ -3056,9 +3056,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
     if (!primary && affectsUser != MOVE_EFFECT_AFFECTS_USER
       && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
-      && (battlerAbility == ABILITY_SHIELD_DUST || GetBattlerHoldEffect(gEffectBattler, TRUE) == HOLD_EFFECT_COVERT_CLOAK))
+      && (battlerAbility == ABILITY_SHIELD_DUST || battlerAbility == ABILITY_AROMATIC_MIST || GetBattlerHoldEffect(gEffectBattler, TRUE) == HOLD_EFFECT_COVERT_CLOAK))
     {
-        if (battlerAbility == ABILITY_SHIELD_DUST)
+        if (battlerAbility == ABILITY_SHIELD_DUST || battlerAbility == ABILITY_AROMATIC_MIST)
             RecordAbilityBattle(gEffectBattler, battlerAbility);
         else
             RecordItemEffectBattle(gEffectBattler, HOLD_EFFECT_COVERT_CLOAK);
@@ -6463,6 +6463,8 @@ static void Cmd_moveend(void)
                             gLastUsedItem = gBattleMons[battler].item;
                             if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_ESCAPE)
                                 gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
+                            else if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_ESCAPE_PHOTON_GEYSER_EFFECT)
+                                gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
                             effect = TRUE;
                             BattleScriptPushCursor();
                             gBattleStruct->usedEjectItem |= 1u << battler;
@@ -6544,6 +6546,8 @@ static void Cmd_moveend(void)
                             gEffectBattler = gBattlerAttacker;
                             gBattleStruct->redCardActivates = TRUE;
                             if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_ESCAPE)
+                                gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
+                            else if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_ESCAPE_PHOTON_GEYSER_EFFECT)
                                 gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
                             BattleScriptPushCursor();
                             if (gBattleStruct->commanderActive[gBattlerAttacker] != SPECIES_NONE)

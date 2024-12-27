@@ -1626,6 +1626,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-6);
             break;
         case EFFECT_HIT_ESCAPE:
+        case EFFECT_HIT_ESCAPE_PHOTON_GEYSER_EFFECT:
             break;
         case EFFECT_CHILLY_RECEPTION:
             if (CountUsablePartyMons(battlerAtk) == 0)
@@ -3529,6 +3530,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             break;
         //fallthrough
     case EFFECT_HIT_ESCAPE:
+    case EFFECT_HIT_ESCAPE_PHOTON_GEYSER_EFFECT:
     case EFFECT_PARTING_SHOT:
     case EFFECT_CHILLY_RECEPTION:
         if (!IsDoubleBattle())

@@ -85,6 +85,7 @@
     F(NASTY_PLOT) \
     F(SWORDS_DANCE) \
     F(DRILL_PECK) \
+    F(TAKE_FLIGHT) \
 
 #define FOREACH_HM(F) \
     F(CUT) \

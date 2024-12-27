@@ -1655,6 +1655,16 @@ bool8 ScrCmd_hidemonpic(struct ScriptContext *ctx)
     return TRUE;
 }
 
+bool8 ScrCmd_waitbuttonpresshidemonpic(struct ScriptContext *ctx)
+{
+    bool8 (*func)(void) = ScriptMenu_HidePokemonPic();
+
+    if (func == NULL)
+        return FALSE;
+    SetupNativeScript(ctx, WaitForAorBPress);
+    return TRUE;
+}
+
 bool8 ScrCmd_showcontestpainting(struct ScriptContext *ctx)
 {
     u8 contestWinnerId = ScriptReadByte(ctx);

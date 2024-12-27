@@ -735,6 +735,64 @@ FocusBlastTutor::
 	end
 
 
+ElementalFangsTutor::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_BRAWLY_1
+	goto_if 0, ElementalFangsTutor_1
+	msgbox ElementalFangsTutor_Text_1, MSGBOX_DEFAULT
+	applymovement 2, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox ElementalFangsTutor_Text_2, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq ElementalFangsTutor_4
+	msgbox ElementalFangsTutor_Text_6, MSGBOX_DEFAULT
+	applymovement 2, LookUp
+	waitmovement 0
+	release
+	end
+
+ElementalFangsTutor_1:
+	msgbox ElementalFangsTutor_Text_0, MSGBOX_DEFAULT
+	release
+	end
+
+ElementalFangsTutor_4:
+	dynmultichoice 0, 0, FALSE, 2, 0, DYN_MULTICHOICE_CB_NONE, ElementalFangsTutor_Text_3, ElementalFangsTutor_Text_4, ElementalFangsTutor_Text_5
+	switch VAR_RESULT
+	case 0, ElementalFangsTutor_8
+	case 1, ElementalFangsTutor_9
+	case 2, ElementalFangsTutor_10
+	return
+
+ElementalFangsTutor_8:
+	setvar VAR_0x8005, MOVE_ICE_FANG
+	special ChooseMonForMoveTutor
+	waitstate
+	applymovement 2, LookUp
+	waitmovement 0
+	release
+	end
+
+ElementalFangsTutor_9:
+	setvar VAR_0x8005, MOVE_FIRE_FANG
+	special ChooseMonForMoveTutor
+	waitstate
+	applymovement 2, LookUp
+	waitmovement 0
+	release
+	end
+
+ElementalFangsTutor_10:
+	setvar VAR_0x8005, MOVE_THUNDER_FANG
+	special ChooseMonForMoveTutor
+	waitstate
+	applymovement 2, LookUp
+	waitmovement 0
+	release
+	end
+
+
 DragonDanceTutor::
 	lock
 	faceplayer
@@ -937,3 +995,33 @@ SpecialUpMoves_Tutor_Text_0:
 
 SpecialUpMoves_Tutor_Text_1:
 	.string "Razor Wind$"
+
+ElementalFangsTutor_Text_0:
+	.string "My Boltund know the three Elemental\n"
+	.string "fang moves! Ice Fang, Fire Fang,\l"
+	.string "Thunder Fang. I can teach you're\l"
+	.string "Pokémon these moves too but you will\l"
+	.string "have to show me the knuckle badge\l"
+	.string "first.$"
+
+ElementalFangsTutor_Text_1:
+	.string "My Boltund know the three Elemental\n"
+	.string "fang moves! Ice Fang, Fire Fang,\l"
+	.string "Thunder Fang.$"
+
+ElementalFangsTutor_Text_2:
+	.string "I see you have the Knuckle Badge, Fair\n"
+	.string "Enough. Do you want me teach one of ur\l"
+	.string "pokemon one of the Elemental Fangs?$"
+
+ElementalFangsTutor_Text_3:
+	.string "Ice Fang$"
+
+ElementalFangsTutor_Text_4:
+	.string "Fire Fang$"
+
+ElementalFangsTutor_Text_5:
+	.string "Thunder Fang$"
+
+ElementalFangsTutor_Text_6:
+	.string "Owh, well that okay come back anytime!$"

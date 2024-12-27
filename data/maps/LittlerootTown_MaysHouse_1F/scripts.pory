@@ -430,3 +430,16 @@ script RivalsHouse_1F_EventScript_RegionChoice {
     copyvar(VAR_REGION_CHOICE, VAR_RESULT)
     return
 }
+
+script Eevee{
+	lock
+	faceplayer
+	message("Eevee: Vee Vee!")
+	showmonpic(SPECIES_EEVEE, 10, 3) //0x 0y 
+	playmoncry(SPECIES_EEVEE, CRY_MODE_NORMAL)
+	closemessage
+	waitmoncry
+	hidemonpic
+	release
+	end
+}
