@@ -2359,3 +2359,12 @@ const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
 const u8 gText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
 const u8 gText_Rename[] = _("RENAME");
+
+// frlg_tm_case_port
+const u8 gText_TMCase[] =               _("TM CASE");
+const u8 gText_Close[] =                _("CLOSE");
+const u8 gText_TMCaseWillBePutAway[] =  _("The TM CASE will be\nput away.");
+const u8 gText_FontSmall[] =            _("{FONT_SMALL}");
+const u8 gText_FontShort[] =            _("{FONT_SHORT}");
+const u8 gText_TMCase_Blue[] =          _("{COLOR_HIGHLIGHT_SHADOW BLUE TRANSPARENT LIGHT_BLUE}{STR_VAR_2}");
+
