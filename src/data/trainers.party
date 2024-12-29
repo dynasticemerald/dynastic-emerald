@@ -5075,8 +5075,8 @@ Gible @ Rocky Helmet
 Ability: Rough Skin  
 Level: 14   
 Tera Type: Dragon  
+IVs: 30 Def / 30 SpA / 30 SpD
 Jolly Nature  
-IVs: 30 def / 30 SpA / 30 SpD
 - Fire Fang  
 - Bulldoze  
 - Secret Power  
@@ -5106,9 +5106,9 @@ IVs: 0 Atk
 Amaura @ Chople Berry  
 Ability: Refrigerate  
 Level: 14  
-Tera Type: Rock  
+Tera Type: Rock 
+IVs: 30 Atk / 30 SpA 
 Brave Nature  
-IVs: 30 atk / 30 spAtk
 - Rock Tomb  
 - Echoed Voice  
 - Hidden Power
@@ -5166,12 +5166,11 @@ Jolly Nature
 Grapploct @ Mystic Water  
 Ability: Technician  
 Level: 26  
-Tera Type: Fighting  
-EVs: 4 SpD  
+Tera Type: Fighting   
 Adamant Nature  
 - Brutal Swing  
 - Stomping Tantrum  
-- Power-Up Punch  
+- Drain Punch  
 - Aqua Jet  
 
 Hariyama @ Leftovers  
@@ -5180,7 +5179,7 @@ Level: 27
 Tera Type: Fighting  
 EVs: 4 SpD  
 Adamant Nature  
-- Brick Break  
+- Drain Punch 
 - Lash Out  
 - Bullet Punch  
 - Fake Out  
@@ -5196,37 +5195,76 @@ Music: Male
 Double Battle: No
 AI: Smart Trainer
 
-Voltorb
-Level: 20
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rollout
-- Spark
-- Self Destruct
-- Shock Wave
+Stunfisk @ Leftovers  
+Ability: Water Absorb  
+Level: 35  
+Tera Type: Ground  
+EVs: 252 HP / 144 Def / 104 SpD  
+Calm Nature  
+IVs: 0 Atk  
+- Stealth Rock  
+- Discharge  
+- Scald  
+- Pain Split  
 
-Electrike
-Level: 20
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shock Wave
-- Leer
-- Quick Attack
-- Howl
+Eelektross @ Leftovers  
+Ability: Levitate  
+Level: 34  
+Tera Type: Electric  
+EVs: 252 HP / 4 Atk / 252 SpD 
+Bold Nature  
+IVs: 0 Atk  
+- Coil 
+- Drain Punch  
+- Fire Punch  
+- Aqua Tail  
 
-Magneton
-Level: 22
-IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Supersonic
-- Shock Wave
-- Thunder Wave
-- Sonic Boom
+Emolga @ Heavy-Duty Boots  
+Ability: Static  
+Level: 36  
+Tera Type: Electric  
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+IVs: 0 Atk  
+- Air Slash  
+- Wildbolt Storm  
+- Energy Ball  
+- Roost  
 
-Manectric @ Sitrus Berry
-Level: 24
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Quick Attack
-- Thunder Wave
-- Shock Wave
-- Howl
+Electrode-Hisui @ Heavy-Duty Boots 
+Ability: Reckless  
+Level: 34    
+Tera Type: Electric  
+IVs: 30 SpA / 30 SpD
+EVs: 152 HP / 252 SpA / 100 Spe  
+Timid Nature  
+- Giga Drain  
+- Discharge  
+- Hidden Power  
+- Self-Destruct  
+
+Luxray @ Expert Belt  
+Ability: Strong Jaw  
+Level: 34  
+Tera Type: Electric  
+EVs: 252 Atk / 4 SpD / 252 Spe  
+Jolly Nature  
+- Ice Fang  
+- Thunder Fang  
+- Fire Fang  
+- Psychic Fangs  
+
+Manectric @ Manectite  
+Ability: Intimidate  
+Level: 35  
+Tera Type: Electric  
+IVs: 30 Atk / 30 SpA
+EVs: 252 SpA / 4 SpD / 252 Spe  
+Timid Nature  
+- Thunderbolt  
+- Flamethrower  
+- Hidden Power
+- Charge Beam  
 
 === TRAINER_FLANNERY_1 ===
 Name: FLANNERY

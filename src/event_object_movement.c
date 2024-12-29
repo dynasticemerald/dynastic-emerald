@@ -5679,9 +5679,15 @@ bool8 MovementType_FollowPlayer_Moving(struct ObjectEvent *objectEvent, struct S
     }
     else if (objectEvent->movementActionId < MOVEMENT_ACTION_EXIT_POKEBALL)
     {
-        UpdateFollowerTransformEffect(objectEvent, sprite);
+        if(objectEvent->localId == OBJ_EVENT_ID_FOLLOWER)
+            UpdateFollowerTransformEffect(objectEvent, sprite);
+        else{
+            ObjectEventSetSingleMovement(objectEvent, sprite, MovementAction_ExitPokeball_Step0(objectEvent, sprite));
+            objectEvent->singleMovementActive = TRUE;
+        }
         if (OW_FOLLOWERS_BOBBING == TRUE && (sprite->data[5] & 7) == 2)
             sprite->y2 ^= -1;
+        
     }
     return FALSE;
 }

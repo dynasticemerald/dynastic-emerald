@@ -88,6 +88,9 @@ void SetBagItemsPointers(void)
 
     gBagPockets[BERRIES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Berries;
     gBagPockets[BERRIES_POCKET].capacity = BAG_BERRIES_COUNT;
+
+    gBagPockets[BADGES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Badges;
+    gBagPockets[BADGES_POCKET].capacity = BAG_BADGES_COUNT;
 }
 
 u8 *CopyItemName(u16 itemId, u8 *dst)

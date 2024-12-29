@@ -152,7 +152,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SHIELD_DUST] =
     {
         .name = _("Shield Dust"),
-        .description = COMPOUND_STRING("Prevents added effects.\nNegates Stealth Rock damage."),
+        .description = COMPOUND_STRING("Protects holder from additional effects of\nmoves. Negates Hazard damage."),
         .aiRating = 5,
         .breakable = TRUE,
     },
@@ -1625,7 +1625,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_COMATOSE] =
     {
         .name = _("Comatose"),
-        .description = COMPOUND_STRING("Always drowsing."),
+        .description = COMPOUND_STRING("This Pokémon acts asleep to get the jump on\nits Opponent. Works with Facade."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
@@ -2516,7 +2516,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FOG_BANK] =
     {
         .name = _("Fog Bank"),
-        .description = COMPOUND_STRING("Summons a fog bank in battle.\nLasts 5 turns,"),
+        .description = COMPOUND_STRING("Summons a fog bank in battle.\nLasts 5 turns."),
         .aiRating = 9,
     },
 

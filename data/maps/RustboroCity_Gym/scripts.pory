@@ -1,4 +1,4 @@
-
+raw`
 RustboroCity_Gym_MapScripts::
 	.byte 0
 
@@ -264,70 +264,57 @@ RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons:
 	.string "You only have one Pokémon with you?\p"
 	.string "Please return with at least one more\n"
 	.string "Pokémon.$"
+`
 
-RustboroCity_Gym_EventScript_Roxanne::
+script RustboroCity_Gym_EventScript_Roxanne{
 	lock
-	checktrainerflag TRAINER_ROXANNE_1
-	goto_if 0, RustboroCity_Gym_EventScript_Roxanne_2
-	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_EventScript_Roxanne_Text_2, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_RoxanneRematch
-	goto_if_unset FLAG_RECEIVED_TM_ROCK_TOMB, RustboroCity_Gym_EventScript_GiveRockTomb
-	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-RustboroCity_Gym_EventScript_Roxanne_2:
-	msgbox RustboroCity_Gym_EventScript_Roxanne_Text_0, MSGBOX_DEFAULT
-	applymovement 1, RustboroCity_Gym_EventScript_Roxanne_Movement_0
-	waitmovement 0
-	applymovement 6, RustboroCity_Gym_EventScript_Roxanne_Movement_1
-	waitmovement 0
-	applymovement 1, RustboroCity_Gym_EventScript_Roxanne_Movement_2
-	waitmovement 0
-	message RustboroCity_Gym_EventScript_Roxanne_Text_1
+	if(!defeated(TRAINER_ROXANNE_1)){
+	msgbox ("Hello, I am Roxanne, the Rustboro\n"
+			"Pokémon Gym Leader.\p"
+			"I became a Gym Leader so that I might\n"
+			"apply what I learned at the Pokémon\l"
+			"Trainer's School in battle.\p"
+			"And this is my starter Gible!", MSGBOX_DEFAULT)
+	applymovement(1, moves(
+		face_left
+		step_end
+	)) //Roxanne
+	waitmovement(0)
+	applymovement(6, moves(
+		face_right
+		face_down
+		step_end
+	))
+	waitmovement(0)
+	applymovement(1, moves(
+		face_down
+		step_end
+	)) //Roxanne
+	waitmovement(0)
+	message ("Gible: Gib.. Gible!")
 	waitmessage
-	playmoncry SPECIES_GIBLE, CRY_MODE_NORMAL
+	playmoncry(SPECIES_GIBLE, CRY_MODE_NORMAL)
 	waitmoncry
 	waitbuttonpress
-	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_EventScript_Roxanne_Text_2, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+	trainerbattle_single (TRAINER_ROXANNE_1, "Would you kindly demonstrate how you\nbattle, and with which Pokémon?", RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC)
 	return
+	}
+	trainerbattle_single (TRAINER_ROXANNE_1, "Would you kindly demonstrate how you\nbattle, and with which Pokémon?", RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC)
+	specialvar (VAR_RESULT, ShouldTryRematchBattle)
+	goto_if_eq (VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_RoxanneRematch)
+	goto_if_unset (FLAG_RECEIVED_TM_ROCK_TOMB, RustboroCity_Gym_EventScript_GiveRockTomb)
+	msgbox (RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT)
+	release
+	end
+}
 
-
-RustboroCity_Gym_EventScript_Gible::
+script RustboroCity_Gym_EventScript_Gible{
 	lock
-	message RustboroCity_Gym_EventScript_Roxanne_Text_1
+	message ("Gible: Gib.. Gible!")
 	waitmessage
-	playmoncry SPECIES_GIBLE, CRY_MODE_NORMAL
+	playmoncry(SPECIES_GIBLE, CRY_MODE_NORMAL)
 	waitmoncry
 	waitbuttonpress
 	release
 	end
-
-
-RustboroCity_Gym_EventScript_Roxanne_Movement_0:
-	face_left
-	step_end
-
-RustboroCity_Gym_EventScript_Roxanne_Movement_1:
-	face_right
-	face_down
-	step_end
-
-RustboroCity_Gym_EventScript_Roxanne_Movement_2:
-	face_down
-	step_end
-
-RustboroCity_Gym_EventScript_Roxanne_Text_0:
-	.string "Hello, I am Roxanne, the Rustboro\n"
-	.string "Pokémon Gym Leader.\p"
-	.string "I became a Gym Leader so that I might\n"
-	.string "apply what I learned at the Pokémon\l"
-	.string "Trainer's School in battle.\p"
-	.string "And this is my starter Gible!$"
-
-RustboroCity_Gym_EventScript_Roxanne_Text_1:
-	.string "Gible: Gib.. Gible!$"
-
-RustboroCity_Gym_EventScript_Roxanne_Text_2:
-	.string "Would you kindly demonstrate how you\nbattle, and with which Pokémon?$"
+}
