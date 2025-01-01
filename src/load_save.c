@@ -268,18 +268,13 @@ void LoadPlayerBag(void)
     // load player pokeballs.
     for (i = 0; i < BAG_POKEBALLS_COUNT; i++)
         gLoadedSaveData.pokeBalls[i] = gSaveBlock1Ptr->bagPocket_PokeBalls[i];
-
-    // load player TMs and HMs.
+// load player TMs and HMs.
     for (i = 0; i < BAG_TMHM_COUNT; i++)
         gLoadedSaveData.TMsHMs[i] = gSaveBlock1Ptr->bagPocket_TMHM[i];
 
     // load player berries.
     for (i = 0; i < BAG_BERRIES_COUNT; i++)
         gLoadedSaveData.berries[i] = gSaveBlock1Ptr->bagPocket_Berries[i];
-
-    // load player badges.
-    for (i = 0; i < BAG_BADGES_COUNT; i++)
-        gLoadedSaveData.badges[i] = gSaveBlock1Ptr->bagPocket_Badges[i];
 
     // load mail.
     for (i = 0; i < MAIL_COUNT; i++)
@@ -308,14 +303,9 @@ void SavePlayerBag(void)
     // save player TMs and HMs.
     for (i = 0; i < BAG_TMHM_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_TMHM[i] = gLoadedSaveData.TMsHMs[i];
-
     // save player berries.
     for (i = 0; i < BAG_BERRIES_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_Berries[i] = gLoadedSaveData.berries[i];
-
-    // load player badges.
-    for (i = 0; i < BAG_BADGES_COUNT; i++)
-        gSaveBlock1Ptr->bagPocket_Badges[i] = gLoadedSaveData.badges[i];
 
     // save mail.
     for (i = 0; i < MAIL_COUNT; i++)

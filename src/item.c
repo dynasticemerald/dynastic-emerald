@@ -83,14 +83,11 @@ void SetBagItemsPointers(void)
     gBagPockets[BALLS_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_PokeBalls;
     gBagPockets[BALLS_POCKET].capacity = BAG_POKEBALLS_COUNT;
 
-    gBagPockets[TMHM_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_TMHM;
-    gBagPockets[TMHM_POCKET].capacity = BAG_TMHM_COUNT;
-
     gBagPockets[BERRIES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Berries;
     gBagPockets[BERRIES_POCKET].capacity = BAG_BERRIES_COUNT;
 
-    gBagPockets[BADGES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Badges;
-    gBagPockets[BADGES_POCKET].capacity = BAG_BADGES_COUNT;
+    gBagPockets[TMHM_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_TMHM;
+    gBagPockets[TMHM_POCKET].capacity = BAG_TMHM_COUNT;
 }
 
 u8 *CopyItemName(u16 itemId, u8 *dst)
@@ -245,11 +242,6 @@ bool8 AddBagItem(u16 itemId, u16 count)
         itemPocket = &gBagPockets[pocket];
         newItems = AllocZeroed(itemPocket->capacity * sizeof(struct ItemSlot));
         memcpy(newItems, itemPocket->itemSlots, itemPocket->capacity * sizeof(struct ItemSlot));
-
-        if (pocket != BERRIES_POCKET)
-            slotCapacity = MAX_BAG_ITEM_CAPACITY;
-        else
-            slotCapacity = MAX_BERRY_CAPACITY;
 
         if (pocket == TMHM_POCKET)
         {

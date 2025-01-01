@@ -5,13 +5,7 @@
 .set LOCALID_BIRCH, 8
 .set LOCALID_BIRCH_NATIONAL_DEX, 9
 
-LittlerootTown_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
-	.byte 0
-
-	@ State descriptions for VAR_LITTLEROOT_TOWN_STATE
+@ State descriptions for VAR_LITTLEROOT_TOWN_STATE
 	@ 1: Met Rival
 	@ 2: Saving Birch
 	@ 3: Received Pokedex
@@ -1170,6 +1164,42 @@ StarterEggs_Fire_1:
 	end
 
 
+LittlerootTown_OnLoad::
+	setflag FLAG_TEMP_1
+	setflag FLAG_TEMP_2
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_4
+	random 4
+	switch VAR_RESULT
+	case 0, LittlerootTown_OnLoad_2
+	case 1, LittlerootTown_OnLoad_3
+	case 2, LittlerootTown_OnLoad_4
+	case 4, LittlerootTown_OnLoad_5
+	case 3, LittlerootTown_OnLoad_6
+	return
+
+LittlerootTown_OnLoad_2:
+	clearflag FLAG_TEMP_1
+	return
+
+LittlerootTown_OnLoad_3:
+	clearflag FLAG_TEMP_2
+	return
+
+LittlerootTown_OnLoad_4:
+	clearflag FLAG_TEMP_3
+	return
+
+LittlerootTown_OnLoad_5:
+	clearflag FLAG_TEMP_4
+	return
+
+LittlerootTown_OnLoad_6:
+	clearflag FLAG_TEMP_1
+	clearflag FLAG_TEMP_3
+	return
+
+
 LittlerootTown_OnTransition::
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
@@ -1183,6 +1213,55 @@ LittlerootTown_OnTransition::
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
 	end
+
+
+LittlerootTown_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_MapScripts_MAP_SCRIPT_ON_TRANSITION
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
+	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD
+	.byte 0
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	goto LittlerootTown_OnTransition
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+	goto LittlerootTown_OnFrame
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
+	goto LittlerootTown_OnWarp
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD:
+	setflag FLAG_TEMP_1
+	setflag FLAG_TEMP_2
+	setflag FLAG_TEMP_3
+	random 4
+	switch VAR_RESULT
+	case 0, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_2
+	case 1, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_3
+	case 2, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_4
+	case 3, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_5
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_2:
+	clearflag FLAG_TEMP_1
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_3:
+	clearflag FLAG_TEMP_2
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_4:
+	clearflag FLAG_TEMP_3
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_5:
+	clearflag FLAG_TEMP_1
+	clearflag FLAG_TEMP_3
+	return
 
 
 Seafloor_Cavern_Articuno_Encounter_Text_0:

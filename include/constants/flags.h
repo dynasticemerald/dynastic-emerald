@@ -57,7 +57,7 @@
 #define FLAG_SHINY_RATE_SETTING_2    0x28
 #define FLAG_SHINY_RATE_SETTING_3    0x29 // Unused Flag; For now. will be used in the future.
 #define FLAG_WONDER_TRADE    0x2A
-#define FLAG_HIDE_GIBLE      0x2B
+#define FLAG_DISABLE_TERA    0x2B
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
@@ -1234,7 +1234,7 @@
 #define FLAG_RECEIVED_TM_VOLT_SWITCH                                0x495
 #define FLAG_RECEIVED_TM_U_TURN                                     0x496
 #define FLAG_RECEIVED_TM_ELECTRO_WEB                                0x497 
-#define FLAG_RECEIVED_TM_SNARL                                           0x498
+#define FLAG_RECEIVED_TM_SNARL                                      0x498
 #define FLAG_UNUSED_0x499                                           0x499
 #define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
 #define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag

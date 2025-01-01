@@ -333,6 +333,7 @@ static void (*const sMovementTypeCallbacks[])(struct Sprite *) =
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_FOLLOW_PLAYER] = MovementType_FollowPlayer,
+    [MOVEMENT_TYPE_MON_BOBBING] = MovementType_MonBobbing,
 };
 
 static const bool8 sMovementTypeHasRange[NUM_MOVEMENT_TYPES] = {
@@ -5681,13 +5682,21 @@ bool8 MovementType_FollowPlayer_Moving(struct ObjectEvent *objectEvent, struct S
     {
         if(objectEvent->localId == OBJ_EVENT_ID_FOLLOWER)
             UpdateFollowerTransformEffect(objectEvent, sprite);
-        else{
-            ObjectEventSetSingleMovement(objectEvent, sprite, MovementAction_ExitPokeball_Step0(objectEvent, sprite));
-            objectEvent->singleMovementActive = TRUE;
-        }
         if (OW_FOLLOWERS_BOBBING == TRUE && (sprite->data[5] & 7) == 2)
             sprite->y2 ^= -1;
         
+    }
+    return FALSE;
+}
+
+movement_type_def(MovementType_MonBobbing, gMovementTypeFuncs_MonBobbing)
+
+bool8 MovementType_MonBobbingTheBobbing(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (UpdateMonMoveInPlace(objectEvent, sprite))
+    {
+        sprite->sTypeFuncId = 1;
+        return TRUE;
     }
     return FALSE;
 }

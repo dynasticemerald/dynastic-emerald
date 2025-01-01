@@ -12,7 +12,7 @@ InsideOfTruck_OnLoad:
 	end
 
 InsideOfTruck_OnFrame:
-	map_script_2 VAR_MODES_CHECK, 0, ModesCheck
+	@map_script_2 VAR_MODES_CHECK, 0, ModesCheck
 	.2byte 0
 
 InsideOfTruck_OnResume:
@@ -66,7 +66,7 @@ InsideOfTruck_Text_BoxPrintedWithMonLogo:
 script ModesCheck { //Modes Check.
 	lock
 	fadescreen(FADE_TO_BLACK)
-	msgbox(format("Please stop smashing A and properly answer the following questions."), MSGBOX_DEFAULT)
+	msgbox(format("Please stop smashing {A_BUTTON} and properly answer the following questions."), MSGBOX_DEFAULT)
 	msgbox(format("Would you like to play Dynastic Emerald without any custom options?"), MSGBOX_YESNO)
 	if(var(VAR_RESULT) == YES){
 	setvar(VAR_MODES_CHECK, 1)
@@ -83,10 +83,20 @@ script ModesCheck { //Modes Check.
 
 script ModesCheck_Continue {
 	closemessage
-	message(format("Wich option would you like to use?"))
+	message(format("Press {A_BUTTON} to select an Option."))
 	waitmessage
-	dynmultichoice(0,0,TRUE,4,0,DYN_MULTICHOICE_CB_NONE,"Minimal Grinding","VGC Mode","Random Nicknames","Done")	
+	dynmultichoice(0,0,TRUE,4,0,DYN_MULTICHOICE_CB_NONE,"Modes","Misc","Cancel")	
 	switch(var(VAR_RESULT)){
+		case 0: //Modes
+			message(format("Press {A_BUTTON} to select a mode\nPress {B_BUTTON} to exit Menu"))
+			waitmessage
+			dynmultichoice(0,0,TRUE,4,0,DYN_MULTICHOICE_CB_NONE,"Minimal Grinding","Cancel")	
+	}
+	end //Fail Save.
+}
+
+script WSwitch{
+switch(var(VAR_RESULT)){
 	case 0: //Minimal Grinding Mode.
 		msgbox(ModesCheck_Text_MinimalGrinding, MSGBOX_YESNO)
 		if(var(VAR_RESULT) == YES){
@@ -95,15 +105,7 @@ script ModesCheck_Continue {
 		goto(ModesCheck_Continue)
 		} else {		
 		goto(ModesCheck_Continue) }
-	case 1: //VGC Mode.
-		msgbox(ModesCheck_Text_DoublesOnly, MSGBOX_YESNO)
-		if(var(VAR_RESULT) == YES){
-		setflag(FLAG_VGC_MODE)
-		setvar(VAR_MODES_CHECK, 1)
-		goto(ModesCheck_Continue)
-		} else {		
-		goto(ModesCheck_Continue) }
-	case 2: //Random Nicknames.
+	case 1: //Random Nicknames.
 		msgbox(ModesCheck_Text_Test, MSGBOX_YESNO)
 		if(var(VAR_RESULT) == YES){
 		setflag(FLAG_RANDOM_NICKNAMES)
@@ -117,7 +119,6 @@ script ModesCheck_Continue {
 		release
 		end
 	}
-	end //Fail Save.
 }
 
 text ModesCheck_Text_MinimalGrinding{

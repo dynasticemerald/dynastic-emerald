@@ -233,9 +233,8 @@ const u8 *const gPocketNamesStringsTable[] =
 {
     [ITEMS_POCKET] =    COMPOUND_STRING("Items"),
     [BALLS_POCKET] =    COMPOUND_STRING("Poké Balls"),
-    [TMHM_POCKET]  =    COMPOUND_STRING("TMs & HMs"),
+    //[TMHM_POCKET]  =    COMPOUND_STRING("TM & HM"),
     [BERRIES_POCKET] =  COMPOUND_STRING("Berries"),
-    [BADGES_POCKET] =   COMPOUND_STRING("Badges"),
     [KEYITEMS_POCKET] = COMPOUND_STRING("Key Items")
 };
 
@@ -1292,7 +1291,8 @@ const u8 gText_MenuPokenav[] = _("Pokénav");
 const u8 gText_MenuPlayer[] = _("{PLAYER}");
 const u8 gText_MenuSave[] = _("Save");
 const u8 gText_MenuOption[] = _("Option");
-const u8 gText_MenuExit[] = _("Exit");
+const u8 gText_MenuExit[] = _("Exit {DPAD_LEFT}");
+const u8 gText_MenuExit2[] = _("Exit {DPAD_LEFT}");
 const u8 gText_MenuRetire[] = _("Retire");
 const u8 gText_MenuRest[] = _("Rest");
 const u8 gText_MenuDexNav[] = _("Dexnav");

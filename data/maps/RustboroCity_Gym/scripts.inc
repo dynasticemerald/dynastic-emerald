@@ -267,6 +267,7 @@ RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons:
 
 RustboroCity_Gym_EventScript_Roxanne::
 	lock
+	faceplayer
 	checktrainerflag TRAINER_ROXANNE_1
 	goto_if 0, RustboroCity_Gym_EventScript_Roxanne_2
 	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_EventScript_Roxanne_Text_2, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
@@ -283,19 +284,22 @@ RustboroCity_Gym_EventScript_Roxanne_2:
 	waitmovement 0
 	applymovement 6, RustboroCity_Gym_EventScript_Roxanne_Movement_1
 	waitmovement 0
-	applymovement 1, RustboroCity_Gym_EventScript_Roxanne_Movement_2
-	waitmovement 0
 	message RustboroCity_Gym_EventScript_Roxanne_Text_1
 	waitmessage
 	playmoncry SPECIES_GIBLE, CRY_MODE_NORMAL
 	waitmoncry
 	waitbuttonpress
+	applymovement 6, RustboroCity_Gym_EventScript_Roxanne_Movement_2
+	waitmovement 0
+	applymovement 1, RustboroCity_Gym_EventScript_Roxanne_Movement_2
+	waitmovement 0
 	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_EventScript_Roxanne_Text_2, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
 	return
 
 
 RustboroCity_Gym_EventScript_Gible::
 	lock
+	faceplayer
 	message RustboroCity_Gym_EventScript_Roxanne_Text_1
 	waitmessage
 	playmoncry SPECIES_GIBLE, CRY_MODE_NORMAL
@@ -311,7 +315,7 @@ RustboroCity_Gym_EventScript_Roxanne_Movement_0:
 
 RustboroCity_Gym_EventScript_Roxanne_Movement_1:
 	face_right
-	face_down
+	emote_heart
 	step_end
 
 RustboroCity_Gym_EventScript_Roxanne_Movement_2:
@@ -324,7 +328,7 @@ RustboroCity_Gym_EventScript_Roxanne_Text_0:
 	.string "I became a Gym Leader so that I might\n"
 	.string "apply what I learned at the Pokémon\l"
 	.string "Trainer's School in battle.\p"
-	.string "And this is my starter Gible!$"
+	.string "And this is my Ace Pokémon Gible.$"
 
 RustboroCity_Gym_EventScript_Roxanne_Text_1:
 	.string "Gible: Gib.. Gible!$"

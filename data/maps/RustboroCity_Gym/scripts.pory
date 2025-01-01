@@ -268,13 +268,14 @@ RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons:
 
 script RustboroCity_Gym_EventScript_Roxanne{
 	lock
+	faceplayer
 	if(!defeated(TRAINER_ROXANNE_1)){
 	msgbox ("Hello, I am Roxanne, the Rustboro\n"
 			"Pokémon Gym Leader.\p"
 			"I became a Gym Leader so that I might\n"
 			"apply what I learned at the Pokémon\l"
 			"Trainer's School in battle.\p"
-			"And this is my starter Gible!", MSGBOX_DEFAULT)
+			"And this is my Ace Pokémon Gible.", MSGBOX_DEFAULT)
 	applymovement(1, moves(
 		face_left
 		step_end
@@ -282,20 +283,25 @@ script RustboroCity_Gym_EventScript_Roxanne{
 	waitmovement(0)
 	applymovement(6, moves(
 		face_right
-		face_down
+		emote_heart
 		step_end
-	))
-	waitmovement(0)
-	applymovement(1, moves(
-		face_down
-		step_end
-	)) //Roxanne
+	)) //Gible
 	waitmovement(0)
 	message ("Gible: Gib.. Gible!")
 	waitmessage
 	playmoncry(SPECIES_GIBLE, CRY_MODE_NORMAL)
 	waitmoncry
 	waitbuttonpress
+	applymovement(6, moves(
+		face_down
+		step_end
+	)) //Gible
+	waitmovement(0)
+	applymovement(1, moves(
+		face_down
+		step_end
+	)) //Roxanne
+	waitmovement(0)
 	trainerbattle_single (TRAINER_ROXANNE_1, "Would you kindly demonstrate how you\nbattle, and with which Pokémon?", RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC)
 	return
 	}
@@ -310,6 +316,7 @@ script RustboroCity_Gym_EventScript_Roxanne{
 
 script RustboroCity_Gym_EventScript_Gible{
 	lock
+	faceplayer
 	message ("Gible: Gib.. Gible!")
 	waitmessage
 	playmoncry(SPECIES_GIBLE, CRY_MODE_NORMAL)

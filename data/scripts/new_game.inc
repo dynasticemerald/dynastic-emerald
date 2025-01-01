@@ -275,5 +275,6 @@ EventScript_ResetAllMapFlags::
 	setflag FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL
 	setflag FLAG_HIDE_ARTICUNO_N
 	setflag FLAG_HIDE_ARTICUNO_G
+	setflag FLAG_DISABLE_TERA
 	call EventScript_ResetAllBerries
 	end

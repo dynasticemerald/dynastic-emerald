@@ -2491,7 +2491,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .aiRating = 6,
     },
 
-    [ABILITY_FIERY_BODY] =
+    [ABILITY_TALONS_RESOLVE] =
     {
         .name = _("Talon's Resolve"),
         .description = COMPOUND_STRING("Fire-Type and Flying-Type Moves cannot\ncause recoil damage."),

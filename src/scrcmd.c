@@ -1281,6 +1281,7 @@ bool8 ScrCmd_lock(struct ScriptContext *ctx)
         }
         if (followerObj) // Unfreeze follower object
             UnfreezeObjectEvent(followerObj);
+        
         return TRUE;
     }
 }

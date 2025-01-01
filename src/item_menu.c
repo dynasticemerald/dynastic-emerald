@@ -59,12 +59,10 @@
 // number of item slots that could fit in a single pocket, + 1 for Cancel.
 // This constant picks the max of the existing pocket sizes.
 // By default, the largest pocket is BAG_TMHM_COUNT at 64.
-#define MAX_POCKET_ITEMS  ((max(BAG_TMHM_COUNT,              \
-                            max(BAG_BERRIES_COUNT,           \
+#define MAX_POCKET_ITEMS  ((max(BAG_BERRIES_COUNT,           \
                             max(BAG_ITEMS_COUNT,             \
-                            max(BAG_BADGES_COUNT,            \
                             max(BAG_KEYITEMS_COUNT,          \
-                                BAG_POKEBALLS_COUNT)))))) + 1)
+                                BAG_POKEBALLS_COUNT)))) + 1)
 
 // Up to 8 item slots can be visible at a time
 #define MAX_ITEMS_SHOWN 8
@@ -139,7 +137,7 @@ static void PrepareTMHMMoveWindow(void);
 static bool8 IsWallysBag(void);
 static void Task_WallyTutorialBagMenu(u8);
 static void Task_BagMenu_HandleInput(u8);
-static void GetItemName(u8 *, u16);
+static void GetItemName(u8 *, u16, u8 *);
 static void PrintItemDescription(int);
 static void BagMenu_PrintCursorAtPos(u8, u8);
 static void BagMenu_Print(u8, u8, const u8 *, u8, u8, u8, u8, u8, u8);
@@ -882,7 +880,7 @@ static void LoadBagItemListBuffers(u8 pocketId)
     {
         for (i = 0; i < gBagMenu->numItemStacks[pocketId] - 1; i++)
         {
-            GetItemName(sListBuffer2->name[i], pocket->itemSlots[i].itemId);
+            GetItemName(sListBuffer2->name[i], pocket->itemSlots[i].itemId, 0);
             subBuffer = sListBuffer1->subBuffers;
             subBuffer[i].name = sListBuffer2->name[i];
             subBuffer[i].id = i;
@@ -896,7 +894,7 @@ static void LoadBagItemListBuffers(u8 pocketId)
     {
         for (i = 0; i < gBagMenu->numItemStacks[pocketId]; i++)
         {
-            GetItemName(sListBuffer2->name[i], pocket->itemSlots[i].itemId);
+            GetItemName(sListBuffer2->name[i], pocket->itemSlots[i].itemId, 0);
             subBuffer = sListBuffer1->subBuffers;
             subBuffer[i].name = sListBuffer2->name[i];
             subBuffer[i].id = i;
@@ -908,9 +906,8 @@ static void LoadBagItemListBuffers(u8 pocketId)
     gMultiuseListMenuTemplate.maxShowed = gBagMenu->numShownItems[pocketId];
 }
 
-static void GetItemName(u8 *dest, u16 itemId)
+static void GetItemName(u8 *dest, u16 itemId, u8 *end)
 {
-    u8 *end;
     switch (gBagPosition.pocket)
     {
     case TMHM_POCKET:
@@ -1663,17 +1660,13 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuItemsPtr = sContextMenuItems_BallsPocket;
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BallsPocket);
                 break;
-            case TMHM_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_TmHmPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_TmHmPocket);
-                break;
             case BERRIES_POCKET:
                 gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocket;
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocket);
                 break;
-            case BADGES_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_BadgesPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BadgesPocket);
+            case TMHM_POCKET:
+                gBagMenu->contextMenuItemsPtr = sContextMenuItems_TmHmPocket;
+                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_TmHmPocket);
                 break;
             }
         }

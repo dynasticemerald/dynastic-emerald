@@ -5607,8 +5607,6 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
     }
     else
     {
-        u16 type1 = gSpeciesInfo[species].types[0];
-        u16 type2 = gSpeciesInfo[species].types[1];
         u32 i, j;
         const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);
         for (i = 0; i < ARRAY_COUNT(sUniversalMoves); i++)

@@ -84,12 +84,15 @@ bool32 ShouldTrainerBattlerUseGimmick(u32 battler, enum Gimmick gimmick)
         u16 trainerId = isSecondTrainer ? gTrainerBattleOpponent_B : gTrainerBattleOpponent_A;
         const struct TrainerMon *mon = &GetTrainerPartyFromId(trainerId)[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]];
 
-        if (gimmick == GIMMICK_TERA && mon->teraType != TYPE_NONE)
-            return TRUE;
-        else if(!FlagGet(FLAG_BADGE04_GET) && gimmick == GIMMICK_TERA && mon->teraType != TYPE_NONE)
+    if(gimmick == GIMMICK_TERA && mon->teraType != TYPE_NONE){
+        if (FlagGet(FLAG_DISABLE_TERA))
             return FALSE;
-        if (gimmick == GIMMICK_DYNAMAX && mon->shouldUseDynamax)
+        else
             return TRUE;
+    }
+    
+        if (gimmick == GIMMICK_DYNAMAX && mon->shouldUseDynamax)
+            return FALSE;
     }
 
     return FALSE;

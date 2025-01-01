@@ -12,7 +12,7 @@ InsideOfTruck_OnLoad:
 	end
 
 InsideOfTruck_OnFrame:
-	map_script_2 VAR_MODES_CHECK, 0, ModesCheck
+	@map_script_2 VAR_MODES_CHECK, 0, ModesCheck
 	.2byte 0
 
 InsideOfTruck_OnResume:
@@ -85,63 +85,61 @@ ModesCheck_Continue::
 	closemessage
 	message ModesCheck_Continue_Text_0
 	waitmessage
-	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_1, ModesCheck_Continue_Text_2, ModesCheck_Continue_Text_3, ModesCheck_Continue_Text_4
+	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_1, ModesCheck_Continue_Text_2, ModesCheck_Continue_Text_3
 	switch VAR_RESULT
 	case 0, ModesCheck_Continue_3
-	case 1, ModesCheck_Continue_4
-	case 2, ModesCheck_Continue_5
-	case 3, ModesCheck_Continue_6
 ModesCheck_Continue_1:
 	end
 
 ModesCheck_Continue_3:
+	message ModesCheck_Continue_Text_4
+	waitmessage
+	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, ModesCheck_Continue_Text_5, ModesCheck_Continue_Text_3
+	goto ModesCheck_Continue_1
+
+
+WSwitch::
+	switch VAR_RESULT
+	case 0, WSwitch_2
+	case 1, WSwitch_3
+	case 3, WSwitch_4
+	return
+
+WSwitch_2:
 	msgbox ModesCheck_Text_MinimalGrinding, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq ModesCheck_Continue_7
+	goto_if_eq WSwitch_5
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_1
+	return
 
-ModesCheck_Continue_4:
-	msgbox ModesCheck_Text_DoublesOnly, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq ModesCheck_Continue_10
-	goto ModesCheck_Continue
-	goto ModesCheck_Continue_1
-
-ModesCheck_Continue_5:
+WSwitch_3:
 	msgbox ModesCheck_Text_Test, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq ModesCheck_Continue_13
+	goto_if_eq WSwitch_8
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_1
+	return
 
-ModesCheck_Continue_6:
+WSwitch_4:
 	setvar VAR_MODES_CHECK, 1
 	fadescreen FADE_FROM_BLACK
 	release
 	end
 
-ModesCheck_Continue_7:
+WSwitch_5:
 	setflag FLAG_MINIMAL_GRINDING_MODE
 	setvar VAR_MODES_CHECK, 1
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_1
+	return
 
-ModesCheck_Continue_10:
-	setflag FLAG_VGC_MODE
-	setvar VAR_MODES_CHECK, 1
-	goto ModesCheck_Continue
-	goto ModesCheck_Continue_1
-
-ModesCheck_Continue_13:
+WSwitch_8:
 	setflag FLAG_RANDOM_NICKNAMES
 	setvar VAR_MODES_CHECK, 1
 	goto ModesCheck_Continue
-	goto ModesCheck_Continue_1
+	return
 
 
 ModesCheck_Text_0:
-	.string "Please stop smashing A and properly\n"
+	.string "Please stop smashing {A_BUTTON} and properly\n"
 	.string "answer the following questions.$"
 
 ModesCheck_Text_1:
@@ -153,19 +151,23 @@ ModesCheck_Text_2:
 	.string "any custom options, Enjoy!$"
 
 ModesCheck_Continue_Text_0:
-	.string "Wich option would you like to use?$"
+	.string "Press {A_BUTTON} to select an Option.$"
 
 ModesCheck_Continue_Text_1:
-	.string "Minimal Grinding$"
+	.string "Modes$"
 
 ModesCheck_Continue_Text_2:
-	.string "VGC Mode$"
+	.string "Misc$"
 
 ModesCheck_Continue_Text_3:
-	.string "Random Nicknames$"
+	.string "Cancel$"
 
 ModesCheck_Continue_Text_4:
-	.string "Done$"
+	.string "Press {A_BUTTON} to select a mode\n"
+	.string "Press {B_BUTTON} to exit Menu$"
+
+ModesCheck_Continue_Text_5:
+	.string "Minimal Grinding$"
 
 ModesCheck_Text_MinimalGrinding::
 	.string "Minimal Grinding mode guarantees all\n"

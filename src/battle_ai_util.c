@@ -761,10 +761,10 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     return simDamage;
 }
 
-bool32 AI_IsDamagedByRecoil(u32 battler)
+bool32 AI_IsDamagedByRecoil(u32 battler, u32 moveType)
 {
     u32 ability = AI_DATA->abilities[battler];
-    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_ROCK_HEAD || ability == ABILITY_FIERY_BODY)
+    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_ROCK_HEAD || ability == ABILITY_TALONS_RESOLVE)
         return FALSE;
 
     return TRUE;
@@ -900,7 +900,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     u8 i;
 
     // recoil
-    if (gMovesInfo[move].recoil > 0 && AI_IsDamagedByRecoil(battlerAtk))
+    if (gMovesInfo[move].recoil > 0 && AI_IsDamagedByRecoil(battlerAtk, 0))
         return TRUE;
 
     switch (gMovesInfo[move].effect)
@@ -911,7 +911,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     case EFFECT_FINAL_GAMBIT:
         return TRUE;
     case EFFECT_RECOIL_IF_MISS:
-        if (AI_IsDamagedByRecoil(battlerAtk))
+        if (AI_IsDamagedByRecoil(battlerAtk, 0))
             return TRUE;
         break;
     default:
