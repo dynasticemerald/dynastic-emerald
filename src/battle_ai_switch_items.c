@@ -108,7 +108,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         aiMove = gBattleMons[battler].moves[i];
-        aiMoveEffect = GetMoveEffect(aiMove);
+        aiMoveEffect = gMovesInfo[aiMove].effect;
         if (aiMove != MOVE_NONE)
         {
             // Check if mon has an "important" status move
@@ -123,7 +123,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
             }
 
             // Only check damage if it's a damaging move
-            if (!IsBattleMoveStatus(aiMove))
+            if (!IS_MOVE_STATUS(aiMove))
             {
                 // Check if mon has a super effective move
                 if (AI_GetMoveEffectiveness(aiMove, battler, opposingBattler) >= AI_EFFECTIVENESS_x2)
@@ -156,7 +156,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         playerMove = gBattleMons[opposingBattler].moves[i];
-        if (playerMove != MOVE_NONE && !IsBattleMoveStatus(playerMove))
+        if (playerMove != MOVE_NONE && !IS_MOVE_STATUS(playerMove))
         {
             damageTaken = AI_CalcDamage(playerMove, opposingBattler, battler, &effectiveness, FALSE, weather, DMG_ROLL_HIGHEST).expected;
             if (damageTaken > maxDamageTaken)
@@ -332,9 +332,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     u16 monAbility;
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
     u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
-    u32 incomingType = GetMoveType(incomingMove);
     u32 predictedMove = incomingMove; // Update for move prediction
-    u32 predictedType = GetMoveType(predictedMove);
     bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
     s32 i, j;
 
@@ -358,36 +356,31 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     }
 
     // Create an array of possible absorb abilities so the AI considers all of them
-    if (predictedType == TYPE_FIRE)
+    if (gMovesInfo[predictedMove].type == TYPE_FIRE)
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_FLASH_FIRE;
     }
-    else if (predictedType == TYPE_WATER || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_WATER))
+    else if (gMovesInfo[predictedMove].type == TYPE_WATER || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_WATER))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_WATER_ABSORB;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_DRY_SKIN;
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
             absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_STORM_DRAIN;
     }
-    else if (predictedType == TYPE_ELECTRIC || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_ELECTRIC))
+    else if (gMovesInfo[predictedMove].type == TYPE_ELECTRIC || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_ELECTRIC))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_VOLT_ABSORB;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_MOTOR_DRIVE;
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
             absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_LIGHTNING_ROD;
     }
-    else if (predictedType == TYPE_GRASS || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_GRASS))
+    else if (gMovesInfo[predictedMove].type == TYPE_GRASS || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_GRASS))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_SAP_SIPPER;
     }
-    else if (predictedType == TYPE_GROUND || (isOpposingBattlerChargingOrInvulnerable && incomingType == TYPE_GROUND))
+    else if (gMovesInfo[predictedMove].type == TYPE_GROUND || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_GROUND))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_EARTH_EATER;
-        absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_LEVITATE;
-    }
-    else if (IsSoundMove(predictedMove) || (isOpposingBattlerChargingOrInvulnerable && IsSoundMove(incomingMove)))
-    {
-        absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_SOUNDPROOF;
     }
     else
     {
@@ -504,7 +497,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
     {
         //Yawn
         if (gStatuses3[battler] & STATUS3_YAWN
-            && CanBeSlept(battler, monAbility, BLOCKED_BY_SLEEP_CLAUSE)
+            && CanBeSlept(battler, monAbility)
             && gBattleMons[battler].hp > gBattleMons[battler].maxHP / 3)
         {
             switchMon = TRUE;
@@ -704,7 +697,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
         return FALSE;
     if (gLastHitBy[battler] == 0xFF)
         return FALSE;
-    if (IsBattleMoveStatus(gLastLandedMoves[battler]))
+    if (IS_MOVE_STATUS(gLastLandedMoves[battler]))
         return FALSE;
 
     if (IsDoubleBattle())
@@ -744,7 +737,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
         species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
         monAbility = GetMonAbility(&party[i]);
         CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[battler], species, monAbility);
-        if (gBattleStruct->moveResultFlags[BATTLE_OPPOSITE(battler)] & flags)
+        if (gMoveResultFlags & flags)
         {
             battlerIn1 = gLastHitBy[battler];
 
@@ -814,10 +807,9 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
                 aiMove = GetMonData(&party[i], MON_DATA_MOVE1 + j, NULL);
-                u32 aiEffect = GetMoveEffect(aiMove);
                 if (MoveHasAdditionalEffectSelf(aiMove, MOVE_EFFECT_RAPID_SPIN)
-                 || (B_DEFOG_EFFECT_CLEARING >= GEN_6 && aiEffect == EFFECT_DEFOG)
-                 || aiEffect == EFFECT_TIDY_UP)
+                 || (B_DEFOG_EFFECT_CLEARING >= GEN_6 && gMovesInfo[aiMove].effect == EFFECT_DEFOG)
+                 || gMovesInfo[aiMove].effect == EFFECT_TIDY_UP)
                 {
                     // Have a mon that can clear the hazards, so switching out is okay
                     return TRUE;
@@ -844,7 +836,7 @@ static bool32 ShouldSwitchIfEncored(u32 battler)
         return FALSE;
 
     // Switch out if status move
-    if (GetMoveCategory(encoredMove) == DAMAGE_CATEGORY_STATUS)
+    if (gMovesInfo[encoredMove].category == DAMAGE_CATEGORY_STATUS)
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
     // Stay in if effective move
@@ -864,7 +856,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler)
 
     if (HOLD_EFFECT_CHOICE(holdEffect) && gBattleMons[battler].ability != ABILITY_KLUTZ)
     {
-        if (GetMoveCategory(gLastUsedMove) == DAMAGE_CATEGORY_STATUS)
+        if (gMovesInfo[gLastUsedMove].category == DAMAGE_CATEGORY_STATUS)
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }
 
@@ -972,7 +964,9 @@ bool32 ShouldSwitch(u32 battler)
         if (i == gBattleStruct->monToSwitchIntoId[battlerIn2])
             continue;
         if (IsAceMon(battler, i))
+        {
             continue;
+        }
 
         availableToSwitch++;
     }
@@ -1227,6 +1221,7 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
 
     u32 aiMove;
 
+    gMoveResultFlags = 0;
     // If we couldn't find the best mon in terms of typing, find the one that deals most damage.
     for (i = firstId; i < lastId; i++)
     {
@@ -1236,7 +1231,7 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             aiMove = AI_DATA->switchinCandidate.battleMon.moves[j];
-            if (aiMove != MOVE_NONE && !IsBattleMoveStatus(aiMove))
+            if (aiMove != MOVE_NONE && !IS_MOVE_STATUS(aiMove))
             {
                 aiMove = GetMonData(&party[i], MON_DATA_MOVE1 + j);
                 dmg = AI_CalcPartyMonDamage(aiMove, battler, opposingBattler, AI_DATA->switchinCandidate.battleMon, TRUE, rollType);
@@ -1283,10 +1278,10 @@ static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon
     {
         // Stealth Rock
         if ((hazardFlags & SIDE_STATUS_STEALTH_ROCK) && heldItemEffect != HOLD_EFFECT_HEAVY_DUTY_BOOTS)
-            hazardDamage += GetStealthHazardDamageByTypesAndHP(GetMoveType(MOVE_STEALTH_ROCK), defType1, defType2, battleMon->maxHP);
+            hazardDamage += GetStealthHazardDamageByTypesAndHP(gMovesInfo[MOVE_STEALTH_ROCK].type, defType1, defType2, battleMon->maxHP);
         // G-Max Steelsurge
         if ((hazardFlags & SIDE_STATUS_STEELSURGE) && heldItemEffect != HOLD_EFFECT_HEAVY_DUTY_BOOTS)
-            hazardDamage += GetStealthHazardDamageByTypesAndHP(GetMoveType(MOVE_G_MAX_STEELSURGE), defType1, defType2, battleMon->maxHP);
+            hazardDamage += GetStealthHazardDamageByTypesAndHP(gMovesInfo[MOVE_G_MAX_STEELSURGE].type, defType1, defType2, battleMon->maxHP);
         // Spikes
         if ((hazardFlags & SIDE_STATUS_SPIKES) && IsMonGrounded(heldItemEffect, ability, defType1, defType2))
         {
@@ -1692,7 +1687,7 @@ static s32 GetMaxDamagePlayerCouldDealToSwitchin(u32 battler, u32 opposingBattle
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         playerMove = gBattleMons[opposingBattler].moves[i];
-        if (playerMove != MOVE_NONE && !IsBattleMoveStatus(playerMove))
+        if (playerMove != MOVE_NONE && !IS_MOVE_STATUS(playerMove))
         {
             damageTaken = AI_CalcPartyMonDamage(playerMove, opposingBattler, battler, battleMon, FALSE, DMG_ROLL_HIGHEST);
             if (damageTaken > maxDamageTaken)
@@ -1728,7 +1723,7 @@ static inline bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOu
     // Switch out effects
     if (!IsDoubleBattle()) // Not handling doubles' additional complexity
     {
-        if (IsSwitchOutEffect(GetMoveEffect(gLastUsedMove)) && movedSecond)
+        if (IsSwitchOutEffect(gMovesInfo[gLastUsedMove].effect) && movedSecond)
             return TRUE;
         if (AI_DATA->ejectButtonSwitch)
             return TRUE;
@@ -1821,7 +1816,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         {
             aiMove = AI_DATA->switchinCandidate.battleMon.moves[j];
 
-            if (aiMove != MOVE_NONE && !IsBattleMoveStatus(aiMove))
+            if (aiMove != MOVE_NONE && !IS_MOVE_STATUS(aiMove))
             {
                 if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_CONSERVATIVE)
                     damageDealt = AI_CalcPartyMonDamage(aiMove, battler, opposingBattler, AI_DATA->switchinCandidate.battleMon, TRUE, DMG_ROLL_LOWEST);
@@ -1851,7 +1846,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
             }
 
             // Check for mon with resistance and super effective move for best type matchup mon with effective move
-            if (aiMove != MOVE_NONE && !IsBattleMoveStatus(aiMove))
+            if (aiMove != MOVE_NONE && !IS_MOVE_STATUS(aiMove))
             {
                 if (typeMatchup < bestResistEffective)
                 {
@@ -1866,7 +1861,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 }
 
                 // If a self destruction move doesn't OHKO, don't factor it into revenge killing
-                if (GetMoveEffect(aiMove) == EFFECT_EXPLOSION && damageDealt < playerMonHP)
+                if (gMovesInfo[aiMove].effect == EFFECT_EXPLOSION && damageDealt < playerMonHP)
                     continue;
 
                 // Check that mon isn't one shot and set best damage mon
@@ -1939,7 +1934,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         else if (batonPassId != PARTY_SIZE)             return batonPassId;
     }
     // If ace mon is the last available Pokemon and U-Turn/Volt Switch was used - switch to the mon.
-    if (aceMonId != PARTY_SIZE && CountUsablePartyMons(battler) <= aceMonCount && IsSwitchOutEffect(GetMoveEffect(gLastUsedMove)))
+    if (aceMonId != PARTY_SIZE && CountUsablePartyMons(battler) <= aceMonCount && IsSwitchOutEffect(gMovesInfo[gLastUsedMove].effect))
         return aceMonId;
 
     return PARTY_SIZE;

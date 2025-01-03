@@ -353,11 +353,10 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
 
     chosenMoveId = gBattleStruct->aiMoveOrAction[battler];
     gBattlerTarget = gBattleStruct->aiChosenTarget[battler];
-    u32 moveTarget = GetBattlerMoveTargetType(battler, moveInfo->moves[chosenMoveId]);
 
-    if (moveTarget & (MOVE_TARGET_USER | MOVE_TARGET_USER_OR_SELECTED))
+    if (gMovesInfo[moveInfo->moves[chosenMoveId]].target & (MOVE_TARGET_USER | MOVE_TARGET_USER_OR_SELECTED))
         gBattlerTarget = battler;
-    else if (moveTarget & MOVE_TARGET_BOTH)
+    else if (gMovesInfo[moveInfo->moves[chosenMoveId]].target & MOVE_TARGET_BOTH)
     {
         gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         if (gAbsentBattlerFlags & (1u << gBattlerTarget))
