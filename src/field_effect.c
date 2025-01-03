@@ -3937,7 +3937,6 @@ static void Task_MoveDeoxysRock(u8 taskId)
     }
 }
 
-// new
 u8 FldEff_CaveDust(void)
 {
     u8 spriteId;
