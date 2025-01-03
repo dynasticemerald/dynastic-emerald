@@ -72,6 +72,8 @@ struct MoveInfo
     bool32 pulseMove:1;
     bool32 soundMove:1;
     bool32 ballisticMove:1;
+    bool32 hammerSlammerMove:1;
+    bool32 beamMove:1;
     bool32 powderMove:1;
     bool32 danceMove:1;
     // end of word
