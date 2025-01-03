@@ -1147,21 +1147,21 @@ static bool32 TryDarmFormChange(void)
             return FALSE;
         break;
     case SPECIES_DARMANITAN_ZEN: // Zen -> Normal
-        if (IS_MOVE_STATUS(gCurrentMove))
+        if (IsBattleMoveStatus(gCurrentMove))
             return FALSE;
-        if (!IS_MOVE_STATUS(gCurrentMove))
+        if (!IsBattleMoveStatus(gCurrentMove))
             gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN;
         break;
     case SPECIES_DARMANITAN_GALAR: // GalarNormal -> GalarZen
-        if (IS_MOVE_STATUS(gCurrentMove))
+        if (IsBattleMoveStatus(gCurrentMove))
             gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALAR_ZEN;
         if (gCurrentMove != MOVE_PROTECT)
             return FALSE;
         break;
     case SPECIES_DARMANITAN_GALAR_ZEN: // GalarZen -> GalarNormal
-        if (IS_MOVE_STATUS(gCurrentMove))
+        if (IsBattleMoveStatus(gCurrentMove))
             return FALSE;
-        if (!IS_MOVE_STATUS(gCurrentMove))
+        if (!IsBattleMoveStatus(gCurrentMove))
             gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALAR;
         break;
     }
@@ -1551,7 +1551,8 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
             return effect;
     }
 
-    if ((gBattleTerrain & (STATUS_FIELD_MISTY_TERRAIN)) && gMovesInfo[move].effect == EFFECT_MISTY_ALWAYS_HIT) //Misty Terrain Acc Check
+    if ((gBattleTerrain & (STATUS_FIELD_MISTY_TERRAIN)) && gMovesInfo[move].effect == EFFECT_MISTY_ALWAYS_HIT)
+    { //Misty Terrain Acc Check
         // springtide ignore acc checks in misty terrain
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -5011,7 +5012,7 @@ static void Cmd_getexp(void)
                   || GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL) == MAX_LEVEL)
             {
                 gBattleScripting.getexpState = 5;
-                gBattleMoveDamage = 0; // used for exp
+                gBattleStruct->moveDamage[expMonId] = 0; // used for exp
                 //if (B_MAX_LEVEL_EV_GAINS >= GEN_5)
                 if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE))//Minimal Grinding is of
                     MonGainEVs(&gPlayerParty[*expMonId], gBattleMons[gBattlerFainted].species);
@@ -7910,9 +7911,9 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
     {
         gDisableStructs[battler].steelSpikesDone = TRUE;
-        gBattleMoveDamage = GetStealthHazardDamage(gMovesInfo[MOVE_STEEL_SPIKES].type, battler);
+        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(gMovesInfo[MOVE_STEEL_SPIKES].type, battler);
 
-        if (gBattleMoveDamage != 0)
+        if (gBattleStruct->moveDamage[battler] != 0)
             SetDmgHazardsBattlescript(battler, B_MSG_STEALTHROCKDMG);
     }
     else if (!(gDisableStructs[battler].toxicSpikesDone)

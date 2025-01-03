@@ -906,7 +906,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     u8 i;
 
     // recoil
-    if (GetMoveRecoil(move) > 0 && AI_IsDamagedByRecoil(battlerAtk))
+    if (GetMoveRecoil(move) > 0 && AI_IsDamagedByRecoil(battlerAtk, 0))
         return TRUE;
 
     switch (GetMoveEffect(move))

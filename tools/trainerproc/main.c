@@ -830,29 +830,6 @@ static struct String token_string(const struct Token *t)
     }
 }
 
-static bool token_hidden_power(struct Parser *p, const struct Token *t, enum HiddenPower *g)
-{
-    if (is_literal_token(t, "Hp Fire"))
-    {
-        *g = HP_FIRE;
-        return true;
-    }
-    else if (is_literal_token(t, "Hp Water"))
-    {
-        *g = HP_WATER;
-        return true;
-    }
-    else if (is_literal_token(t, "Hp Grass"))
-    {
-        *g = HP_GRASS;
-        return true;
-    }
-    else
-    {
-        return set_parse_error(p, t->location, "invalid hidden power");
-    }
-}
-
 static bool token_gender(struct Parser *p, const struct Token *t, enum Gender *g)
 {
     if (is_empty_token(t))

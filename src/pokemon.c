@@ -1168,14 +1168,12 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
                 totalRerolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
             if (LURE_STEP_COUNT != 0)
                 totalRerolls += 1;
-            if (I_FISHING_CHAIN && gIsFishingEncounter)
-                totalRerolls += CalculateChainFishingShinyRolls();
             
         if(gSaveBlock3Ptr->optionsShinyRate){ //setting 1
             if (gDexNavBattle)
                 totalRerolls += CalculateDexNavShinyRolls();
 
-            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS && totalRerolls > 0)
+            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS_SETTING_1 && totalRerolls > 0)
             {
                 personality = Random32();
                 totalRerolls--;
