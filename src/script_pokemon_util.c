@@ -73,6 +73,17 @@ u8 ScriptGiveEgg(u16 species)
     return GiveMonToPlayer(&mon);
 }
 
+static const u32 WonderEggList[] = 
+{
+    SPECIES_MUDKIP,
+    SPECIES_TREECKO,
+    SPECIES_TORCHIC,
+};
+
+u8 UNUSED GiveWonderEgg(void){
+    return SPECIES_NONE;
+}
+
 void HasEnoughMonsForDoubleBattle(void)
 {
     switch (GetMonsStateToDoubles())
@@ -597,4 +608,27 @@ void Script_SetStatus1(struct ScriptContext *ctx)
     {
         SetMonData(&gPlayerParty[slot], MON_DATA_STATUS, &status1);
     }
+}
+
+void ChangeMonNature(void) 
+{
+    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+    u32 otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u8 gender = GetMonGender(mon);
+    bool8 isShiny = IsMonShiny(mon);
+
+    u8 newNature = gSpecialVar_0x8005;
+    u32 newPersonality;
+    do
+    {
+        newPersonality = Random32();
+    }
+    while ((GetNatureFromPersonality(newPersonality) != newNature) ||
+           (GetGenderFromSpeciesAndPersonality(species, newPersonality) != gender)); //||
+           //(IsShinyOtIdPersonality(otId, newPersonality) != isShiny));
+
+    UpdateMonPersonality(&mon->box, newPersonality);
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HIDDEN_NATURE, &newNature);
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
 }

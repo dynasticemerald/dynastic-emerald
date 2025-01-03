@@ -2473,3 +2473,7 @@
 	.2byte \dest
 	.endm
 
+	.macro givewonderegg
+	.byte 0x7a
+	.endm
+

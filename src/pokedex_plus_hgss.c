@@ -9,6 +9,7 @@
 #include "event_data.h"
 #include "gpu_regs.h"
 #include "graphics.h"
+#include "dexnav.h"
 #include "international_string_util.h"
 #include "item.h"
 #include "item_icon.h"
@@ -298,8 +299,8 @@ static const u32 sPokedexPlusHGSS_ScreenSearchHoenn_Tilemap[] = INCBIN_U32("grap
 static const u32 sPokedexPlusHGSS_ScreenSearchNational_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/tilemap_search_screen_national.bin.lz");
 
 #define SCROLLING_MON_X 146
-#define HGSS_DECAPPED FALSE
-#define HGSS_DARK_MODE FALSE
+#define HGSS_DECAPPED TRUE
+#define HGSS_DARK_MODE TRUE
 #define HGSS_HIDE_UNSEEN_EVOLUTION_NAMES FALSE
 
 // For scrolling search parameter
@@ -2229,6 +2230,14 @@ static void Task_HandlePokedexInput(u8 taskId)
             gTasks[taskId].func = Task_ClosePokedex;
             PlaySE(SE_PC_OFF);
         }
+        else if (JOY_NEW(R_BUTTON) || JOY_NEW(L_BUTTON))
+        {
+            PlaySE(SE_SELECT);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+            PlaySE(SE_PC_LOGIN);
+            CreateTask(Task_OpenDexNavFromStartMenu, 0);
+            FreeWindowAndBgBuffers();
+        }
         else
         {
             //Handle D-pad
@@ -2443,7 +2452,9 @@ static bool8 LoadPokedexListPage(u8 page)
         break;
     case 3:
         if (page == PAGE_MAIN)
+        {
             CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder);
+        }
         if (sPokedexView->originalSearchSelectionNum != 0)
         {
             // when returning to search results after selecting an evo, we have to restore

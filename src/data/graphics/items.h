@@ -2104,3 +2104,6 @@ const u32 gItemIconPalette_SwapSnack[] = INCBIN_U32("graphics/items/icon_palette
 
 const u32 gItemIcon_TwiceSpicedRadish[] = INCBIN_U32("graphics/items/icons/twice_spiced_radish.4bpp.lz");
 const u32 gItemIconPalette_TwiceSpicedRadish[] = INCBIN_U32("graphics/items/icon_palettes/twice_spiced_radish.gbapal.lz");
+
+const u32 gItemIcon_PokeDex[] = INCBIN_U32("graphics/items/icons/pokedex_invis.4bpp.lz");
+const u32 gItemIconPalette_PokeDex[] = INCBIN_U32("graphics/items/icon_palettes/pokedex_invis.gbapal.lz");

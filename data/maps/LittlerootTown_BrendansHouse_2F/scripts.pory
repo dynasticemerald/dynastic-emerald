@@ -318,21 +318,43 @@ script PlayersHouse_2F_EventScript_GameCube{
 	special(EnterCodes)
 	waitstate
 	special(GetCodesFeedback)
-	if(var(VAR_RESULT) == 0){
-		msgbox("the code is invaled.")
-		release
-		end
+	switch(var(VAR_RESULT))
+	{
+		case 0:
+			msgbox("the code is invaled.", MSGBOX_DEFAULT)
+			release
+			end
+		case 1:
+		if(flag(DEXALL_CODE))
+		{
+			msgbox("Code is already set", MSGBOX_DEFAULT)
+			release
+			end
+		}
+		else
+		{
+			setflag(DEXALL_CODE)
+			msgbox("DexAll code is set.", MSGBOX_DEFAULT)
+			release
+			end
+		}
+		case 2:
+		if(flag(EZCATCH_CODE))
+		{
+			msgbox("Code is already set", MSGBOX_DEFAULT)
+			release
+			end
+		}
+		else
+		{
+			setflag(EZCATCH_CODE)
+			msgbox("EZCatch code is set.", MSGBOX_DEFAULT)
+			release
+			end
+		}
 	}
-	elif(var(VAR_RESULT) == 1){
-		msgbox("DexAll code is set.")
-		release
-		end
-	}
-	elif(var(VAR_RESULT) == 2){
-		msgbox("EZCatch code is set.")
-		release
-		end
-	}
-	release //Not needed Idt
-	end //Not needed Idt
+	waitstate
+	//Failsave
+	release
+	end
 }

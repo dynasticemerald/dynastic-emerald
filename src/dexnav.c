@@ -25,6 +25,7 @@
 #include "malloc.h"
 #include "menu.h"
 #include "menu_helpers.h"
+#include "pokedex_plus_hgss.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
 #include "palette.h"
@@ -1899,6 +1900,13 @@ static void Task_DexNavExitAndSearch(u8 taskId)
     SetMainCallback2(CB2_ReturnToField);
 }
 
+static void Task_DexNavFadeAndExitToPokeDex(u8 taskId)
+{
+    DexNavGuiFreeResources();
+    DestroyTask(taskId);
+    SetMainCallback2(CB2_OpenPokedexPlusHGSS);
+}
+
 static void Task_DexNavFadeAndExit(u8 taskId)
 {
     if (!gPaletteFade.active)
@@ -2006,9 +2014,10 @@ static void DexNavLoadEncounterData(void)
 
 static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
 {
+    u8 i = 0;
     if (species == SPECIES_NONE || species > NUM_SPECIES)
         CreateNoDataIcon(x, y);   //'X' in slot
-    else if (FlagGet(FlagGet(DEXALL_CODE)) && species > NUM_SPECIES) //Example Code
+    else if (FlagGet(FlagGet(DEXALL_CODE)) && species > NUM_SPECIES)
         CreateMonIcon(species, 0, x, y, 0, 0xFFFFFFFF);
     else if (!FlagGet(DEXALL_CODE) && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
         CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
@@ -2383,7 +2392,7 @@ static void Task_DexNavMain(u8 taskId)
     {
         PlaySE(SE_POKENAV_OFF);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-        task->func = Task_DexNavFadeAndExit;
+        task->func = Task_DexNavFadeAndExitToPokeDex;
     }
     else if (JOY_NEW(DPAD_UP))
     {

@@ -5,6 +5,12 @@
 .set LOCALID_BIRCH, 8
 .set LOCALID_BIRCH_NATIONAL_DEX, 9
 
+LittlerootTown_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
+	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_OnLoad  
+
 @ State descriptions for VAR_LITTLEROOT_TOWN_STATE
 	@ 1: Met Rival
 	@ 2: Saving Birch
@@ -1081,17 +1087,13 @@ Seafloor_Cavern_Articuno_DefeatedArticunoGalar::
 
 
 LittlerootTown_EventScript_NationalDexUpgrade::
-	goto_if_set FLAG_SYS_POKEDEX_GET, LittlerootTown_EventScript_NationalDexUpgrade_1
-	end
-
-LittlerootTown_EventScript_NationalDexUpgrade_1:
 	lock
 	addobject 9
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_0, MSGBOX_AUTOCLOSE
-	applymovement OBJ_EVENT_ID_PLAYER, FaceDown
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_EventScript_NationalDexUpgrade_Movement_0
 	waitmovement OBJ_EVENT_ID_PLAYER
-	applymovement 9, MoveUpBirchNationalDex
-	waitmovement 9
+	applymovement 9, LittlerootTown_EventScript_NationalDexUpgrade_Movement_1
+	waitmovement 0
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_1, MSGBOX_DEFAULT
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_2, MSGBOX_DEFAULT
 	setflag FLAG_SYS_NATIONAL_DEX
@@ -1099,54 +1101,35 @@ LittlerootTown_EventScript_NationalDexUpgrade_1:
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_3, MSGBOX_DEFAULT
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_4, MSGBOX_DEFAULT
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_5, MSGBOX_AUTOCLOSE
-	applymovement 9, MoveDownBirchNationalDex
-	waitmovement 9
+	applymovement 9, LittlerootTown_EventScript_NationalDexUpgrade_Movement_2
+	waitmovement 0
 	removeobject 9
-	setvar VAR_POKEDEX_UPGRADED, 1
+	setvar VAR_POKEDEX_UPGRADED, 2
 	return
 
 
-FaceDown:
-	face_down
-	step_end
+LittlerootTown_EventScript_NationalDexStepLeft::
+	lock
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_EventScript_NationalDexStepLeft_Movement_0
+	waitmovement 0
+	return
 
-MoveUpBirchNationalDex:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
 
-MoveDownBirchNationalDex:
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	step_end
-
-WonderEgg_Test::
+SilvallyChanger_Test::
 	lock
 	faceplayer
-	goto GiveWonderEgg_Test
-	return
-
-
-GiveWonderEgg_Test::
-	lock
-	showmoneybox 0, 0
-	checkmoney 2000
-	compare VAR_RESULT, 0
-	goto_if_ne GiveWonderEgg_Test_2
+	msgbox SilvallyChanger_Test_Text_0, MSGBOX_DEFAULT
+	special IsSilvallyInParty
+	compare VAR_RESULT, TRUE
+	goto_if_eq SilvallyChanger_Test_2
+SilvallyChanger_Test_1:
 	release
 	end
 
-GiveWonderEgg_Test_2:
-	removemoney 2000
-	return
+SilvallyChanger_Test_2:
+	dynmultipush SilvallyChanger_Test_Text_1, SPECIES_SILVALLY_DARK
+	dynmultistack 0, 0, FALSE, 5, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE
+	goto SilvallyChanger_Test_1
 
 
 StarterEggs_Fire::
@@ -1164,42 +1147,6 @@ StarterEggs_Fire_1:
 	end
 
 
-LittlerootTown_OnLoad::
-	setflag FLAG_TEMP_1
-	setflag FLAG_TEMP_2
-	setflag FLAG_TEMP_3
-	setflag FLAG_TEMP_4
-	random 4
-	switch VAR_RESULT
-	case 0, LittlerootTown_OnLoad_2
-	case 1, LittlerootTown_OnLoad_3
-	case 2, LittlerootTown_OnLoad_4
-	case 4, LittlerootTown_OnLoad_5
-	case 3, LittlerootTown_OnLoad_6
-	return
-
-LittlerootTown_OnLoad_2:
-	clearflag FLAG_TEMP_1
-	return
-
-LittlerootTown_OnLoad_3:
-	clearflag FLAG_TEMP_2
-	return
-
-LittlerootTown_OnLoad_4:
-	clearflag FLAG_TEMP_3
-	return
-
-LittlerootTown_OnLoad_5:
-	clearflag FLAG_TEMP_4
-	return
-
-LittlerootTown_OnLoad_6:
-	clearflag FLAG_TEMP_1
-	clearflag FLAG_TEMP_3
-	return
-
-
 LittlerootTown_OnTransition::
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
@@ -1215,54 +1162,61 @@ LittlerootTown_OnTransition::
 	end
 
 
-LittlerootTown_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_MapScripts_MAP_SCRIPT_ON_TRANSITION
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
-	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD
-	.byte 0
-
-LittlerootTown_MapScripts_MAP_SCRIPT_ON_TRANSITION:
-	goto LittlerootTown_OnTransition
-	return
-
-LittlerootTown_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
-	goto LittlerootTown_OnFrame
-	return
-
-LittlerootTown_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
-	goto LittlerootTown_OnWarp
-	return
-
-LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD:
+LittlerootTown_OnLoad::
 	setflag FLAG_TEMP_1
 	setflag FLAG_TEMP_2
 	setflag FLAG_TEMP_3
 	random 4
 	switch VAR_RESULT
-	case 0, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_2
-	case 1, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_3
-	case 2, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_4
-	case 3, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_5
+	case 0, LittlerootTown_OnLoad_2
+	case 1, LittlerootTown_OnLoad_3
+	case 2, LittlerootTown_OnLoad_4
+	case 3, LittlerootTown_OnLoad_5
 	return
 
-LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_2:
+LittlerootTown_OnLoad_2:
 	clearflag FLAG_TEMP_1
 	return
 
-LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_3:
+LittlerootTown_OnLoad_3:
 	clearflag FLAG_TEMP_2
 	return
 
-LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_4:
+LittlerootTown_OnLoad_4:
 	clearflag FLAG_TEMP_3
 	return
 
-LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_5:
+LittlerootTown_OnLoad_5:
 	clearflag FLAG_TEMP_1
 	clearflag FLAG_TEMP_3
 	return
 
+
+LittlerootTown_EventScript_NationalDexUpgrade_Movement_0:
+	face_down
+	step_end
+
+LittlerootTown_EventScript_NationalDexUpgrade_Movement_1:
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+LittlerootTown_EventScript_NationalDexUpgrade_Movement_2:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
+
+LittlerootTown_EventScript_NationalDexStepLeft_Movement_0:
+	walk_left
+	step_end
 
 Seafloor_Cavern_Articuno_Encounter_Text_0:
 	.string "Articuno: Gyaoo!$"
@@ -1276,12 +1230,12 @@ LittlerootTown_EventScript_NationalDexUpgrade_Text_1:
 	.string "$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_2:
-	.string "Prof. Birch: ...anyways I completely\n"
-	.string "forgot to upgrade your Pokédex before\l"
-	.string "i gave it too you!$"
+	.string "...anyways I completely forgot to\n"
+	.string "upgrade your Pokédex before i gave it\l"
+	.string "too you!$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_3:
-	.string "{PLAYER}'s Pokédex was upgrade to\n"
+	.string "{PLAYER}'s Pokédex was upgraded to\n"
 	.string "the National Dex.$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_4:
@@ -1290,6 +1244,11 @@ LittlerootTown_EventScript_NationalDexUpgrade_Text_4:
 	.string "from every region in the Pokédex.$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_5:
-	.string "Prof. Birch: Well that will be all,\n"
-	.string "{PLAYER}!\n"
-	.string "Now back to regular job schedule.$"
+	.string "Well that will be all, {PLAYER}! Now\n"
+	.string "back to regular job schedule.$"
+
+SilvallyChanger_Test_Text_0:
+	.string "Test.$"
+
+SilvallyChanger_Test_Text_1:
+	.string "Dark$"

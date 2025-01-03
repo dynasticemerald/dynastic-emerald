@@ -2599,3 +2599,12 @@ bool8 Scrcmd_getobjectfacingdirection(struct ScriptContext *ctx)
 
     return FALSE;
 }
+
+bool8 ScrCmd_givewonderegg(struct ScriptContext *ctx)
+{
+    u16 species = VarGet(ScriptReadHalfword(ctx));
+
+    gSpecialVar_Result = GiveWonderEgg();
+    return FALSE;
+}
+

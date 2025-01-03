@@ -8,6 +8,7 @@
 #define POCKET_TM_HM       3
 #define POCKET_BERRIES     4
 #define POCKET_KEY_ITEMS   5
+#define POCKET_INVISABLE   6
 
 #define ITEMS_POCKET       0
 #define BALLS_POCKET       1

@@ -14358,7 +14358,7 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_Blazikenite,
     },
 
-    [INVISIBLE_ITEM_BADGE01] =
+    [INVISABLE_ITEM_BADGE01] =
     {
         .name = _("Stone Badge"),
         .price = 0,
@@ -14367,10 +14367,26 @@ const struct Item gItemsInfo[] =
             "A Badge you recieved\n"
             "from beating a\n"
             "Gym Leader."),   
-        .pocket = POCKET_NONE,
+        .pocket = POCKET_INVISABLE,
         .type = ITEM_USE_MAIL,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_ReturnToFieldArrow,
         .iconPalette = gItemIcon_ReturnToFieldArrow,   
+    },
+
+    [INVISABLE_ITEM_POKEDEX] =
+    {
+        .name = _("Pokédex"),
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_NONE,
+        .description = COMPOUND_STRING(
+            "A device use to\n"
+            "Record and Register\n"
+            "Pokémons.\n") ,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_MAIL,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_PokeDex,
+        .iconPalette = gItemIconPalette_PokeDex,   
     },
 };

@@ -7060,21 +7060,3 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
         return moveType;
     return gMovesInfo[move].type;
 }
-
-static const u32 WonderEggList[] = 
-{
-    SPECIES_MUDKIP,
-    SPECIES_TREECKO,
-    SPECIES_TORCHIC,
-};
-
-u32 GiveWonderEgg(struct Pokemon *mon, u32 randomSpecies, bool8 isEgg){
-    u32 i;
-    randomSpecies = Random32() < ARRAY_COUNT(WonderEggList);
-
-    CreateEgg(mon, randomSpecies, TRUE);
-    isEgg = TRUE;
-    SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
-
-    return GiveMonToPlayer(mon);
-}

@@ -232,6 +232,7 @@ gScriptCmdTable::
     .4byte ScrCmd_settimeofday 	                    @ 0xe5
     .4byte ScrCmd_bufferregionname 	                @ 0xe6
 	.4byte ScrCmd_removeobjectbyflag                @ 0xe7
+	.4byte ScrCmd_givewonderegg                     @ 0xe8
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

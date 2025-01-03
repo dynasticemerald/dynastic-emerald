@@ -317,27 +317,40 @@ PlayersHouse_2F_EventScript_GameCube::
 	special EnterCodes
 	waitstate
 	special GetCodesFeedback
-	compare VAR_RESULT, 0
-	goto_if_eq PlayersHouse_2F_EventScript_GameCube_2
-	compare VAR_RESULT, 1
-	goto_if_eq PlayersHouse_2F_EventScript_GameCube_3
-	compare VAR_RESULT, 2
-	goto_if_eq PlayersHouse_2F_EventScript_GameCube_4
-	release
-	end
-
-PlayersHouse_2F_EventScript_GameCube_2:
-	msgbox PlayersHouse_2F_EventScript_GameCube_Text_0
+	switch VAR_RESULT
+	case 0, PlayersHouse_2F_EventScript_GameCube_3
+	case 1, PlayersHouse_2F_EventScript_GameCube_4
+	case 2, PlayersHouse_2F_EventScript_GameCube_5
+	waitstate
 	release
 	end
 
 PlayersHouse_2F_EventScript_GameCube_3:
-	msgbox PlayersHouse_2F_EventScript_GameCube_Text_1
+	msgbox PlayersHouse_2F_EventScript_GameCube_Text_0, MSGBOX_DEFAULT
 	release
 	end
 
 PlayersHouse_2F_EventScript_GameCube_4:
-	msgbox PlayersHouse_2F_EventScript_GameCube_Text_2
+	goto_if_set DEXALL_CODE, PlayersHouse_2F_EventScript_GameCube_6
+	setflag DEXALL_CODE
+	msgbox PlayersHouse_2F_EventScript_GameCube_Text_2, MSGBOX_DEFAULT
+	release
+	end
+
+PlayersHouse_2F_EventScript_GameCube_5:
+	goto_if_set EZCATCH_CODE, PlayersHouse_2F_EventScript_GameCube_9
+	setflag EZCATCH_CODE
+	msgbox PlayersHouse_2F_EventScript_GameCube_Text_3, MSGBOX_DEFAULT
+	release
+	end
+
+PlayersHouse_2F_EventScript_GameCube_6:
+	msgbox PlayersHouse_2F_EventScript_GameCube_Text_1, MSGBOX_DEFAULT
+	release
+	end
+
+PlayersHouse_2F_EventScript_GameCube_9:
+	msgbox PlayersHouse_2F_EventScript_GameCube_Text_1, MSGBOX_DEFAULT
 	release
 	end
 
@@ -346,7 +359,10 @@ PlayersHouse_2F_EventScript_GameCube_Text_0:
 	.string "the code is invaled.$"
 
 PlayersHouse_2F_EventScript_GameCube_Text_1:
-	.string "DexAll code is set.$"
+	.string "Code is already set$"
 
 PlayersHouse_2F_EventScript_GameCube_Text_2:
+	.string "DexAll code is set.$"
+
+PlayersHouse_2F_EventScript_GameCube_Text_3:
 	.string "EZCatch code is set.$"

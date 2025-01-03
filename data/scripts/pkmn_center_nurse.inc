@@ -196,7 +196,21 @@ NicknameChanger_4:
 
 
 NatureChanger::
+	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
+	compare VAR_RESULT, SPECIES_EGG
+	goto_if_eq NatureChanger_2
+NatureChanger_1:
+	special BufferMonNickname
+	message NatureChanger_Text_0
+	waitmessage
+	waitbuttonpress
+	special ChoosePartyMon
+	call Common_EventScript_NameReceivedPartyMon
 	return
+
+NatureChanger_2:
+	goto SlateportCity_NameRatersHouse_EventScript_CantRateEgg
+	goto NatureChanger_1
 
 
 EventScript_PkmnCenterPokeHelper_Text_0:
@@ -227,3 +241,7 @@ NicknameChanger_Text_1:
 
 NicknameChanger_Text_2:
 	.string "Is this the nickname you want?$"
+
+NatureChanger_Text_0:
+	.string "What new nature would you want\n"
+	.string "{STR_VAR_1} to get?$"

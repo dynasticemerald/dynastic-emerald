@@ -89,6 +89,7 @@ EWRAM_DATA static u8 sStartMenuCursorPos = 0;
 EWRAM_DATA static u8 sNumStartMenuActions = 0;
 EWRAM_DATA static u8 sCurrentStartMenuActions[9] = {0};
 EWRAM_DATA static s8 sInitStartMenuData[2] = {0};
+EWRAM_DATA static s8 sNumStartMenuFlipped = 0;
 
 EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
@@ -247,6 +248,7 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
 // Local functions
 static void BuildStartMenuActions(void);
 static void AddStartMenuAction(u8 action);
+static void BuildNormalFlippedStartMenu(void);
 static void BuildNormalStartMenu(void);
 static void BuildDebugStartMenu(void);
 static void BuildSafariZoneStartMenu(void);
@@ -318,8 +320,11 @@ static void BuildStartMenuActions(void)
     {
         if (DEBUG_OVERWORLD_MENU == TRUE && DEBUG_OVERWORLD_IN_MENU == TRUE)
             BuildDebugStartMenu();
+        else if (sNumStartMenuFlipped)
+            BuildNormalFlippedStartMenu();
         else
             BuildNormalStartMenu();
+
     }
 }
 
@@ -332,9 +337,6 @@ static void BuildNormalStartMenu(void)
 {    
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEDEX);
-    
-    if (FlagGet(FLAG_SYS_DEXNAV_GET) == TRUE)
-        AddStartMenuAction(MENU_ACTION_DEXNAV);
     
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
@@ -349,6 +351,15 @@ static void BuildNormalStartMenu(void)
     AddStartMenuAction(MENU_ACTION_OPTION);
     AddStartMenuAction(MENU_ACTION_EXIT);
 }
+
+static void BuildNormalFlippedStartMenu(void)
+{    
+    if (FlagGet(FLAG_SYS_DEXNAV_GET) == TRUE && !MapHasNoEncounterData())
+        AddStartMenuAction(MENU_ACTION_DEXNAV);
+    
+    AddStartMenuAction(MENU_ACTION_EXIT);
+}
+
 
 static void BuildDebugStartMenu(void)
 {
@@ -632,6 +643,14 @@ static bool8 HandleStartMenuInput(void)
         PlaySE(SE_SELECT);
         sStartMenuCursorPos = Menu_MoveCursor(1);
     }
+
+    /*if(JOY_NEW(DPAD_RIGHT))
+    {
+        ClearStdWindowAndFrame(GetStartMenuWindowId(), TRUE);
+        RemoveStartMenuWindow();
+        LoadMessageBoxAndBorderGfx();
+        DrawStdWindowFrame(AddStartMenuWindow(sNumStartMenuActions), FALSE);
+    }*/
 
     if (JOY_NEW(A_BUTTON))
     {

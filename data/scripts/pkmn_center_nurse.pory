@@ -182,6 +182,16 @@ script NicknameChanger{
 }
 
 script NatureChanger{
-	
+	specialvar (VAR_RESULT, ScriptGetPartyMonSpecies)
+	if(var(VAR_RESULT) == SPECIES_EGG){
+		goto(SlateportCity_NameRatersHouse_EventScript_CantRateEgg)
+	}
+	special (BufferMonNickname)
+	message(format("What new nature would you want {STR_VAR_1} to get?"))
+	waitmessage
+	waitbuttonpress
+	special(ChoosePartyMon) 
+	call (Common_EventScript_NameReceivedPartyMon)
+
 }
 

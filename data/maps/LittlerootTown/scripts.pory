@@ -5,6 +5,12 @@ raw`
 .set LOCALID_BIRCH, 8
 .set LOCALID_BIRCH_NATIONAL_DEX, 9
 
+LittlerootTown_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
+	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_OnLoad  
+
 @ State descriptions for VAR_LITTLEROOT_TOWN_STATE
 	@ 1: Met Rival
 	@ 2: Saving Birch
@@ -1068,61 +1074,42 @@ script Seafloor_Cavern_Articuno_DefeatedArticunoGalar{
 }
 
 script LittlerootTown_EventScript_NationalDexUpgrade{
-	if(flag(FLAG_SYS_POKEDEX_GET)){
 	lock
 	addobject(9)
 	msgbox(format("Prof. Birch: Hey {PLAYER}, wait up!"), MSGBOX_AUTOCLOSE)
-	applymovement(OBJ_EVENT_ID_PLAYER, FaceDown)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(face_down step_end))
 	waitmovement(OBJ_EVENT_ID_PLAYER)
-	applymovement(9, MoveUpBirchNationalDex)
-	waitmovement(9)
+	applymovement(9, moves(walk_up *5 step_end))
+	waitmovement(0)
 	msgbox(format("Prof. Birch: you know my legs aren't what they used to be...\n"), MSGBOX_DEFAULT)
-	msgbox(format("Prof. Birch: ...anyways I completely forgot to upgrade your Pokédex before i gave it too you!"), MSGBOX_DEFAULT)
+	msgbox(format("...anyways I completely forgot to upgrade your Pokédex before i gave it too you!"), MSGBOX_DEFAULT)
 	setflag(FLAG_SYS_NATIONAL_DEX)
 	special(EnableNationalPokedex)
-	msgbox(format("{PLAYER}'s Pokédex was upgrade to the National Dex."), MSGBOX_DEFAULT)
+	msgbox(format("{PLAYER}'s Pokédex was upgraded to the National Dex."), MSGBOX_DEFAULT)
 	msgbox(format("Prof. Birch: The National Dex upgrade, lets you see and register all Pokémon from every region in the Pokédex."), MSGBOX_DEFAULT)
-	msgbox(format("Prof. Birch: Well that will be all, {PLAYER}!\nNow back to regular job schedule."), MSGBOX_AUTOCLOSE)
-	applymovement(9, MoveDownBirchNationalDex)
-	waitmovement(9)
+	msgbox(format("Well that will be all, {PLAYER}! Now back to regular job schedule."), MSGBOX_AUTOCLOSE)
+	applymovement(9, moves(walk_down *7 step_end))
+	waitmovement(0)
 	removeobject(9)
-	setvar(VAR_POKEDEX_UPGRADED, 1)
-	}
-	else{
-		end
-	}
+	setvar(VAR_POKEDEX_UPGRADED, 2)
 }
 
-movement FaceDown{
-	face_down
+script LittlerootTown_EventScript_NationalDexStepLeft{
+	lock
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left))
+	waitmovement(0)
 }
 
-movement MoveUpBirchNationalDex{
-	walk_up *5
-}
-
-movement MoveDownBirchNationalDex{
-	walk_down *7
-}
-
-//KAIDO: Make this at 29/09/2024 or 03/10/2024.
-script WonderEgg_Test{
+script SilvallyChanger_Test{
 	lock
 	faceplayer
-
-	//Gives the wonderegg
-	goto(GiveWonderEgg_Test)
-}
-
-script GiveWonderEgg_Test{
-	lock
-	showmoneybox(0, 0)
-	if(checkmoney(2000)){
-		removemoney(2000)
-		return
+	msgbox("Test.", MSGBOX_DEFAULT)
+	special(IsSilvallyInParty)
+	if(var(VAR_RESULT) == TRUE){
+		dynmultipush("Dark", SPECIES_SILVALLY_DARK)
+		dynmultistack(0, 0, FALSE, 5, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE)
 	}
-
-	release 
+	release
 	end
 }
 
@@ -1142,28 +1129,6 @@ script StarterEggs_Fire{
 	}
 }
 
-script LittlerootTown_OnLoad {
-    // Random birds on roofs
-    setflag(FLAG_TEMP_1)
-    setflag(FLAG_TEMP_2)
-    setflag(FLAG_TEMP_3)
-	setflag(FLAG_TEMP_4)
-    random(4)
-    switch(var(VAR_RESULT)) {
-        case 0:
-            clearflag(FLAG_TEMP_1)
-        case 1:
-            clearflag(FLAG_TEMP_4)
-        case 2:
-            clearflag(FLAG_TEMP_3)
-        case 4:
-            clearflag(FLAG_TEMP_2)
-        case 3:
-            clearflag(FLAG_TEMP_1)
-            clearflag(FLAG_TEMP_3)
-    }
-}
-
 script LittlerootTown_OnTransition{
 	setflag (FLAG_VISITED_LITTLEROOT_TOWN)
 	call (Common_EventScript_SetupRivalGfxId)
@@ -1179,26 +1144,21 @@ script LittlerootTown_OnTransition{
 	end
 }
 
-mapscripts LittlerootTown_MapScripts{
-	MAP_SCRIPT_ON_TRANSITION{ goto(LittlerootTown_OnTransition) }
-	MAP_SCRIPT_ON_FRAME_TABLE{ goto(LittlerootTown_OnFrame) }
-	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE{ goto(LittlerootTown_OnWarp) }
-	MAP_SCRIPT_ON_LOAD{    
-		// Random birds on roofs
-		setflag(FLAG_TEMP_1)
-		setflag(FLAG_TEMP_2)
-		setflag(FLAG_TEMP_3)
-		random(4)
-		switch(var(VAR_RESULT)) {
-			case 0:
-				clearflag(FLAG_TEMP_1)
-			case 1:
-				clearflag(FLAG_TEMP_2)
-			case 2:
-				clearflag(FLAG_TEMP_3)
-			case 3:
-				clearflag(FLAG_TEMP_1)
-				clearflag(FLAG_TEMP_3)
-		}
+script LittlerootTown_OnLoad{
+ 	// Random birds on roofs
+	setflag(FLAG_TEMP_1)
+	setflag(FLAG_TEMP_2)
+	setflag(FLAG_TEMP_3)
+	random(4)
+	switch(var(VAR_RESULT)) {
+		case 0:
+			clearflag(FLAG_TEMP_1)
+		case 1:
+			clearflag(FLAG_TEMP_2)
+		case 2:
+			clearflag(FLAG_TEMP_3)
+		case 3:
+			clearflag(FLAG_TEMP_1)
+			clearflag(FLAG_TEMP_3)
 	}
 }

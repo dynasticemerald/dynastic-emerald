@@ -1472,6 +1472,43 @@ bool8 IsStarterInParty(void)
     return FALSE;
 }
 
+static const u32 SilvallyForms[] = 
+{
+    SPECIES_SILVALLY_NORMAL,
+    SPECIES_SILVALLY_FIGHTING,
+    SPECIES_SILVALLY_FLYING,
+    SPECIES_SILVALLY_POISON,
+    SPECIES_SILVALLY_GROUND,
+    SPECIES_SILVALLY_ROCK,
+    SPECIES_SILVALLY_BUG,
+    SPECIES_SILVALLY_GHOST,
+    SPECIES_SILVALLY_STEEL,
+    SPECIES_SILVALLY_FIRE,
+    SPECIES_SILVALLY_WATER,
+    SPECIES_SILVALLY_GRASS,
+    SPECIES_SILVALLY_ELECTRIC,
+    SPECIES_SILVALLY_PSYCHIC,
+    SPECIES_SILVALLY_ICE,
+    SPECIES_SILVALLY_DRAGON,
+    SPECIES_SILVALLY_DARK,
+    SPECIES_SILVALLY_FAIRY,
+};
+
+bool8 IsSilvallyInParty(void)
+{
+    u8 i;
+    u16 species;
+    for(species = SPECIES_SILVALLY; species <= ARRAY_COUNT(SilvallyForms); species++){
+        u8 partyCount = CalculatePlayerPartyCount();
+        for (i = 0; i < partyCount; i++)
+        {
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL) == species)
+                return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 bool8 ScriptCheckFreePokemonStorageSpace(void)
 {
     return CheckFreePokemonStorageSpace();
@@ -4292,20 +4329,18 @@ void GetCodesFeedback(void)
     static const u8 sText_CodeDexnav[]    = _("DexAll");
     static const u8 sText_CodeEZCatch[]    = _("EZCatch");
 
-    //Code 1
-    if (!StringCompare(gStringVar2, sText_CodeDexnav)){
-        FlagSet(DEXALL_CODE);
+    if (!StringCompare(gStringVar2, sText_CodeDexnav))
+    { //Code 1
         gSpecialVar_Result = 1;
     }
-    //Code 2
-    if (!StringCompare(gStringVar2, sText_CodeEZCatch)){
-        FlagSet(EZCATCH_CODE);
+    else if (!StringCompare(gStringVar2, sText_CodeEZCatch))
+    { //Code 2
         gSpecialVar_Result = 2;
     }
-
-    // Invalid cheat code
     else
+    {  
         gSpecialVar_Result = 0;
+    }
 }
 
 void GetTimeOfDaySpecial(void)

@@ -552,6 +552,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex
 	waitfanfare
 	setflag FLAG_SYS_POKEDEX_GET
+	setvar VAR_POKEDEX_UPGRADED, 1
 	setvar VAR_DEXNAV_ENCOUNTER_SCRIPT, 1
 	special SetUnlockedPokedexFlags
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
@@ -1005,13 +1006,13 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav::
 	lock
 	applymovement LOCALID_AIDE, LookDown
-	waitmovement 1
+	waitmovement 0
 	msgbox PlayerHoldOn, MSGBOX_DEFAULT
 	waitmessage
 	applymovement OBJ_EVENT_ID_PLAYER, LookUp
 	waitmovement OBJ_EVENT_ID_PLAYER
 	applymovement LOCALID_AIDE, MoveToPlayer
-	waitmovement 1
+	waitmovement 0
 	msgbox DexnavGet, MSGBOX_DEFAULT
 	waitmessage
 	setflag FLAG_SYS_DEXNAV_GET
@@ -1019,7 +1020,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav::
 	msgbox LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_Text_0, MSGBOX_DEFAULT
 	waitmessage
 	applymovement LOCALID_AIDE, MoveBackToSpot
-	waitmovement 1
+	waitmovement 0
 	release
 	end
 
@@ -1065,7 +1066,7 @@ GoLeftDexnavEncounterScript:
 	step_end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_Text_0:
-	.string "{PLAYER} Obtained the Dexnav$"
+	.string "{PLAYER} Obtained the Dexnav!$"
 
 PlayerHoldOn::
 	.string "Oh {PLAYER}, hold on for a second!\n"

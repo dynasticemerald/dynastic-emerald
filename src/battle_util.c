@@ -9889,7 +9889,7 @@ static inline u32 CalcAttackStat(struct DamageCalculationData *damageCalcData, u
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
     case ABILITY_FROSTY_BOOST:
         if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && IS_MOVE_SPECIAL(move))
-           modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+           modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
         break;
         break;
     case ABILITY_TRANSISTOR:
@@ -10732,8 +10732,10 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
 
     if (abilityAtk == ABILITY_MYCELIUM_MIGHT)
     {
+        //if Statements (Dynastic)
         if(isStatusMove)
         {
+            //Switches (Dynastic)
             switch(moveType)
             {
                 case TYPE_GRASS: //Spore, Stun Spore, Sleep Powder, etc.
@@ -10762,6 +10764,7 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
                     mod = UQ_4_12(1.0);
             }
         }
+
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, abilityAtk);
     }
