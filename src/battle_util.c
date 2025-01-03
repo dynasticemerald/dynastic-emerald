@@ -5287,9 +5287,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_SolarPowerActivates);
-                    gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 8;
-                    if (gBattleStruct->moveDamage[battler] == 0)
-                        gBattleStruct->moveDamage[battler] = 1;
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
                     effect++;
                 }
                 break;
@@ -5390,15 +5390,15 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             case ABILITY_TRUANT:
                 gDisableStructs[gBattlerAttacker].truantCounter ^= 1;
                 
-                if (!IsBattlerAtMaxHp(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
-                    {
-                        gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 8;
-                        if (gBattleStruct->moveDamage[battler] = 0)
-                            gBattleStruct->moveDamage[battler] = 1;
-                        gBattleStruct->moveDamage[battler] *= -1;
-                        BattleScriptExecute(BattleScript_TruantHealingActivates);
-                        effect++;
-                    }
+                if (!BATTLER_MAX_HP(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+                {
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptExecute(BattleScript_TruantHealingActivates);
+                    effect++;
+                }
                 break;
             case ABILITY_BAD_DREAMS:
                 BattleScriptPushCursorAndCallback(BattleScript_BadDreamsActivates);
@@ -9499,7 +9499,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_GORILLA_TACTICS:
-        if (IsBattleMovePhysical(move))
+        if (IS_MOVE_PHYSICAL(move))
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_ROCKY_PAYLOAD:
@@ -9512,7 +9512,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             u32 atkHighestStat = GetHighestStatId(battlerAtk);
             if (((weather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT) || gBattleStruct->boosterEnergyActivates & (1u << battlerAtk))
             {
-                if ((IsBattleMovePhysical(move) && atkHighestStat == STAT_ATK) || (IsBattleMoveSpecial(move) && atkHighestStat == STAT_SPATK))
+                if ((IS_MOVE_PHYSICAL(move) && atkHighestStat == STAT_ATK) || (IS_MOVE_SPECIAL(move) && atkHighestStat == STAT_SPATK))
                     modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
             }
         }
@@ -9523,7 +9523,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             u32 atkHighestStat = GetHighestStatId(battlerAtk);
             if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleStruct->boosterEnergyActivates & (1u << battlerAtk))
             {
-                if ((IsBattleMovePhysical(move) && atkHighestStat == STAT_ATK) || (IsBattleMoveSpecial(move) && atkHighestStat == STAT_SPATK))
+                if ((IS_MOVE_PHYSICAL(move) && atkHighestStat == STAT_ATK) || (IS_MOVE_SPECIAL(move) && atkHighestStat == STAT_SPATK))
                     modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
             }
         }
@@ -9798,7 +9798,7 @@ static inline u32 CalcAttackStat(struct DamageCalculationData *damageCalcData, u
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         break;
     case ABILITY_MYSTIC_POWER:
-        if (IsBattleMoveSpecial(move))
+        if (IS_MOVE_SPECIAL(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         break;
     case ABILITY_SLOW_START:
@@ -9887,7 +9887,7 @@ static inline u32 CalcAttackStat(struct DamageCalculationData *damageCalcData, u
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_PHYSICAL(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
     case ABILITY_FROSTY_BOOST:
-        if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && IsBattleMoveSpecial(move))
+        if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && IS_MOVE_SPECIAL(move))
            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
         break;
         break;
@@ -10681,7 +10681,7 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
     u32 itemAtk = gBattleMons[battlerDef].item;
     u32 itemDef = gBattleMons[battlerDef].item;
     u32 defTeraType = GetActiveGimmick(battlerDef) == GIMMICK_TERA;
-    u32 isStatusMove = IsBattleMoveStatus(move);
+    u32 isStatusMove = IS_MOVE_STATUS(move);
 
     if (mod == UQ_4_12(0.0) && GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_RING_TARGET)
     {

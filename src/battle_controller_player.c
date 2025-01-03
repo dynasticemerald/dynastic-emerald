@@ -1823,7 +1823,7 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
         case EFFECT_SLEEP:
         case EFFECT_DARK_VOID:
         {    
-            if (!CanBeSlept(targetId, defAbility, FALSE))
+            if (!CanBeSlept(targetId, defAbility))
                 return COLOR_IMMUNE;
         }
         break;
@@ -1895,21 +1895,21 @@ u8 TypeEffectiveness(u8 targetId, u32 battler)
     if ((gBattleMons[targetId].ability == ABILITY_QUEENLY_MAJESTY) ||
         ((gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_QUEENLY_MAJESTY) && (IsBattlerAlive(BATTLE_PARTNER(targetId)))))
     {
-        if (GetMovePriority(move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
+        if (GetMovePriority(battlerAtk ,move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
             return COLOR_IMMUNE;
     }
 
     if ((gBattleMons[targetId].ability == ABILITY_DAZZLING) ||
         ((gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING) && (IsBattlerAlive(BATTLE_PARTNER(targetId)))))
     {
-        if (GetMovePriority(move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
+        if (GetMovePriority(battlerAtk ,move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
             return COLOR_IMMUNE;
     }
 
     if ((gBattleMons[targetId].ability == ABILITY_ARMOR_TAIL) ||
         ((gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_ARMOR_TAIL) && (IsBattlerAlive(BATTLE_PARTNER(targetId)))))
     {
-        if (GetMovePriority(move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
+        if (GetMovePriority(battlerAtk ,move) > 0 && gMovesInfo[move].target != MOVE_TARGET_USER)
             return COLOR_IMMUNE;
     }
 

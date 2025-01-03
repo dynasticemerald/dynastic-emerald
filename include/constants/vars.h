@@ -264,8 +264,8 @@
 #define VAR_ROXANNE_CALL_STEP_COUNTER                    0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
-#define VAR_UNUSED_0x40F7                                0x40F7
-#define VAR_UNUSED_0x40F8                                0x40F8
+#define VAR_DEXNAV_STEP_COUNTER                          0x40F7
+#define VAR_DEXNAV_SPECIES                               0x40F8
 #define VAR_DEXNAV_ENCOUNTER_SCRIPT                      0x40F9 // Not included in the Dexnav Branch.
 #define VAR_ATRICUNO_N_G                                 0x40FA // 0 == Articuno; 1 == Galar Articuno.
 #define VAR_UNUSED_0x40FB                                0x40FB // Unused Var

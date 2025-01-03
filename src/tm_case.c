@@ -2,7 +2,6 @@
 #include "malloc.h"
 #include "bg.h"
 #include "decompress.h"
-#include "move.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "task.h"

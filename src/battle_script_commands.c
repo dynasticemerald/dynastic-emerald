@@ -1145,21 +1145,21 @@ static bool32 TryDarmFormChange(void)
             return FALSE;
         break;
     case SPECIES_DARMANITAN_ZEN: // Zen -> Normal
-        if (IsBattleMoveStatus(gCurrentMove))
+        if (IS_MOVE_STATUS(gCurrentMove))
             return FALSE;
-        if (!IsBattleMoveStatus(gCurrentMove))
+        if (!IS_MOVE_STATUS(gCurrentMove))
             gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN;
         break;
     case SPECIES_DARMANITAN_GALAR: // GalarNormal -> GalarZen
-        if (IsBattleMoveStatus(gCurrentMove))
+        if (IS_MOVE_STATUS(gCurrentMove))
             gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALAR_ZEN;
         if (gCurrentMove != MOVE_PROTECT)
             return FALSE;
         break;
     case SPECIES_DARMANITAN_GALAR_ZEN: // GalarZen -> GalarNormal
-        if (IsBattleMoveStatus(gCurrentMove))
+        if (IS_MOVE_STATUS(gCurrentMove))
             return FALSE;
-        if (!IsBattleMoveStatus(gCurrentMove))
+        if (!IS_MOVE_STATUS(gCurrentMove))
             gBattleMons[gBattlerAttacker].species = SPECIES_DARMANITAN_GALAR;
         break;
     }
@@ -4747,7 +4747,7 @@ static void Cmd_getexp(void)
                   || GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL) == MAX_LEVEL)
             {
                 gBattleScripting.getexpState = 5;
-                gBattleStruct->moveDamage[expMonId] = 0; // used for exp
+                gBattleMoveDamage = 0; // used for exp
                 //if (B_MAX_LEVEL_EV_GAINS >= GEN_5)
                 if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE))//Minimal Grinding is of
                     MonGainEVs(&gPlayerParty[*expMonId], gBattleMons[gBattlerFainted].species);
@@ -7613,9 +7613,9 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
     {
         gDisableStructs[battler].steelSpikesDone = TRUE;
-        gBattleStruct->moveDamage[battler] = GetStealthHazardDamage(gMovesInfo[MOVE_STEEL_SPIKES].type, battler);
+        gBattleMoveDamage = GetStealthHazardDamage(gMovesInfo[MOVE_STEEL_SPIKES].type, battler);
 
-        if (gBattleStruct->moveDamage[battler] != 0)
+        if (gBattleMoveDamage != 0)
             SetDmgHazardsBattlescript(battler, B_MSG_STEALTHROCKDMG);
     }
     else if (!(gDisableStructs[battler].toxicSpikesDone)

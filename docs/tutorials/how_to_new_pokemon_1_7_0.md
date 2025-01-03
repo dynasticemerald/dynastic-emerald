@@ -983,7 +983,7 @@ For example, in the HGSS dex, it lets us browse between the entries of every for
 In addition, we have the `GET_BASE_SPECIES_ID` macro, which returns the first entry of the table (or return the species itself if it doesn't have a table registered). With this, you can check if a Pokémon is any form of a species. For example, making it so that the Light Ball affects all Pikachu forms:
 ```c
     case HOLD_EFFECT_LIGHT_BALL:
-        if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_PIKACHU && IsBattleMoveSpecial(move))
+        if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_PIKACHU && IS_MOVE_SPECIAL(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         break;
 ```

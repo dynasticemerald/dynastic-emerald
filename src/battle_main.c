@@ -4948,13 +4948,13 @@ s8 GetMovePriority(u32 battler, u16 move)
         priority++;
     }
     else if (ability == ABILITY_FLAMING_SOUL
-        && (B_GALE_WINGS < GEN_7 || IsBattlerAtMaxHp(battler))
+        && (GetGenConfig(GEN_CONFIG_GALE_WINGS) < GEN_7 || BATTLER_MAX_HP(battler))
         && gMovesInfo[move].type == TYPE_FIRE)
     {
         priority++;
     }
     else if (ability == ABILITY_GHOSTAL_SOUL
-        && (B_GALE_WINGS < GEN_7 || IsBattlerAtMaxHp(battler))
+        && (GetGenConfig(GEN_CONFIG_GALE_WINGS) < GEN_7 || BATTLER_MAX_HP(battler))
         && gMovesInfo[move].type == TYPE_GHOST)
     {
         priority++;
