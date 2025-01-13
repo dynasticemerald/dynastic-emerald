@@ -4158,7 +4158,14 @@ static void PrintNewMoveDetailsOrCancelText(void)
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
-        PrintTextOnWindow(windowId1, gText_Cancel, 0, 65, 0, 1);
+        if(P_SUMMARY_SCREEN_RENAME && sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
+        {
+            PrintTextOnWindow(windowId1, gText_Rename, 0, 65, 0, 1);
+        }
+        else
+        {
+            PrintTextOnWindow(windowId1, gText_Cancel, 0, 65, 0, 1);
+        }
     }
     else
     {

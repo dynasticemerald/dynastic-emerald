@@ -17,6 +17,7 @@
 #include "decompress.h"
 #include "dynamic_placeholder_text_util.h"
 #include "event_data.h"
+#include "naming_screen.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "international_string_util.h"
@@ -129,7 +130,7 @@ enum BWSkillsPageState
 
 #define MOVE_SELECTOR_SPRITES_COUNT 15
 #define TYPE_ICON_SPRITE_COUNT (MAX_MON_MOVES + 1)
-// for the spriteIds field in PokemonSummaryScreenData
+// for the spriteIds field in PokemonSummaryScreenDataBW
 enum BWSummarySprites
 {
     SPRITE_ARR_ID_MON,
@@ -153,7 +154,7 @@ enum BWSummarySprites
     SPRITE_ARR_ID_COUNT = SPRITE_ARR_ID_MOVE_SELECTOR2 + MOVE_SELECTOR_SPRITES_COUNT
 };
 
-static EWRAM_DATA struct PokemonSummaryScreenData
+static EWRAM_DATA struct PokemonSummaryScreenDataBW
 {
     /*0x00*/ union {
         struct Pokemon *mons;
@@ -240,6 +241,7 @@ static EWRAM_DATA u8 sMoveSlotToReplace = 0;
 ALIGNED(4) static EWRAM_DATA u8 sAnimDelayTaskId = 0;
 ALIGNED(4) static EWRAM_DATA u8 sShadowAnimDelayTaskId = 0;
 static EWRAM_DATA u8 sStringVar5[0x4] = {0};
+EWRAM_DATA MainCallback gInitialSummaryScreenCallbackBW = NULL; // stores callback from the first time the screen is opened from the party or PC menu
 
 // forward declarations
 static bool8 LoadGraphics(void);
@@ -374,6 +376,10 @@ static void BufferAndPrintStats_HandleState(u8);
 static void SetFriendshipSprite(void);
 static void TrySetInfoPageIcons(void);
 static void RunMonAnimTimer(void);
+static bool32 ShouldShowRenameBW(void);
+static void ShowCancelOrRenamePromptBW(void);
+static void CB2_ReturnToSummaryScreenFromNamingScreenBW(void);
+static void CB2_PssChangePokemonNicknameBW(void);
 
 // const rom data
 
@@ -1666,14 +1672,16 @@ static const struct SpritePalette sSpritePal_MonShadow =
 };
 
 // code
-void ShowPokemonSummaryScreen_BW(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
+void ShowPokemonSummaryScreen_BW(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callbackBW)(void))
 {
     sMonSummaryScreen = AllocZeroed(sizeof(*sMonSummaryScreen));
     sMonSummaryScreen->mode = mode;
     sMonSummaryScreen->monList.mons = mons;
     sMonSummaryScreen->curMonIndex = monIndex;
     sMonSummaryScreen->maxMonIndex = maxMonIndex;
-    sMonSummaryScreen->callback = callback;
+    sMonSummaryScreen->callback = callbackBW;
+    if (gInitialSummaryScreenCallbackBW == NULL)
+        gInitialSummaryScreenCallbackBW = callbackBW;
 
     if (mode == BW_SUMMARY_MODE_BOX)
         sMonSummaryScreen->isBoxMon = TRUE;
@@ -2265,6 +2273,8 @@ static void CloseSummaryScreen(u8 taskId)
             SetGpuReg(REG_OFFSET_BLDCNT, 0);
             SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         }
+        /*if (sMonSummaryScreen->callback == gInitialSummaryScreenCallbackBW)
+            gInitialSummaryScreenCallbackBW = NULL;*/
         SetMainCallback2(sMonSummaryScreen->callback);
         gLastViewedMonIndex = sMonSummaryScreen->curMonIndex;
         SummaryScreen_DestroyAnimDelayTask();
@@ -2365,6 +2375,12 @@ static void Task_HandleInput(u8 taskId)
             {
                 if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO_BW)
                 {
+                    if (ShouldShowRenameBW())
+                    {
+                        sMonSummaryScreen->callback = CB2_PssChangePokemonNicknameBW;
+                        gSpecialVar_0x8004 = sMonSummaryScreen->curMonIndex;
+                    }
+
                     StopPokemonAnimations();
                     PlaySE(SE_SELECT);
                     BeginCloseSummaryScreen(taskId);
@@ -2532,9 +2548,19 @@ static void Task_ChangeSummaryMon(u8 taskId)
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO_BW)
         { 
             if (sMonSummaryScreen->summary.isEgg)
+            {
                 LimitEggSummaryPageDisplay();
+            }
+            else if (P_SUMMARY_SCREEN_RENAME && sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
+            {
+                FillWindowPixelBuffer(PSS_LABEL_WINDOW_PROMPT_CANCEL, PIXEL_FILL(0));
+                ShowCancelOrRenamePromptBW();
+                PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
+            }
             else
+            {
                 RestoreSummaryPageDisplay();
+            }
         } 
         else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS_BW)
         {
@@ -3535,12 +3561,7 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, sText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, sText_ContestMoves, 2, 1, 0, 1);
 
-    stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, sText_Cancel, 62);
-    iconXPos = stringXPos - 16;
-    if (iconXPos < 0)
-        iconXPos = 0;
-    PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, FALSE, iconXPos);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, sText_Cancel, stringXPos, 1, 0, 1);
+    ShowCancelOrRenamePromptBW();
 
     stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, sText_Info, 62);
     iconXPos = stringXPos - 16;
@@ -3935,7 +3956,7 @@ static void PrintMonTrainerMemo(void)
 
 static void BufferNatureString(void)
 {
-    struct PokemonSummaryScreenData *sumStruct = sMonSummaryScreen;
+    struct PokemonSummaryScreenDataBW *sumStruct = sMonSummaryScreen;
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.nature].name);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gText_EmptyString5);
 }
@@ -5300,6 +5321,49 @@ static void KeepMoveSelectorVisible(u8 firstSpriteId)
         gSprites[spriteIds[i]].invisible = FALSE;
     }
 }
+
+static inline bool32 ShouldShowRenameBW(void)
+{
+    return (P_SUMMARY_SCREEN_RENAME
+         && !sMonSummaryScreen->lockMovesFlag
+         && !sMonSummaryScreen->summary.isEgg
+         && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
+         && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
+         && !InBattleFactory()
+         && !InSlateportBattleTent()
+         && GetPlayerIDAsU32() == sMonSummaryScreen->summary.OTID);
+}
+
+static const u8 gText_RenameDynastic[] = _("Rename");
+
+static void ShowCancelOrRenamePromptBW(void)
+{
+    const u8 *promptText = ShouldShowRenameBW() ? gText_RenameDynastic : gText_Cancel2;
+
+    int stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, promptText, 62);
+    int iconXPos = stringXPos - 16;
+    if (iconXPos < 0)
+        iconXPos = 0;
+
+    PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, FALSE, iconXPos);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, promptText, stringXPos, 1, 0, 1);
+}
+
+static void CB2_ReturnToSummaryScreenFromNamingScreenBW(void)
+{
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar2);
+    ShowPokemonSummaryScreen_BW(SUMMARY_MODE_NORMAL, gPlayerParty, gSpecialVar_0x8004, gPlayerPartyCount - 1, gInitialSummaryScreenCallbackBW);
+}
+
+static void CB2_PssChangePokemonNicknameBW(void)
+{
+    GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar3);
+    GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar2);
+    DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar2, GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL),
+                   GetMonGender(&gPlayerParty[gSpecialVar_0x8004]), GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PERSONALITY, NULL),
+                   CB2_ReturnToSummaryScreenFromNamingScreenBW);
+}
+
 
 // Shoutout to Vexx for this :)
 static void FormatTextByWidth(u8 *result, s32 maxWidth, u8 fontId, const u8 *str, s16 letterSpacing)

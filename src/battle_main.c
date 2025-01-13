@@ -4831,6 +4831,7 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     u8 i = 0;
     u32 HeldItem = gBattleMons[battler].item;
     u32 speed = gBattleMons[battler].speed;
+    u32 move;
 
     // weather abilities
     if (WEATHER_HAS_EFFECT)
@@ -4899,8 +4900,12 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
     if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SWAMP)
         speed /= 4;
 
-    if (ability == ABILITY_MYCELIUM_MIGHT)
-        speed /= (speed * 125) / 100;
+    for (i = 0; i < 4; i++)
+    {
+        move = gBattleMons[battler].moves[i];
+        if (IS_MOVE_STATUS(move) && ability == ABILITY_MYCELIUM_MIGHT)
+            speed /= (speed * 125) / 100;
+    }
 
     return speed;
 }

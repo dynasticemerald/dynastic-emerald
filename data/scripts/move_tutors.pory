@@ -319,7 +319,7 @@ script HiddenTutor_EventScript_HiddenSecretPowerTaught{
 script Defog_Tutor{
 	lock
 	faceplayer
-	msgbox(format("Hi there :3\nI am who they call the 'Defog' Tutor i love using defog in battle against those pesky hazards.\lLike why is ceasless Edge even a thing??\pThank god for Rocky Helmet Corviknight am i right, Fellas?\nMy jokes haven't seen the light of day... anyways... would you like to teach one of ur Pokémon the Move Defog?"), MSGBOX_DEFAULT)
+	msgbox(format("Hi there :3\nI am who they call the 'Defog' Tutor i love using defog in battle against those pesky hazards.\lLike why is ceaseless Edge even a thing??\pThank god for Rocky Helmet Corviknight am i right, Fellas?\nMy jokes haven't seen the light of day... anyways... would you like to teach one of ur Pokémon the Move Defog?"), MSGBOX_DEFAULT)
 	setvar (VAR_0x8005, MOVE_DEFOG) 
 	special (ChooseMonForMoveTutor) 
 	waitstate 
@@ -357,15 +357,14 @@ script BugMoves_Tutor{
 	lock
 	faceplayer
 	msgbox(format("Hello! My Bug type Pokémon LOVE Oran Berries! If you give me one, I can teach some Bug-Type moves to one of your Pokémon."), MSGBOX_DEFAULT)
-	checkitem(ITEM_ORAN_BERRY, 1)
-	if(var(VAR_RESULT) == 0){
+	if(checkitem(ITEM_ORAN_BERRY) == 0){
 		msgbox(format("You don't carry oran berries?\nAnd you call Yourself a Pokémon Trainer. mphm."), MSGBOX_DEFAULT)
 		release
 		end
 	}
 	else{
 		msgbox(format("Oh! An Oran Berry! I can teach a good Number of Bug-Type moves in exchange for one of those!"), MSGBOX_YESNO)
-		if(var(VAR_RESULT) == NO){
+		if(var(VAR_RESULT) == NO || var(VAR_RESULT) == MULTI_B_PRESSED){
 			msgbox(format("Aw, shooks my weedle was so hungry, you monster >:("), MSGBOX_DEFAULT)
 			release
 			end

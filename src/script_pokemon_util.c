@@ -61,6 +61,26 @@ static void HealPlayerBoxes(void)
     }
 }
 
+void HealStatus(void)
+{
+    u32 i;
+    for (i = 0; i < gPlayerPartyCount; i++)
+        HealStatusOnlyChansey(&gPlayerParty[i]);
+    if (OW_PC_HEAL >= GEN_8)
+        HealPlayerBoxes();
+
+}
+
+void HealHP(void)
+{
+    u32 i;
+    for (i = 0; i < gPlayerPartyCount; i++)
+        HealHPOnlyChansey(&gPlayerParty[i]);
+    if (OW_PC_HEAL >= GEN_8)
+        HealPlayerBoxes();
+
+}
+
 u8 ScriptGiveEgg(u16 species)
 {
     struct Pokemon mon;

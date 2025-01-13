@@ -135,15 +135,12 @@ static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
     SPECIES_MUDKIP,
 };*/
 
-static const u16 sStarterMon[REGION_COUNT][STARTER_MON_COUNT] = {
+static const u16 sStarterMon[VAR_REGION_CHOICE][STARTER_MON_COUNT] = {
     [REGION_KANTO] =
     {
-        /*SPECIES_BULBASAUR,
+        SPECIES_BULBASAUR,
         SPECIES_CHARMANDER,
-        SPECIES_SQUIRTLE*/
-        SPECIES_TREECKO,
-        SPECIES_TORCHIC,
-        SPECIES_MUDKIP
+        SPECIES_SQUIRTLE
     },
     [REGION_JOHTO] =
     {

@@ -192,6 +192,7 @@ LittlerootTown_MaysHouse_1F_EventScript_MeetRival::
 	call_if_eq VAR_0x8008, 2, LittlerootTown_MaysHouse_1F_EventScript_MayApproachPlayer2
 	msgbox RivalsHouse_1F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 	closemessage
+
 	call_if_eq VAR_0x8008, 0, LittlerootTown_MaysHouse_1F_EventScript_MayGoUpstairs0
 	call_if_eq VAR_0x8008, 1, LittlerootTown_MaysHouse_1F_EventScript_MayGoUpstairs1
 	call_if_eq VAR_0x8008, 2, LittlerootTown_MaysHouse_1F_EventScript_MayGoUpstairs2
@@ -398,23 +399,66 @@ RivalsHouse_1F_Text_DoYouHavePokemon:
 	.string "Do you already have your\n"
 	.string "own Pokémon?$"
 
-EventScript_StarterRegionSelection::
-	lock
-	msgbox RivalsHouse_1F_Text_WhichRegion, MSGBOX_DEFAULT
-	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, EventScript_StarterRegionSelection_Text_0, EventScript_StarterRegionSelection_Text_1, EventScript_StarterRegionSelection_Text_2, EventScript_StarterRegionSelection_Text_3, EventScript_StarterRegionSelection_Text_4, EventScript_StarterRegionSelection_Text_5, EventScript_StarterRegionSelection_Text_6, EventScript_StarterRegionSelection_Text_7, EventScript_StarterRegionSelection_Text_8
-	bufferregionname STR_VAR_1, VAR_RESULT
-	msgbox EventScript_StarterRegionSelection_Text_9, MSGBOX_DEFAULT
-	copyvar VAR_REGION_CHOICE, VAR_RESULT
-	return
-
-
 RivalsHouse_1F_EventScript_RegionChoice::
-	msgbox RivalsHouse_1F_Text_WhichRegion, MSGBOX_DEFAULT
-	dynmultichoice 0, 0, TRUE, 6, 0, DYN_MULTICHOICE_CB_NONE, EventScript_StarterRegionSelection_Text_0, EventScript_StarterRegionSelection_Text_1, EventScript_StarterRegionSelection_Text_2, EventScript_StarterRegionSelection_Text_3, EventScript_StarterRegionSelection_Text_4, EventScript_StarterRegionSelection_Text_5, EventScript_StarterRegionSelection_Text_6, EventScript_StarterRegionSelection_Text_7, EventScript_StarterRegionSelection_Text_8
+	message RivalsHouse_1F_EventScript_RegionChoice_Text_0
+	waitmessage
+	closemessage
+	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, RivalsHouse_1F_EventScript_RegionChoice_Text_1, RivalsHouse_1F_EventScript_RegionChoice_Text_2, RivalsHouse_1F_EventScript_RegionChoice_Text_3, RivalsHouse_1F_EventScript_RegionChoice_Text_4, RivalsHouse_1F_EventScript_RegionChoice_Text_5, RivalsHouse_1F_EventScript_RegionChoice_Text_6, RivalsHouse_1F_EventScript_RegionChoice_Text_7, RivalsHouse_1F_EventScript_RegionChoice_Text_8, RivalsHouse_1F_EventScript_RegionChoice_Text_9
+	switch VAR_RESULT
+	case 0, RivalsHouse_1F_EventScript_RegionChoice_3
+	case 1, RivalsHouse_1F_EventScript_RegionChoice_4
+	case 2, RivalsHouse_1F_EventScript_RegionChoice_5
+	case 3, RivalsHouse_1F_EventScript_RegionChoice_6
+	case 4, RivalsHouse_1F_EventScript_RegionChoice_7
+	case 5, RivalsHouse_1F_EventScript_RegionChoice_8
+	case 6, RivalsHouse_1F_EventScript_RegionChoice_9
+	case 7, RivalsHouse_1F_EventScript_RegionChoice_10
+	case 8, RivalsHouse_1F_EventScript_RegionChoice_11
+	case MULTI_B_PRESSED, RivalsHouse_1F_EventScript_RegionChoice_12
+RivalsHouse_1F_EventScript_RegionChoice_12:
+	setvar VAR_REGION_CHOICE, 3
+RivalsHouse_1F_EventScript_RegionChoice_1:
 	bufferregionname STR_VAR_1, VAR_RESULT
-	msgbox RivalsHouse_1F_EventScript_RegionChoice_Text_0, MSGBOX_DEFAULT
+	msgbox RivalsHouse_1F_EventScript_RegionChoice_Text_10, MSGBOX_DEFAULT
+	closemessage
 	copyvar VAR_REGION_CHOICE, VAR_RESULT
 	return
+
+RivalsHouse_1F_EventScript_RegionChoice_3:
+	setvar VAR_REGION_CHOICE, 0
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
+
+RivalsHouse_1F_EventScript_RegionChoice_4:
+	setvar VAR_REGION_CHOICE, 1
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
+
+RivalsHouse_1F_EventScript_RegionChoice_5:
+	setvar VAR_REGION_CHOICE, 2
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
+
+RivalsHouse_1F_EventScript_RegionChoice_6:
+	setvar VAR_REGION_CHOICE, 3
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
+
+RivalsHouse_1F_EventScript_RegionChoice_7:
+	setvar VAR_REGION_CHOICE, 4
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
+
+RivalsHouse_1F_EventScript_RegionChoice_8:
+	setvar VAR_REGION_CHOICE, 5
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
+
+RivalsHouse_1F_EventScript_RegionChoice_9:
+	setvar VAR_REGION_CHOICE, 6
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
+
+RivalsHouse_1F_EventScript_RegionChoice_10:
+	setvar VAR_REGION_CHOICE, 7
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
+
+RivalsHouse_1F_EventScript_RegionChoice_11:
+	setvar VAR_REGION_CHOICE, 8
+	goto RivalsHouse_1F_EventScript_RegionChoice_1
 
 
 Eevee::
@@ -430,55 +474,44 @@ Eevee::
 	end
 
 
-EventScript_StarterRegionSelection_Text_0:
+RivalsHouse_1F_EventScript_RegionChoice_Text_0:
+	.string "You know, I heard that Dad just\n"
+	.string "received some rare Pokémon… Which\l"
+	.string "region were they from again?$"
+
+RivalsHouse_1F_EventScript_RegionChoice_Text_1:
 	.string "Kanto$"
 
-EventScript_StarterRegionSelection_Text_1:
+RivalsHouse_1F_EventScript_RegionChoice_Text_2:
 	.string "Johto$"
 
-EventScript_StarterRegionSelection_Text_2:
+RivalsHouse_1F_EventScript_RegionChoice_Text_3:
 	.string "Hoenn$"
 
-EventScript_StarterRegionSelection_Text_3:
+RivalsHouse_1F_EventScript_RegionChoice_Text_4:
 	.string "Sinnoh$"
 
-EventScript_StarterRegionSelection_Text_4:
+RivalsHouse_1F_EventScript_RegionChoice_Text_5:
 	.string "Unova$"
 
-EventScript_StarterRegionSelection_Text_5:
-	.string "Kalos$"
+RivalsHouse_1F_EventScript_RegionChoice_Text_6:
+	.string "kalos$"
 
-EventScript_StarterRegionSelection_Text_6:
+RivalsHouse_1F_EventScript_RegionChoice_Text_7:
 	.string "Alola$"
 
-EventScript_StarterRegionSelection_Text_7:
+RivalsHouse_1F_EventScript_RegionChoice_Text_8:
 	.string "Galar$"
 
-EventScript_StarterRegionSelection_Text_8:
+RivalsHouse_1F_EventScript_RegionChoice_Text_9:
 	.string "Paldea$"
 
-EventScript_StarterRegionSelection_Text_9:
-	.string "Ah the {STR_VAR_1} region?\n"
-	.string "Good choice.\p"
-	.string "...\n"
-	.string "....\p"
-	.string "NOW HURRY UP AND HELP ME!$"
-
-RivalsHouse_1F_EventScript_RegionChoice_Text_0:
+RivalsHouse_1F_EventScript_RegionChoice_Text_10:
 	.string "Ah the {STR_VAR_1} region?\n"
 	.string "{PLAYER} Good choice.$"
 
 Eevee_Text_0:
 	.string "Eevee: Vee Vee!$"
-
-RivalsHouse_1F_Text_WhichRegion::
-	.string "BEFORE YOU CHOOSE!\n"
-	.string "...\l"
-	.string "....\p"
-	.string "Wich region would you like ur starter to\n"
-	.string "be from? Please do choose quickly\l"
-	.string "cause im still in danger over here\l"
-	.string "{PLAYER}!$"
 
 RivalsHouse_1F_Text_OhIForgot::
 	.string "Oh, no! I forgot! I was supposed to go\n"

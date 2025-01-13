@@ -138,19 +138,12 @@ script EventScript_PkmnCenterPokeHelper {
 	faceplayer
 	msgbox("Hello.")
     dynmultichoice(0,0,TRUE,5,0,DYN_MULTICHOICE_CB_NONE,
-	"Change Nickname","Change Nature","Change Gender","Change Tera Type","cancel")
+	"Change Nature","Change Gender","Change Tera Type","cancel")
 	switch(var(VAR_RESULT)){
-		case 0: 
-	goto(NicknameChanger)
-		case 1:
-	return
-		case 2:
-	return
-		case 3: 
-	return
-	    case 4: //Cancel
-	release
-	end
+		case 0: return // Change Nature
+		case 1: return // Change Gender (For Gender specific evo's)
+		case 2: return // Change Tera Type (Unlocked after Gym 6)
+	    case 3: release end //Cancel
 	}
 	release
 	end
@@ -166,10 +159,9 @@ script NicknameChanger{
 	waitmessage
 	waitbuttonpress
 	special(ChoosePartyMon) 
-	call (Common_EventScript_NameReceivedPartyMon)
 	special (BufferMonNickname)
-	message(format("Congrats its nickname was changed to {STR_VAR_1}"))
-	waitmessage
+	special (ChangePokemonNickname)
+	waitstate
 	waitbuttonpress
 	msgbox(format("Is this the nickname you want?"), MSGBOX_YESNO)
 	if(var(VAR_RESULT) == YES){
@@ -177,14 +169,32 @@ script NicknameChanger{
 		end
 	}
 	else{
-		goto(NatureChanger)
+		goto(lol)
+	}
+}
+
+script lol{
+	special(ChoosePartyMon) 
+	special (BufferMonNickname)
+	special (ChangePokemonNickname)
+	waitstate
+	waitbuttonpress
+	msgbox(format("Is this the nickname you want?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == YES){
+		release
+		end
+	}
+	else{
+		goto(lol)
 	}
 }
 
 script NatureChanger{
 	specialvar (VAR_RESULT, ScriptGetPartyMonSpecies)
 	if(var(VAR_RESULT) == SPECIES_EGG){
-		goto(SlateportCity_NameRatersHouse_EventScript_CantRateEgg)
+		message(format("Thats.. an egg.\nEggs can't be nature swapped."))
+		waitmessage
+		waitbuttonpress
 	}
 	special (BufferMonNickname)
 	message(format("What new nature would you want {STR_VAR_1} to get?"))
@@ -192,6 +202,41 @@ script NatureChanger{
 	waitbuttonpress
 	special(ChoosePartyMon) 
 	call (Common_EventScript_NameReceivedPartyMon)
+}
 
+script PkmnCenterChansey{
+	lock
+	faceplayer
+	message("Chansey: Chansey!")
+	playmoncry(SPECIES_CHANSEY, CRY_MODE_NORMAL)
+	waitmoncry
+	waitbuttonpress
+	dynmultichoice(0,0,TRUE,3,0,DYN_MULTICHOICE_CB_NONE,"Healing","Status Removal","Cancel")
+	switch(var(VAR_RESULT))
+	{
+		case 0: //Healing
+			closemessage
+			message("Chansey used Soft Boiled!")
+			playfanfare(MUS_HEAL)
+			waitfanfare
+			waitbuttonpress
+			closemessage
+			special(HealHP)
+			callnative(UpdateFollowingPokemon)
+			release
+			end
+		case 1: //Status Removed
+			closemessage
+			message("Chansey used Heal Bell!")
+			playfanfare(MUS_HEAL)
+			waitfanfare
+			waitbuttonpress
+			closemessage
+			special(HealStatus)
+			callnative(UpdateFollowingPokemon)
+			release
+			end
+		case 2: release end //Cancel
+	}
 }
 

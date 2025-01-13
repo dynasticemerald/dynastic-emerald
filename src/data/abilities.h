@@ -421,7 +421,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Truant"),
         .description = COMPOUND_STRING("Moves only every two turns.\n"
                                        "Heals 1/8 health every turn."),
-        .aiRating = -2,
+        .aiRating = 4,
         .cantBeOverwritten = TRUE,
     },
 
@@ -2526,6 +2526,13 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Protects holder from additional effects of\nmoves. Negates Hazard damage."),
         .aiRating = 5,
         .breakable = TRUE,
+    },
+
+    [ABILITY_SPIKY_BARBS] =
+    {
+        .name = _("Spiky Barbs"),
+        .description = COMPOUND_STRING("When hit with a contact move the Opponent\nloses 1/8 of their max health."),
+        .aiRating = 6,
     },
 
 };

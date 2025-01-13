@@ -12,7 +12,7 @@ InsideOfTruck_OnLoad:
 	end
 
 InsideOfTruck_OnFrame:
-	@map_script_2 VAR_MODES_CHECK, 0, ModesCheck
+	map_script_2 VAR_REGION_CHECK, 0, RegionChoice
 	.2byte 0
 
 InsideOfTruck_OnResume:
@@ -138,6 +138,114 @@ WSwitch_8:
 	return
 
 
+RegionChoice::
+	lock
+	fadescreen FADE_TO_BLACK
+	message RegionChoice_Text_0
+	waitmessage
+	dynmultichoice 0, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, RegionChoice_Text_1, RegionChoice_Text_2, RegionChoice_Text_3, RegionChoice_Text_4, RegionChoice_Text_5, RegionChoice_Text_6, RegionChoice_Text_7, RegionChoice_Text_8, RegionChoice_Text_9
+	switch VAR_RESULT
+	case 0, RegionChoice_2
+	case 1, RegionChoice_3
+	case 2, RegionChoice_4
+	case 3, RegionChoice_5
+	case 4, RegionChoice_6
+	case 5, RegionChoice_7
+	case 6, RegionChoice_8
+	case 7, RegionChoice_9
+	case 8, RegionChoice_10
+	case MULTI_B_PRESSED, RegionChoice_11
+RegionChoice_11:
+	setvar VAR_REGION_CHOICE, 2
+	msgbox RegionChoice_Text_12, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_2:
+	setvar VAR_REGION_CHOICE, 0
+	msgbox RegionChoice_Text_10, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_3:
+	setvar VAR_REGION_CHOICE, 1
+	msgbox RegionChoice_Text_11, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_4:
+	setvar VAR_REGION_CHOICE, 2
+	msgbox RegionChoice_Text_12, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_5:
+	setvar VAR_REGION_CHOICE, 3
+	msgbox RegionChoice_Text_13, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_6:
+	setvar VAR_REGION_CHOICE, 4
+	msgbox RegionChoice_Text_14, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_7:
+	setvar VAR_REGION_CHOICE, 5
+	msgbox RegionChoice_Text_15, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_8:
+	setvar VAR_REGION_CHOICE, 6
+	msgbox RegionChoice_Text_16, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_9:
+	setvar VAR_REGION_CHOICE, 7
+	msgbox RegionChoice_Text_17, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+RegionChoice_10:
+	setvar VAR_REGION_CHOICE, 8
+	msgbox RegionChoice_Text_18, MSGBOX_DEFAULT
+	copyvar VAR_REGION_CHOICE, VAR_RESULT
+	setvar VAR_REGION_CHECK, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+
 ModesCheck_Text_0:
 	.string "Please stop smashing {A_BUTTON} and properly\n"
 	.string "answer the following questions.$"
@@ -168,6 +276,73 @@ ModesCheck_Continue_Text_4:
 
 ModesCheck_Continue_Text_5:
 	.string "Minimal Grinding$"
+
+RegionChoice_Text_0:
+	.string "Kaixer: Hello, {PLAYER}. Wich region\n"
+	.string "would you like ur starter to be from?$"
+
+RegionChoice_Text_1:
+	.string "Kanto$"
+
+RegionChoice_Text_2:
+	.string "Johto$"
+
+RegionChoice_Text_3:
+	.string "Hoenn$"
+
+RegionChoice_Text_4:
+	.string "Sinnoh$"
+
+RegionChoice_Text_5:
+	.string "Unova$"
+
+RegionChoice_Text_6:
+	.string "Kalos$"
+
+RegionChoice_Text_7:
+	.string "Alola$"
+
+RegionChoice_Text_8:
+	.string "Galar$"
+
+RegionChoice_Text_9:
+	.string "Paldea$"
+
+RegionChoice_Text_10:
+	.string "Ah the Kanto region?\n"
+	.string "{PLAYER}, Good choice.$"
+
+RegionChoice_Text_11:
+	.string "Ah the Johto region?\n"
+	.string "{PLAYER}, Good choice.$"
+
+RegionChoice_Text_12:
+	.string "Ah the Hoenn region?\n"
+	.string "{PLAYER}, Good choice.$"
+
+RegionChoice_Text_13:
+	.string "Ah the Sinnoh region?\n"
+	.string "{PLAYER}, Good choice.$"
+
+RegionChoice_Text_14:
+	.string "Ah the Unova region?\n"
+	.string "{PLAYER}, Good choice.$"
+
+RegionChoice_Text_15:
+	.string "Ah the Kalos region?\n"
+	.string "{PLAYER}, Good choice.$"
+
+RegionChoice_Text_16:
+	.string "Ah the Alola region?\n"
+	.string "{PLAYER}, Good choice.$"
+
+RegionChoice_Text_17:
+	.string "Ah the Galar region?\n"
+	.string "{PLAYER}, Good choice.$"
+
+RegionChoice_Text_18:
+	.string "Ah the Paldea region?\n"
+	.string "{PLAYER}, Good choice.$"
 
 ModesCheck_Text_MinimalGrinding::
 	.string "Minimal Grinding mode guarantees all\n"

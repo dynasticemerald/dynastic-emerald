@@ -194,6 +194,8 @@ gSpecials::
 	def_special GetBattleOutcome
 	def_special GetDaycareMonNicknames
 	def_special GetDaycareState
+	def_special HealStatus
+	def_special HealHP
 	def_special RejectEggFromDayCare
 	def_special GiveEggFromDaycare
 	def_special SetDaycareCompatibilityString

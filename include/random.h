@@ -175,7 +175,12 @@ enum RandomTag
     RNG_SHELL_SIDE_ARM,
     RNG_DEXNAV_ENCOUNTER_LEVEL,
     RNG_RANDOM_TARGET,
+    RNG_AI_PREDICT_ABILITY,
+    RNG_AI_SUCKER_PUNCH,
     RNG_HEALER,
+    RNG_AI_KILL_PERCENTAGE_SLOW,
+    RNG_AI_KILL_PERCENTAGE_FAST,
+    RNG_AI_TRUANT, //70% use Protect, Other 30% use Healing Move.
 };
 
 #define RandomWeighted(tag, ...) \

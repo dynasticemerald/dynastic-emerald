@@ -5,6 +5,7 @@
 #include "data.h"
 #include "daycare.h"
 #include "decompress.h"
+#include "rtc.h"
 #include "dexnav.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -2216,8 +2217,32 @@ static void PrintCurrentSpeciesInfo(void)
     PutWindowTilemap(WINDOW_INFO);
 }
 
+// sprite gfx
+static const u8 sSymbols_Gfx[][4 * TILE_SIZE_4BPP] = {
+    INCBIN_U8("graphics/dexnav/day_symbol.4bpp"),
+    INCBIN_U8("graphics/dexnav/night_symbol.4bpp"),
+};
+
+static void LoadDayorNightSymbol(u8 windowId, bool32 isNight, u32 x)
+{
+    const u8 *symbol;
+    if (!isNight)
+        symbol = sSymbols_Gfx[0];
+    else
+        symbol = sSymbols_Gfx[1];
+
+    BlitBitmapToWindow(windowId, symbol, x, 0, 16, 16);
+}
+
+
 static void PrintMapName(void)
 {
+    RtcCalcLocalTime();
+    if(gLocalTime.hours >= 20 || gLocalTime.hours < 4)
+        LoadDayorNightSymbol(WINDOW_REGISTERED, TRUE, 107);
+    else
+        LoadDayorNightSymbol(WINDOW_REGISTERED, FALSE, 107);
+
     GetMapName(gStringVar3, GetCurrentRegionMapSectionId(), 0);
     AddTextPrinterParameterized3(WINDOW_REGISTERED, 1, 108 +
       GetStringRightAlignXOffset(1, gStringVar3, MAP_NAME_LENGTH * GetFontAttribute(1, FONTATTR_MAX_LETTER_WIDTH)), 0, sFontColor_White, 0, gStringVar3);

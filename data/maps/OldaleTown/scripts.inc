@@ -1,9 +1,11 @@
+
 .set LOCALID_MART_EMPLOYEE, 2
 .set LOCALID_FOOTPRINTS_MAN, 3
 .set LOCALID_RIVAL, 4
 
 OldaleTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, OldaleTown_OnLoad
 	.byte 0
 
 OldaleTown_OnTransition:
@@ -398,4 +400,26 @@ OldaleTown_Text_BrendanLetsGoBack:
 OldaleTown_Text_TownSign:
 	.string "OLDALE TOWN\n"
 	.string "“Where things start off scarce.”$"
+
+OldaleTown_OnLoad::
+	setflag FLAG_TEMP_1
+	setflag FLAG_TEMP_2
+	random 4
+	switch VAR_RESULT
+	case 0, OldaleTown_OnLoad_2
+	case 1, OldaleTown_OnLoad_3
+	case 2, OldaleTown_OnLoad_4
+	return
+
+OldaleTown_OnLoad_2:
+	clearflag FLAG_TEMP_1
+	return
+
+OldaleTown_OnLoad_3:
+	clearflag FLAG_TEMP_2
+	return
+
+OldaleTown_OnLoad_4:
+	clearflag FLAG_TEMP_1
+	return
 

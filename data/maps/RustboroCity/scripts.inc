@@ -1310,9 +1310,11 @@ RustboroCity_EventScript_Dustox::
 RustboroCity_OnTransition::
 	setflag FLAG_VISITED_RUSTBORO_CITY
 	call Common_EventScript_SetupRivalGfxId
+	setflag FLAG_TEMP_1
 	special GetTimeOfDaySpecial
 	switch VAR_RESULT
 	case 3, RustboroCity_OnTransition_3
+	setflag FLAG_TEMP_1
 	removeobject 17
 RustboroCity_OnTransition_1:
 	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup
@@ -1321,6 +1323,7 @@ RustboroCity_OnTransition_1:
 	end
 
 RustboroCity_OnTransition_3:
+	clearflag FLAG_TEMP_1
 	addobject 17
 	goto RustboroCity_OnTransition_1
 

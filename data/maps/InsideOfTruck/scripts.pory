@@ -12,7 +12,7 @@ InsideOfTruck_OnLoad:
 	end
 
 InsideOfTruck_OnFrame:
-	@map_script_2 VAR_MODES_CHECK, 0, ModesCheck
+	map_script_2 VAR_REGION_CHECK, 0, RegionChoice
 	.2byte 0
 
 InsideOfTruck_OnResume:
@@ -118,6 +118,27 @@ switch(var(VAR_RESULT)){
 		fadescreen(FADE_FROM_BLACK)
 		release
 		end
+	}
+}
+
+script RegionChoice{
+	lock
+	fadescreen(FADE_TO_BLACK)
+	message(format("Kaixer: Hello, {PLAYER}. Wich region would you like ur starter to be from?"))
+	waitmessage
+	dynmultichoice(0,0,FALSE,5,0,DYN_MULTICHOICE_CB_NONE, "Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea")
+	switch(var(VAR_RESULT))
+	{
+		case 0: setvar(VAR_REGION_CHOICE, 0) msgbox(format("Ah the Kanto region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end
+		case 1: setvar(VAR_REGION_CHOICE, 1) msgbox(format("Ah the Johto region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end
+		case 2: setvar(VAR_REGION_CHOICE, 2) msgbox(format("Ah the Hoenn region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end
+		case 3: setvar(VAR_REGION_CHOICE, 3) msgbox(format("Ah the Sinnoh region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end 
+		case 4: setvar(VAR_REGION_CHOICE, 4) msgbox(format("Ah the Unova region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end 
+		case 5: setvar(VAR_REGION_CHOICE, 5) msgbox(format("Ah the Kalos region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end
+		case 6: setvar(VAR_REGION_CHOICE, 6) msgbox(format("Ah the Alola region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end
+		case 7: setvar(VAR_REGION_CHOICE, 7) msgbox(format("Ah the Galar region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end 
+		case 8: setvar(VAR_REGION_CHOICE, 8) msgbox(format("Ah the Paldea region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end
+		case MULTI_B_PRESSED: default: setvar(VAR_REGION_CHOICE, 2) msgbox(format("Ah the Hoenn region?\n{PLAYER}, Good choice."), MSGBOX_DEFAULT) copyvar(VAR_REGION_CHOICE, VAR_RESULT) setvar(VAR_REGION_CHECK, 1) fadescreen(FADE_FROM_BLACK) release end
 	}
 }
 

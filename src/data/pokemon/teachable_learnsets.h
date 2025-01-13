@@ -36693,6 +36693,7 @@ static const u16 sDragapultTeachableLearnset[] = {
     MOVE_FIRE_BLAST,
     MOVE_FLAMETHROWER,
     MOVE_FLY,
+    MOVE_IRON_TAIL,
     MOVE_LIGHT_SCREEN,
     MOVE_POWER_WHIP,
     MOVE_PROTECT,

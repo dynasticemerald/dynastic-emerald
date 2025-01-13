@@ -434,19 +434,21 @@ BugMoves_Tutor::
 	lock
 	faceplayer
 	msgbox BugMoves_Tutor_Text_0, MSGBOX_DEFAULT
-	checkitem ITEM_ORAN_BERRY, 1
+	checkitem ITEM_ORAN_BERRY
 	compare VAR_RESULT, 0
 	goto_if_eq BugMoves_Tutor_1
 	msgbox BugMoves_Tutor_Text_2, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq BugMoves_Tutor_4
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq BugMoves_Tutor_4
 	msgbox BugMoves_Tutor_Text_4, MSGBOX_DEFAULT
 	dynmultichoice 0, 0, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, BugMoves_Tutor_Text_5, BugMoves_Tutor_Text_6, BugMoves_Tutor_Text_7, BugMoves_Tutor_Text_8
 	switch VAR_RESULT
-	case 0, BugMoves_Tutor_8
-	case 1, BugMoves_Tutor_9
-	case 2, BugMoves_Tutor_10
-	case 3, BugMoves_Tutor_11
+	case 0, BugMoves_Tutor_10
+	case 1, BugMoves_Tutor_11
+	case 2, BugMoves_Tutor_12
+	case 3, BugMoves_Tutor_13
 	return
 
 BugMoves_Tutor_1:
@@ -459,66 +461,66 @@ BugMoves_Tutor_4:
 	release
 	end
 
-BugMoves_Tutor_8:
+BugMoves_Tutor_10:
 	setvar VAR_0x8005, MOVE_BUG_BITE
 	special ChooseMonForMoveTutor
 	waitstate
 	compare VAR_RESULT, MULTI_B_PRESSED
-	goto_if_eq BugMoves_Tutor_12
-	removeitem ITEM_ORAN_BERRY, 1
-	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
-	release
-	end
-
-BugMoves_Tutor_9:
-	setvar VAR_0x8005, MOVE_SILVER_WIND
-	special ChooseMonForMoveTutor
-	waitstate
-	compare VAR_RESULT, MULTI_B_PRESSED
-	goto_if_eq BugMoves_Tutor_15
-	removeitem ITEM_ORAN_BERRY, 1
-	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
-	release
-	end
-
-BugMoves_Tutor_10:
-	setvar VAR_0x8005, MOVE_POUNCE
-	special ChooseMonForMoveTutor
-	waitstate
-	compare VAR_RESULT, MULTI_B_PRESSED
-	goto_if_eq BugMoves_Tutor_18
+	goto_if_eq BugMoves_Tutor_14
 	removeitem ITEM_ORAN_BERRY, 1
 	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
 	release
 	end
 
 BugMoves_Tutor_11:
-	setvar VAR_0x8005, MOVE_STRUGGLE_BUG
+	setvar VAR_0x8005, MOVE_SILVER_WIND
 	special ChooseMonForMoveTutor
 	waitstate
 	compare VAR_RESULT, MULTI_B_PRESSED
-	goto_if_eq BugMoves_Tutor_21
+	goto_if_eq BugMoves_Tutor_17
 	removeitem ITEM_ORAN_BERRY, 1
 	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
 	release
 	end
 
 BugMoves_Tutor_12:
+	setvar VAR_0x8005, MOVE_POUNCE
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq BugMoves_Tutor_20
+	removeitem ITEM_ORAN_BERRY, 1
+	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
+	release
+	end
+
+BugMoves_Tutor_13:
+	setvar VAR_0x8005, MOVE_STRUGGLE_BUG
+	special ChooseMonForMoveTutor
+	waitstate
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq BugMoves_Tutor_23
+	removeitem ITEM_ORAN_BERRY, 1
+	msgbox BugMoves_Tutor_Text_10, MSGBOX_DEFAULT
+	release
+	end
+
+BugMoves_Tutor_14:
 	msgbox BugMoves_Tutor_Text_9, MSGBOX_DEFAULT
 	release
 	end
 
-BugMoves_Tutor_15:
+BugMoves_Tutor_17:
 	msgbox BugMoves_Tutor_Text_9, MSGBOX_DEFAULT
 	release
 	end
 
-BugMoves_Tutor_18:
+BugMoves_Tutor_20:
 	msgbox BugMoves_Tutor_Text_9, MSGBOX_DEFAULT
 	release
 	end
 
-BugMoves_Tutor_21:
+BugMoves_Tutor_23:
 	msgbox BugMoves_Tutor_Text_9, MSGBOX_DEFAULT
 	release
 	end
@@ -849,7 +851,7 @@ Defog_Tutor_Text_0:
 	.string "I am who they call the 'Defog' Tutor i\l"
 	.string "love using defog in battle against\l"
 	.string "those pesky hazards.\l"
-	.string "Like why is ceasless Edge even a\l"
+	.string "Like why is ceaseless Edge even a\l"
 	.string "thing??\p"
 	.string "Thank god for Rocky Helmet Corviknight\n"
 	.string "am i right, Fellas?\n"

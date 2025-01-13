@@ -1300,7 +1300,7 @@ RustboroCity_Text_YouCanHave2On2Battle:
 	.string "could beat two TRAINERS by yourself?$"
 `
 
-script RustboroCity_EventScript_Dustox {
+script RustboroCity_EventScript_Dustox{
 	lock
 	playmoncry(SPECIES_DUSTOX, CRY_MODE_NORMAL)
 	msgbox(format("The Dustox is too enthralled by the light to pay attention to you."))
@@ -1308,15 +1308,18 @@ script RustboroCity_EventScript_Dustox {
 	end
 }
 
-script RustboroCity_OnTransition {
+script RustboroCity_OnTransition{
 	setflag(FLAG_VISITED_RUSTBORO_CITY)
 	call(Common_EventScript_SetupRivalGfxId)
+	setflag(FLAG_TEMP_1)
 
 	special(GetTimeOfDaySpecial)
-	switch (var(VAR_RESULT)) {
+	switch (var(VAR_RESULT)){
 		case 3: //TIME_NIGHT
+			clearflag(FLAG_TEMP_1)
 			addobject(17) //Dustox
 		default:
+			setflag(FLAG_TEMP_1)
 			removeobject(17) //Dustox
 	}
 

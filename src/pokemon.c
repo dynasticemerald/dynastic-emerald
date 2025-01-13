@@ -6961,6 +6961,25 @@ void HealPokemon(struct Pokemon *mon)
     MonRestorePP(mon);
 }
 
+void HealStatusOnlyChansey(struct Pokemon *mon)
+{
+    u32 data;
+    data = STATUS1_NONE;
+    SetMonData(mon, MON_DATA_STATUS, &data);
+
+    MonRestorePP(mon);
+}
+
+void HealHPOnlyChansey(struct Pokemon *mon)
+{
+    u32 data;
+    data = GetMonData(mon, MON_DATA_MAX_HP);
+    SetMonData(mon, MON_DATA_HP, &data);
+
+    MonRestorePP(mon);
+}
+
+
 void HealBoxPokemon(struct BoxPokemon *boxMon)
 {
     u32 data;

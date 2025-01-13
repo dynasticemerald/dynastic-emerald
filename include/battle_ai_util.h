@@ -29,6 +29,7 @@ u32 GetDmgRollType(u32 battlerAtk);
 bool32 IsAiVsAiBattle(void);
 bool32 BattlerHasAi(u32 battlerId);
 bool32 IsAiBattlerAware(u32 battlerId);
+bool32 IsAiBattlerPredictingAbility(u32 battlerId);
 void ClearBattlerMoveHistory(u32 battlerId);
 void RecordLastUsedMoveBy(u32 battlerId, u32 move);
 void RecordAllMoves(u32 battler);
@@ -83,6 +84,7 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove);
 
 // stat stage checks
 bool32 AnyStatIsRaised(u32 battlerId);
+bool32 AnyStatIsRaised3(u32 battlerId);
 bool32 ShouldLowerStat(u32 battler, u32 battlerAbility, u32 stat);
 bool32 BattlerStatCanRise(u32 battler, u32 battlerAbility, u32 stat);
 bool32 AreBattlersStatsMaxed(u32 battler);
@@ -177,6 +179,7 @@ bool32 AI_IsBattlerAsleepOrComatose(u32 battlerId);
 // partner logic
 #define IS_TARGETING_PARTNER(battlerAtk, battlerDef)((battlerAtk) == (battlerDef ^ BIT_FLANK))
 u32 GetAllyChosenMove(u32 battlerId);
+u32 GetEnemyChosenMove(u32 battlerId);
 bool32 IsValidDoubleBattle(u32 battlerAtk);
 bool32 DoesPartnerHaveSameMoveEffect(u32 battlerAtkPartner, u32 battlerDef, u32 move, u32 partnerMove);
 bool32 PartnerHasSameMoveEffectWithoutTarget(u32 battlerAtkPartner, u32 move, u32 partnerMove);

@@ -233,7 +233,7 @@ const u8 *const gPocketNamesStringsTable[] =
 {
     [ITEMS_POCKET] =    COMPOUND_STRING("Items"),
     [BALLS_POCKET] =    COMPOUND_STRING("Poké Balls"),
-    //[TMHM_POCKET]  =    COMPOUND_STRING("TM & HM"),
+    [TMHM_POCKET]  =    COMPOUND_STRING("TM & HM"),
     [BERRIES_POCKET] =  COMPOUND_STRING("Berries"),
     [KEYITEMS_POCKET] = COMPOUND_STRING("Key Items")
 };
@@ -2361,9 +2361,9 @@ const u8 gText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't de
 const u8 gText_Rename[] = _("RENAME");
 
 // frlg_tm_case_port
-const u8 gText_TMCase[] =               _("TM CASE");
-const u8 gText_Close[] =                _("CLOSE");
-const u8 gText_TMCaseWillBePutAway[] =  _("The TM CASE will be\nput away.");
+const u8 gText_TMCase[] =               _("TM Case");
+const u8 gText_Close[] =                _("Close");
+const u8 gText_TMCaseWillBePutAway[] =  _("The TM Case will be\nput away.");
 const u8 gText_FontSmall[] =            _("{FONT_SMALL}");
 const u8 gText_FontShort[] =            _("{FONT_SHORT}");
 const u8 gText_TMCase_Blue[] =          _("{COLOR_HIGHLIGHT_SHADOW BLUE TRANSPARENT LIGHT_BLUE}{STR_VAR_2}");

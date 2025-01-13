@@ -518,6 +518,7 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
         return AI_CHOICE_WATCH;
 
     numOfBestMoves = 1;
+    AI_DATA->enemyMove = GetEnemyChosenMove(battlerAi);
     currentMoveArray[0] = AI_THINKING_STRUCT->score[0];
     consideredMoveArray[0] = 0;
 
@@ -572,6 +573,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
             gBattlerTarget = i;
 
             AI_DATA->partnerMove = GetAllyChosenMove(battlerAi);
+            AI_DATA->enemyMove = GetEnemyChosenMove(battlerAi);
             AI_THINKING_STRUCT->aiLogicId = 0;
             AI_THINKING_STRUCT->movesetIndex = 0;
             flags = AI_THINKING_STRUCT->aiFlags[sBattler_AI];
@@ -2609,7 +2611,13 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 
 static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 {
+    u8 monHasPriority;       
+    u8 hpAi = AI_DATA->hpPercents[battlerAtk];
     u32 movesetIndex = AI_THINKING_STRUCT->movesetIndex;
+    u32 numHits = (gMovesInfo[battlerAtk].effect == EFFECT_MULTI_HIT) || (0);
+    bool32 hasStatRaised = AnyStatIsRaised(battlerDef);
+    u32 playerHasStatRaisingMove = gMovesInfo[battlerDef].effect;
+
 
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
         return score;
@@ -2617,18 +2625,48 @@ static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     if (IS_MOVE_STATUS(move))
         return score; // status moves aren't accounted here
 
+    monHasPriority = GetMovePriority(battlerAtk, move) > 0;
+
     if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, movesetIndex, 0) && gMovesInfo[move].effect != EFFECT_EXPLOSION)
     {
         if (AI_IsFaster(battlerAtk, battlerDef, move))
-            ADJUST_SCORE(FAST_KILL);
-        else
-            ADJUST_SCORE(SLOW_KILL);
+        {
+            if(RandomPercentage(RNG_AI_KILL_PERCENTAGE_FAST, 80))
+            {
+                ADJUST_SCORE(FAST_KILL_80);
+            }
+            else
+            {
+                ADJUST_SCORE(FAST_KILL_20);
+            }
+        }
+        else if(AI_IsSlower(battlerAtk, battlerDef, move))
+        {
+            if(RandomPercentage(RNG_AI_KILL_PERCENTAGE_SLOW, 80))
+            {
+                ADJUST_SCORE(SLOW_KILL_80);
+            }
+            else
+            {
+                ADJUST_SCORE(SLOW_KILL_20);
+            }
+        }
+        else if (CanAIFaintTarget(battlerDef, battlerAtk, numHits))
+        {
+            if(GetWhichBattlerFasterOrTies(battlerAtk, battlerDef, TRUE) != AI_IS_SLOWER
+            && monHasPriority)
+            {
+                ADJUST_SCORE(7);
+            }
+        }
     }
-    else if (CanTargetFaintAi(battlerDef, battlerAtk)
-            && GetWhichBattlerFasterOrTies(battlerAtk, battlerDef, TRUE) != AI_IS_FASTER
-            && GetMovePriority(battlerAtk, move) > 0)
+    else if (CanTargetFaintAi(battlerDef, battlerAtk))
     {
-        ADJUST_SCORE(LAST_CHANCE);
+        if(GetWhichBattlerFasterOrTies(battlerAtk, battlerDef, TRUE) != AI_IS_FASTER
+        && monHasPriority)
+        {
+            ADJUST_SCORE(5);
+        }
     }
 
     return score;
@@ -3442,6 +3480,11 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(GOOD_EFFECT);
         if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_BIG_ROOT)
             ADJUST_SCORE(DECENT_EFFECT);
+        if (aiData->abilities[battlerAtk] == ABILITY_TRUANT
+        && gDisableStructs[battlerAtk].truantCounter)
+        {
+            ADJUST_SCORE(TRUANT_EFFECT);
+        }
         break;
     case EFFECT_TOXIC:
     case EFFECT_POISON:
@@ -5184,84 +5227,87 @@ static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     if (gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS || gMovesInfo[AI_DATA->partnerMove].effect == moveEffect)
         return score;
 
-    switch (moveEffect)
+    if(GetWhichBattlerFasterOrTies(battlerAtk, battlerDef, TRUE) != AI_IS_FASTER)
     {
-    case EFFECT_TAILWIND:
-        if (!gSideTimers[GetBattlerSide(battlerAtk)].tailwindTimer && !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gFieldTimers.trickRoomTimer > 1))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_TRICK_ROOM:
-        if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && !HasMoveEffect(battlerDef, EFFECT_TRICK_ROOM))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_MAGIC_ROOM:
-        if (!(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) && !HasMoveEffect(battlerDef, EFFECT_MAGIC_ROOM))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_WONDER_ROOM:
-        if (!(gFieldStatuses & STATUS_FIELD_WONDER_ROOM) && !HasMoveEffect(battlerDef, EFFECT_WONDER_ROOM))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_GRAVITY:
-        if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_SAFEGUARD:
-        if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_SAFEGUARD))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_MIST:
-        if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_MIST))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_LIGHT_SCREEN:
-    case EFFECT_REFLECT:
-    case EFFECT_AURORA_VEIL:
-        if (ShouldSetScreen(battlerAtk, battlerDef, moveEffect))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_SPIKES:
-    case EFFECT_STEALTH_ROCK:
-    case EFFECT_STICKY_WEB:
-    case EFFECT_TOXIC_SPIKES:
-        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, AI_DATA))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_GRASSY_TERRAIN:
-        if (!(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_ELECTRIC_TERRAIN:
-        if (!(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_PSYCHIC_TERRAIN:
-        if (!(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_MISTY_TERRAIN:
-        if (!(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_SANDSTORM:
-        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SANDSTORM | B_WEATHER_PRIMAL_ANY)))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_SUNNY_DAY:
-        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SUN | B_WEATHER_PRIMAL_ANY)))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_RAIN_DANCE:
-        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_RAIN | B_WEATHER_PRIMAL_ANY)))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_HAIL:
-        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_HAIL | B_WEATHER_PRIMAL_ANY)))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
-        break;
-    case EFFECT_SNOWSCAPE:
-        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SNOW | B_WEATHER_PRIMAL_ANY)))
-            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        switch (moveEffect)
+        {
+        case EFFECT_TAILWIND:
+            if (!gSideTimers[GetBattlerSide(battlerAtk)].tailwindTimer && !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gFieldTimers.trickRoomTimer > 1))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_TRICK_ROOM:
+            if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && !HasMoveEffect(battlerDef, EFFECT_TRICK_ROOM))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_MAGIC_ROOM:
+            if (!(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) && !HasMoveEffect(battlerDef, EFFECT_MAGIC_ROOM))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_WONDER_ROOM:
+            if (!(gFieldStatuses & STATUS_FIELD_WONDER_ROOM) && !HasMoveEffect(battlerDef, EFFECT_WONDER_ROOM))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_GRAVITY:
+            if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_SAFEGUARD:
+            if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_SAFEGUARD))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_MIST:
+            if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_MIST))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_LIGHT_SCREEN:
+        case EFFECT_REFLECT:
+        case EFFECT_AURORA_VEIL:
+            if (ShouldSetScreen(battlerAtk, battlerDef, moveEffect))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_SPIKES:
+        case EFFECT_STEALTH_ROCK:
+        case EFFECT_STICKY_WEB:
+        case EFFECT_TOXIC_SPIKES:
+            if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, AI_DATA))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_GRASSY_TERRAIN:
+            if (!(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_ELECTRIC_TERRAIN:
+            if (!(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_PSYCHIC_TERRAIN:
+            if (!(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_MISTY_TERRAIN:
+            if (!(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_SANDSTORM:
+            if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SANDSTORM | B_WEATHER_PRIMAL_ANY)))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_SUNNY_DAY:
+            if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SUN | B_WEATHER_PRIMAL_ANY)))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_RAIN_DANCE:
+            if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_RAIN | B_WEATHER_PRIMAL_ANY)))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_HAIL:
+            if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_HAIL | B_WEATHER_PRIMAL_ANY)))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+            break;
+        case EFFECT_SNOWSCAPE:
+            if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SNOW | B_WEATHER_PRIMAL_ANY)))
+                ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        }
     }
 
     return score;

@@ -136,20 +136,17 @@ EventScript_PkmnCenterPokeHelper::
 	lock
 	faceplayer
 	msgbox EventScript_PkmnCenterPokeHelper_Text_0
-	dynmultichoice 0, 0, TRUE, 5, 0, DYN_MULTICHOICE_CB_NONE, EventScript_PkmnCenterPokeHelper_Text_1, EventScript_PkmnCenterPokeHelper_Text_2, EventScript_PkmnCenterPokeHelper_Text_3, EventScript_PkmnCenterPokeHelper_Text_4, EventScript_PkmnCenterPokeHelper_Text_5
+	dynmultichoice 0, 0, TRUE, 5, 0, DYN_MULTICHOICE_CB_NONE, EventScript_PkmnCenterPokeHelper_Text_1, EventScript_PkmnCenterPokeHelper_Text_2, EventScript_PkmnCenterPokeHelper_Text_3, EventScript_PkmnCenterPokeHelper_Text_4
 	switch VAR_RESULT
 	case 0, EventScript_PkmnCenterPokeHelper_3
 	case 1, EventScript_PkmnCenterPokeHelper_4
 	case 2, EventScript_PkmnCenterPokeHelper_5
 	case 3, EventScript_PkmnCenterPokeHelper_6
-	case 4, EventScript_PkmnCenterPokeHelper_7
-EventScript_PkmnCenterPokeHelper_1:
 	release
 	end
 
 EventScript_PkmnCenterPokeHelper_3:
-	goto NicknameChanger
-	goto EventScript_PkmnCenterPokeHelper_1
+	return
 
 EventScript_PkmnCenterPokeHelper_4:
 	return
@@ -158,9 +155,6 @@ EventScript_PkmnCenterPokeHelper_5:
 	return
 
 EventScript_PkmnCenterPokeHelper_6:
-	return
-
-EventScript_PkmnCenterPokeHelper_7:
 	release
 	end
 
@@ -175,15 +169,14 @@ NicknameChanger_1:
 	waitmessage
 	waitbuttonpress
 	special ChoosePartyMon
-	call Common_EventScript_NameReceivedPartyMon
 	special BufferMonNickname
-	message NicknameChanger_Text_1
-	waitmessage
+	special ChangePokemonNickname
+	waitstate
 	waitbuttonpress
-	msgbox NicknameChanger_Text_2, MSGBOX_YESNO
+	msgbox NicknameChanger_Text_1, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq NicknameChanger_4
-	goto NatureChanger
+	goto lol
 	return
 
 NicknameChanger_2:
@@ -195,13 +188,30 @@ NicknameChanger_4:
 	end
 
 
+lol::
+	special ChoosePartyMon
+	special BufferMonNickname
+	special ChangePokemonNickname
+	waitstate
+	waitbuttonpress
+	msgbox NicknameChanger_Text_1, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq lol_1
+	goto lol
+	return
+
+lol_1:
+	release
+	end
+
+
 NatureChanger::
 	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
 	compare VAR_RESULT, SPECIES_EGG
 	goto_if_eq NatureChanger_2
 NatureChanger_1:
 	special BufferMonNickname
-	message NatureChanger_Text_0
+	message NatureChanger_Text_1
 	waitmessage
 	waitbuttonpress
 	special ChoosePartyMon
@@ -209,26 +219,68 @@ NatureChanger_1:
 	return
 
 NatureChanger_2:
-	goto SlateportCity_NameRatersHouse_EventScript_CantRateEgg
+	message NatureChanger_Text_0
+	waitmessage
+	waitbuttonpress
 	goto NatureChanger_1
+
+
+PkmnCenterChansey::
+	lock
+	faceplayer
+	message PkmnCenterChansey_Text_0
+	playmoncry SPECIES_CHANSEY, CRY_MODE_NORMAL
+	waitmoncry
+	waitbuttonpress
+	dynmultichoice 0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, PkmnCenterChansey_Text_1, PkmnCenterChansey_Text_2, PkmnCenterChansey_Text_3
+	switch VAR_RESULT
+	case 0, PkmnCenterChansey_2
+	case 1, PkmnCenterChansey_3
+	case 2, PkmnCenterChansey_4
+	return
+
+PkmnCenterChansey_2:
+	closemessage
+	message PkmnCenterChansey_Text_4
+	playfanfare MUS_HEAL
+	waitfanfare
+	waitbuttonpress
+	closemessage
+	special HealHP
+	callnative UpdateFollowingPokemon
+	release
+	end
+
+PkmnCenterChansey_3:
+	closemessage
+	message PkmnCenterChansey_Text_5
+	playfanfare MUS_HEAL
+	waitfanfare
+	waitbuttonpress
+	closemessage
+	special HealStatus
+	callnative UpdateFollowingPokemon
+	release
+	end
+
+PkmnCenterChansey_4:
+	release
+	end
 
 
 EventScript_PkmnCenterPokeHelper_Text_0:
 	.string "Hello.$"
 
 EventScript_PkmnCenterPokeHelper_Text_1:
-	.string "Change Nickname$"
-
-EventScript_PkmnCenterPokeHelper_Text_2:
 	.string "Change Nature$"
 
-EventScript_PkmnCenterPokeHelper_Text_3:
+EventScript_PkmnCenterPokeHelper_Text_2:
 	.string "Change Gender$"
 
-EventScript_PkmnCenterPokeHelper_Text_4:
+EventScript_PkmnCenterPokeHelper_Text_3:
 	.string "Change Tera Type$"
 
-EventScript_PkmnCenterPokeHelper_Text_5:
+EventScript_PkmnCenterPokeHelper_Text_4:
 	.string "cancel$"
 
 NicknameChanger_Text_0:
@@ -236,12 +288,30 @@ NicknameChanger_Text_0:
 	.string "{STR_VAR_1} to get?$"
 
 NicknameChanger_Text_1:
-	.string "Congrats its nickname was changed to\n"
-	.string "{STR_VAR_1}$"
-
-NicknameChanger_Text_2:
 	.string "Is this the nickname you want?$"
 
 NatureChanger_Text_0:
+	.string "Thats.. an egg.\n"
+	.string "Eggs can't be nature swapped.$"
+
+NatureChanger_Text_1:
 	.string "What new nature would you want\n"
 	.string "{STR_VAR_1} to get?$"
+
+PkmnCenterChansey_Text_0:
+	.string "Chansey: Chansey!$"
+
+PkmnCenterChansey_Text_1:
+	.string "Healing$"
+
+PkmnCenterChansey_Text_2:
+	.string "Status Removal$"
+
+PkmnCenterChansey_Text_3:
+	.string "Cancel$"
+
+PkmnCenterChansey_Text_4:
+	.string "Chansey used Soft Boiled!$"
+
+PkmnCenterChansey_Text_5:
+	.string "Chansey used Heal Bell!$"

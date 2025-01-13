@@ -1118,7 +1118,7 @@ static void DrawPartyMonIcons(void)
     u8 icon_x = 0;
     u8 icon_y = 0;
 
-    LoadMonIconPalettesTinted();
+    LoadMonIconPalettes();
 
     for (i = 0; i < gPlayerPartyCount; i++)
     {
@@ -1132,7 +1132,8 @@ static void DrawPartyMonIcons(void)
         {
             icon_x = i < 2 ? MON_ICON_START_X + MON_ICON_PADDING*0.5 + MON_ICON_PADDING * i : MON_ICON_START_X + MON_ICON_PADDING*0.5 + MON_ICON_PADDING * (i - 2);
             icon_y = MON_ICON_START_Y + MON_ICON_PADDING*0.5;
-        }else if (gPlayerPartyCount == 3)
+        }
+        else if (gPlayerPartyCount == 3)
         {
             icon_x = i < 3 ? MON_ICON_START_X + MON_ICON_PADDING * i : MON_ICON_START_X + MON_ICON_PADDING * (i - 3);
             icon_y = MON_ICON_START_Y + MON_ICON_PADDING*0.5;
@@ -1174,13 +1175,13 @@ static void TintPartyMonIcons(u16 tm)
         species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_ALL);
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(7, 11));
-        if (!CanLearnTeachableMove(species, ItemIdToBattleMoveId(tm + i))) 
+        if (!CanLearnTeachableMove(species, ItemIdToBattleMoveId(tm))) 
         {
             gSprites[spriteIdData[i]].oam.objMode = ST_OAM_OBJ_BLEND;
         }
         else
         {
-            gSprites[spriteIdData[i]].oam.objMode = ST_OAM_OBJ_NORMAL;//gMonIconPaletteIndices[species];
+            gSprites[spriteIdData[i]].oam.paletteNum = spriteIdPalette[i];
         }
     }
 }

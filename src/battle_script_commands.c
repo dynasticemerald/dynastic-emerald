@@ -7695,7 +7695,8 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         if (battlerAbility == ABILITY_TRUANT
             && gCurrentActionFuncId != B_ACTION_USE_MOVE
             && !gDisableStructs[battler].truantSwitchInHack
-            && gMovesInfo[trauntMove].healingMove)
+            && gMovesInfo[trauntMove].healingMove
+            && gMovesInfo[trauntMove].effect != EFFECT_PROTECT)
             gDisableStructs[battler].truantCounter = 1;
 
         gDisableStructs[battler].truantSwitchInHack = 0;

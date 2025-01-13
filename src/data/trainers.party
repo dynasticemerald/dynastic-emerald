@@ -95,7 +95,7 @@ Double Battle: No
 AI: Basic Trainer
 
 Lechonk @ Oran Berry  
-Ability: Thick Fat  
+Ability: Thick Fat
 Level: 7
 Tera Type: Normal  
 Serious Nature  
@@ -283,7 +283,6 @@ IVs: 0 Spe
 - Endeavor  
 
 
-
 === TRAINER_CINDY_1 ===
 Name: Cindy
 Class: Lady
@@ -294,7 +293,7 @@ Double Battle: No
 AI: Basic Trainer
 
 Chespin @ Red Card  
-Ability: Iron Barbs  
+Ability: Spiky Barbs
 Level: 8  
 Tera Type: Grass  
 Adamant Nature  
@@ -326,46 +325,166 @@ Jolly Nature
 /*Petalburg Woods*/
 
 === TRAINER_LYLE ===
-Name: LYLE
+Name: Lyle
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Dwebble @ Berry Juice  
+Ability: Weak Armor  
+Level: 11  
+Tera Type: Bug  
+Adamant Nature  
+- Rock Tomb  
+- Bulldoze  
+- Bug Bite  
+- Hone Claws  
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Dewpider @ Focus Sash  
+Ability: Water Bubble  
+Level: 10  
+Tera Type: Water  
+Relaxed Nature  
+- Water Pulse  
+- Leech Life  
+- Poison Jab  
+- Bite  
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ledian @ Charti Berry  
+Ability: Swarm  
+Level: 10  
+Tera Type: Bug  
+Jolly Nature  
+- Bug Bite  
+- Power-Up Punch  
+- Thunder Punch  
+- Roost  
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_GRUNT_PETALBURG_WOODS ===
+Name: Grunt
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Smart Trainer
+
+Murkrow @ Leftovers  
+Ability: Prankster  
+Level: 12  
+Tera Type: Dark  
+Careful Nature  
+- Pursuit  
+- Thunder Wave  
+- Roost  
+- Tailwind  
+
+Grimer-Alola @ Black Sludge  
+Ability: Poison Touch  
+Level: 12  
+Tera Type: Poison  
+Adamant Nature  
+- Bite  
+- Poison Fang  
+- Rock Tomb  
+- Shadow Sneak  
+
+Croagunk @ Expert Belt  
+Ability: Poison Touch  
+Level: 12  
+Tera Type: Poison  
+Mild Nature  
+- Vacuum Wave  
+- Lash Out  
+- Rock Tomb  
+- Venoshock  
+
+Houndour @ Charcoal  
+Ability: Unnerve  
+Level: 12  
+Tera Type: Dark  
+Modest Nature  
+IVs: 30 Atk / 30 SpA
+- Burning Jealousy  
+- Snarl  
+- Hidden Power 
+- Will-O-Wisp
 
 === TRAINER_JOSE ===
-Name: JOSE
+Name: Jose
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Wurmple
-Level: 8
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Spidops @ Leftovers  
+Ability: Insomnia  
+Level: 13  
+Tera Type: Bug  
+Adamant Nature  
+- Circle Throw  
+- Lunge  
+- Trailblaze  
+- Spikes  
 
-Nincada
-Level: 8
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Illumise @ Kebia Berry  
+Ability: Prankster  
+Level: 13  
+Tera Type: Bug  
+Adamant Nature  
+- Bug Bite  
+- Covet  
+- Tailwind  
+- Roost  
+
+Dottler @ Leftovers  
+Ability: Compound Eyes  
+Level: 13  
+Tera Type: Bug  
+Modest Nature  
+IVs: 0 Atk  
+- Shadow Ball  
+- Psybeam  
+- Struggle Bug  
+- Recover
+
+/*Route 104; Part 2*/
+
+=== TRAINER_WINSTON_1 ===
+Name: Winston
+Class: Rich Boy
+Pic: Rich Boy
+Gender: Male
+Music: Rich
+Items: Full Restore
+Double Battle: No
+AI: Basic Trainer
+
+Herdier @ Silk Scarf  
+Ability: Intimidate  
+Level: 13  
+Tera Type: Normal  
+Jolly Nature  
+- Rock Tomb  
+- Aerial Ace  
+- Pursuit  
+- Retaliate  
+
+Spinda @ Silk Scarf  
+Ability: Own Tempo  
+Level: 13  
+Tera Type: Normal  
+Adamant Nature  
+- Rapid Spin  
+- Ice Punch  
+- Low Kick  
+- Fake Out  
 
 === TRAINER_SAWYER_1 ===
 Name: SAWYER
@@ -506,20 +625,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Taillow
 Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_PETALBURG_WOODS ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Poochyena
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe  
 
 === TRAINER_MARCEL ===
 Name: MARCEL
@@ -2789,20 +2895,6 @@ IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 - Glare
 - Crunch
 
-=== TRAINER_WINSTON_1 ===
-Name: WINSTON
-Class: Rich Boy
-Pic: Rich Boy
-Gender: Male
-Music: Rich
-Items: Full Restore
-Double Battle: No
-AI: Check Bad Move
-
-Zigzagoon @ Nugget
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_MOLLIE ===
 Name: MOLLIE
 Class: Expert
@@ -5071,15 +5163,15 @@ Music: Female
 Double Battle: No
 AI: Smart Trainer
 
-Gible @ Rocky Helmet  
-Ability: Rough Skin  
+Pawniard @ Chople Berry
+Ability: Inner Focus
 Level: 14   
-Tera Type: Dragon  
-IVs: 30 Def / 30 SpA / 30 SpD
+Tera Type: Dark 
+IVs: 30 SpA / 30 SpD
 Jolly Nature  
-- Fire Fang  
-- Bulldoze  
+- Pursuit  
 - Secret Power  
+- Aerial Ace 
 - Stealth Rock  
 
 Archen @ Berry Juice  
@@ -5087,36 +5179,36 @@ Ability: Defeatist
 Level: 13  
 Tera Type: Rock  
 Jolly Nature  
-- Wing Attack  
+- Aerial Ace  
 - Rock Tomb  
 - Bulldoze  
 - Roost  
 
 Toedscool @ Berry Juice  
-Ability: Mycelium Might  
-Level: 15  
+Ability: Clear Body
+Level: 14  
 Tera Type: Ground  
 Timid Nature  
 IVs: 0 Atk  
-- Stun Spore  
+- Hex  
 - Mud Shot  
 - Mega Drain  
-- Growth  
+- Spore  
 
-Amaura @ Chople Berry  
-Ability: Refrigerate  
-Level: 14  
-Tera Type: Rock 
-IVs: 30 Atk / 30 SpA 
-Brave Nature  
-- Rock Tomb  
-- Echoed Voice  
-- Hidden Power
-- Thunder Wave  
+Gible @ Rocky Helmet  
+Ability: Rough Skin  
+Level: 15  
+Tera Type: Dragon  
+IVs: 30 Def / 30 SpA / 30 SpD
+Jolly Nature  
+- Breaking Swipe  
+- Bulldoze  
+- Secret Power  
+- Thunder Fang  
 
 Tirtouga @ Custap Berry  
 Ability: Sturdy  
-Level: 15  
+Level: 14  
 Tera Type: Water  
 Adamant Nature  
 - Curse  
@@ -11366,21 +11458,34 @@ Level: 25
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_HALEY_1 ===
-Name: HALEY
+Name: Haley
 Class: Lass
 Pic: Lass
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Lotad
-Level: 6
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Cottonee @ Leftovers  
+Ability: Prankster  
+Level: 13  
+Tera Type: Grass  
+Calm Nature  
+IVs: 0 Atk  
+- Mega Drain  
+- Substitute  
+- Leech Seed  
+- Stun Spore  
 
-Shroomish
-Level: 6
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Snubbull @ Leftovers  
+Ability: Strong Jaw  
+Level: 13  
+Tera Type: Fairy  
+Adamant Nature  
+- Covet  
+- Ice Fang  
+- Thunder Fang  
+- Fire Fang  
 
 === TRAINER_JANICE ===
 Name: JANICE
@@ -17083,7 +17188,15 @@ Pic: RS May
 Gender: Female
 Music: Male
 Double Battle: No
+AI: Smart Trainer
 
-Kyogre
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Slaking
+Ability: Truant
+Level: 100   
+Tera Type: Normal 
+Impish Nature 
+- Slack Off
+- Protect
+- Facade
+- Hammer Arm
+

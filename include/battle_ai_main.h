@@ -31,21 +31,25 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
 #define STAT_CHANGE_ACC        10
 #define STAT_CHANGE_EVASION    11
 
-#define BEST_DAMAGE_MOVE         1  // Move with the most amount of hits with the best accuracy/effect
+#define BEST_DAMAGE_MOVE         4  // Move with the most amount of hits with the best accuracy/effect
 #define POWERFUL_STATUS_MOVE     10 // Moves with this score will be chosen over a move that faints target
 #define NO_DAMAGE_OR_FAILS      -20 // Move fails or does no damage
 
 // Scores given in AI_CalcMoveEffectScore
 #define NO_INCREASE      0
-#define WEAK_EFFECT      1
-#define DECENT_EFFECT    2
-#define GOOD_EFFECT      3
-#define BEST_EFFECT      4
+#define WEAK_EFFECT      2
+#define DECENT_EFFECT    3
+#define GOOD_EFFECT      4
+#define BEST_EFFECT      5
+//Just for Truant
+#define TRUANT_EFFECT  21 //21 to always make its be chose above Any other move if truant is activated
 
 // AI_TryToFaint
-#define FAST_KILL      6 // AI is faster and faints target
-#define SLOW_KILL      4 // AI is slower and faints target
-#define LAST_CHANCE    2 // AI faints to target. It should try and do damage with a priority move
+#define FAST_KILL_80   12 // AI is faster and faints target; 80%
+#define FAST_KILL_20   14 // AI is faster and faints target; 20%
+#define SLOW_KILL_80   9 // AI is slower and faints target; 80%
+#define SLOW_KILL_20   11 // AI is slower and faints target; 20%
+#define LAST_CHANCE    7 // AI faints to target. It should try and do damage with a priority move
 
 // AI_Risky
 #define STRONG_RISKY_EFFECT     3

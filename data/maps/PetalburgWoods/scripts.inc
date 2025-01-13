@@ -1,8 +1,6 @@
 
-.set LOCALID_GRUNT, 16
-.set LOCALID_DEVON_EMPLOYEE, 15
-.set LOCALID_RIVAL_RED, 14
-.set LOCALID_REDS_CHARMANDER, 0
+.set LOCALID_GRUNT, 15
+.set LOCALID_DEVON_EMPLOYEE, 14
 
 PetalburgWoods_MapScripts::
 	.byte 0
@@ -480,27 +478,27 @@ PetalburgWoods_Text_TrainerTipsPP:
 PetalburgWoods_EventScript_RivalRedBegin::
 	compare VAR_RIVAL_RED_STATE, 0
 	goto_if_eq PetalburgWoods_EventScript_RivalRedBegin_1
-	removeobject LOCALID_RIVAL_RED
+	removeobject 0
 	release
 	end
 
 PetalburgWoods_EventScript_RivalRedBegin_1:
 	lock
 	playbgm MUS_RG_ENCOUNTER_RIVAL, FALSE
-	applymovement LOCALID_RIVAL_RED, MoveDownRivalRedPetalburg
-	applymovement LOCALID_REDS_CHARMANDER, MoveDownRivalRedPetalburg
-	waitmovement LOCALID_RIVAL_RED
-	waitmovement LOCALID_REDS_CHARMANDER
+	applymovement 0, MoveDownRivalRedPetalburg
+	applymovement 0, MoveDownRivalRedPetalburg
+	waitmovement 0
+	waitmovement 0
 	msgbox RivalRedPetalburg, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_RIVAL_RED_PWOODS, LoseTextRivalRedWoods
 	msgbox RivalRedPetalburg2, MSGBOX_DEFAULT
 	playbgm MUS_RG_RIVAL_EXIT, FALSE
-	applymovement LOCALID_RIVAL_RED, MoveAwayRivalRedPetalburg
-	applymovement LOCALID_REDS_CHARMANDER, MoveAwayRivalRedPetalburg
-	waitmovement LOCALID_RIVAL_RED
-	waitmovement LOCALID_REDS_CHARMANDER
-	removeobject 15
-	removeobject LOCALID_RIVAL_RED
+	applymovement 0, MoveAwayRivalRedPetalburg
+	applymovement 0, MoveAwayRivalRedPetalburg
+	waitmovement 0
+	waitmovement 0
+	removeobject 0
+	removeobject 0
 	fadeoutbgm 2
 	setflag FLAG_HIDE_RIVAL_RED_PETALBURG_WOODS
 	setflag FLAG_RED_1_BEATEN

@@ -206,7 +206,7 @@ struct Time
 
 struct SaveBlock3
 {
-    u8 dexNavSearchLevels[ROUND_BITS_TO_BYTES(NUM_SPECIES)];
+    u8 dexNavSearchLevels[NUM_SPECIES];
     u8 dexNavChain;
     struct Time fakeRTC;
     u8 optionsShinyRate:2;

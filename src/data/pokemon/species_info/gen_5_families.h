@@ -7689,8 +7689,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     {
         .baseHP        = 114,
         .baseAttack    = 85,
-        .baseDefense   = 70,
-        .baseSpeed     = 30,
+        .baseDefense   = 70 + 10,
+        .baseSpeed     = 30 - 20,
         .baseSpAttack  = 85,
         .baseSpDefense = 80,
         .types = MON_TYPES(TYPE_GRASS, TYPE_POISON),

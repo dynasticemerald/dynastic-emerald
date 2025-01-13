@@ -102,6 +102,15 @@ bool32 IsAiBattlerAware(u32 battlerId)
     return BattlerHasAi(battlerId);
 }
 
+bool32 IsAiBattlerPredictingAbility(u32 battlerId)
+{
+    if (AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_WEIGH_ABILITY_PREDICTION
+     || AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_RIGHT] & AI_FLAG_WEIGH_ABILITY_PREDICTION)
+        return TRUE;
+
+    return BattlerHasAi(battlerId);
+}
+
 void ClearBattlerMoveHistory(u32 battlerId)
 {
     memset(BATTLE_HISTORY->usedMoves[battlerId], 0, sizeof(BATTLE_HISTORY->usedMoves[battlerId]));
@@ -1335,6 +1344,8 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
     u32 validAbilities[NUM_ABILITY_SLOTS];
     u8 i, numValidAbilities = 0;
     u32 knownAbility = AI_GetBattlerAbility(battlerId);
+    u32 indexAbility;
+    u32 abilityAiRatings[NUM_ABILITY_SLOTS] = {0};
 
     // We've had ability overwritten by e.g. Worry Seed. It is not part of AI_PARTY in case of switching
     if (gBattleStruct->overwrittenAbilities[battlerId])
@@ -1360,6 +1371,9 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
         if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[i] != ABILITY_NONE)
             validAbilities[numValidAbilities++] = gSpeciesInfo[gBattleMons[battlerId].species].abilities[i];
     }
+
+    if (numValidAbilities > 0 && IsAiBattlerPredictingAbility(battlerId))
+        return validAbilities[RandomWeighted(RNG_AI_PREDICT_ABILITY, abilityAiRatings[0], abilityAiRatings[1], abilityAiRatings[2])];
 
     if (numValidAbilities > 0)
         return validAbilities[RandomUniform(RNG_AI_ABILITY, 0, numValidAbilities - 1)];
@@ -1720,6 +1734,12 @@ void ProtectChecks(u32 battlerAtk, u32 battlerDef, u32 move, u32 predictedMove, 
             ADJUST_SCORE_PTR(-(min(uses, 3)));
     }
 
+    if (AI_DATA->abilities[battlerAtk] == ABILITY_TRUANT
+    && gDisableStructs[battlerAtk].truantCounter)
+    {
+        ADJUST_SCORE_PTR(TRUANT_EFFECT);
+    }
+
     if (gBattleMons[battlerAtk].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_FROSTBITE)
      || gBattleMons[battlerAtk].status2 & (STATUS2_CURSED | STATUS2_INFATUATION)
      || gStatuses3[battlerAtk] & (STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN))
@@ -1788,6 +1808,18 @@ bool32 AnyStatIsRaised(u32 battlerId)
     for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
     {
         if (gBattleMons[battlerId].statStages[i] > DEFAULT_STAT_STAGE)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 AnyStatIsRaised3(u32 battlerId)
+{
+    u32 i;
+
+    for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
+    {
+        if (gBattleMons[battlerId].statStages[i] > 3)
             return TRUE;
     }
     return FALSE;
@@ -3308,6 +3340,18 @@ u32 GetAllyChosenMove(u32 battlerId)
         return gBattleMons[partnerBattler].moves[gBattleStruct->chosenMovePositions[partnerBattler]];
 }
 
+u32 GetEnemyChosenMove(u32 battlerId)
+{
+    u32 enemyBattler = BATTLE_OPPOSITE(battlerId);
+
+    if (!IsBattlerAlive(enemyBattler) || !IsAiBattlerAware(enemyBattler))
+        return MOVE_NONE;
+    else if (enemyBattler > battlerId) // Battler with the lower id chooses the move first.
+        return gLastMoves[enemyBattler];
+    else
+        return gBattleMons[enemyBattler].moves[gBattleStruct->chosenMovePositions[enemyBattler]];
+}
+
 //PARTNER_MOVE_EFFECT_IS_SAME
 bool32 DoesPartnerHaveSameMoveEffect(u32 battlerAtkPartner, u32 battlerDef, u32 move, u32 partnerMove)
 {
@@ -3821,7 +3865,9 @@ void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
             ADJUST_SCORE_PTR(DECENT_EFFECT);
 
         if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_STALL && HasMoveEffect(battlerAtk, EFFECT_PROTECT))
-            ADJUST_SCORE_PTR(WEAK_EFFECT);    // stall tactic
+            ADJUST_SCORE_PTR(WEAK_EFFECT);
+        else if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_STALL && HasMoveEffect(battlerAtk, EFFECT_PROTECT) && AnyPartyMemberStatused(battlerAtk, gMovesInfo[battlerAtk].soundMove) == STATUS1_TOXIC_POISON)    // stall tactic
+            ADJUST_SCORE_PTR(GOOD_EFFECT);
 
         if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_PSN_ANY)
           || HasMoveEffect(battlerAtk, EFFECT_VENOM_DRENCH)
