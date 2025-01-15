@@ -5708,6 +5708,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 
             DisplayPartyMenuMessage(gStringVar4, TRUE);
             ScheduleBgCopyTilemapToVram(2);
+            RemoveLevelUpStatsWindow();
             gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
         }
         else
@@ -5738,26 +5739,26 @@ static void UpdateMonDisplayInfoAfterRareCandy(u8 slot, struct Pokemon *mon)
 
 static void Task_DisplayLevelUpStatsPg1(u8 taskId)
 {
-    if (WaitFanfare(FALSE) && IsPartyMenuTextPrinterActive() != TRUE && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
+    if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON)))
     {
         PlaySE(SE_SELECT);
-        DisplayLevelUpStatsPg1(taskId);
-        gTasks[taskId].func = Task_DisplayLevelUpStatsPg2;
+        RemoveLevelUpStatsWindow();
+        gTasks[taskId].func = Task_TryLearnNewMoves;
     }
 }
 
-static void Task_DisplayLevelUpStatsPg2(u8 taskId)
+static UNUSED void Task_DisplayLevelUpStatsPg2(u8 taskId)
 {
     if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON)))
     {
         PlaySE(SE_SELECT);
-        DisplayLevelUpStatsPg2(taskId);
+        RemoveLevelUpStatsWindow();
         sInitialLevel += 1; // so the Pokemon doesn't learn a move meant for its previous level
         gTasks[taskId].func = Task_TryLearnNewMoves;
     }
 }
 
-static void DisplayLevelUpStatsPg1(u8 taskId)
+static UNUSED void DisplayLevelUpStatsPg1(u8 taskId)
 {
     u16 *arrayPtr = (u16*) sPartyMenuInternal->data;
 
@@ -5767,7 +5768,7 @@ static void DisplayLevelUpStatsPg1(u8 taskId)
     ScheduleBgCopyTilemapToVram(2);
 }
 
-static void DisplayLevelUpStatsPg2(u8 taskId)
+static UNUSED void DisplayLevelUpStatsPg2(u8 taskId)
 {
     u16 *arrayPtr = (u16*) sPartyMenuInternal->data;
 

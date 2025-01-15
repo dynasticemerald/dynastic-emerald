@@ -463,8 +463,7 @@ BugMoves_Tutor_4:
 
 BugMoves_Tutor_10:
 	setvar VAR_0x8005, MOVE_BUG_BITE
-	special ChooseMonForMoveTutor
-	waitstate
+	goto MoveTutor_EventScript_OpenPartyMenu
 	compare VAR_RESULT, MULTI_B_PRESSED
 	goto_if_eq BugMoves_Tutor_14
 	removeitem ITEM_ORAN_BERRY, 1
@@ -474,7 +473,7 @@ BugMoves_Tutor_10:
 
 BugMoves_Tutor_11:
 	setvar VAR_0x8005, MOVE_SILVER_WIND
-	special ChooseMonForMoveTutor
+	goto MoveTutor_EventScript_OpenPartyMenu
 	waitstate
 	compare VAR_RESULT, MULTI_B_PRESSED
 	goto_if_eq BugMoves_Tutor_17
@@ -485,7 +484,7 @@ BugMoves_Tutor_11:
 
 BugMoves_Tutor_12:
 	setvar VAR_0x8005, MOVE_POUNCE
-	special ChooseMonForMoveTutor
+	goto MoveTutor_EventScript_OpenPartyMenu
 	waitstate
 	compare VAR_RESULT, MULTI_B_PRESSED
 	goto_if_eq BugMoves_Tutor_20
@@ -496,7 +495,7 @@ BugMoves_Tutor_12:
 
 BugMoves_Tutor_13:
 	setvar VAR_0x8005, MOVE_STRUGGLE_BUG
-	special ChooseMonForMoveTutor
+	goto MoveTutor_EventScript_OpenPartyMenu
 	waitstate
 	compare VAR_RESULT, MULTI_B_PRESSED
 	goto_if_eq BugMoves_Tutor_23
@@ -765,6 +764,7 @@ ElementalFangsTutor_4:
 	case 0, ElementalFangsTutor_8
 	case 1, ElementalFangsTutor_9
 	case 2, ElementalFangsTutor_10
+	case 3, ElementalFangsTutor_11
 	return
 
 ElementalFangsTutor_8:
@@ -787,6 +787,15 @@ ElementalFangsTutor_9:
 
 ElementalFangsTutor_10:
 	setvar VAR_0x8005, MOVE_THUNDER_FANG
+	special ChooseMonForMoveTutor
+	waitstate
+	applymovement 2, LookUp
+	waitmovement 0
+	release
+	end
+
+ElementalFangsTutor_11:
+	setvar VAR_0x8005, MOVE_PSYCHIC_FANGS
 	special ChooseMonForMoveTutor
 	waitstate
 	applymovement 2, LookUp

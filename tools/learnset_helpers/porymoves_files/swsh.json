@@ -25500,7 +25500,9 @@
       "MOVE_STEALTH_ROCK",
       "MOVE_HEAVY_SLAM",
       "MOVE_HIGH_HORSEPOWER",
-      "MOVE_BODY_PRESS"
+      "MOVE_BODY_PRESS",
+      "MOVE_DRAGON_DANCE",
+      "MOVE_DRAGON_HAMMER"
     ],
     "EggMoves": [
       "MOVE_CURSE",

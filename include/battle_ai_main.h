@@ -37,18 +37,21 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
 
 // Scores given in AI_CalcMoveEffectScore
 #define NO_INCREASE      0
-#define WEAK_EFFECT      2
-#define DECENT_EFFECT    3
-#define GOOD_EFFECT      4
-#define BEST_EFFECT      5
+#define WEAK_EFFECT      1
+#define DECENT_EFFECT    2
+#define GOOD_EFFECT      3
+#define BEST_EFFECT      4
+#define INSANE_EFFECT    5
 //Just for Truant
-#define TRUANT_EFFECT  21 //21 to always make its be chose above Any other move if truant is activated
+#define TRUANT_EFFECT  16 //16 to always make its be chose above ANY other move if truant is activated
+//For Prankster
+#define PRANKSER_EFFECT  7 //7 to make it so it will tie with 30% slow kill so it has some randomness
 
 // AI_TryToFaint
-#define FAST_KILL_80   12 // AI is faster and faints target; 80%
-#define FAST_KILL_20   14 // AI is faster and faints target; 20%
-#define SLOW_KILL_80   9 // AI is slower and faints target; 80%
-#define SLOW_KILL_20   11 // AI is slower and faints target; 20%
+#define FAST_KILL_70   6 // AI is faster and faints target; 70%
+#define FAST_KILL_30   8 // AI is faster and faints target; 30%
+#define SLOW_KILL_70   5 // AI is slower and faints target; 70%
+#define SLOW_KILL_30   7 // AI is slower and faints target; 30%
 #define LAST_CHANCE    7 // AI faints to target. It should try and do damage with a priority move
 
 // AI_Risky

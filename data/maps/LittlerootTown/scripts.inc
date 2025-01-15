@@ -884,10 +884,10 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 	end
 
 LittlerootTown_EventScript_GiveRunningShoes::
-	msgbox LittlerootTown_Text_PlayerGetOldRod, MSGBOX_DEFAULT
-	giveitem ITEM_SUPER_ROD
 	msgbox LittlerootTown_Text_PlayerGetCandyBox, MSGBOX_DEFAULT
 	giveitem ITEM_RARE_CANDY
+	msgbox LittlerootTown_Text_PlayerGetOldRod, MSGBOX_DEFAULT
+	giveitem ITEM_OLD_ROD
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_OLD_ROD
 	closemessage

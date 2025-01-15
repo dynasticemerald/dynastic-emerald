@@ -4458,7 +4458,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 if (!(gBattleWeather & WEATHER_RAIN))
                 {
                     gBattlerAttacker = B_POSITION_OPPONENT_LEFT;
-                    gBattleWeather != WEATHER_RAIN; //Not sure why this gives a warning.
+                    gBattleWeather = WEATHER_RAIN; //Not sure why this gives a warning.
                     gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
                     gWishFutureKnock.weatherDuration = 0; // infinite
                     effect = 1;
@@ -9701,6 +9701,8 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
     case HOLD_EFFECT_OGERPON_MASK:
         if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_OGERPON)
+           modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
+    case HOLD_EFFECT_RUSTED_SS:
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
     }

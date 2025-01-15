@@ -1368,19 +1368,50 @@ SlateportCity_Text_TakingBattleTentChallenge:
 script SlateportCity_PowerItems_Merchant{
 	lock
 	faceplayer
-	message (gText_HowMayIServeYou)
-	waitmessage
-	if(!defeated(TRAINER_WATTSON_1)){
-	pokemart (SlateportCity_PowerItems_Merchant_BuySell) 
-	return
+	message(format("Please choose wich type off item you want to buy."))
+	waitbuttonpress
+	closemessage
+	dynmultichoice(0,0,TRUE,4,0,DYN_MULTICHOICE_CB_NONE,"Power Items","Nature Mints","Cancel")	
+	switch(var(VAR_RESULT))
+	{
+		case 0: //Power Items
+			message (gText_HowMayIServeYou)
+			waitmessage
+			if(!defeated(TRAINER_WATTSON_1)){
+			closemessage
+			pokemart (SlateportCity_PowerItems_Merchant_BuySell) 
+			if(var(VAR_RESULT) == MULTI_B_PRESSED)
+			{
+				closemessage msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+			}
+			msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+			}
+			else{
+			closemessage
+			pokemart (SlateportCity_PowerItems_Merchant_BuySell_Expanded) 
+			if(var(VAR_RESULT) == MULTI_B_PRESSED)
+			{
+				closemessage msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+			}
+			msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+			}
+		case 1:
+			message (gText_HowMayIServeYou)
+			waitmessage
+			dynmultichoice(0,0,TRUE,5,0,DYN_MULTICHOICE_CB_NONE,"Attack","Defense","Special Attack","Special Defense","Speed")
+			if(var(VAR_RESULT) == MULTI_B_PRESSED)
+			{
+				msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+			}
+			switch(var(VAR_RESULT))
+			{
+				case 0:	closemessage pokemart (SlateportCity_PowerItems_Merchant_BuySell_Mints_Attack)  msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+				case 1: closemessage pokemart (SlateportCity_PowerItems_Merchant_BuySell_Mints_Defense)  msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+				case 2: closemessage pokemart (SlateportCity_PowerItems_Merchant_BuySell_Mints_SpecialAttack)  msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+				case 3: closemessage pokemart (SlateportCity_PowerItems_Merchant_BuySell_Mints_SpecialDefense)  msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+				case 4: closemessage pokemart (SlateportCity_PowerItems_Merchant_BuySell_Mints_Speed) msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT) release end
+			}
 	}
-	else{
-	pokemart (SlateportCity_PowerItems_Merchant_BuySell_Expanded) 
-	return
-	}
-	msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT)
-	release
-	end
 }
 
 mart SlateportCity_PowerItems_Merchant_BuySell{
@@ -1403,4 +1434,39 @@ mart SlateportCity_PowerItems_Merchant_BuySell_Expanded{
 	ITEM_POWER_LENS
 	ITEM_POWER_WEIGHT
 	ITEM_AMULET_COIN
+}
+
+mart SlateportCity_PowerItems_Merchant_BuySell_Mints_Attack{
+	ITEM_ADAMANT_MINT
+	ITEM_BRAVE_MINT
+	ITEM_LONELY_MINT
+	ITEM_NAUGHTY_MINT
+}
+
+mart SlateportCity_PowerItems_Merchant_BuySell_Mints_Defense{
+	ITEM_BOLD_MINT
+	ITEM_IMPISH_MINT
+	ITEM_LAX_MINT
+	ITEM_RELAXED_MINT
+}
+
+mart SlateportCity_PowerItems_Merchant_BuySell_Mints_SpecialAttack{
+	ITEM_MODEST_MINT
+	ITEM_MILD_MINT
+	ITEM_QUIET_MINT
+	ITEM_RASH_MINT
+}
+
+mart SlateportCity_PowerItems_Merchant_BuySell_Mints_SpecialDefense{
+	ITEM_CALM_MINT
+	ITEM_CAREFUL_MINT
+	ITEM_GENTLE_MINT
+	ITEM_SASSY_MINT
+}
+
+mart SlateportCity_PowerItems_Merchant_BuySell_Mints_Speed{
+	ITEM_TIMID_MINT
+	ITEM_JOLLY_MINT
+	ITEM_HASTY_MINT
+	ITEM_NAIVE_MINT
 }

@@ -28,6 +28,7 @@
 #include "menu.h"
 #include "menu_helpers.h"
 #include "mon_markings.h"
+#include "event_data.h"
 #include "party_menu.h"
 #include "palette.h"
 #include "pokeball.h"
@@ -2273,8 +2274,8 @@ static void CloseSummaryScreen(u8 taskId)
             SetGpuReg(REG_OFFSET_BLDCNT, 0);
             SetGpuReg(REG_OFFSET_BLDALPHA, 0);
         }
-        /*if (sMonSummaryScreen->callback == gInitialSummaryScreenCallbackBW)
-            gInitialSummaryScreenCallbackBW = NULL;*/
+        if (sMonSummaryScreen->callback == gInitialSummaryScreenCallbackBW)
+            gInitialSummaryScreenCallbackBW = NULL;
         SetMainCallback2(sMonSummaryScreen->callback);
         gLastViewedMonIndex = sMonSummaryScreen->curMonIndex;
         SummaryScreen_DestroyAnimDelayTask();
@@ -2369,18 +2370,24 @@ static void Task_HandleInput(u8 taskId)
             tSkillsState = defaultSkillsState;
             ChangePage(taskId, 1);
         }
+        else if (JOY_NEW(SELECT_BUTTON))
+        {
+            if (ShouldShowRenameBW())
+            {
+                sMonSummaryScreen->callback = CB2_PssChangePokemonNicknameBW;
+                gSpecialVar_0x8004 = sMonSummaryScreen->curMonIndex;
+
+                StopPokemonAnimations();
+                PlaySE(SE_SELECT);
+                BeginCloseSummaryScreen(taskId);
+            }
+        }
         else if (JOY_NEW(A_BUTTON))
         {
             if (sMonSummaryScreen->currPageIndex != PSS_PAGE_SKILLS_BW)
             {
                 if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO_BW)
                 {
-                    if (ShouldShowRenameBW())
-                    {
-                        sMonSummaryScreen->callback = CB2_PssChangePokemonNicknameBW;
-                        gSpecialVar_0x8004 = sMonSummaryScreen->curMonIndex;
-                    }
-
                     StopPokemonAnimations();
                     PlaySE(SE_SELECT);
                     BeginCloseSummaryScreen(taskId);
@@ -3550,6 +3557,22 @@ static void PrintAOrBButtonIcon(u8 windowId, bool8 bButton, u32 x)
     BlitBitmapToWindow(windowId, button, x, 0, 16, 16);
 }
 
+static const u8 sRLButtons_Gfx[][4 * TILE_SIZE_4BPP] = {
+    INCBIN_U8("graphics/summary_screen/r_button.4bpp"),
+    INCBIN_U8("graphics/summary_screen/bw/l_button.4bpp"),
+};
+
+static void PrintROrLButtonIcon(u8 windowId, bool8 lButton, u32 x)
+{
+    const u8 *button;
+    if (!lButton)
+        button = sRLButtons_Gfx[0];
+    else
+        button = sRLButtons_Gfx[1];
+
+    BlitBitmapToWindow(windowId, button, x, 0, 16, 16);
+}
+
 static void PrintPageNamesAndStats(void)
 {
     int stringXPos;
@@ -3587,13 +3610,15 @@ static void PrintPageNamesAndStats(void)
                 iconXPos = 0;
             PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_IVS, FALSE, iconXPos);
             PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_IVS, sText_ViewIVs_Graded, stringXPos, 1, 0, 1);
-
-            stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, sText_ViewEVs_Graded, skillsLabelWidth);
-            iconXPos = stringXPos - 16;
-            if (iconXPos < 0)
-                iconXPos = 0;
-            PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_EVS, FALSE, iconXPos);
-            PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_EVS, sText_ViewEVs_Graded, stringXPos, 1, 0, 1);
+            if(!FlagGet(MINIMAL_GRINDING_MODE))
+            {
+                stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, sText_ViewEVs_Graded, skillsLabelWidth);
+                iconXPos = stringXPos - 16;
+                if (iconXPos < 0)
+                    iconXPos = 0;
+                PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_EVS, FALSE, iconXPos);
+                PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_EVS, sText_ViewEVs_Graded, stringXPos, 1, 0, 1);
+            }
         }
         else // precise display
         {
@@ -3958,6 +3983,7 @@ static void BufferNatureString(void)
 {
     struct PokemonSummaryScreenDataBW *sumStruct = sMonSummaryScreen;
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.nature].name);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.mintNature].name);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gText_EmptyString5);
 }
 
@@ -4932,10 +4958,8 @@ static void SetNewMoveTypeIcon(void)
     }
     else
     {
-        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES_BW){
-            movetype = SetTypeBeforeUsingMove(sMonSummaryScreen->newMove, 0);
+        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES_BW)
             SetTypeSpritePosAndPal(movetype, 8, 128, SPRITE_ARR_ID_TYPE + 4);
-        }
         else
             SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 8, 128, SPRITE_ARR_ID_TYPE + 4);
     }
@@ -5345,14 +5369,14 @@ static void ShowCancelOrRenamePromptBW(void)
     if (iconXPos < 0)
         iconXPos = 0;
 
-    PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, FALSE, iconXPos);
+    PrintROrLButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, TRUE, iconXPos);
     PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, promptText, stringXPos, 1, 0, 1);
 }
 
 static void CB2_ReturnToSummaryScreenFromNamingScreenBW(void)
 {
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar2);
-    ShowPokemonSummaryScreen_BW(SUMMARY_MODE_NORMAL, gPlayerParty, gSpecialVar_0x8004, gPlayerPartyCount - 1, gInitialSummaryScreenCallbackBW);
+    ShowPokemonSummaryScreen_BW(BW_SUMMARY_MODE_NORMAL, gPlayerParty, gSpecialVar_0x8004, gPlayerPartyCount - 1, gInitialSummaryScreenCallbackBW);
 }
 
 static void CB2_PssChangePokemonNicknameBW(void)

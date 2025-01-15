@@ -373,10 +373,10 @@ script BugMoves_Tutor{
 		msgbox(format("Great! Wich move should i teach to one of Your Pokémon?"), MSGBOX_DEFAULT)
 		dynmultichoice(0,0,FALSE,4,0,DYN_MULTICHOICE_CB_NONE, "Bug Bite", "Silver Wind", "Pounce", "Struggle Bug")
 			switch (var(VAR_RESULT)){
-				case 0: setvar (VAR_0x8005, MOVE_BUG_BITE) special (ChooseMonForMoveTutor) waitstate if(var(VAR_RESULT) == MULTI_B_PRESSED){ msgbox(format("Aw, shooks my Weedle is at 1 hp, you monster >:("), MSGBOX_DEFAULT) release end } else { removeitem(ITEM_ORAN_BERRY, 1) msgbox(format("Thank you! now my weedle can be Healed Up!"), MSGBOX_DEFAULT) release end}
-				case 1: setvar (VAR_0x8005, MOVE_SILVER_WIND) special (ChooseMonForMoveTutor) waitstate if(var(VAR_RESULT) == MULTI_B_PRESSED){ msgbox(format("Aw, shooks my Weedle is at 1 hp, you monster >:("), MSGBOX_DEFAULT) release end } else { removeitem(ITEM_ORAN_BERRY, 1) msgbox(format("Thank you! now my weedle can be Healed Up!"), MSGBOX_DEFAULT) release end}
-				case 2: setvar (VAR_0x8005, MOVE_POUNCE) special (ChooseMonForMoveTutor) waitstate if(var(VAR_RESULT) == MULTI_B_PRESSED){ msgbox(format("Aw, shooks my Weedle is at 1 hp, you monster >:("), MSGBOX_DEFAULT) release end } else { removeitem(ITEM_ORAN_BERRY, 1) msgbox(format("Thank you! now my weedle can be Healed Up!"), MSGBOX_DEFAULT) release end}
-				case 3: setvar (VAR_0x8005, MOVE_STRUGGLE_BUG) special (ChooseMonForMoveTutor) waitstate if(var(VAR_RESULT) == MULTI_B_PRESSED){ msgbox(format("Aw, shooks my Weedle is at 1 hp, you monster >:("), MSGBOX_DEFAULT) release end } else { removeitem(ITEM_ORAN_BERRY, 1) msgbox(format("Thank you! now my weedle can be Healed Up!"), MSGBOX_DEFAULT) release end}
+				case 0: setvar (VAR_0x8005, MOVE_BUG_BITE) goto(MoveTutor_EventScript_OpenPartyMenu) if(var(VAR_RESULT) == MULTI_B_PRESSED){ msgbox(format("Aw, shooks my Weedle is at 1 hp, you monster >:("), MSGBOX_DEFAULT) release end } else { removeitem(ITEM_ORAN_BERRY, 1) msgbox(format("Thank you! now my weedle can be Healed Up!"), MSGBOX_DEFAULT) release end}
+				case 1: setvar (VAR_0x8005, MOVE_SILVER_WIND) goto(MoveTutor_EventScript_OpenPartyMenu) waitstate if(var(VAR_RESULT) == MULTI_B_PRESSED){ msgbox(format("Aw, shooks my Weedle is at 1 hp, you monster >:("), MSGBOX_DEFAULT) release end } else { removeitem(ITEM_ORAN_BERRY, 1) msgbox(format("Thank you! now my weedle can be Healed Up!"), MSGBOX_DEFAULT) release end}
+				case 2: setvar (VAR_0x8005, MOVE_POUNCE) goto(MoveTutor_EventScript_OpenPartyMenu) waitstate if(var(VAR_RESULT) == MULTI_B_PRESSED){ msgbox(format("Aw, shooks my Weedle is at 1 hp, you monster >:("), MSGBOX_DEFAULT) release end } else { removeitem(ITEM_ORAN_BERRY, 1) msgbox(format("Thank you! now my weedle can be Healed Up!"), MSGBOX_DEFAULT) release end}
+				case 3: setvar (VAR_0x8005, MOVE_STRUGGLE_BUG) goto(MoveTutor_EventScript_OpenPartyMenu) waitstate if(var(VAR_RESULT) == MULTI_B_PRESSED){ msgbox(format("Aw, shooks my Weedle is at 1 hp, you monster >:("), MSGBOX_DEFAULT) release end } else { removeitem(ITEM_ORAN_BERRY, 1) msgbox(format("Thank you! now my weedle can be Healed Up!"), MSGBOX_DEFAULT) release end}
 			}
 		}
 	}
@@ -466,6 +466,7 @@ script ElementalFangsTutor{
 			case 0: setvar (VAR_0x8005, MOVE_ICE_FANG) special (ChooseMonForMoveTutor) waitstate applymovement(2, LookUp) waitmovement(0) release end
 			case 1: setvar (VAR_0x8005, MOVE_FIRE_FANG) special (ChooseMonForMoveTutor) waitstate applymovement(2, LookUp) waitmovement(0) release end
 			case 2: setvar (VAR_0x8005, MOVE_THUNDER_FANG) special (ChooseMonForMoveTutor) waitstate applymovement(2, LookUp) waitmovement(0) release end
+			case 3: setvar (VAR_0x8005, MOVE_PSYCHIC_FANGS) special (ChooseMonForMoveTutor) waitstate applymovement(2, LookUp) waitmovement(0) release end
 		}
 	  }
 	else{

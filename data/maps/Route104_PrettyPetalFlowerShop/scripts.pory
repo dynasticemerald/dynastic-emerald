@@ -1,4 +1,4 @@
-
+raw`
 .set LOCALID_OWNER, 1
 
 Route104_PrettyPetalFlowerShop_MapScripts::
@@ -98,40 +98,37 @@ Route104_PrettyPetalFlowerShop_EventScript_ShopOwner::
 	call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
 	release
 	end
+`
 
-BerrySeller::
+script BerrySeller{
 	lock
 	faceplayer
-	msgbox BerrySeller_Text_0, MSGBOX_DEFAULT
-	pokemart berrymart
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	msgbox("How can i serve you today?", MSGBOX_DEFAULT)
+	pokemart(berrymart)
+	msgbox (gText_PleaseComeAgain, MSGBOX_DEFAULT)
 	release
 	end
+}
 
-
-	.align 2
-berrymart:
-	.2byte ITEM_ORAN_BERRY
-	.2byte ITEM_POMEG_BERRY
-	.2byte ITEM_PECHA_BERRY
-	.2byte ITEM_CHESTO_BERRY
-	.2byte ITEM_RAWST_BERRY
-	.2byte ITEM_CHERI_BERRY
-	.2byte ITEM_ASPEAR_BERRY
-	.2byte ITEM_LEPPA_BERRY
-	.2byte ITEM_CHARTI_BERRY
-	.2byte ITEM_CHILAN_BERRY
-	.2byte ITEM_PASSHO_BERRY
-	.2byte ITEM_WACAN_BERRY
-	.2byte ITEM_RINDO_BERRY
-	.2byte ITEM_YACHE_BERRY
-	.2byte ITEM_CHOPLE_BERRY
-	.2byte ITEM_KEBIA_BERRY
-	.2byte ITEM_SHUCA_BERRY
-	.2byte ITEM_COBA_BERRY
-	.2byte ITEM_PAYAPA_BERRY
-	.2byte ITEM_COLBUR_BERRY
-	.2byte ITEM_NONE
-
-BerrySeller_Text_0:
-	.string "How can i serve you today?$"
+mart berrymart{
+	ITEM_ORAN_BERRY
+	ITEM_POMEG_BERRY
+	ITEM_PECHA_BERRY
+	ITEM_CHESTO_BERRY
+	ITEM_RAWST_BERRY
+	ITEM_CHERI_BERRY
+	ITEM_ASPEAR_BERRY
+	ITEM_LEPPA_BERRY
+	ITEM_CHARTI_BERRY
+	ITEM_CHILAN_BERRY
+	ITEM_PASSHO_BERRY
+	ITEM_WACAN_BERRY
+	ITEM_RINDO_BERRY
+	ITEM_YACHE_BERRY
+	ITEM_CHOPLE_BERRY
+	ITEM_KEBIA_BERRY
+	ITEM_SHUCA_BERRY
+	ITEM_COBA_BERRY
+	ITEM_PAYAPA_BERRY
+	ITEM_COLBUR_BERRY
+}

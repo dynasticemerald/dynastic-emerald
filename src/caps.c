@@ -11,8 +11,8 @@ u32 GetCurrentLevelCap(void)
     {
         {FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT, 12},
         {FLAG_BADGE01_GET, 15},
-        {FLAG_BADGE02_GET, 24},
-        {FLAG_BADGE03_GET, 34},
+        {FLAG_BADGE02_GET, 27},
+        {FLAG_BADGE03_GET, 36},
         {FLAG_BADGE04_GET, 45},
         {FLAG_BADGE05_GET, 50},
         {FLAG_BADGE06_GET, 62},

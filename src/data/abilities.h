@@ -1200,7 +1200,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Prankster"),
         .description = COMPOUND_STRING("Status moves go first."),
-        .aiRating = 8,
+        .aiRating = 17,
     },
 
     [ABILITY_SAND_FORCE] =

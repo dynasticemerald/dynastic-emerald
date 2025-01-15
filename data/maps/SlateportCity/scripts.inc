@@ -1367,20 +1367,102 @@ SlateportCity_Text_TakingBattleTentChallenge:
 SlateportCity_PowerItems_Merchant::
 	lock
 	faceplayer
+	message SlateportCity_PowerItems_Merchant_Text_0
+	waitbuttonpress
+	closemessage
+	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_PowerItems_Merchant_Text_1, SlateportCity_PowerItems_Merchant_Text_2, SlateportCity_PowerItems_Merchant_Text_3
+	switch VAR_RESULT
+	case 0, SlateportCity_PowerItems_Merchant_2
+	case 1, SlateportCity_PowerItems_Merchant_3
+	return
+
+SlateportCity_PowerItems_Merchant_2:
 	message gText_HowMayIServeYou
 	waitmessage
 	checktrainerflag TRAINER_WATTSON_1
-	goto_if 0, SlateportCity_PowerItems_Merchant_2
+	goto_if 0, SlateportCity_PowerItems_Merchant_4
+	closemessage
 	pokemart SlateportCity_PowerItems_Merchant_BuySell_Expanded
-	return
-
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq SlateportCity_PowerItems_Merchant_14
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
-SlateportCity_PowerItems_Merchant_2:
-	pokemart SlateportCity_PowerItems_Merchant_BuySell
+SlateportCity_PowerItems_Merchant_3:
+	message gText_HowMayIServeYou
+	waitmessage
+	dynmultichoice 0, 0, TRUE, 5, 0, DYN_MULTICHOICE_CB_NONE, SlateportCity_PowerItems_Merchant_Text_4, SlateportCity_PowerItems_Merchant_Text_5, SlateportCity_PowerItems_Merchant_Text_6, SlateportCity_PowerItems_Merchant_Text_7, SlateportCity_PowerItems_Merchant_Text_8
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq SlateportCity_PowerItems_Merchant_8
+	switch VAR_RESULT
+	case 0, SlateportCity_PowerItems_Merchant_17
+	case 1, SlateportCity_PowerItems_Merchant_18
+	case 2, SlateportCity_PowerItems_Merchant_19
+	case 3, SlateportCity_PowerItems_Merchant_20
+	case 4, SlateportCity_PowerItems_Merchant_21
 	return
+
+SlateportCity_PowerItems_Merchant_4:
+	closemessage
+	pokemart SlateportCity_PowerItems_Merchant_BuySell
+	compare VAR_RESULT, MULTI_B_PRESSED
+	goto_if_eq SlateportCity_PowerItems_Merchant_11
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_PowerItems_Merchant_8:
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_PowerItems_Merchant_11:
+	closemessage
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_PowerItems_Merchant_14:
+	closemessage
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_PowerItems_Merchant_17:
+	closemessage
+	pokemart SlateportCity_PowerItems_Merchant_BuySell_Mints_Attack
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_PowerItems_Merchant_18:
+	closemessage
+	pokemart SlateportCity_PowerItems_Merchant_BuySell_Mints_Defense
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_PowerItems_Merchant_19:
+	closemessage
+	pokemart SlateportCity_PowerItems_Merchant_BuySell_Mints_SpecialAttack
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_PowerItems_Merchant_20:
+	closemessage
+	pokemart SlateportCity_PowerItems_Merchant_BuySell_Mints_SpecialDefense
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+SlateportCity_PowerItems_Merchant_21:
+	closemessage
+	pokemart SlateportCity_PowerItems_Merchant_BuySell_Mints_Speed
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
 
 
 	.align 2
@@ -1406,3 +1488,71 @@ SlateportCity_PowerItems_Merchant_BuySell_Expanded:
 	.2byte ITEM_POWER_WEIGHT
 	.2byte ITEM_AMULET_COIN
 	.2byte ITEM_NONE
+
+	.align 2
+SlateportCity_PowerItems_Merchant_BuySell_Mints_Attack:
+	.2byte ITEM_ADAMANT_MINT
+	.2byte ITEM_BRAVE_MINT
+	.2byte ITEM_LONELY_MINT
+	.2byte ITEM_NAUGHTY_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+SlateportCity_PowerItems_Merchant_BuySell_Mints_Defense:
+	.2byte ITEM_BOLD_MINT
+	.2byte ITEM_IMPISH_MINT
+	.2byte ITEM_LAX_MINT
+	.2byte ITEM_RELAXED_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+SlateportCity_PowerItems_Merchant_BuySell_Mints_SpecialAttack:
+	.2byte ITEM_MODEST_MINT
+	.2byte ITEM_MILD_MINT
+	.2byte ITEM_QUIET_MINT
+	.2byte ITEM_RASH_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+SlateportCity_PowerItems_Merchant_BuySell_Mints_SpecialDefense:
+	.2byte ITEM_CALM_MINT
+	.2byte ITEM_CAREFUL_MINT
+	.2byte ITEM_GENTLE_MINT
+	.2byte ITEM_SASSY_MINT
+	.2byte ITEM_NONE
+
+	.align 2
+SlateportCity_PowerItems_Merchant_BuySell_Mints_Speed:
+	.2byte ITEM_TIMID_MINT
+	.2byte ITEM_JOLLY_MINT
+	.2byte ITEM_HASTY_MINT
+	.2byte ITEM_NAIVE_MINT
+	.2byte ITEM_NONE
+
+SlateportCity_PowerItems_Merchant_Text_0:
+	.string "Please choose wich type off item you\n"
+	.string "want to buy.$"
+
+SlateportCity_PowerItems_Merchant_Text_1:
+	.string "Power Items$"
+
+SlateportCity_PowerItems_Merchant_Text_2:
+	.string "Nature Mints$"
+
+SlateportCity_PowerItems_Merchant_Text_3:
+	.string "Cancel$"
+
+SlateportCity_PowerItems_Merchant_Text_4:
+	.string "Attack$"
+
+SlateportCity_PowerItems_Merchant_Text_5:
+	.string "Defense$"
+
+SlateportCity_PowerItems_Merchant_Text_6:
+	.string "Special Attack$"
+
+SlateportCity_PowerItems_Merchant_Text_7:
+	.string "Special Defense$"
+
+SlateportCity_PowerItems_Merchant_Text_8:
+	.string "Speed$"

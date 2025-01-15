@@ -270,10 +270,6 @@ RustboroCity_Gym_EventScript_Roxanne::
 	faceplayer
 	checktrainerflag TRAINER_ROXANNE_1
 	goto_if 0, RustboroCity_Gym_EventScript_Roxanne_2
-	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_EventScript_Roxanne_Text_2, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_RoxanneRematch
-	goto_if_unset FLAG_RECEIVED_TM_ROCK_TOMB, RustboroCity_Gym_EventScript_GiveRockTomb
 	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -294,7 +290,11 @@ RustboroCity_Gym_EventScript_Roxanne_2:
 	applymovement 1, RustboroCity_Gym_EventScript_Roxanne_Movement_2
 	waitmovement 0
 	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_EventScript_Roxanne_Text_2, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
-	return
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_Gym_EventScript_RoxanneRematch
+	goto_if_unset FLAG_RECEIVED_TM_ROCK_TOMB, RustboroCity_Gym_EventScript_GiveRockTomb
+	release
+	end
 
 
 RustboroCity_Gym_EventScript_Gible::

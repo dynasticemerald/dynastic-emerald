@@ -371,7 +371,7 @@ u16 GetCurrentMapWildMonHeaderId(void)
             RtcCalcLocalTime();
             if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(ALTERING_CAVE) &&
                gSaveBlock1Ptr->location.mapNum != MAP_NUM(ALTERING_CAVE)){
-                if (gLocalTime.hours >= 9 && gLocalTime.hours <= 17 
+                if (gLocalTime.hours >= 9 && gLocalTime.hours <= 18 
                 && gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup 
                 && gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
                 {
