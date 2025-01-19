@@ -1087,6 +1087,8 @@ script LittlerootTown_EventScript_NationalDexUpgrade{
 	special(EnableNationalPokedex)
 	msgbox(format("{PLAYER}'s Pokédex was upgraded to the National Dex."), MSGBOX_DEFAULT)
 	msgbox(format("Prof. Birch: The National Dex upgrade, lets you see and register all Pokémon from every region in the Pokédex."), MSGBOX_DEFAULT)
+	msgbox(format("Also ur new Pokédex contains the Dexnav, You can press L or R on the Pokédex to open the DexNav."), MSGBOX_DEFAULT)
+	setflag(FLAG_SYS_DEXNAV_GET)
 	msgbox(format("Well that will be all, {PLAYER}! Now back to regular job schedule."), MSGBOX_AUTOCLOSE)
 	applymovement(9, moves(walk_down *7 step_end))
 	waitmovement(0)

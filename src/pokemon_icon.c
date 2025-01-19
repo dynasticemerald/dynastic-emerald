@@ -136,17 +136,11 @@ static const u16 sSpriteImageSizes[3][4] =
 };
 
 
-u8 CreateMonIconIdle(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, u32 tinted)
+u8 CreateMonIconDexnav(u16 species, s16 x, s16 y, u8 subpriority, u32 personality, bool32 idleIcon)
 {
     u8 spriteId;
 
-    for (tinted = 0; tinted < ARRAY_COUNT(gMonIconPaletteTable); tinted++)
-    {
-        LoadSpritePalette(&gMonIconPaletteTable[tinted]);
-        TintPalette_GrayScale2(&gPlttBufferUnfaded[0x150 + tinted*16], 16);
-        TintPalette_GrayScale2(&gPlttBufferUnfaded[0x170 + tinted*16], 16);
-        TintPalette_GrayScale2(&gPlttBufferUnfaded[0x160 + tinted*16], 16);
-    }
+    void (*callback)(struct Sprite *) = callback;
 
     struct MonIconSpriteTemplate iconTemplate =
     {
@@ -155,7 +149,7 @@ u8 CreateMonIconIdle(u16 species, void (*callback)(struct Sprite *), s16 x, s16 
         .anims = sMonIconAnims,
         .affineAnims = sMonIconAffineAnims,
         .callback = callback,
-        .paletteTag = tinted + gSpeciesInfo[species].iconPalIndex,
+        .paletteTag = POKE_ICON_BASE_PAL_TAG + gSpeciesInfo[species].iconPalIndex,
     };
     species = SanitizeSpeciesId(species);
 
@@ -167,6 +161,9 @@ u8 CreateMonIconIdle(u16 species, void (*callback)(struct Sprite *), s16 x, s16 
 #endif
 
     spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
+
+    if(!idleIcon)
+        UpdateMonIconFrame(&gSprites[spriteId]);
 
     return spriteId;
 }
@@ -322,9 +319,8 @@ void SpriteCB_MonIcon(struct Sprite *sprite)
 
 void SpriteCB_MonIconIdle(struct Sprite *sprite)
 {
-    return;
+    0;
 }
-
 
 const u8 *GetMonIconTiles(u16 species, u32 personality)
 {

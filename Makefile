@@ -1,5 +1,5 @@
 # GBA rom header
-TITLE       := POKEMON EMER
+TITLE       := POKEMON DYNS
 GAME_CODE   := BPEE
 MAKER_CODE  := 01
 REVISION    := 0

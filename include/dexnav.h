@@ -5,10 +5,11 @@
 
 // GUI Info
 #define ROW_WATER       0
-#define ROW_LAND_TOP    1
-#define ROW_LAND_BOT    2
-#define ROW_HIDDEN      3
-#define ROWS_COUNT      4
+#define ROW_WATER_BOT   1
+#define ROW_LAND_TOP    2
+#define ROW_LAND_BOT    3
+#define ROW_HIDDEN      4
+#define ROWS_COUNT      5
 
 #define ROW_WATER_ICON_X        30
 #define ROW_WATER_ICON_Y        35

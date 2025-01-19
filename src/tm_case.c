@@ -1118,7 +1118,7 @@ static void DrawPartyMonIcons(void)
     u8 icon_x = 0;
     u8 icon_y = 0;
 
-    LoadMonIconPalettes();
+    LoadMonIconPalettesTinted();
 
     for (i = 0; i < gPlayerPartyCount; i++)
     {

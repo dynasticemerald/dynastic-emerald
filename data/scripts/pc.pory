@@ -89,10 +89,10 @@ script EventScript_AccessTimeChanger{ //Put here for now till i make a new pory 
     dynmultistack(0, 0, FALSE, 5, FALSE, 0xFF, DYN_MULTICHOICE_CB_NONE)
 
 	switch(var(VAR_RESULT)){
-		case 1: callnative(FakeRtc_ManuallySetTimeDay) closemessage release end
-		case 2:	callnative(FakeRtc_ManuallySetTimeNight) closemessage release end
-		case 3: callnative(FakeRtc_ManuallySetTimeDusk) closemessage release end
-		case 4: callnative(RtcReset) closemessage release end
+		case 1: callnative(FakeRtc_ManuallySetTimeDay) setflag(FLAG_DAY_NIGHT) closemessage release end
+		case 2:	callnative(FakeRtc_ManuallySetTimeNight) clearflag(FLAG_DAY_NIGHT) closemessage release end
+		case 3: callnative(FakeRtc_ManuallySetTimeDusk) clearflag (FLAG_DAY_NIGHT) closemessage release end
+		case 4: callnative(RtcReset) clearflag (FLAG_DAY_NIGHT) closemessage release end
 		case 127: closemessage release end
 	}
 	

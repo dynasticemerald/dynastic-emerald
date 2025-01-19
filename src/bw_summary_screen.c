@@ -2301,6 +2301,9 @@ static void ChangeSummaryState(s16 *data, u8 taskId)
         tSkillsState = SKILL_STATE_IVS;
         break;
     case SKILL_STATE_IVS:
+        if (FlagGet((FLAG_MINIMAL_GRINDING_MODE)))
+            break;
+
         tSkillsState = SKILL_STATE_EVS;
         break;
     case SKILL_STATE_EVS:
@@ -2324,6 +2327,9 @@ static void DrawNextSkillsButtonPrompt(u8 mode)
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IVS);
             break;
         case SKILL_STATE_IVS:
+            if (FlagGet((FLAG_MINIMAL_GRINDING_MODE)))
+                break;
+            
             ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IVS);
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVS);
             break;
@@ -3610,7 +3616,7 @@ static void PrintPageNamesAndStats(void)
                 iconXPos = 0;
             PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_IVS, FALSE, iconXPos);
             PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_IVS, sText_ViewIVs_Graded, stringXPos, 1, 0, 1);
-            if(!FlagGet(MINIMAL_GRINDING_MODE))
+            if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE))
             {
                 stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, sText_ViewEVs_Graded, skillsLabelWidth);
                 iconXPos = stringXPos - 16;
@@ -3636,13 +3642,15 @@ static void PrintPageNamesAndStats(void)
             PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_EVS, FALSE, iconXPos);
             PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_EVS, sText_ViewEVs, stringXPos, 1, 0, 1);
         }
-
-        stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, sText_ViewStats, skillsLabelWidth);
-        iconXPos = stringXPos - 16;
-        if (iconXPos < 0)
-            iconXPos = 0;
-        PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_STATS, FALSE, iconXPos);
-        PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_STATS, sText_ViewStats, stringXPos, 1, 0, 1);
+            if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE))
+            {
+            stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, sText_ViewStats, skillsLabelWidth);
+            iconXPos = stringXPos - 16;
+            if (iconXPos < 0)
+                iconXPos = 0;
+            PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_STATS, FALSE, iconXPos);
+            PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_STATS, sText_ViewStats, stringXPos, 1, 0, 1);
+            }
     }
 
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, sText_NextLv, 0, 4, 0, 0);
@@ -3668,7 +3676,7 @@ static void PutPageWindowTilemaps(u8 page)
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
         if (BW_SUMMARY_IV_EV_DISPLAY == BW_IV_EV_PRECISE)
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_IVS);
-        else if (BW_SUMMARY_IV_EV_DISPLAY == BW_IV_EV_GRADED)
+        else if (BW_SUMMARY_IV_EV_DISPLAY == BW_IV_EV_GRADED && !FlagGet((FLAG_MINIMAL_GRINDING_MODE)))
             PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVS);
         break;
     case PSS_PAGE_BATTLE_MOVES_BW:

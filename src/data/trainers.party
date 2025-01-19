@@ -351,17 +351,7 @@ Relaxed Nature
 - Water Pulse  
 - Leech Life  
 - Poison Jab  
-- Bite  
-
-Ledian @ Charti Berry  
-Ability: Swarm  
-Level: 10  
-Tera Type: Bug  
-Jolly Nature  
-- Bug Bite  
-- Power-Up Punch  
-- Thunder Punch  
-- Roost  
+- Bite   
 
 
 === TRAINER_GRUNT_PETALBURG_WOODS ===
@@ -422,15 +412,15 @@ Adamant Nature
 - Trailblaze  
 - Spikes  
 
-Illumise @ Kebia Berry  
-Ability: Prankster  
-Level: 13  
+Ledian @ Charti Berry  
+Ability: Swarm  
+Level: 13 
 Tera Type: Bug  
-Adamant Nature  
+Jolly Nature  
 - Bug Bite  
-- Covet  
-- Tailwind  
-- Roost  
+- Power-Up Punch  
+- Thunder Punch  
+- Roost 
 
 Dottler @ Leftovers  
 Ability: Compound Eyes  
@@ -514,6 +504,126 @@ Adamant Nature
 - Ice Punch  
 - Low Kick  
 - Fake Out  
+
+/*Rustboro City*/
+
+=== TRAINER_JOSH ===
+Name: Josh
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mudbray @ Leftovers  
+Ability: Stamina  
+Level: 13  
+Tera Type: Ground  
+Careful Nature  
+- Toxic  
+- Smack Down  
+- Low Kick  
+- Stealth Rock  
+
+Cufant @ Berry Juice  
+Ability: Heavy Metal  
+Level: 12  
+Tera Type: Steel  
+Adamant Nature  
+- Rock Tomb  
+- Bulldoze  
+- Smart Strike  
+- Curse  
+
+Axew @ Expert Belt  
+Ability: Rivalry  
+Level: 14  
+Tera Type: Dragon  
+Jolly Nature  
+- Aerial Ace  
+- Breaking Swipe  
+- Rock Smash  
+- Rock Tomb
+
+=== TRAINER_TOMMY ===
+Name: Tommy
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Greavard @ Expert Belt  
+Ability: Fluffy  
+Level: 13  
+Tera Type: Ghost  
+Lonely Nature  
+- Shadow Sneak  
+- Bite  
+- Ice Fang  
+- Bulldoze  
+
+Abra @ Colbur Berry  
+Ability: Synchronize  
+Level: 14  
+Tera Type: Psychic  
+Timid Nature  
+IVs: 0 Atk  
+- Signal Beam  
+- Psybeam  
+- Shock Wave  
+- Encore  
+
+Bagon @ Salac Berry  
+Ability: Rock Head  
+Level: 14  
+Tera Type: Dragon  
+Jolly Nature  
+- Breaking Swipe  
+- Fire Fang  
+- Rock Tomb  
+- Endure 
+
+=== TRAINER_MARC ===
+Name: MARC
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Basic Trainer
+
+Aron @ Custap Berry  
+Ability: Sturdy  
+Level: 14  
+Tera Type: Steel  
+Adamant Nature  
+- Stealth Rock  
+- Bulldoze  
+- Rock Tomb  
+- Body Press  
+
+Tyrunt @ Covert Cloak  
+Ability: Strong Jaw  
+Level: 13  
+Tera Type: Rock  
+Jolly Nature  
+- Breaking Swipe  
+- Ice Fang  
+- Fire Fang  
+- Rock Tomb  
+
+Cubone @ Thick Club  
+Ability: Battle Armor  
+Level: 12  
+Tera Type: Ground  
+Adamant Nature  
+- Smack Down  
+- Aerial Ace  
+- Double Kick  
+- Bone Club  
 
 === TRAINER_SAWYER_1 ===
 Name: SAWYER
@@ -6427,38 +6537,7 @@ IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe
 
 Hariyama
 Level: 39
-IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe  
-
-=== TRAINER_JOSH ===
-Name: JOSH
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Basic Trainer
-
-Geodude
-Level: 10
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-
-=== TRAINER_TOMMY ===
-Name: TOMMY
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Basic Trainer
-
-Geodude
-Level: 8
-IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
-
-Geodude
-Level: 8
-IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
+IVs: 29 HP / 29 Atk / 29 Def / 29 SpA / 29 SpD / 29 Spe    
 
 === TRAINER_JOEY ===
 Name: JOEY
@@ -6760,27 +6839,6 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Magikarp
 Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_IVAN ===
-Name: IVAN
-Class: Fisherman
-Pic: Fisherman
-Gender: Male
-Music: Hiker
-Double Battle: No
-AI: Check Bad Move
-
-Magikarp
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Magikarp
-Level: 6
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Magikarp
-Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CLAUDE ===
@@ -10999,23 +11057,6 @@ Numel
 Level: 22
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-=== TRAINER_MARC ===
-Name: MARC
-Class: Hiker
-Pic: Hiker
-Gender: Male
-Music: Hiker
-Double Battle: No
-AI: Check Bad Move
-
-Geodude
-Level: 8
-IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
-
-Geodude
-Level: 8
-IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
-
 === TRAINER_BRENDEN ===
 Name: BRENDEN
 Class: Sailor
@@ -11520,7 +11561,38 @@ Adamant Nature
 - Covet  
 - Ice Fang  
 - Thunder Fang  
-- Fire Fang  
+- Fire Fang 
+
+=== TRAINER_IVAN ===
+Name: Ivan
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Basic Trainer
+
+Frillish @ Leftovers  
+Ability: Water Absorb  
+Level: 13  
+Shiny: Yes  
+Tera Type: Water  
+Bold Nature  
+IVs: 0 Atk  
+- Icy Wind  
+- Bubble Beam  
+- Hex  
+- Will-O-Wisp  
+
+Horsea @ Scope Lens  
+Ability: Sniper  
+Level: 13  
+Tera Type: Water  
+Timid Nature  
+- Icy Wind  
+- Bubble Beam  
+- Dragon Breath  
+- Flip Turn  
 
 === TRAINER_JANICE ===
 Name: JANICE

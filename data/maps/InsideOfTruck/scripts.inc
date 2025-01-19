@@ -12,7 +12,7 @@ InsideOfTruck_OnLoad:
 	end
 
 InsideOfTruck_OnFrame:
-	map_script_2 VAR_REGION_CHECK, 0, RegionChoice
+	map_script_2 VAR_REGION_CHECK, 0, MinimalGrindingAsk
 	.2byte 0
 
 InsideOfTruck_OnResume:
@@ -62,23 +62,51 @@ InsideOfTruck_Text_BoxPrintedWithMonLogo:
 	.string "It's a POKéMON brand moving and\n"
 	.string "delivery service.$"
 
+MinimalGrindingAsk::
+	lock
+	fadescreen FADE_TO_BLACK
+	msgbox MinimalGrindingAsk_Text_0, MSGBOX_DEFAULT
+	msgbox MinimalGrindingAsk_Text_1, MSGBOX_YESNO
+	switch VAR_RESULT
+	case YES, MinimalGrindingAsk_2
+	case NO, MinimalGrindingAsk_3
+	return
+
+MinimalGrindingAsk_2:
+	setflag FLAG_MINIMAL_GRINDING_MODE
+	fadescreen FADE_FROM_BLACK
+	goto RegionChoice
+	release
+	end
+
+MinimalGrindingAsk_3:
+	fadescreen FADE_FROM_BLACK
+	goto RegionChoice
+	release
+	end
+
+
 ModesCheck::
 	lock
 	fadescreen FADE_TO_BLACK
-	msgbox ModesCheck_Text_0, MSGBOX_DEFAULT
-	msgbox ModesCheck_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq ModesCheck_1
-	goto ModesCheck_Continue
+	msgbox MinimalGrindingAsk_Text_0, MSGBOX_DEFAULT
+	msgbox ModesCheck_Text_0, MSGBOX_YESNO
+	switch VAR_RESULT
+	case YES, ModesCheck_2
+	case NO, ModesCheck_3
 	return
 
-ModesCheck_1:
+ModesCheck_2:
 	setvar VAR_MODES_CHECK, 1
-	message ModesCheck_Text_2
+	message ModesCheck_Text_1
 	waitmessage
 	fadescreen FADE_FROM_BLACK
 	release
 	end
+
+ModesCheck_3:
+	goto ModesCheck_Continue
+	return
 
 
 ModesCheck_Continue::
@@ -246,15 +274,19 @@ RegionChoice_10:
 	end
 
 
-ModesCheck_Text_0:
+MinimalGrindingAsk_Text_0:
 	.string "Please stop smashing {A_BUTTON} and properly\n"
 	.string "answer the following questions.$"
 
-ModesCheck_Text_1:
+MinimalGrindingAsk_Text_1:
+	.string "Would you like to play Dynastic Emerald\n"
+	.string "with Minimal Grinding Mode enabled?$"
+
+ModesCheck_Text_0:
 	.string "Would you like to play Dynastic Emerald\n"
 	.string "without any custom options?$"
 
-ModesCheck_Text_2:
+ModesCheck_Text_1:
 	.string "Dynastic Emerald will be played without\n"
 	.string "any custom options, Enjoy!$"
 

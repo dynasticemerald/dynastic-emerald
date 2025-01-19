@@ -95,24 +95,28 @@ EventScript_AccessTimeChanger::
 
 EventScript_AccessTimeChanger_2:
 	callnative FakeRtc_ManuallySetTimeDay
+	setflag FLAG_DAY_NIGHT
 	closemessage
 	release
 	end
 
 EventScript_AccessTimeChanger_3:
 	callnative FakeRtc_ManuallySetTimeNight
+	clearflag FLAG_DAY_NIGHT
 	closemessage
 	release
 	end
 
 EventScript_AccessTimeChanger_4:
 	callnative FakeRtc_ManuallySetTimeDusk
+	clearflag FLAG_DAY_NIGHT
 	closemessage
 	release
 	end
 
 EventScript_AccessTimeChanger_5:
 	callnative RtcReset
+	clearflag FLAG_DAY_NIGHT
 	closemessage
 	release
 	end

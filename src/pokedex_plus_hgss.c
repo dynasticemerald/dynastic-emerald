@@ -17,6 +17,7 @@
 #include "malloc.h"
 #include "menu.h"
 #include "m4a.h"
+#include "wild_encounter.h"
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -24,6 +25,7 @@
 #include "pokedex_plus_hgss.h"
 #include "pokedex_area_screen.h"
 #include "pokedex_cry_screen.h"
+#include "script.h"
 #include "pokemon_icon.h"
 #include "pokemon_summary_screen.h"
 #include "region_map.h"
@@ -2199,6 +2201,20 @@ static void Task_HandlePokedexInput(u8 taskId)
             PlaySE(SE_PIN);
             FreeWindowAndBgBuffers();
         }
+        else if (JOY_NEW(R_BUTTON) || JOY_NEW(L_BUTTON))
+        {
+            if(MapHasNoEncounterData())
+            {
+                PlaySE(SE_PC_OFF);
+            }
+            else
+            {
+                BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+                PlaySE(SE_PC_LOGIN);
+                gTasks[taskId].func = Task_OpenDexNavFromStartMenu;
+                FreeWindowAndBgBuffers();
+            }
+        }
         else if (JOY_NEW(START_BUTTON))
         {
             TryDestroyStatBars();
@@ -2229,14 +2245,6 @@ static void Task_HandlePokedexInput(u8 taskId)
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
             gTasks[taskId].func = Task_ClosePokedex;
             PlaySE(SE_PC_OFF);
-        }
-        else if (JOY_NEW(R_BUTTON) || JOY_NEW(L_BUTTON))
-        {
-            PlaySE(SE_SELECT);
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
-            PlaySE(SE_PC_LOGIN);
-            CreateTask(Task_OpenDexNavFromStartMenu, 0);
-            FreeWindowAndBgBuffers();
         }
         else
         {

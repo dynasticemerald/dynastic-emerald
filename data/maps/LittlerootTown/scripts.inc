@@ -1100,7 +1100,9 @@ LittlerootTown_EventScript_NationalDexUpgrade::
 	special EnableNationalPokedex
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_3, MSGBOX_DEFAULT
 	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_4, MSGBOX_DEFAULT
-	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_5, MSGBOX_AUTOCLOSE
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_5, MSGBOX_DEFAULT
+	setflag FLAG_SYS_DEXNAV_GET
+	msgbox LittlerootTown_EventScript_NationalDexUpgrade_Text_6, MSGBOX_AUTOCLOSE
 	applymovement 9, LittlerootTown_EventScript_NationalDexUpgrade_Movement_2
 	waitmovement 0
 	removeobject 9
@@ -1244,6 +1246,11 @@ LittlerootTown_EventScript_NationalDexUpgrade_Text_4:
 	.string "from every region in the Pokédex.$"
 
 LittlerootTown_EventScript_NationalDexUpgrade_Text_5:
+	.string "Also ur new Pokédex contains the\n"
+	.string "Dexnav, You can press L or R on the\l"
+	.string "Pokédex to open the DexNav.$"
+
+LittlerootTown_EventScript_NationalDexUpgrade_Text_6:
 	.string "Well that will be all, {PLAYER}! Now\n"
 	.string "back to regular job schedule.$"
 

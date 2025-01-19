@@ -12,7 +12,7 @@ InsideOfTruck_OnLoad:
 	end
 
 InsideOfTruck_OnFrame:
-	map_script_2 VAR_REGION_CHECK, 0, RegionChoice
+	map_script_2 VAR_REGION_CHECK, 0, MinimalGrindingAsk
 	.2byte 0
 
 InsideOfTruck_OnResume:
@@ -63,21 +63,27 @@ InsideOfTruck_Text_BoxPrintedWithMonLogo:
 	.string "delivery service.$"
 `
 
+script MinimalGrindingAsk { //Minimal Grinding Check
+	lock
+	fadescreen(FADE_TO_BLACK)
+	msgbox(format("Please stop smashing {A_BUTTON} and properly answer the following questions."), MSGBOX_DEFAULT)
+	msgbox(format("Would you like to play Dynastic Emerald with Minimal Grinding Mode enabled?"), MSGBOX_YESNO)	
+	switch(var(VAR_RESULT))
+	{
+		case YES: setflag(FLAG_MINIMAL_GRINDING_MODE) fadescreen(FADE_FROM_BLACK) goto(RegionChoice) release end
+		case NO: fadescreen(FADE_FROM_BLACK) goto(RegionChoice) release end
+	}
+}
+
 script ModesCheck { //Modes Check.
 	lock
 	fadescreen(FADE_TO_BLACK)
 	msgbox(format("Please stop smashing {A_BUTTON} and properly answer the following questions."), MSGBOX_DEFAULT)
 	msgbox(format("Would you like to play Dynastic Emerald without any custom options?"), MSGBOX_YESNO)
-	if(var(VAR_RESULT) == YES){
-	setvar(VAR_MODES_CHECK, 1)
-	message(format("Dynastic Emerald will be played without any custom options, Enjoy!"))
-	waitmessage
-	fadescreen(FADE_FROM_BLACK) 
-	release
-	end
-	}
-	else{
-	goto(ModesCheck_Continue)
+	switch(var(VAR_RESULT))
+	{
+		case YES: setvar(VAR_MODES_CHECK, 1) message(format("Dynastic Emerald will be played without any custom options, Enjoy!")) waitmessage fadescreen(FADE_FROM_BLACK) release end
+		case NO: goto(ModesCheck_Continue)
 	}
 }
 

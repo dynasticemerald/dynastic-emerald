@@ -1,7 +1,11 @@
 #ifndef GUARD_CONFIG_DEBUG_H
 #define GUARD_CONFIG_DEBUG_H
 
+#include "general.h"
+
 // Overworld Debug
+#ifdef TEST_BUILD
+
 #define DEBUG_OVERWORLD_MENU            TRUE                // Enables an overworld debug menu to change flags, variables, giving pokemon and more, accessed by holding R and pressing START while in the overworld by default.
 #define DEBUG_OVERWORLD_HELD_KEYS       (L_BUTTON)          // The keys required to be held to open the debug menu.
 #define DEBUG_OVERWORLD_TRIGGER_EVENT   pressedStartButton  // The event that opens the menu when holding the key(s) defined in DEBUG_OVERWORLD_HELD_KEYS.
@@ -14,4 +18,5 @@
 // Pokémon Debug
 #define DEBUG_POKEMON_SPRITE_VISUALIZER TRUE    // Enables a debug menu for Pokémon sprites and icons, accessed by pressing Select in the summary screen.
 
+#endif // TEST_BUILD
 #endif // GUARD_CONFIG_DEBUG_H

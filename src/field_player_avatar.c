@@ -1772,7 +1772,7 @@ enum
     FISHING_CHECK_MORE_DOTS,
     FISHING_MON_ON_HOOK,
     FISHING_START_ENCOUNTER,
-    FISHING_NOT_EVEN_NIBBLE,
+    //FISHING_NOT_EVEN_NIBBLE,
     FISHING_GOT_AWAY,
     FISHING_NO_MON,
     FISHING_PUT_ROD_AWAY,
@@ -1790,13 +1790,13 @@ static bool32 (*const sFishingStateFuncs[])(struct Task *) =
     [FISHING_GOT_BITE]              = Fishing_GotBite,
     [FISHING_CHANGE_MINIGAME]       = Fishing_ChangeMinigame,
     [FISHING_WAIT_FOR_A]            = Fishing_WaitForA,
-    [FISHING_A_PRESS_NO_MINIGAME]   = Fishing_APressNoMinigame,
-    [FISHING_CHECK_MORE_DOTS]       = Fishing_CheckMoreDots,
+    //[FISHING_A_PRESS_NO_MINIGAME]   = Fishing_APressNoMinigame,
+    //[FISHING_CHECK_MORE_DOTS]       = Fishing_CheckMoreDots,
     [FISHING_MON_ON_HOOK]           = Fishing_MonOnHook,
     [FISHING_START_ENCOUNTER]       = Fishing_StartEncounter,
     //[FISHING_NOT_EVEN_NIBBLE]       = Fishing_NotEvenNibble,
     //[FISHING_GOT_AWAY]              = Fishing_GotAway,
-    //[FISHING_NO_MON]                = Fishing_NoMon,
+    [FISHING_NO_MON]                = Fishing_NoMon,
     [FISHING_PUT_ROD_AWAY]          = Fishing_PutRodAway,
     [FISHING_END_NO_MON]            = Fishing_EndNoMon,
 };
@@ -1887,7 +1887,7 @@ static bool32 Fishing_ShowDots(struct Task *task)
         if (!DoesFishingMinigameAllowCancel())
             return FALSE;
 
-        task->tStep = FISHING_NOT_EVEN_NIBBLE;
+        task->tStep = FISHING_NO_MON;
         if (task->tRoundsPlayed != 0)
             task->tStep = FISHING_GOT_AWAY;
         return TRUE;
@@ -1899,10 +1899,10 @@ static bool32 Fishing_ShowDots(struct Task *task)
             task->tFrameCounter = 0;
             if (task->tNumDots >= task->tDotsRequired)
             {
-                task->tStep = FISHING_CHECK_FOR_BITE;
-                if (task->tRoundsPlayed != 0)
+                task->tStep = FISHING_GOT_BITE;
+                /*if (task->tRoundsPlayed != 0)
                     task->tStep = FISHING_GOT_BITE;
-                task->tRoundsPlayed++;
+                task->tRoundsPlayed++;*/
             }
             else
             {
@@ -1914,6 +1914,7 @@ static bool32 Fishing_ShowDots(struct Task *task)
     }
 }
 
+
 static bool32 Fishing_CheckForBite(struct Task *task)
 {
     bool32 bite, firstMonHasSuctionOrSticky;
@@ -1924,7 +1925,7 @@ static bool32 Fishing_CheckForBite(struct Task *task)
 
     if (!DoesCurrentMapHaveFishingMons())
     {
-        task->tStep = FISHING_NOT_EVEN_NIBBLE;
+        task->tStep = FISHING_NO_MON;
         return TRUE;
     }
 
@@ -1937,7 +1938,7 @@ static bool32 Fishing_CheckForBite(struct Task *task)
         bite = Fishing_RollForBite(task->tFishingRod, FALSE);
 
     if (!bite)
-        task->tStep = FISHING_NOT_EVEN_NIBBLE;
+        task->tStep = FISHING_NO_MON;
 
     if (bite)
         StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
@@ -1973,18 +1974,11 @@ static bool32 Fishing_ChangeMinigame(struct Task *task)
 // We have a bite. Now, wait for the player to press A, or the timer to expire.
 static bool32 Fishing_WaitForA(struct Task *task)
 {
-    const s16 reelTimeouts[3] = {
-        [OLD_ROD]   = 999,
-        [GOOD_ROD]  = 999,
-        [SUPER_ROD] = 999
-    };
 
     AlignFishingAnimationFrames();
     task->tFrameCounter++;
-    if (task->tFrameCounter >= reelTimeouts[task->tFishingRod])
-        task->tStep = FISHING_GOT_AWAY;
-    else if (JOY_NEW(A_BUTTON))
-        task->tStep = FISHING_CHECK_MORE_DOTS;
+    if (JOY_NEW(A_BUTTON))
+        task->tStep = FISHING_MON_ON_HOOK;
     return FALSE;
 }
 

@@ -359,19 +359,25 @@ u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
 
+    u8 routenumber = 0;
+    u16 mapGroup = gSaveBlock1Ptr->location.mapGroup;
+    u16 mapNum = gSaveBlock1Ptr->location.mapNum;
+
     for (i = 0; ; i++)
     {
         const struct WildPokemonHeader *wildHeader = &gWildMonHeaders[i];
         if (wildHeader->mapGroup == MAP_GROUP(UNDEFINED))
-            break;
+            break;      
 
-        if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
-            gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
+        if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup 
+        && gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
             RtcCalcLocalTime();
-            if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(ALTERING_CAVE) &&
-               gSaveBlock1Ptr->location.mapNum != MAP_NUM(ALTERING_CAVE)){
-                if (gLocalTime.hours >= 9 && gLocalTime.hours <= 18 
+            //Hard Coded Petalburg Woods and the Cave cause they dont work with the code above (?) need to debug it later.
+            if ((gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(ALTERING_CAVE) 
+            && gSaveBlock1Ptr->location.mapNum != MAP_NUM(ALTERING_CAVE)))
+            {
+                if (gLocalTime.hours > 9 && gLocalTime.hours < 18
                 && gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup 
                 && gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
                 {
@@ -400,7 +406,6 @@ u16 GetCurrentMapWildMonHeaderId(void)
             return i;
         }
     }
-
     return HEADER_NONE;
 }
 

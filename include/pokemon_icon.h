@@ -20,7 +20,7 @@ u8 CreateMonIconNoPersonality(u16 species, void (*callback)(struct Sprite *), s1
 void FreeMonIconPalette(u16 species);
 void FreeAndDestroyMonIconSprite(struct Sprite *sprite);
 u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality);
-u8 CreateMonIconIdle(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u8 subpriority, u32 personality, u32 tinted);
+u8 CreateMonIconDexnav(u16 species, s16 x, s16 y, u8 subpriority, u32 personality, bool32 idleIcon);
 u8 UpdateMonIconFrame(struct Sprite *sprite);
 void LoadMonIconPalette(u16 species);
 void LoadMonIconPalettePersonality(u16 species, u32 personality);

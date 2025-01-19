@@ -113,6 +113,7 @@ struct DexNavGUI
     u8 state;
     u8 cursorSpriteId;
     u16 landSpecies[LAND_WILD_COUNT];
+    u16 fishingSpecies [FISH_WILD_COUNT];
     u16 waterSpecies[WATER_WILD_COUNT];
     u16 hiddenSpecies[HIDDEN_WILD_COUNT];
     u8 cursorRow;
@@ -2013,24 +2014,42 @@ static void DexNavLoadEncounterData(void)
     }
 }
 
+#define sMonIconStill data[3]
+static void SpriteCb_MonIcon(struct Sprite *sprite)
+{
+    if (!sprite->sMonIconStill)
+        UpdateMonIconFrame(sprite);
+}
+#undef sMonIconStill
+
+static void LoadMonIconPalettesTinted(void)
+{
+    u8 i;
+    for (i = 0; i < ARRAY_COUNT(gMonIconPaletteTable); i++)
+    {
+        LoadSpritePalette(&gMonIconPaletteTable[i]);
+        TintPalette_GrayScale2(&gPlttBufferUnfaded[0x170 + i*16], 16);
+    }
+}
+
 static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
 {
-    u8 i = 0;
-    if (species == SPECIES_NONE || species > NUM_SPECIES)
+
+    if(species == SPECIES_NONE || species > NUM_SPECIES)
         CreateNoDataIcon(x, y);   //'X' in slot
-    else if (FlagGet(FlagGet(DEXALL_CODE)) && species > NUM_SPECIES)
-        CreateMonIcon(species, 0, x, y, 0, 0xFFFFFFFF);
-    else if (!FlagGet(DEXALL_CODE) && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-        CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
+    else if(!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+        CreateMonIcon(species, SpriteCb_MonIcon ,x, y, 0, 0xFFFFFFFF);
     else
-        CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
+        CreateMonIcon(species, SpriteCb_MonIcon ,x, y, 0, 0xFFFFFFFF);
 }
 
 static void DrawSpeciesIcons(void)
 {
     s16 x, y;
     u32 i;
-    u16 species;
+    u16 species = GetMonData(gPlayerParty, MON_DATA_SPECIES);
+
+    LoadMonIconPalettesTinted();
     
     LoadCompressedSpriteSheetUsingHeap(&sNoDataIconSpriteSheet);
     for (i = 0; i < LAND_WILD_COUNT; i++)
@@ -2088,10 +2107,8 @@ static u16 DexNavGetSpecies(void)
         return SPECIES_NONE;
     }
     
-    if (FlagGet(DEXALL_CODE) && species >= NUM_SPECIES) //Example Code
-        return SPECIES_NONE;
-    else if (!FlagGet(DEXALL_CODE) && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-        return SPECIES_NONE;
+    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+        return species;
         
     return species;
 }
@@ -2147,8 +2164,8 @@ static void PrintCurrentSpeciesInfo(void)
     u16 dexNum = SpeciesToNationalPokedexNum(species);
     u8 type1, type2;
     
-    //if (!GetSetPokedexFlag(dexNum, FLAG_GET_SEEN))
-        //species = SPECIES_NONE;
+    if (!GetSetPokedexFlag(dexNum, FLAG_GET_SEEN))
+        species = DexNavGetSpecies();
 
     // clear windows
     FillWindowPixelBuffer(WINDOW_INFO, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
@@ -2194,13 +2211,8 @@ static void PrintCurrentSpeciesInfo(void)
     }
     else if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT))
     {
-        #ifdef BATTLE_ENGINE
         if (gSpeciesInfo[species].abilities[2] != ABILITY_NONE)
             AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[gSpeciesInfo[species].abilities[2]].name);
-        #else
-        if (gSpeciesInfo[species].abilityHidden != ABILITY_NONE)           
-            AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[gSpeciesInfo[species].abilityHidden].name);
-        #endif
         else
             AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gText_None);
     }
@@ -2237,14 +2249,15 @@ static void LoadDayorNightSymbol(u8 windowId, bool32 isNight, u32 x)
 
 static void PrintMapName(void)
 {
+    GetMapName(gStringVar3, GetCurrentRegionMapSectionId(), 0);
+
     RtcCalcLocalTime();
     if(gLocalTime.hours >= 20 || gLocalTime.hours < 4)
-        LoadDayorNightSymbol(WINDOW_REGISTERED, TRUE, 107);
+        LoadDayorNightSymbol(WINDOW_REGISTERED, TRUE, 190);
     else
-        LoadDayorNightSymbol(WINDOW_REGISTERED, FALSE, 107);
+        LoadDayorNightSymbol(WINDOW_REGISTERED, FALSE, 194);
 
-    GetMapName(gStringVar3, GetCurrentRegionMapSectionId(), 0);
-    AddTextPrinterParameterized3(WINDOW_REGISTERED, 1, 108 +
+    AddTextPrinterParameterized3(WINDOW_REGISTERED, 1, 98 +
       GetStringRightAlignXOffset(1, gStringVar3, MAP_NAME_LENGTH * GetFontAttribute(1, FONTATTR_MAX_LETTER_WIDTH)), 0, sFontColor_White, 0, gStringVar3);
     CopyWindowToVram(WINDOW_REGISTERED, 3);
 }

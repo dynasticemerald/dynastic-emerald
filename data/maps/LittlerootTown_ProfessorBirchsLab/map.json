@@ -110,24 +110,7 @@
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 7,
-      "y": 12,
-      "elevation": 0,
-      "var": "VAR_DEXNAV_ENCOUNTER_SCRIPT",
-      "var_value": "1",
-      "script": "LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav_GoLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 6,
-      "y": 12,
-      "elevation": 0,
-      "var": "VAR_DEXNAV_ENCOUNTER_SCRIPT",
-      "var_value": "1",
-      "script": "LittlerootTown_ProfessorBirchsLab_EventScript_Dexnav"
-    }
+
   ],
   "bg_events": [
     {

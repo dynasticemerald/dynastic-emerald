@@ -11,6 +11,8 @@
 
 #define MAP_GROUP(map) (MAP_##map >> 8)
 #define MAP_NUM(map) (MAP_##map & 0xFF)
+#define MAP_GROUP_ROUTE(routenumber) (MAP_ROUTE##routenumber >> 8)
+#define MAP_NUM_ROUTE(routenumber) (MAP_ROUTE##routenumber & 0xFF)
 
 // IDs for dynamic warps. Both are used in the dest_warp_id field for warp events, but they
 // are never read in practice. A dest_map of MAP_DYNAMIC is used to indicate that a

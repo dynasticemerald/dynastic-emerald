@@ -102,6 +102,18 @@ bool32 IsAiBattlerAware(u32 battlerId)
     return BattlerHasAi(battlerId);
 }
 
+bool32 IsBattlerPredictedToSwitch(u32 battler)
+{
+    // Check for prediction flag on AI, whether they're using those predictions this turn, and whether the AI thinks the player should switch
+    if (AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_PREDICT_SWITCH
+        || AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_RIGHT] & AI_FLAG_PREDICT_SWITCH)
+     {
+        if (AI_DATA->predictingSwitch && AI_DATA->shouldSwitch & (1u << battler))
+            return TRUE;
+     }
+    return FALSE;
+}
+
 bool32 IsAiBattlerPredictingAbility(u32 battlerId)
 {
     if (AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_WEIGH_ABILITY_PREDICTION
@@ -486,10 +498,11 @@ bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTy
             return TRUE;
         break;
     case EFFECT_FOCUS_PUNCH:
+        if (IsBattlerPredictedToSwitch(battlerDef))
+            return FALSE;
         if (HasDamagingMove(battlerDef) && !((gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE)
          || IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef])
          || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION)))
-         // TODO: || IsPredictedToSwitch(battlerDef, battlerAtk)
             return TRUE;
         // If AI could Sub and doesn't have a Sub, don't Punch yet
         if (HasMoveEffect(battlerAtk, EFFECT_SUBSTITUTE) && !(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE))
@@ -2750,9 +2763,9 @@ enum AIPivot ShouldPivot(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 mov
         if (CountUsablePartyMons(battlerAtk) == 0)
             return CAN_TRY_PIVOT; // can't switch, but attack might still be useful
 
-        //TODO - predict opponent switching
-        /*if (IsPredictedToSwitch(battlerDef, battlerAtk) && !hasStatBoost)
-            return SHOULD_PIVOT; // Try pivoting so you can switch to a better matchup to counter your new opponent*/
+
+        if (IsBattlerPredictedToSwitch(battlerDef))
+            return SHOULD_PIVOT; // Try pivoting so you can switch to a better matchup to counter your new opponent
 
         if (AI_IsFaster(battlerAtk, battlerDef, move)) // Attacker goes first
         {

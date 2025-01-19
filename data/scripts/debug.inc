@@ -143,6 +143,7 @@ Debug_EventScript_Script_1::
 	end
 
 Debug_EventScript_Script_2::
+	clearflag FLAG_MINIMAL_GRINDING_MODE
 	release
 	end
 

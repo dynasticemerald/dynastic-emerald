@@ -4749,7 +4749,7 @@ static void Cmd_getexp(void)
                 gBattleScripting.getexpState = 5;
                 gBattleMoveDamage = 0; // used for exp
                 //if (B_MAX_LEVEL_EV_GAINS >= GEN_5)
-                if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE))//Minimal Grinding is of
+                if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE))//Minimal Grinding is off
                     MonGainEVs(&gPlayerParty[*expMonId], gBattleMons[gBattlerFainted].species);
             }
             else
@@ -4836,7 +4836,7 @@ static void Cmd_getexp(void)
                         PrepareStringBattle(STRINGID_TEAMGAINEDEXP, gBattleStruct->expGetterBattlerId);
                         gBattleStruct->teamGotExpMsgPrinted = TRUE;
                     }
-                    if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE)){//Minimal Grinding is off
+                    if(!FlagGet(FLAG_MINIMAL_GRINDING_MODE)){ //Minimal Grinding is off
                         MonGainEVs(&gPlayerParty[*expMonId], gBattleMons[gBattlerFainted].species);}
                 }
                 gBattleScripting.getexpState++;
@@ -8130,7 +8130,7 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
             moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * trainerMoney;
     }
 
-    return moneyReward;
+    return moneyReward * 3;
 }
 
 static void Cmd_getmoneyreward(void)
@@ -15580,9 +15580,10 @@ static void Cmd_handleballthrow(void)
             }
             else
             {
-                odds = Sqrt(Sqrt(16711680 / odds));
+                /*odds = Sqrt(Sqrt(16711680 / odds));
                 odds = 1048560 / odds;
-                for (shakes = 0; shakes < maxShakes && Random() < odds; shakes++);
+                for (shakes = 0; shakes < maxShakes && Random() < odds; shakes++);*/
+                shakes = maxShakes;
             }
 
             BtlController_EmitBallThrowAnim(gBattlerAttacker, BUFFER_A, shakes);
